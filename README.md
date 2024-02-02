@@ -1,7 +1,7 @@
 ## Academia
-    Academia is an LMS focused on arabic higher education and improving accessibility and user experiences.
+    Academia is an LMS focused on Arabic higher education and improving accessibility and user experiences.
     
-    It is a Gradation project at Cairo University faculty of computer science and artificial intelligence 2020-2024
+    It is a Gradation project at Cairo University Faculty of Computer Science and Artificial Intelligence 2020-2024
 
 ## Developers
 
