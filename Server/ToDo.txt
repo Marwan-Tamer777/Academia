@@ -1,0 +1,7 @@
+1- Modify Functions To connect throughout The database ex: Adding/Removing a Quiz Adds/Removes The Quiz from quiz array in the Course.
+2- Modify The validation Functions ex: minCapacity for Course shouldn't be more than the maximumCapacity 
+3- Add More Route Options ex: Retrieve All Questions With Quiz ID
+4- Add Pagination
+5- Add Ability to modify the incoming parameters ex: hide/show specific variables when retrieving data
+6- Change The Current Response to the Final Response in the Documentation
+7- Add Reset Password Route 
