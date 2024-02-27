@@ -1,0 +1,69 @@
+[
+  {
+    "_id": "1",
+    "name": "User One",
+    "email": "userone@example.com",
+    "password": "$2a$10$oRMW6r66IEMgUUfvl.cm2OM1UEfZ15gZeZdDjCynpDeZlTNUAv7wa",
+    "isAdmin": false,
+    "avatar": "",
+    "assignedId": "U1",
+    "courses": [],
+    "lastAccessedCourse": "",
+    "contacts": [],
+    "description": "",
+    "title": "Guest",
+    "department": ""
+  },
+  {
+    "_id": "2",
+    "name": "User Two",
+    "email": "usertwo@example.com",
+    "password": "$2a$10$oRMW6r66IEMgUUfvl.cm2OM1UEfZ15gZeZdDjCynpDeZlTNUAv7wa",
+    "isAdmin": false,
+    "avatar": "",
+    "assignedId": "U2",
+    "courses": [],
+    "lastAccessedCourse": "",
+    "contacts": [],
+    "description": "",
+    "title": "Guest",
+    "department": ""
+  },
+  {
+    "_id": "3",
+    "name": "Admin One",
+    "email": "adminone@example.com",
+    "password": "$2a$10$oRMW6r66IEMgUUfvl.cm2OM1UEfZ15gZeZdDjCynpDeZlTNUAv7wa",
+    "isAdmin": true,
+    "avatar": "",
+    "assignedId": "A1",
+    "courses": [],
+    "lastAccessedCourse": "",
+    "contacts": [],
+    "description": "",
+    "title": "Admin",
+    "department": ""
+  },
+  {
+    "_id": "0db956b3-1e7e-4555-a32b-baf610c6223a",
+    "name": "Admin 1",
+    "email": "test2eeeee3e@email.com",
+    "password": "$2a$10$oRMW6r66IEMgUUfvl.cm2OM1UEfZ15gZeZdDjCynpDeZlTNUAv7wa",
+    "isAdmin": true,
+    "avatar": "",
+    "assignedId": "2020001",
+    "courses": [],
+    "lastAccessedCourse": "",
+    "contacts": [],
+    "description": "",
+    "title": "Guest",
+    "department": "",
+    "createdOn": {
+      "$date": "2024-02-16T17:51:30.696Z"
+    },
+    "editedOn": {
+      "$date": "2024-02-16T17:51:30.696Z"
+    },
+    "__v": 0
+  }
+]
