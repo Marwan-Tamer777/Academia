@@ -1,0 +1,12 @@
+The first version of academia platform (student view) 
+the APK will be available the next version isA 
+
+the steps to run the app: 
+1- Download Android studio 
+2- Download Flutter SDK 
+3- Downnload Dart SDK 
+4- open the project on Android studio 
+5- from device manager create your emulator or use usb to run the app on your phone 
+6- to run the app on your phone you must turn on the developer options by going to settings - about phone - version and click many times until the device show you a message "you are now a developer" 
+then turn on usb debugging to enable the instalation 
+7- finally when the emulator or your phone is connected to the project you will be able to run the app easily from run sign in Android studio
