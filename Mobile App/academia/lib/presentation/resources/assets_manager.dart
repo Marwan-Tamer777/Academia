@@ -49,6 +49,12 @@ class ImageAssets {
   static const String calender = "assets/images/calender_icon_nav_bar.svg";
   static const String home = "assets/images/home_icon_nav_bar.svg";
 
+  // Assets for Nav Bar Active Icons
+  static const String profileActive = "assets/images/profile_icon_active_nav_bar.svg";
+  static const String detailsActive = "assets/images/assignments_icon_active_nav_bar.svg";
+  static const String coursesActive = "assets/images/courses_icon_active_nav_bar.svg";
+  static const String calenderActive = "assets/images/calender_icon_active_nav_bar.svg";
+  static const String homeActive = "assets/images/home_icon_active_nav_bar.svg";
   // Assets for Course Icons
   static const String courseIcon = "assets/images/course_icon.svg";
   static const String lock = "assets/images/lock_icon.svg";

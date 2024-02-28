@@ -15,9 +15,9 @@ class BottomNavBarCubit extends Cubit<BottomNavBarState> {
   List<Widget> screens = [
     const ProfileScreen(),
     const QuizScreen(),
-    const CoursesScreen(),
     const CalenderScreen(),
     const HomeScreen(),
+    const CoursesScreen(),
   ];
 
   int currentIndex = 0;
