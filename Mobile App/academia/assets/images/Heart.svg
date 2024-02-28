@@ -1,0 +1,12 @@
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Heart">
+<g id="Stroke 1">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.6068 8.66527C17.501 5.8736 16.456 2.68277 13.5251 1.7386C11.9835 1.2411 10.2818 1.53443 9.00012 2.4986C7.78762 1.5611 6.02345 1.24443 4.48345 1.7386C1.55262 2.68277 0.50095 5.8736 1.39428 8.66527C2.78595 13.0903 9.00012 16.4986 9.00012 16.4986C9.00012 16.4986 15.1685 13.1419 16.6068 8.66527Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.6068 8.66527C17.501 5.8736 16.456 2.68277 13.5251 1.7386C11.9835 1.2411 10.2818 1.53443 9.00012 2.4986C7.78762 1.5611 6.02345 1.24443 4.48345 1.7386C1.55262 2.68277 0.50095 5.8736 1.39428 8.66527C2.78595 13.0903 9.00012 16.4986 9.00012 16.4986C9.00012 16.4986 15.1685 13.1419 16.6068 8.66527Z" stroke="#FF7E31" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g id="Stroke 3" opacity="0.4">
+<path d="M5.66667 4.5835C4.77501 4.87183 4.14501 5.66766 4.06917 6.60183" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.66667 4.5835C4.77501 4.87183 4.14501 5.66766 4.06917 6.60183" stroke="#FF7E31" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

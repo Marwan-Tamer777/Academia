@@ -1,0 +1,90 @@
+import 'package:academia/presentation/resources/assets_manager.dart';
+import 'package:academia/presentation/widgets/backgrounds/background.dart';
+import 'package:academia/presentation/widgets/list_views_items/course_card.dart';
+import 'package:academia/presentation/widgets/list_views_items/text_post_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/font_manager.dart';
+import '../../resources/values_manager.dart';
+import '../../widgets/elements/notification_icon.dart';
+import '../../widgets/list_views_items/category_item.dart';
+
+class CourseScreen extends StatelessWidget {
+  const CourseScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+            children: [
+              Background(height: AppSize.s300.toInt(),),
+              Padding(
+                padding: const EdgeInsets.all(AppPadding.p24),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const NotificationIcon(),
+                        Text("المادة الدراسية", style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s15,color: ColorManager.white)),
+                        SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
+                      ],
+                    ),
+                    const SizedBox(height: AppSize.s40,),
+                    const CourseCard(),
+                    const SizedBox(height: AppSize.s20,),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CategoryItem(
+                          title: "تنبيهات",
+                          width: AppSize.s100,
+                          height: AppSize.s50,
+                          color: ColorManager.transparent,
+                          textColor: ColorManager.lightGrey,
+                          fontSize: FontSize.s16,
+                        ),
+                        CategoryItem(
+                          title: "تكليفات",
+                          width: AppSize.s100,
+                          height: AppSize.s50,
+                          color: ColorManager.transparent,
+                          textColor: ColorManager.lightGrey,
+                          fontSize: FontSize.s16,
+                        ),
+                        CategoryItem(
+                          title: "منشورات",
+                          width: AppSize.s100,
+                          height: AppSize.s50,
+                          color: ColorManager.darkBlueBackground,
+                          textColor: ColorManager.white,
+                          fontSize: FontSize.s16,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: AppSize.s20,),
+                    Expanded(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context,index) {
+                          return const TextPostItem();
+                        },
+                        separatorBuilder: (context,index) {
+                          return const SizedBox(height: AppSize.s10,);
+                        },
+                        itemCount: 10,
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ]
+        ),
+      ),
+    );
+  }
+}
