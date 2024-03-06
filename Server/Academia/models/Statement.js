@@ -104,7 +104,7 @@ const deleteStatementsVerb = {
     }
 };
 
-module.exports.Statement = {
+module.exports = {
     statementModel,
     validateCreateStatement,
     validateUpdateStatement,

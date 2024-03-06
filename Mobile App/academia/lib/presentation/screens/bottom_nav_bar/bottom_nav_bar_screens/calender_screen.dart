@@ -1,4 +1,3 @@
-import 'package:academia/presentation/widgets/elements/calender_empty_state.dart';
 import 'package:academia/presentation/widgets/list_views_items/calender_task_list.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -18,11 +17,13 @@ class CalenderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // background
         Background(height: AppSize.s300.toInt(),),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
           child: Column(
             children: [
+              // title and notification icon
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +34,11 @@ class CalenderScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: AppSize.s20),
+
+              // calender
               Container(
                 padding: const EdgeInsets.all(AppSize.s15),
-                height: AppSize.s370,
+                height: AppSize.s400,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(AppSize.s30)),
@@ -48,7 +51,7 @@ class CalenderScreen extends StatelessWidget {
                     formatButtonVisible: false,
                     leftChevronIcon: Row(
                       children: [
-                        SvgPicture.asset(ImageAssets.arrowLeft),
+                        SvgPicture.asset(ImageAssets.arrowLeft,height: 24,width: 24,),
                         const SizedBox(width: AppSize.s5,),
                         SvgPicture.asset(ImageAssets.arrowBackIcon),
                       ],
@@ -62,12 +65,13 @@ class CalenderScreen extends StatelessWidget {
                     ),
                   ),
                   // make the day names is only the first letter of the day
-                  dayHitTestBehavior: HitTestBehavior.translucent,
-
+                  //dayHitTestBehavior: HitTestBehavior.translucent,
                   ),
 
                 ),
               const SizedBox(height: AppSize.s24),
+
+              // calender tasks
               Align(
                 alignment: const AlignmentDirectional(1, 0),
                 child: Text(
@@ -88,6 +92,8 @@ class CalenderScreen extends StatelessWidget {
                   itemCount: 10,
                 ),
               ),
+
+              // if there is no tasks
               // const CalenderEmptyState(),
             ],
           ),

@@ -112,7 +112,7 @@ const deleteTicketVerb = {
     }
 };
 
-module.exports.Ticket = {
+module.exports = {
     ticketModel,
     validateCreateTicket,
     validateUpdateTicket,

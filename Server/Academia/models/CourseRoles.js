@@ -15,7 +15,7 @@ const courseRolesSchema = new mongoose.Schema({
         trim: true,
     },
     roleCode: {
-        type: int,
+        type: Number,
         required: true,
     },
     role: {
@@ -24,11 +24,11 @@ const courseRolesSchema = new mongoose.Schema({
         trim: true,
     },
     level: {
-        type: int,
+        type: Number,
         required: true,
     },
     privileges: {
-        type: [int],
+        type: [Number],
         default: [],
     },
 }, {
@@ -42,7 +42,7 @@ const courseRolesSchema = new mongoose.Schema({
 });
 
 /// CourseRoles Model
-const courseRoles = mongoose.model('CourseRoles', courseRolesSchema);
+const courseRolesModel = mongoose.model('CourseRoles', courseRolesSchema);
 
 /// Validate CourseRoles
 function validateCreateCourseRoles(courseRoles) {
@@ -91,8 +91,8 @@ const deleteCourseRolesVerb = {
     }
 };
 
-module.exports.CourseRoles = {
-    courseRoles,
+module.exports = {
+    courseRolesModel,
     validateCreateCourseRoles,
     validateUpdateCourseRoles,
     createCourseRolesVerb,

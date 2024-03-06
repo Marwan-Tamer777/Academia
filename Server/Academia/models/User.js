@@ -157,8 +157,8 @@ function validateLoginUser(user) {
         },
         context: {
             user: {
-                email: Joi.string().trim().min(7).max(100).required(),
-                assignedId: Joi.string().trim().min(1).required(),
+                email: Joi.string().trim().min(7).max(100),
+                assignedId: Joi.string().trim().min(1),
                 password: Joi.string().trim().min(7).required(),
             }
         }

@@ -65,7 +65,7 @@ const deleteActionMapVerb = {
     }
 };
 
-module.exports.ActionMap = {
+module.exports = {
     actionMapModel,
     validateCreateActionMap,
     validateUpdateActionMap,

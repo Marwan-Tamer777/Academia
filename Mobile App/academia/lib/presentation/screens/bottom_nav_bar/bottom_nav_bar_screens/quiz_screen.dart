@@ -5,9 +5,7 @@ import 'package:academia/presentation/widgets/bottom_sheets/task_submission_bott
 import 'package:academia/presentation/widgets/elements/calender_empty_state.dart';
 import 'package:academia/presentation/widgets/elements/notification_icon.dart';
 import 'package:academia/presentation/widgets/list_views_items/calender_task_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../resources/font_manager.dart';
@@ -18,9 +16,9 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFound = true;
+    bool isFound = false;
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
         toolbarHeight: 80,
         leadingWidth: 80,
         backgroundColor: ColorManager.darkBlueBackground,
@@ -40,28 +38,12 @@ class QuizScreen extends StatelessWidget {
             ? SingleChildScrollView(
               child: Column(
                   children: [
-                    // Container(
-                    //   height: 100,
-                    //   width: double.infinity,
-                    //   decoration: const BoxDecoration(
-                    //     color: ColorManager.darkBlueBackground,
-                    //   ),
-                    //   padding: const EdgeInsets.all(16),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       const NotificationIcon(),
-                    //       Text('الواجبات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
-                    //       SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
-                    //     ],
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
+                            // the next tasks
                             Align(
                               alignment: const AlignmentDirectional(1, 0),
                               child: Text(
@@ -93,6 +75,8 @@ class QuizScreen extends StatelessWidget {
                             const SizedBox(
                               height: AppSize.s20,
                             ),
+
+                            // the next quiz
                             Align(
                               alignment: const AlignmentDirectional(1, 0),
                               child: Text(
@@ -128,38 +112,44 @@ class QuizScreen extends StatelessWidget {
                   ],
                 ),
             )
-            : Column(
-                children: [
-                  Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Text(
-                      'التسليمات القادمة',
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                            fontSize: FontSize.s20,
-                          ),
+            : Padding(
+              padding: const EdgeInsets.all(AppPadding.p16),
+              child: Column(
+                  children: [
+                    // no tasks
+                    Align(
+                      alignment: const AlignmentDirectional(1, 0),
+                      child: Text(
+                        'التسليمات القادمة',
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                          fontSize: FontSize.s20,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: AppSize.s10,
-                  ),
-                  const CalenderEmptyState(),
-                  const SizedBox(
-                    height: AppSize.s20,
-                  ),
-                  Align(
-                    alignment: const AlignmentDirectional(0, 0),
-                    child: Text(
-                      'الامتحانات القادمة',
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                            fontSize: FontSize.s20,
-                          ),
+                    const SizedBox(
+                      height: AppSize.s10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: AppSize.s10,
-                  ),
-                  const CalenderEmptyState(),
-                ],
-              ));
+                    const CalenderEmptyState(),
+
+                    // no quiz
+                    const SizedBox(
+                      height: AppSize.s20,
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(1, 0),
+                      child: Text(
+                        'الامتحانات القادمة',
+                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                              fontSize: FontSize.s20,
+                            ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: AppSize.s10,
+                    ),
+                    const CalenderEmptyState(),
+                  ],
+                ),
+            ));
   }
 }

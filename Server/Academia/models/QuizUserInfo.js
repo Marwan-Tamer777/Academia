@@ -132,7 +132,7 @@ const deleteQuizUserInfoVerb = {
     }
 };
 
-module.exports.QuizUserInfo = {
+module.exports = {
     quizUserInfoModel,
     validateCreateQuizUserInfo,
     validateUpdateQuizUserInfo,

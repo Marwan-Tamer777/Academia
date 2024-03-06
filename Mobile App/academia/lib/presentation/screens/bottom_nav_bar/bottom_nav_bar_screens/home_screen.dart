@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
         return SingleChildScrollView(
           child: Stack(
               children: [
+                // background
                 Background(height: AppSize.s300.toInt(),),
                 Column(
                   children: [
@@ -51,8 +52,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: AppSize.s40,),
-                    // last accessed courses
 
+                    // last accessed courses
                     SizedBox(
                       height: AppSize.s230,
                       child: ListView.separated(

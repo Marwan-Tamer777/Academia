@@ -43,6 +43,7 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
     res.status(200).json(course);
 }));
 
+
 /**
  * @desc Create a course
  * @route POST /api/courses
@@ -79,13 +80,13 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
 
 }));
 
+
 /**
  * @desc Update a course
  * @route PUT /api/courses/:id
  * @method PUT
  * @access Public
  */
-
 /// Update Course
 router.put("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // validate the course data 
@@ -135,6 +136,7 @@ router.put("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     )
     );
 }));
+
 
 /**
  * @desc Delete a course

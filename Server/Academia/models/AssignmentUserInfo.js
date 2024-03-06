@@ -149,7 +149,7 @@ const deleteAssignmentUserInfoVerb = {
     }
 };
 
-module.exports.AssignmentUserInfo = {
+module.exports = {
     assignmentUserInfoModel,
     validateCreateAssignmentUserInfo,
     validateUpdateAssignmentUserInfo,

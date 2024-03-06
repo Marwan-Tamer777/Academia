@@ -91,7 +91,7 @@ const deleteAssignmentVerb = {
     }
 };
 
-module.exports.Assignment = {
+module.exports = {
     assignment,
     validateCreateAssignment,
     validateUpdateAssignment,

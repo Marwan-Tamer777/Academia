@@ -11,7 +11,6 @@ import '../../../resources/font_manager.dart';
 import '../../../widgets/backgrounds/background.dart';
 import '../../../widgets/bottom_sheets/task_submission_bottom_sheet.dart';
 import '../../../widgets/common_widgets.dart';
-import '../../../widgets/elements/course_registeration_dialog.dart';
 import '../../../widgets/elements/notification_icon.dart';
 import '../../../widgets/list_views_items/category_item.dart';
 import '../../../widgets/list_views_items/course_item.dart';
@@ -36,8 +35,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
         var cubit = CoursesCubit.of(context);
         return Stack(
             children: [
+              // background
               const Background(),
-              //if(searchController.text.isNotEmpty)
               Column(
                 children: [
                   // title and notification icon
@@ -61,6 +60,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     ),
                   ),
                   const SizedBox(height: AppSize.s40,),
+
                   // search bar
                   Positioned(
                       top: 150,
@@ -81,6 +81,7 @@ class _CoursesScreenState extends State<CoursesScreen> {
                       )
                   ),
                   const SizedBox(height: AppSize.s20,),
+
                   // categories and courses
                   if(!cubit.isSearch)
                     Expanded(
@@ -109,21 +110,25 @@ class _CoursesScreenState extends State<CoursesScreen> {
                           ),
                           const SizedBox(height: AppSize.s10,),
                           Expanded(
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              itemBuilder: (context,index) {
-                                return const CourseItem();
-                              },
-                              separatorBuilder: (context,index) {
-                                return const SizedBox(height: AppSize.s10,);
-                              },
-                              itemCount: 10,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppPadding.p16,),
+                              child: ListView.separated(
+                                shrinkWrap: true,
+                                itemBuilder: (context,index) {
+                                  return const CourseItem();
+                                },
+                                separatorBuilder: (context,index) {
+                                  return const SizedBox(height: AppSize.s10,);
+                                },
+                                itemCount: 10,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  const SizedBox(height: AppSize.s20,),
+                    const SizedBox(height: AppSize.s20,),
+
                   // search results part
                   if(cubit.isSearch)
                     Expanded(
@@ -165,6 +170,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         ],
                       ),
                     ),
+
+
                   // if no courses
                   //   const NoCoursesBackground(),
                 ],

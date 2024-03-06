@@ -15,11 +15,13 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Stack(
         children: [
+          // background
           const Background(height: 240,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
             child: Column(
               children: [
+                // title and notification icon
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,6 +43,8 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSize.s90),
+
+                // user image
                 Container(
                   height: AppSize.s150,
                   width: AppSize.s150,
@@ -52,6 +56,8 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(
                   height: AppSize.s15,
                 ),
+
+                // user name
                 Text(
                   'مروان تامر جلال عبدالمجيد',
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
@@ -61,6 +67,8 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(
                   height: AppSize.s10,
                 ),
+
+                // user job
                 Text(
                   'أستاذ مساعد',
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
@@ -69,6 +77,8 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 35,),
+
+                // settings
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   decoration: BoxDecoration(

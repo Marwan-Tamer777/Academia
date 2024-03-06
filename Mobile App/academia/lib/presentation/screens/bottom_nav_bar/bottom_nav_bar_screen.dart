@@ -1,8 +1,6 @@
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
-import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -91,7 +91,7 @@ const deleteCoursePollVerb = {
     }
 };
 
-module.exports.coursePoll = {
+module.exports = {
     coursePoll,
     validateCreateCoursePoll,
     validateUpdateCoursePoll,

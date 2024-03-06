@@ -62,7 +62,7 @@ class ImageAssets {
   static const String search2 = "assets/images/search2.svg";
   static const String notification = "assets/images/notification_icon.svg";
   static const String error = "assets/images/error_icon.svg";
-  static const String calendar = "assets/images/calendar.svg";
+  static const String calendar = "assets/images/calender.svg";
   static const String grades = "assets/images/assignments.svg";
   static const String send = "assets/images/send.svg";
   static const String arrowUp = "assets/images/arrow-up.svg";
@@ -79,10 +79,10 @@ class ImageAssets {
 
   // Assets for settings
   static const String language = "assets/images/language.svg";
-  static const String mode = "assets/images/mode_dark.svg";
+  static const String mode = "assets/images/mode-dark.svg";
   static const String password = "assets/images/lock.svg";
-  static const String heart = "assets/images/heart.svg";
-  static const String logout = "assets/images/logout.svg";
+  static const String heart = "assets/images/Heart.svg";
+  static const String logout = "assets/images/Logout.svg";
   static const String egypt = "assets/images/egypt.svg";
   static const String switchButton = "assets/images/switch.svg";
 

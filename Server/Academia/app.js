@@ -26,6 +26,18 @@ app.use(process.env.quizQuestionsURL, require('./routes/questions'));
 app.use(process.env.quizzesURL, require('./routes/quizzes'));
 app.use(process.env.rolesURL, require('./routes/roles'));
 app.use(process.env.tagsURL, require('./routes/tags'));
+app.use(process.env.courseRolesURL, require('./routes/course_roles')); 
+app.use(process.env.privilegeMapURL, require('./routes/privilege_map'));
+app.use(process.env.ticketsURL, require('./routes/tickets'));
+app.use(process.env.usercourseInfoURL, require('./routes/user_course_info'));
+app.use(process.env.coursePollURL, require('./routes/course_poll'));
+app.use(process.env.assignmentsURL, require('./routes/assignment'));
+app.use(process.env.statmentsURL, require('./routes/statement'));
+app.use(process.env.actionMapURL, require('./routes/action_map'));
+app.use(process.env.materialMapURL, require('./routes/material_map'));
+app.use(process.env.quizUserInfoURL, require('./routes/quiz_user_info'));
+app.use(process.env.assignmentUserInfoURL, require('./routes/assignment_user_info'));
+
 
 
 

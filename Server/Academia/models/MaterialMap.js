@@ -86,7 +86,7 @@ const deleteMaterialMapVerb = {
     }
 };
 
-module.exports.MaterialMap = {
+module.exports = {
     materialMapModel,
     validateCreateMaterialMap,
     validateUpdateMaterialMap,

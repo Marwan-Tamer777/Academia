@@ -79,7 +79,7 @@ const deletePrivilegeMapVerb = {
     }
 };
 
-module.exports.privilegeMap = {
+module.exports = {
     privilegeMap,
     validateCreatePrivilegeMap,
     validateUpdatePrivilegeMap,
