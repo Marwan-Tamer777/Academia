@@ -22,9 +22,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ??
-          const EdgeInsets.symmetric(
-              horizontal: AppPadding.p6, vertical: AppPadding.p2),
+      padding: padding ?? const EdgeInsets.all(AppPadding.p10),
       // height: height,
       // width: width,
       decoration: BoxDecoration(

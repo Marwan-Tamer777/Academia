@@ -1,17 +1,19 @@
 class ImageAssets {
   ImageAssets._();
-  
+
   /// Assets for imagesAcademiaLogo
   /// assets/images/academia_logo.svg
   static const String imagesAcademiaLogo = "assets/images/academia_logo.svg";
 
   /// Assets for imagesAndroidFingerprint
   /// assets/images/android_fingerprint.svg
-  static const String imagesAndroidFingerprint = "assets/images/android_fingerprint.svg";
+  static const String imagesAndroidFingerprint =
+      "assets/images/android_fingerprint.svg";
 
   /// Assets for imagesOnBoardingPattern
   /// assets/images/onBoarding_pattern.svg
-  static const String imagesOnBoardingPattern = "assets/images/onBoarding_pattern.svg";
+  static const String imagesOnBoardingPattern =
+      "assets/images/onBoarding_pattern.svg";
 
   /// Assets for imagesOnboarding1
   /// assets/images/onboarding_1.svg
@@ -27,7 +29,8 @@ class ImageAssets {
 
   /// Assets for imagesSplashScreenPattern
   /// assets/images/splash_screen_pattern.svg
-  static const String imagesSplashScreenPattern = "assets/images/splash_screen_pattern.svg";
+  static const String imagesSplashScreenPattern =
+      "assets/images/splash_screen_pattern.svg";
 
   /// Assets for arrowBackIcon
   /// assets/images/arrow_back_icon.svg
@@ -50,13 +53,19 @@ class ImageAssets {
   static const String home = "assets/images/home_icon_nav_bar.svg";
 
   // Assets for Nav Bar Active Icons
-  static const String profileActive = "assets/images/profile_icon_active_nav_bar.svg";
-  static const String detailsActive = "assets/images/assignments_icon_active_nav_bar.svg";
-  static const String coursesActive = "assets/images/courses_icon_active_nav_bar.svg";
-  static const String calenderActive = "assets/images/calender_icon_active_nav_bar.svg";
+  static const String profileActive =
+      "assets/images/profile_icon_active_nav_bar.svg";
+  static const String detailsActive =
+      "assets/images/assignments_icon_active_nav_bar.svg";
+  static const String coursesActive =
+      "assets/images/courses_icon_active_nav_bar.svg";
+  static const String calenderActive =
+      "assets/images/calender_icon_active_nav_bar.svg";
   static const String homeActive = "assets/images/home_icon_active_nav_bar.svg";
   // Assets for Course Icons
   static const String courseIcon = "assets/images/course_icon.svg";
+  static const String courseIconDark =
+      "assets/images/course_icon_semi_dark.svg";
   static const String lock = "assets/images/lock_icon.svg";
   static const String search = "assets/images/search_icon.svg";
   static const String search2 = "assets/images/search2.svg";
@@ -85,13 +94,6 @@ class ImageAssets {
   static const String logout = "assets/images/Logout.svg";
   static const String egypt = "assets/images/egypt.svg";
   static const String switchButton = "assets/images/switch.svg";
-
-
-
-
-
-
-
 
   // Assets for social media icons
   static const String microsoft = "assets/images/MicrosoftOutlookLogo.svg";

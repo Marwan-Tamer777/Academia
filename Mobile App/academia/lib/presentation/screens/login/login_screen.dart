@@ -47,7 +47,8 @@ class LoginScreen extends StatelessWidget {
 
                   /// Title and Description
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSize.s20),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.s20),
                     child: Column(
                       children: [
                         Text(
@@ -97,7 +98,8 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: AppSize.s30),
 
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppPadding.p10),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppPadding.p10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -126,7 +128,8 @@ class LoginScreen extends StatelessWidget {
                   /// Login Button
                   BigButton(
                     text: AppStrings.login,
-                    margin: const EdgeInsets.symmetric(horizontal: AppMargin.m10),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: AppMargin.m10),
                     onPressed: () {
                       Navigator.pushNamed(context, Routes.bottomNavBar);
                     },
@@ -166,6 +169,7 @@ class LoginScreen extends StatelessWidget {
                   const Text(AppStrings.useFingerPrint),
 
                   const SizedBox(height: AppSize.s15),
+
                   /// Finger Print Button
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -190,7 +194,7 @@ class LoginScreen extends StatelessWidget {
                           style: getBoldTextStyle(
                             fontSize: AppSize.s16,
                             fontFamily: FontConstants.cairo,
-                            color: ColorManager.orangeStatusBar,
+                            color: ColorManager.lightOrangeStatusBar,
                           ),
                         ),
                       ),

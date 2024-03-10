@@ -1,4 +1,5 @@
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,9 +35,13 @@ class CourseCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSize.s16),
-          Text("منهجيات البحث العلمي والتطوير ", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s16)),
+          Text("منهجيات البحث العلمي والتطوير ",
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(fontSize: FontSize.s16)),
           const SizedBox(height: AppSize.s16),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -44,12 +49,16 @@ class CourseCard extends StatelessWidget {
                 title: "مادة نشطة",
                 // width: AppSize.s70,
                 // height: AppSize.s30,
-                color: ColorManager.lightGreen2,
-                textColor: ColorManager.lightGreen,
+                color: Theme.of(context)
+                    .extension<CustomThemeExtension>()!
+                    .greenOverlayColor,
+                textColor: Theme.of(context)
+                    .extension<CustomThemeExtension>()!
+                    .successColor,
                 fontSize: FontSize.s10,
               ),
-              SizedBox(width: AppSize.s5),
-              CategoryItem(
+              const SizedBox(width: AppSize.s5),
+              const CategoryItem(
                 title: "نظم المعلومات",
                 // width: AppSize.s80,
                 // height: AppSize.s30,
@@ -57,8 +66,8 @@ class CourseCard extends StatelessWidget {
                 textColor: ColorManager.textOrange,
                 fontSize: FontSize.s10,
               ),
-              SizedBox(width: AppSize.s5),
-              CategoryItem(
+              const SizedBox(width: AppSize.s5),
+              const CategoryItem(
                 title: "IS1545",
                 // width: AppSize.s50,
                 // height: AppSize.s30,
@@ -76,25 +85,23 @@ class CourseCard extends StatelessWidget {
             child: Text(
               'الوصف',
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                color: Colors.grey,
-                fontSize: FontSize.s16,
-              ),
+                    color: Colors.grey,
+                    fontSize: FontSize.s16,
+                  ),
             ),
           ),
           const SizedBox(height: AppSize.s8),
           Text(
             'دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ',
             style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              color: Colors.grey,
-              fontSize: FontSize.s12,
-              height: AppSize.s2,
-            ),
+                  color: Colors.grey,
+                  fontSize: FontSize.s12,
+                  height: AppSize.s2,
+                ),
             textDirection: TextDirection.rtl,
           ),
 
           // todo: add students circle avatars
-
-
         ],
       ),
     );

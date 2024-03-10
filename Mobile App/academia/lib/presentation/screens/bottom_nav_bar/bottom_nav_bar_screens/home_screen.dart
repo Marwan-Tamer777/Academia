@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                 CommonTextFormField(
                   controller: searchController,
                   hint: "...ابحث عن موادك الدراسية بالاسم أو الكود",
-                  prefixIcon: Padding(
+                  suffixIcon: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: SvgPicture.asset(ImageAssets.search),
                   ),

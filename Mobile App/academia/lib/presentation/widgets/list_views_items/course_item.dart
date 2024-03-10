@@ -1,11 +1,8 @@
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/font_manager.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/profile_bottom_sheet.dart';
-import 'package:expandable_text/expandable_text.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../resources/color_manager.dart';
@@ -31,7 +28,7 @@ class CourseItem extends StatelessWidget {
           width: AppSize.s336,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppPadding.p16),
-            color: ColorManager.white,
+            color: Theme.of(context).canvasColor,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,18 +55,22 @@ class CourseItem extends StatelessWidget {
                           height: AppSize.s20,
                           child: ListView(
                             scrollDirection: Axis.horizontal,
-                            children: const [
+                            children: [
                               CategoryItem(
                                 title: "مادة نشطة",
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: AppPadding.p10,
                                 ),
                                 // width: AppSize.s50,
                                 // height: AppSize.s18,
-                                color: ColorManager.lightGreen2,
-                                textColor: ColorManager.lightGreen,
+                                color: Theme.of(context)
+                                    .extension<CustomThemeExtension>()!
+                                    .greenOverlayColor,
+                                textColor: Theme.of(context)
+                                    .extension<CustomThemeExtension>()!
+                                    .successColor,
                               ),
-                              CategoryItem(
+                              const CategoryItem(
                                 title: "نظم المعلومات",
                                 padding: EdgeInsets.symmetric(
                                   horizontal: AppPadding.p10,
@@ -79,7 +80,7 @@ class CourseItem extends StatelessWidget {
                                 color: ColorManager.lightOrange1,
                                 textColor: ColorManager.textOrange,
                               ),
-                              CategoryItem(
+                              const CategoryItem(
                                 title: "IS1545",
                                 padding: EdgeInsets.symmetric(
                                   horizontal: AppPadding.p10,
@@ -94,11 +95,14 @@ class CourseItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text("منهجيات البحث العلمي والتطوير ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .displayLarge!
-                            .copyWith(fontSize: FontSize.s16)),
+                    Text(
+                      "منهجيات البحث العلمي والتطوير ",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayLarge!
+                          .copyWith(fontSize: FontSize.s16),
+                      textAlign: TextAlign.right,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -133,12 +137,12 @@ class CourseItem extends StatelessWidget {
                   width: AppSize.s115,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(AppSize.s16),
-                    color: ColorManager.white,
+                    // color: ColorManager.transparent,
                   ),
                   child: Center(
-                    child: SvgPicture.asset(
-                      ImageAssets.courseIcon,
-                    ),
+                    child: SvgPicture.asset(Theme.of(context)
+                        .extension<CustomThemeExtension>()!
+                        .courseIcon),
                   ),
                 ),
               )

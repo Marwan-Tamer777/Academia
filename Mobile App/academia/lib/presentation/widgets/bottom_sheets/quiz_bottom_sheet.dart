@@ -1,8 +1,6 @@
 import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
 import '../horizontal_bar.dart';

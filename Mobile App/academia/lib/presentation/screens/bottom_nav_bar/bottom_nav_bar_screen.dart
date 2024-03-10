@@ -1,6 +1,7 @@
 import 'package:academia/app/cubit/app_cubit.dart';
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,12 +38,13 @@ class BottomNavBar extends StatelessWidget {
         var cubit = BottomNavBarCubit.get(context);
         return SafeArea(
           child: Scaffold(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
                 shape: const CircleBorder(),
                 backgroundColor: cubit.currentIndex == 4
-                    ? ColorManager.orangeStatusBar
+                    ? ColorManager.lightOrangeStatusBar
                     : ColorManager.darkBlueBackground,
                 onPressed: () {
                   cubit.changeBottomNavBarState(4);
@@ -58,15 +60,15 @@ class BottomNavBar extends StatelessWidget {
               onTap: (index) {
                 cubit.changeBottomNavBarState(index);
               },
-              notchSmoothness: NotchSmoothness.verySmoothEdge,
+              notchSmoothness: NotchSmoothness.softEdge,
               gapLocation: GapLocation.center,
               activeIndex: cubit.currentIndex,
               itemCount: icons.length,
-              leftCornerRadius: 20,
-              rightCornerRadius: 20,
+              leftCornerRadius: 30,
+              rightCornerRadius: 30,
               tabBuilder: (index, isActive) {
                 return Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: SvgPicture.asset(
                     isActive
                         ? icons[index].iconActive
@@ -74,7 +76,9 @@ class BottomNavBar extends StatelessWidget {
                   ),
                 );
               },
-              backgroundColor: ColorManager.darkBlueBackground,
+              backgroundColor: Theme.of(context)
+                  .extension<CustomThemeExtension>()!
+                  .navBarColor,
             ),
             body: cubit.screens[cubit.currentIndex],
             resizeToAvoidBottomInset: false,
@@ -82,7 +86,7 @@ class BottomNavBar extends StatelessWidget {
             drawer: FloatingActionButton(
                 shape: const CircleBorder(),
                 backgroundColor: cubit.currentIndex == 4
-                    ? ColorManager.orangeStatusBar
+                    ? ColorManager.lightOrangeStatusBar
                     : ColorManager.darkBlueBackground,
                 onPressed: () {
                   AppCubit.getCubit(context).changeTheme();
@@ -94,7 +98,7 @@ class BottomNavBar extends StatelessWidget {
                     color: ColorManager.white,
                   ),
                 )),
-            drawerEdgeDragWidth: 200,
+            drawerEdgeDragWidth: 100,
           ),
         );
       },

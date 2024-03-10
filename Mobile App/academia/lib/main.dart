@@ -11,7 +11,7 @@ void main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: ColorManager.orangeStatusBar,
+    statusBarColor: ColorManager.lightOrangeStatusBar,
     statusBarIconBrightness: Brightness.light,
   ));
   await initAppModule();

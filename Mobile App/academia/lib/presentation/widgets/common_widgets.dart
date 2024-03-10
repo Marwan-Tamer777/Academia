@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../resources/color_manager.dart';
 import '../resources/font_manager.dart';
 import '../resources/style_manager.dart';
 import '../resources/widgets_manager.dart';   
@@ -65,6 +63,7 @@ class CommonTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetsManager.textFormField(
       controller: controller,
+      
       margin:margin?? const EdgeInsets.only(
         left: 10,
         right: 10,

@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
-
-import '../../resources/color_manager.dart';
-import 'background_pattern.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
+import 'package:flutter/material.dart';
 import 'clip_path_backgound.dart';
 
 class Background extends StatelessWidget {
@@ -20,7 +18,9 @@ class Background extends StatelessWidget {
                 clipBehavior: Clip.antiAlias,
                 clipper: CurveClipper(),
                 child: Container(
-                  color: ColorManager.darkBlueBackground,
+                  color: Theme.of(context)
+                      .extension<CustomThemeExtension>()
+                      ?.patternAppBarColor,
                   height: height.toDouble(),
                 ),
               ),

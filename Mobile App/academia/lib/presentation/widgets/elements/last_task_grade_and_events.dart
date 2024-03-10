@@ -6,12 +6,16 @@ import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
 
 class LastTaskGradeAndEvents extends StatelessWidget {
-  const LastTaskGradeAndEvents({super.key,});
+  const LastTaskGradeAndEvents({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8,),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppPadding.p8,
+      ),
       child: Row(
         children: [
           Row(
@@ -19,9 +23,17 @@ class LastTaskGradeAndEvents extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("درجة اخر اختبار", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s10, color: ColorManager.lightGrey),),
+                  Text(
+                    "الحدث القادم",
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontSize: FontSize.s10, color: ColorManager.lightGrey),
+                  ),
                   const SizedBox(height: AppSize.s5),
-                  Text("لا يوجد", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s11, color: ColorManager.textOrange),),
+                  Text(
+                    "12 فبراير 2023",
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontSize: FontSize.s11, color: ColorManager.textOrange),
+                  ),
                 ],
               ),
               const SizedBox(width: AppSize.s5),
@@ -30,7 +42,7 @@ class LastTaskGradeAndEvents extends StatelessWidget {
                 width: AppSize.s45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppSize.s5),
-                  color: ColorManager.darkWhite,
+                  color: ColorManager.externalOrangeOverlay,
                 ),
                 child: SvgPicture.asset(
                   ImageAssets.calendar,
@@ -46,9 +58,17 @@ class LastTaskGradeAndEvents extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("الحدث القادم", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s10, color: ColorManager.lightGrey),),
+                  Text(
+                    "درجة اخر اختبار",
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontSize: FontSize.s10, color: ColorManager.lightGrey),
+                  ),
                   const SizedBox(height: AppSize.s5),
-                  Text("12 فبراير 2023", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s11, color: ColorManager.textOrange),),
+                  Text(
+                    "لا يوجد",
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                        fontSize: FontSize.s11, color: ColorManager.textOrange),
+                  ),
                 ],
               ),
               const SizedBox(width: AppSize.s5),
@@ -57,7 +77,7 @@ class LastTaskGradeAndEvents extends StatelessWidget {
                 width: AppSize.s45,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppSize.s5),
-                  color: ColorManager.darkWhite,
+                  color: ColorManager.externalOrangeOverlay,
                 ),
                 child: SvgPicture.asset(
                   ImageAssets.grades,

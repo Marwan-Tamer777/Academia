@@ -1,3 +1,4 @@
+import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/shared_preference_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -25,20 +26,20 @@ class ThemeManager {
 
   ThemeData getApplicationTheme({bool? dark}) {
     if (dark ?? isDarkMode) {
-      return darkMode;
+      return semiDarkMode;
     } else {
       return lightMode;
     }
   }
 
   static final ThemeData lightMode = ThemeData(
-    primaryColor: ColorManager.orangeStatusBar,
-    primaryColorLight: ColorManager.orangeStatusBar,
-    primaryColorDark: ColorManager.orangeStatusBar,
+    primaryColor: ColorManager.lightOrangeStatusBar,
+    primaryColorLight: ColorManager.lightOrangeStatusBar,
+    primaryColorDark: ColorManager.lightOrangeStatusBar,
     disabledColor: ColorManager.lightGrey,
     splashColor: ColorManager.lightWhite.withOpacity(0.5),
     scaffoldBackgroundColor: ColorManager.lightBackground,
-    canvasColor: ColorManager.lightBackground,
+    canvasColor: ColorManager.lightCanvas,
     colorScheme: const ColorScheme.light(
       primary: ColorManager.white,
       secondary: ColorManager.white,
@@ -178,7 +179,6 @@ class ThemeManager {
         horizontal: AppSize.s20,
       ),
 
-
       hintStyle: getMediumTextStyle(
         fontSize: FontSize.s14,
         color: ColorManager.lightGrey,
@@ -187,8 +187,8 @@ class ThemeManager {
       labelStyle: getMediumTextStyle(
         fontSize: FontSize.s14,
         color: ColorManager.lightGrey,
+        fontFamily: FontConstants.cairo,
       ),
-
 
       errorStyle: getRegularTextStyle(
         fontSize: FontSize.s11,
@@ -197,17 +197,14 @@ class ThemeManager {
 
       // Enabled border
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(
-          color: ColorManager.lightGrey,
-          width: AppSize.s1,
-        ),
+        borderSide: BorderSide.none,
         borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
       ),
 
       // Focused border
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.lightPrimary,
+          color: ColorManager.lightOrangeStatusBar,
           width: AppSize.s1,
         ),
         borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
@@ -292,12 +289,259 @@ class ThemeManager {
     // 00 Extension
     extensions: const [
       CustomThemeExtension(
-        salesColor: ColorManager.lightSales,
+        overlayColor: ColorManager.lightSales,
+        patternAppBarColor: ColorManager.darkBlueBackground,
         complementaryColor: ColorManager.black,
+        greenOverlayColor: ColorManager.lightExternalGreenOverlay,
+        successColor: ColorManager.lightSuccessText,
+        navBarColor: ColorManager.lightNavigationBar,
         themeIcon: Icons.light_mode,
+        courseIcon: ImageAssets.courseIcon,
       )
     ],
   );
+
+  static final ThemeData semiDarkMode = ThemeData(
+    primaryColor: ColorManager.semiDarkSecondary,
+    primaryColorLight: ColorManager.semiDarkSecondary,
+    primaryColorDark: ColorManager.semiDarkSecondary,
+    disabledColor: ColorManager.darkGrey,
+    splashColor: ColorManager.darkGrey.withOpacity(0.5),
+    scaffoldBackgroundColor: ColorManager.semiDarkBackground,
+    canvasColor: ColorManager.semiDarkElement,
+    colorScheme: const ColorScheme.dark(
+      primary: ColorManager.darkPrimary,
+      secondary: ColorManager.darkPrimary,
+      surface: ColorManager.darkBackground,
+      background: ColorManager.darkBackground,
+      error: ColorManager.darkError,
+      onPrimary: ColorManager.darkWhite,
+      onSecondary: ColorManager.darkWhite,
+      onSurface: ColorManager.darkWhite,
+      onBackground: ColorManager.darkWhite,
+      onError: ColorManager.darkWhite,
+    ),
+    // 1 Card Theme
+    cardTheme: const CardTheme(
+      color: ColorManager.white,
+      shadowColor: ColorManager.darkGrey,
+      elevation: AppSize.s4,
+    ),
+
+    // 2 App bar theme
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorManager.darkBackground,
+      centerTitle: true,
+      elevation: AppSize.s0,
+      shadowColor: ColorManager.darkGrey,
+      titleTextStyle: getRegularTextStyle(
+        fontSize: FontSize.s34,
+        color: ColorManager.darkWhite,
+      ),
+      actionsIconTheme: const IconThemeData(
+        color: ColorManager.darkWhite,
+      ),
+      iconTheme: const IconThemeData(
+        color: ColorManager.darkWhite,
+      ),
+    ),
+
+    // 3 Button theme
+    buttonTheme: const ButtonThemeData(
+      shape: StadiumBorder(),
+      disabledColor: ColorManager.darkGrey,
+      buttonColor: ColorManager.darkPrimary,
+      splashColor: ColorManager.lightPrimary,
+    ),
+
+    // 4 Elevated button theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        textStyle: MaterialStateProperty.all(
+          getMediumTextStyle(
+            fontSize: FontSize.s14,
+            color: ColorManager.semiDarkText,
+          ),
+        ),
+        splashFactory: InkSplash.splashFactory,
+        backgroundColor:
+            MaterialStateProperty.all(ColorManager.semiDarkSecondary),
+        overlayColor: MaterialStateProperty.all(
+          ColorManager.lightGrey.withOpacity(0.4),
+        ),
+        shape: MaterialStateProperty.all(
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
+          ),
+        ),
+      ),
+    ),
+
+    // 5 Text theme
+    textTheme: TextTheme(
+      displayLarge: getBoldTextStyle(
+        color: ColorManager.semiDarkText,
+        fontSize: FontSize.s34,
+        fontFamily: FontConstants.cairo,
+      ),
+      displayMedium: getSemiBoldTextStyle(
+        color: ColorManager.semiDarkText,
+        fontSize: FontSize.s24,
+      ),
+      displaySmall: getRegularTextStyle(
+        color: ColorManager.semiDarkText,
+        fontSize: FontSize.s18,
+      ),
+      bodyLarge: getSemiBoldTextStyle(
+        fontSize: FontSize.s16,
+        color: ColorManager.darkWhite,
+      ),
+      bodyMedium: getRegularTextStyle(
+        color: ColorManager.semiDarkText,
+        fontSize: FontSize.s16,
+      ),
+      bodySmall: getMediumTextStyle(
+        color: ColorManager.semiDarkText,
+        fontSize: FontSize.s14,
+      ),
+      titleLarge: getRegularTextStyle(
+        color: ColorManager.darkWhite,
+        fontSize: FontSize.s14,
+      ),
+      titleMedium: getMediumTextStyle(
+        fontSize: FontSize.s14,
+        color: ColorManager.darkWhiteSecondary,
+      ),
+      titleSmall: getRegularTextStyle(
+        fontSize: FontSize.s11,
+        color: ColorManager.darkGrey,
+      ),
+      labelMedium: getSemiBoldTextStyle(
+        fontSize: FontSize.s18,
+        color: ColorManager.white,
+      ),
+      labelSmall: getRegularTextStyle(
+        fontSize: FontSize.s18,
+        color: ColorManager.lightGrey,
+        decoration: TextDecoration.lineThrough,
+        decorationColor: ColorManager.lightGrey,
+        decorationThickness: AppSize.s3,
+      ),
+    ),
+
+    // 6 Input decoration theme
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorManager.semiDarkElement,
+
+      contentPadding: const EdgeInsets.all(AppPadding.p16),
+
+      hintStyle: getMediumTextStyle(
+        fontSize: FontSize.s14,
+        color: ColorManager.darkGrey,
+      ),
+
+      labelStyle: getMediumTextStyle(
+        fontSize: FontSize.s14,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
+      ),
+      errorStyle: getRegularTextStyle(
+        fontSize: FontSize.s11,
+        color: ColorManager.darkError,
+      ),
+
+      // Enabled border
+      enabledBorder: const OutlineInputBorder(
+        borderSide:BorderSide.none,
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
+      ),
+
+      // Focused border
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.semiDarkSecondary,
+          width: AppSize.s1,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
+      ),
+
+      // Error border
+      errorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.darkError,
+          width: AppSize.s1,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
+      ),
+      // Focused error border
+      focusedErrorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.darkError,
+          width: AppSize.s1,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
+      ),
+    ),
+
+    // 7 Bottom navigation bar theme
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: ColorManager.darkBackground,
+      selectedItemColor: ColorManager.darkPrimary,
+      unselectedItemColor: ColorManager.darkGrey,
+      selectedLabelStyle: getRegularTextStyle(
+        fontSize: FontSize.s11,
+        color: ColorManager.darkPrimary,
+      ),
+      showUnselectedLabels: true,
+      elevation: AppSize.s1,
+      unselectedLabelStyle: getRegularTextStyle(
+        fontSize: FontSize.s11,
+        color: ColorManager.darkGrey,
+      ),
+    ),
+
+    // 8 text button theme
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: ColorManager.darkWhite,
+      ),
+    ),
+
+    // 9 checkbox theme
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.all(ColorManager.darkPrimary),
+      checkColor: MaterialStateProperty.all(ColorManager.darkWhite),
+      overlayColor: MaterialStateProperty.all(ColorManager.darkPrimary),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSize.s4),
+      ),
+    ),
+
+    // 10 floating action button theme
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: ColorManager.darkPrimary,
+    ),
+
+    // 11 Icon theme
+    iconTheme: const IconThemeData(
+      color: ColorManager.darkWhite,
+    ),
+    // 00 Extension
+    extensions: const [
+      CustomThemeExtension(
+        patternAppBarColor: ColorManager.semiDarkPatternMask,
+        overlayColor: ColorManager.darkSales,
+        complementaryColor: ColorManager.white,
+        greenOverlayColor: ColorManager.darkExternalGreenOverlay,
+        successColor: ColorManager.semiDarkSuccessText,
+        navBarColor: ColorManager.darkNavigationBar,
+        themeIcon: Icons.dark_mode,
+        courseIcon: ImageAssets.courseIconDark,
+      ),
+    ],
+  );
+
   static final ThemeData darkMode = ThemeData(
     primaryColor: ColorManager.darkPrimary,
     primaryColorLight: ColorManager.lightPrimary,
@@ -528,40 +772,60 @@ class ThemeManager {
     // 00 Extension
     extensions: const [
       CustomThemeExtension(
-        salesColor: ColorManager.darkSales,
+        overlayColor: ColorManager.darkSales,
+        patternAppBarColor: ColorManager.darkPrimary,
         complementaryColor: ColorManager.white,
+        greenOverlayColor: ColorManager.darkExternalGreenOverlay,
+        successColor: ColorManager.semiDarkSuccessText,
+        navBarColor: ColorManager.darkNavigationBar,
         themeIcon: Icons.dark_mode,
+        courseIcon: ImageAssets.courseIconDark,
       ),
     ],
   );
 }
 
 class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
-  final Color salesColor;
+  final Color overlayColor;
+  final Color patternAppBarColor;
   final Color complementaryColor;
+  final Color greenOverlayColor;
+  final Color successColor;
+  final Color navBarColor;
   final IconData themeIcon;
+  final String courseIcon;
 
   const CustomThemeExtension({
-    required this.salesColor,
+    required this.overlayColor,
+    required this.patternAppBarColor,
     required this.complementaryColor,
+    required this.greenOverlayColor,
+    required this.successColor,
+    required this.navBarColor,
     required this.themeIcon,
+    required this.courseIcon,
   });
 
   @override
   CustomThemeExtension copyWith({
-    String? homeIconActive,
-    String? shopIconActive,
-    String? bagIconActive,
-    String? heartIconActive,
-    String? profileIconActive,
-    Color? salesColor,
+    Color? overlayColor,
+    Color? patternAppBarColor,
     Color? complementaryColor,
+    Color? greenOverlayColor,
+    Color? successColor,
+    Color? navBarColor,
     IconData? themeIcon,
+    String? courseIcon,
   }) {
     return CustomThemeExtension(
-      salesColor: salesColor ?? this.salesColor,
+      overlayColor: overlayColor ?? this.overlayColor,
+      patternAppBarColor: patternAppBarColor ?? this.patternAppBarColor,
       complementaryColor: complementaryColor ?? this.complementaryColor,
+      greenOverlayColor: greenOverlayColor ?? this.greenOverlayColor,
+      successColor: successColor ?? this.successColor,
+      navBarColor: navBarColor ?? this.navBarColor,
       themeIcon: themeIcon ?? this.themeIcon,
+      courseIcon: courseIcon ?? this.courseIcon,
     );
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../resources/color_manager.dart';
 import '../../screens/take_quiz_screen/take_quiz_screen_cubit/take_quiz_screen_cubit.dart';
 import '../../screens/take_quiz_screen/take_quiz_screen_cubit/take_quiz_screen_states.dart';
 

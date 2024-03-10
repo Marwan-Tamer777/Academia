@@ -1,8 +1,6 @@
 import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/style_manager.dart';
 import 'package:flutter/material.dart';
-
-import '../resources/color_manager.dart';
 import '../resources/widgets_manager.dart';
 
 class VerificationCodeField extends StatelessWidget {
