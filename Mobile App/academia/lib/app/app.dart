@@ -1,3 +1,4 @@
+import 'package:academia/app/cubit/app_cubit.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/screens_cubit/screents_cubit.dart';
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AppCubit>(
+          create: (context) => AppCubit(),
+        ),
         BlocProvider<LoginCubit>(
           create: (context) => LoginCubit(),
         ),
@@ -40,12 +44,17 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => QuizCubit()),
       ],
-      child: MaterialApp(
-        title: AppStrings.appName,
-        initialRoute: Routes.splashScreen,
-        onGenerateRoute: RoutesGenerator.getRoute,
-        theme: ThemeManager.lightMode,
-        debugShowCheckedModeBanner: false,
+      child: BlocBuilder<AppCubit, AppStates>(
+        builder: (context, state) {
+          final cubit = AppCubit.getCubit(context);
+          return MaterialApp(
+            title: AppStrings.appName,
+            initialRoute: Routes.splashScreen,
+            onGenerateRoute: RoutesGenerator.getRoute,
+            theme: cubit.themeManager.getApplicationTheme(),
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
     );
   }

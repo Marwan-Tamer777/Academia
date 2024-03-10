@@ -1,3 +1,4 @@
+import 'package:academia/app/cubit/app_cubit.dart';
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
@@ -76,6 +77,24 @@ class BottomNavBar extends StatelessWidget {
               backgroundColor: ColorManager.darkBlueBackground,
             ),
             body: cubit.screens[cubit.currentIndex],
+            resizeToAvoidBottomInset: false,
+            extendBody: true,
+            drawer: FloatingActionButton(
+                shape: const CircleBorder(),
+                backgroundColor: cubit.currentIndex == 4
+                    ? ColorManager.orangeStatusBar
+                    : ColorManager.darkBlueBackground,
+                onPressed: () {
+                  AppCubit.getCubit(context).changeTheme();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Icon(
+                    Icons.dark_mode,
+                    color: ColorManager.white,
+                  ),
+                )),
+            drawerEdgeDragWidth: 200,
           ),
         );
       },

@@ -22,116 +22,128 @@ class CourseItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context, rootNavigator: true).pushNamed(Routes.coursesScreen);
+        Navigator.of(context, rootNavigator: true)
+            .pushNamed(Routes.coursesScreen);
       },
       child: Container(
-        padding: const EdgeInsets.all(AppPadding.p8),
-        height: AppSize.s150,
-        width: AppSize.s336,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppPadding.p16),
-          color: ColorManager.white,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: SvgPicture.asset(
-                          isLocked ? ImageAssets.lock : ImageAssets.notification,
+          padding: const EdgeInsets.all(AppPadding.p8),
+          height: AppSize.s150,
+          width: AppSize.s336,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppPadding.p16),
+            color: ColorManager.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                          isLocked
+                              ? ImageAssets.lock
+                              : ImageAssets.notification,
                           width: AppSize.s30,
                           height: AppSize.s30,
                           color: ColorManager.textOrange,
                         ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: CategoryItem(
-                          title: "مادة نشطة",
-                          width: AppSize.s70,
-                          height: AppSize.s30,
-                          color: ColorManager.lightGreen2,
-                          textColor: ColorManager.lightGreen,
-                          fontSize: FontSize.s10,
+                        SizedBox(
+                          width: AppSize.s190,
+                          height: AppSize.s20,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: const [
+                              CategoryItem(
+                                title: "مادة نشطة",
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p10,
+                                ),
+                                // width: AppSize.s50,
+                                // height: AppSize.s18,
+                                color: ColorManager.lightGreen2,
+                                textColor: ColorManager.lightGreen,
+                              ),
+                              CategoryItem(
+                                title: "نظم المعلومات",
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p10,
+                                ),
+                                // width: AppSize.s25,
+                                // height: AppSize.s18,
+                                color: ColorManager.lightOrange1,
+                                textColor: ColorManager.textOrange,
+                              ),
+                              CategoryItem(
+                                title: "IS1545",
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: AppPadding.p10,
+                                ),
+                                // width: AppSize.s25,
+                                // height: AppSize.s18,
+                                color: ColorManager.lightOrange1,
+                                textColor: ColorManager.textOrange,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: AppSize.s5,
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: CategoryItem(
-                          title: "نظم المعلومات",
-                          width: AppSize.s100,
-                          height: AppSize.s30,
-                          color: ColorManager.lightOrange1,
-                          textColor: ColorManager.textOrange,
-                          fontSize: FontSize.s8,
+                      ],
+                    ),
+                    Text("منهجيات البحث العلمي والتطوير ",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(fontSize: FontSize.s16)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("  +1 آخرون",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(fontSize: FontSize.s11)),
+                        const SizedBox(
+                          width: AppSize.s10,
                         ),
-                      ),
-                      const SizedBox(
-                        width: AppSize.s5,
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: CategoryItem(
-                          title: "IS1545",
-                          width: AppSize.s50,
-                          height: AppSize.s30,
-                          color: ColorManager.lightOrange1,
-                          textColor: ColorManager.textOrange,
-                          fontSize: FontSize.s10,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Text("منهجيات البحث العلمي والتطوير ", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s16)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("  +1 آخرون", style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: FontSize.s11)),
-                      const SizedBox(width: AppSize.s10,),
-                      InkWell(
-                          onTap: () {
-                            showCustomBottomSheet(
-                                context: context,
-                                bottomSheet: const ProfileBottomSheet()
-                            );
-                          },
-                          child: Text("مروان تامر - أحمد محسن", style: Theme.of(context).textTheme.displaySmall!.copyWith(fontSize: FontSize.s12))),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: AppSize.s115,
-                width: AppSize.s115,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(AppSize.s16),
-                  color: ColorManager.white,
-                ),
-                child: Center(
-                  child: SvgPicture.asset(
-                    ImageAssets.courseIcon,
-                  ),
+                        InkWell(
+                            onTap: () {
+                              showCustomBottomSheet(
+                                  context: context,
+                                  bottomSheet: const ProfileBottomSheet());
+                            },
+                            child: Text("مروان تامر - أحمد محسن",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall!
+                                    .copyWith(fontSize: FontSize.s12))),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            )
-          ],
-        )
-      ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: AppSize.s115,
+                  width: AppSize.s115,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(AppSize.s16),
+                    color: ColorManager.white,
+                  ),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      ImageAssets.courseIcon,
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )),
     );
   }
 }

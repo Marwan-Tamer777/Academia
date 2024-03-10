@@ -44,8 +44,8 @@ class StartQuizBottomSheet extends StatelessWidget {
               children: [
                 const CategoryItem(
                   title: '30 دقيقة',
-                  height: AppSize.s25,
-                  width: AppSize.s100,
+                  // height: AppSize.s25,
+                  // width: AppSize.s100,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: 12,
@@ -53,8 +53,8 @@ class StartQuizBottomSheet extends StatelessWidget {
                 const SizedBox(width: AppSize.s10,),
                 const CategoryItem(
                   title: '15 سؤال',
-                  height: AppSize.s25,
-                  width: AppSize.s100,
+                  // height: AppSize.s25,
+                  // width: AppSize.s100,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: 12,

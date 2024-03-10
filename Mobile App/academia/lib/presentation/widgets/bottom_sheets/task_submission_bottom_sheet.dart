@@ -78,8 +78,8 @@ class TaskSubmissionBottomSheet extends StatelessWidget {
                 Spacer(),
                 CategoryItem(
                   title: '10 MB<',
-                  height: AppSize.s40,
-                  width: AppSize.s80,
+                  // height: AppSize.s40,
+                  // width: AppSize.s80,
                   color: ColorManager.transparent,
                   textColor: ColorManager.textOrange,
                   fontSize: FontSize.s12,
@@ -87,8 +87,8 @@ class TaskSubmissionBottomSheet extends StatelessWidget {
                 SizedBox(width: AppSize.s5,),
                 CategoryItem(
                   title: 'TXT',
-                  height: AppSize.s30,
-                  width: AppSize.s40,
+                  // height: AppSize.s30,
+                  // width: AppSize.s40,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: FontSize.s12,
@@ -96,8 +96,8 @@ class TaskSubmissionBottomSheet extends StatelessWidget {
                 SizedBox(width: AppSize.s5,),
                 CategoryItem(
                   title: 'DOCX',
-                  height: AppSize.s30,
-                  width: AppSize.s50,
+                  // height: AppSize.s30,
+                  // width: AppSize.s50,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: FontSize.s12,
@@ -105,8 +105,8 @@ class TaskSubmissionBottomSheet extends StatelessWidget {
                 SizedBox(width: AppSize.s5,),
                 CategoryItem(
                   title: 'PDF',
-                  height: AppSize.s30,
-                  width: AppSize.s40,
+                  // height: AppSize.s30,
+                  // width: AppSize.s40,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: FontSize.s12,

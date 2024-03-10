@@ -95,8 +95,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                               itemBuilder: (context,index) {
                                 return const CategoryItem(
                                   title: "نظم المعلومات",
-                                  width: AppSize.s119,
-                                  height: AppSize.s36,
+                                  // width: AppSize.s119,
+                                  // height: AppSize.s36,
                                   color: ColorManager.lightOrange1,
                                   textColor: ColorManager.textOrange,
                                   fontSize: FontSize.s13,

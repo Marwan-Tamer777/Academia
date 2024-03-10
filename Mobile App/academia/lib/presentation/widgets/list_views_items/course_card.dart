@@ -42,8 +42,8 @@ class CourseCard extends StatelessWidget {
             children: [
               CategoryItem(
                 title: "مادة نشطة",
-                width: AppSize.s70,
-                height: AppSize.s30,
+                // width: AppSize.s70,
+                // height: AppSize.s30,
                 color: ColorManager.lightGreen2,
                 textColor: ColorManager.lightGreen,
                 fontSize: FontSize.s10,
@@ -51,8 +51,8 @@ class CourseCard extends StatelessWidget {
               SizedBox(width: AppSize.s5),
               CategoryItem(
                 title: "نظم المعلومات",
-                width: AppSize.s80,
-                height: AppSize.s30,
+                // width: AppSize.s80,
+                // height: AppSize.s30,
                 color: ColorManager.lightOrange1,
                 textColor: ColorManager.textOrange,
                 fontSize: FontSize.s10,
@@ -60,8 +60,8 @@ class CourseCard extends StatelessWidget {
               SizedBox(width: AppSize.s5),
               CategoryItem(
                 title: "IS1545",
-                width: AppSize.s50,
-                height: AppSize.s30,
+                // width: AppSize.s50,
+                // height: AppSize.s30,
                 color: ColorManager.lightOrange1,
                 textColor: ColorManager.textOrange,
                 fontSize: FontSize.s10,

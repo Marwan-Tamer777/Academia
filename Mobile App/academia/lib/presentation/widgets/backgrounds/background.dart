@@ -4,7 +4,6 @@ import '../../resources/color_manager.dart';
 import 'background_pattern.dart';
 import 'clip_path_backgound.dart';
 
-
 class Background extends StatelessWidget {
   final int height;
   const Background({this.height = 200, super.key});
@@ -16,7 +15,7 @@ class Background extends StatelessWidget {
         children: [
           Stack(
             children: [
-              const BackgroundPattern(),
+              // const BackgroundPattern(),
               ClipPath(
                 clipBehavior: Clip.antiAlias,
                 clipper: CurveClipper(),
@@ -34,7 +33,6 @@ class Background extends StatelessWidget {
   }
 }
 
-
 class CurveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -44,7 +42,8 @@ class CurveClipper extends CustomClipper<Path> {
 
     Path path = Path()
       ..lineTo(0, size.height - curveHeight)
-      ..quadraticBezierTo(controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
+      ..quadraticBezierTo(
+          controlPoint.dx, controlPoint.dy, endPoint.dx, endPoint.dy)
       ..lineTo(size.width, 0)
       ..close();
 

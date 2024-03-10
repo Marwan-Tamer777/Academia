@@ -89,8 +89,8 @@ class TextPostItem extends StatelessWidget {
               padding: EdgeInsets.all(AppPadding.p8),
               child: CategoryItem(
                   title: "تبقى 4 ايام",
-                  width: AppSize.s80,
-                  height: AppSize.s30,
+                  // width: AppSize.s80,
+                  // height: AppSize.s30,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: FontSize.s12,

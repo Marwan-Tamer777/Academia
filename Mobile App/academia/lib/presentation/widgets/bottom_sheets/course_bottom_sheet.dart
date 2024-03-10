@@ -86,8 +86,8 @@ class CourseRegisterationBottomSheet extends StatelessWidget {
               children: [
                 const CategoryItem(
                   title: 'نظم المعلومات',
-                  height: AppSize.s25,
-                  width: AppSize.s100,
+                  // height: AppSize.s25,
+                  // width: AppSize.s100,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: 12,
