@@ -154,8 +154,13 @@ class ThemeManager {
         color: ColorManager.lightGrey,
         fontFamily: FontConstants.cairo,
       ),
+      labelLarge: getBoldTextStyle(
+        fontSize: FontSize.s28,
+        color: ColorManager.lightBlack,
+        fontFamily: FontConstants.cairo,
+      ),
       labelMedium: getSemiBoldTextStyle(
-        fontSize: FontSize.s18,
+        fontSize: FontSize.s20,
         color: ColorManager.black,
         fontFamily: FontConstants.cairo,
       ),
@@ -295,6 +300,7 @@ class ThemeManager {
         greenOverlayColor: ColorManager.lightExternalGreenOverlay,
         successColor: ColorManager.lightSuccessText,
         navBarColor: ColorManager.lightNavigationBar,
+        pageIndicatorColor: ColorManager.buttonColor,
         themeIcon: Icons.light_mode,
         courseIcon: ImageAssets.courseIcon,
       )
@@ -310,8 +316,8 @@ class ThemeManager {
     scaffoldBackgroundColor: ColorManager.semiDarkBackground,
     canvasColor: ColorManager.semiDarkElement,
     colorScheme: const ColorScheme.dark(
-      primary: ColorManager.darkPrimary,
-      secondary: ColorManager.darkPrimary,
+      primary: ColorManager.semiDarkSecondary,
+      secondary: ColorManager.semiDarkSecondary,
       surface: ColorManager.darkBackground,
       background: ColorManager.darkBackground,
       error: ColorManager.darkError,
@@ -387,6 +393,7 @@ class ThemeManager {
       displayMedium: getSemiBoldTextStyle(
         color: ColorManager.semiDarkText,
         fontSize: FontSize.s24,
+        fontFamily: FontConstants.cairo,
       ),
       displaySmall: getRegularTextStyle(
         color: ColorManager.semiDarkText,
@@ -394,11 +401,13 @@ class ThemeManager {
       ),
       bodyLarge: getSemiBoldTextStyle(
         fontSize: FontSize.s16,
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
       ),
       bodyMedium: getRegularTextStyle(
         color: ColorManager.semiDarkText,
         fontSize: FontSize.s16,
+        fontFamily: FontConstants.cairo,
       ),
       bodySmall: getMediumTextStyle(
         color: ColorManager.semiDarkText,
@@ -407,18 +416,27 @@ class ThemeManager {
       titleLarge: getRegularTextStyle(
         color: ColorManager.darkWhite,
         fontSize: FontSize.s14,
+        fontFamily: FontConstants.cairo,
       ),
       titleMedium: getMediumTextStyle(
         fontSize: FontSize.s14,
         color: ColorManager.darkWhiteSecondary,
+        fontFamily: FontConstants.cairo,
       ),
       titleSmall: getRegularTextStyle(
         fontSize: FontSize.s11,
         color: ColorManager.darkGrey,
+        fontFamily: FontConstants.cairo,
       ),
-      labelMedium: getSemiBoldTextStyle(
-        fontSize: FontSize.s18,
-        color: ColorManager.white,
+      labelLarge: getBoldTextStyle(
+        fontSize: FontSize.s28,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
+      ),
+      labelMedium: getMediumTextStyle(
+        fontSize: FontSize.s20,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
       ),
       labelSmall: getRegularTextStyle(
         fontSize: FontSize.s18,
@@ -453,7 +471,7 @@ class ThemeManager {
 
       // Enabled border
       enabledBorder: const OutlineInputBorder(
-        borderSide:BorderSide.none,
+        borderSide: BorderSide.none,
         borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
 
@@ -536,6 +554,7 @@ class ThemeManager {
         greenOverlayColor: ColorManager.darkExternalGreenOverlay,
         successColor: ColorManager.semiDarkSuccessText,
         navBarColor: ColorManager.darkNavigationBar,
+        pageIndicatorColor: ColorManager.semiDarkSecondary,
         themeIcon: Icons.dark_mode,
         courseIcon: ImageAssets.courseIconDark,
       ),
@@ -778,6 +797,7 @@ class ThemeManager {
         greenOverlayColor: ColorManager.darkExternalGreenOverlay,
         successColor: ColorManager.semiDarkSuccessText,
         navBarColor: ColorManager.darkNavigationBar,
+        pageIndicatorColor: ColorManager.semiDarkSecondary,
         themeIcon: Icons.dark_mode,
         courseIcon: ImageAssets.courseIconDark,
       ),
@@ -792,6 +812,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color greenOverlayColor;
   final Color successColor;
   final Color navBarColor;
+  final Color pageIndicatorColor;
   final IconData themeIcon;
   final String courseIcon;
 
@@ -802,6 +823,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     required this.greenOverlayColor,
     required this.successColor,
     required this.navBarColor,
+    required this.pageIndicatorColor,
     required this.themeIcon,
     required this.courseIcon,
   });
@@ -814,6 +836,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? greenOverlayColor,
     Color? successColor,
     Color? navBarColor,
+    Color? pageIndicatorColor,
     IconData? themeIcon,
     String? courseIcon,
   }) {
@@ -824,6 +847,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       greenOverlayColor: greenOverlayColor ?? this.greenOverlayColor,
       successColor: successColor ?? this.successColor,
       navBarColor: navBarColor ?? this.navBarColor,
+      pageIndicatorColor: pageIndicatorColor ?? this.pageIndicatorColor,
       themeIcon: themeIcon ?? this.themeIcon,
       courseIcon: courseIcon ?? this.courseIcon,
     );

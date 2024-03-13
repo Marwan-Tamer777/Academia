@@ -20,7 +20,9 @@ class CalenderEmptyState extends StatelessWidget {
         ),
         child: Align(
             alignment: Alignment.centerRight,
-            child: Text("لا يوجد أي مواعيد لليوم ", style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s15, color: ColorManager.black),))
-    );
+            child: Text(
+              "لا يوجد أي مواعيد لليوم ",
+              style: Theme.of(context).textTheme.bodyLarge,
+            )));
   }
 }

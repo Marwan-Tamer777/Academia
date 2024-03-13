@@ -8,9 +8,11 @@ class BigButton extends StatelessWidget {
   final VoidCallback   onPressed;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final TextStyle? textStyle;
   const BigButton(
       {this.margin,
       this.padding,
+      this.textStyle,
       required this.onPressed,
       required this.text,
       super.key
@@ -25,7 +27,7 @@ class BigButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: getBoldTextStyle(
+        style:textStyle?? getBoldTextStyle(
           fontSize: 18,
           fontFamily: FontConstants.cairo,
           color: Colors.white,

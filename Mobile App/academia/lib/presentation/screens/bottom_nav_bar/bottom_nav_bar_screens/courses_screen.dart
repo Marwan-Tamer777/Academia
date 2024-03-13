@@ -139,9 +139,9 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     itemCount: 10,
                   ),
                 ),
-                const SizedBox(
-                  height: AppSize.s100,
-                ),
+                SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              )
                 // if there is no courses
                 // const NoCoursesBackground(),
                 // const NoCoursesComponent(),

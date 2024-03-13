@@ -15,90 +15,117 @@ class CalenderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // background
-        Background(height: AppSize.s300.toInt(),),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
-          child: Column(
-            children: [
-              // title and notification icon
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const NotificationIcon(),
-                  Text("جدول المواعيد", style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s15,color: ColorManager.white)),
-                  SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
-                ],
-              ),
-              const SizedBox(height: AppSize.s20),
+    return Stack(children: [
+      // background
+      Background(
+        height: AppSize.s300.toInt(),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: AppPadding.p13, vertical: AppPadding.p16),
+        child: Column(
+          children: [
+            // title and notification icon
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const NotificationIcon(),
+                Text("جدول المواعيد",
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        fontSize: FontSize.s15, color: ColorManager.white)),
+                SvgPicture.asset(ImageAssets.arrowBackIcon,
+                    color: ColorManager.white),
+              ],
+            ),
+            const SizedBox(height: AppSize.s20),
 
-              // calender
-              Container(
-                padding: const EdgeInsets.all(AppSize.s15),
-                height: AppSize.s400,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(AppSize.s30)),
-                ),
-                child: TableCalendar(
-                  firstDay: DateTime.utc(2020, 10, 16),
-                  lastDay: DateTime.utc(2025, 3, 14),
-                  focusedDay: DateTime.now(),
-                  headerStyle: HeaderStyle(
-                    formatButtonVisible: false,
-                    leftChevronIcon: Row(
-                      children: [
-                        SvgPicture.asset(ImageAssets.arrowLeft,height: 24,width: 24,),
-                        const SizedBox(width: AppSize.s5,),
-                        SvgPicture.asset(ImageAssets.arrowBackIcon),
-                      ],
-                    ),
-                    rightChevronIcon: Row(
-                      children: [
-                        Text("يوليو 2024", style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s15, color: ColorManager.black),),
-                        const SizedBox(width: AppSize.s5,),
-                        SvgPicture.asset(ImageAssets.calendarDay),
-                      ],
-                    ),
+            // calender
+            Container(
+              padding: const EdgeInsets.all(AppSize.s15),
+              height: AppSize.s400,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(AppSize.s30)),
+              ),
+              child: TableCalendar(
+                firstDay: DateTime.utc(2020, 10, 16),
+                lastDay: DateTime.utc(2025, 3, 14),
+                focusedDay: DateTime.now(),
+                headerStyle: HeaderStyle(
+                  formatButtonVisible: false,
+                  leftChevronIcon: Row(
+                    children: [
+                      SvgPicture.asset(
+                        ImageAssets.arrowLeft,
+                        height: 24,
+                        width: 24,
+                      ),
+                      const SizedBox(
+                        width: AppSize.s5,
+                      ),
+                      SvgPicture.asset(ImageAssets.arrowBackIcon),
+                    ],
                   ),
-                  // make the day names is only the first letter of the day
-                  //dayHitTestBehavior: HitTestBehavior.translucent,
+                  rightChevronIcon: Row(
+                    children: [
+                      Text(
+                        "يوليو 2024",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium!
+                            .copyWith(
+                                fontSize: FontSize.s15,
+                                color: ColorManager.black),
+                      ),
+                      const SizedBox(
+                        width: AppSize.s5,
+                      ),
+                      SvgPicture.asset(ImageAssets.calendarDay),
+                    ],
                   ),
-
                 ),
-              const SizedBox(height: AppSize.s24),
-
-              // calender tasks
-              Align(
-                alignment: const AlignmentDirectional(1, 0),
-                child: Text(
-                  'مواعيد اليوم',
-                  style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20),
-                ),
+                // make the day names is only the first letter of the day
+                //dayHitTestBehavior: HitTestBehavior.translucent,
               ),
-              const SizedBox(height: AppSize.s15),
-              Expanded(
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context,index) {
-                    return const CalenderListItem();
-                  },
-                  separatorBuilder: (context,index) {
-                    return const SizedBox(height: AppSize.s10,);
-                  },
-                  itemCount: 10,
-                ),
-              ),
+            ),
+            const SizedBox(height: AppSize.s24),
 
-              // if there is no tasks
-              // const CalenderEmptyState(),
-            ],
-          ),
-        )
-      ]
-);
+            // calender tasks
+            Align(
+              alignment: const AlignmentDirectional(1, 0),
+              child: Text(
+                'مواعيد اليوم',
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: FontSize.s20),
+              ),
+            ),
+            const SizedBox(height: AppSize.s15),
+            Expanded(
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return const CalenderListItem();
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    height: AppSize.s10,
+                  );
+                },
+                itemCount: 10,
+              ),
+            ),
+
+            // if there is no tasks
+            // const CalenderEmptyState(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+            )
+          ],
+        ),
+      )
+    ]);
   }
 }

@@ -148,6 +148,9 @@ class QuizScreen extends StatelessWidget {
                       height: AppSize.s10,
                     ),
                     const CalenderEmptyState(),
+                      SizedBox(
+                height: MediaQuery.of(context).size.height * 0.2,
+              )
                   ],
                 ),
             ));

@@ -51,15 +51,17 @@ class LoginScreen extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: AppSize.s20),
                     child: Column(
                       children: [
+                        /// Welcome Title
                         Text(
                           AppStrings.loginWelcomeTitleMessage,
-                          style: getSemiBoldTextStyle(
-                            fontSize: AppSize.s37,
-                            color: ColorManager.black,
-                            fontFamily: FontConstants.cairo,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayLarge
+                              ?.copyWith(fontSize: FontSize.s34),
                         ),
                         const SizedBox(height: AppSize.s10),
+
+                        /// Welcome Description
                         Text(
                           AppStrings.loginWelcomeDescriptionMessage,
                           style: getRegularTextStyle(
@@ -109,7 +111,10 @@ class LoginScreen extends StatelessWidget {
                             Navigator.pushNamed(
                                 context, Routes.forgotPasswordScreen);
                           },
-                          child: const Text(AppStrings.forgotPassword),
+                          child: Text(
+                            AppStrings.forgotPassword,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ),
                         const Spacer(),
 

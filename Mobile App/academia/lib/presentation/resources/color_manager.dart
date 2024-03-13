@@ -37,7 +37,7 @@ abstract class ColorManager {
   // static const Color lightGreen = Color(0xFF517B2C);
   static const Color lightGreen2 = Color(0xFFE9FFED);
   static const Color textOrange = Color(0xFFFF7E31);
-  static const Color lightOrange1 = Color.fromRGBO(255, 126, 49, 0.10);
+  static const Color lightOrange1 = Color(0x3DFF7D31);
   static const Color calenderEmptyState = Color(0xFF7E3133);
 
   static const Color offWhite = Color(0xFFFBFCFE);
@@ -55,7 +55,6 @@ abstract class ColorManager {
   static const Color semiDarkPatternMask = Color(0xFF3C302A);
   static const Color darkExternalGreenOverlay = Color(0x66748076);
   static const Color darkNavigationBar = Color(0xFF0A111A);
-
 
   /// Dark Theme Colors
   /// Old

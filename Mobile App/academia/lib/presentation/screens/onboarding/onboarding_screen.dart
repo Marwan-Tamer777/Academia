@@ -4,6 +4,7 @@ import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/onboarding/cubit/onboarding_cubit.dart';
 import 'package:academia/presentation/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,7 @@ class OnboardingScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      /// Image
                       SvgPicture.asset(
                         onboardingData[index].image,
                         height: 300,
@@ -64,28 +66,24 @@ class OnboardingScreen extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
+
+                      /// Title
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
                           onboardingData[index].title,
-                          style: getBoldTextStyle(
-                            fontSize: 28,
-                            color: ColorManager.black,
-                            fontFamily: FontConstants.cairo,
-                          ),
+                          style: Theme.of(context).textTheme.labelLarge,
                           textAlign: TextAlign.right,
                         ),
                       ),
                       const SizedBox(
                         height: 18,
                       ),
+
+                      /// Description
                       Text(
                         onboardingData[index].description,
-                        style: getMediumTextStyle(
-                          fontSize: 20,
-                          color: ColorManager.black,
-                          fontFamily: FontConstants.cairo,
-                        ),
+                        style: Theme.of(context).textTheme.labelMedium,
                         textAlign: TextAlign.right,
                       ),
                     ],
@@ -127,7 +125,9 @@ class OnboardingScreen extends StatelessWidget {
                             width: cubit.currentPage == index ? 30 : 10,
                             decoration: BoxDecoration(
                               color: cubit.currentPage == index
-                                  ? ColorManager.buttonColor
+                                  ? Theme.of(context)
+                                      .extension<CustomThemeExtension>()!
+                                      .pageIndicatorColor
                                   : Colors.grey,
                               borderRadius: BorderRadius.circular(5),
                             ),
@@ -152,10 +152,7 @@ class OnboardingScreen extends StatelessWidget {
                       },
                       child: Text(
                         AppStrings.skip,
-                        style: getRegularTextStyle(
-                            fontSize: 16.5,
-                            color:
-                                ColorManager.skipButtonColor.withOpacity(0.8)),
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   ),

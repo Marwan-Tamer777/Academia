@@ -45,7 +45,9 @@ class BottomNavBar extends StatelessWidget {
                 shape: const CircleBorder(),
                 backgroundColor: cubit.currentIndex == 4
                     ? ColorManager.lightOrangeStatusBar
-                    : ColorManager.darkBlueBackground,
+                    : Theme.of(context)
+                        .extension<CustomThemeExtension>()!
+                        .navBarColor,
                 onPressed: () {
                   cubit.changeBottomNavBarState(4);
                 },
