@@ -1,4 +1,5 @@
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screen.dart';
+import 'package:academia/presentation/screens/comments_screen/comments_screen.dart';
 import 'package:academia/presentation/screens/course_screen/course_screen.dart';
 import 'package:academia/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:academia/presentation/screens/forgot_password/verification_screen.dart';
@@ -27,6 +28,7 @@ class Routes {
   static const String bottomNavBar = '/bottomNavBar';
   static const String coursesScreen = '/coursesScreen';
   static const String takeQuizScreen = '/takeQuizScreen';
+  static const String postComments = '/commentsScreen';
 
 }
 
@@ -81,6 +83,10 @@ class RoutesGenerator {
       case Routes.takeQuizScreen:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const TakeQuizScreen(),
+        );
+      case Routes.postComments:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const CommentsScreen(),
         );
       default:
         return undefinedRoute(settings);

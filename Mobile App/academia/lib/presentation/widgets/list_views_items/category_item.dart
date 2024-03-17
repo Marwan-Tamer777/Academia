@@ -23,8 +23,6 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: padding ?? const EdgeInsets.all(AppPadding.p10),
-      // height: height,
-      // width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s30),
         color: color,

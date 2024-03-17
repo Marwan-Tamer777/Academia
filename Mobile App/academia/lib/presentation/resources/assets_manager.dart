@@ -85,6 +85,8 @@ class ImageAssets {
   static const String drobFile = "assets/images/drob_file.svg";
   static const String file = "assets/images/file.svg";
   static const String finishQuiz = "assets/images/finish_quiz.svg";
+  static const String arrowDown = "assets/images/arrow-down.svg";
+  static const String pdf = "assets/images/PDF.svg";
 
   // Assets for settings
   static const String language = "assets/images/language.svg";

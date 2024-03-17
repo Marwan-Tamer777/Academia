@@ -45,7 +45,7 @@ abstract class WidgetsManager {
     EdgeInsetsGeometry? padding = const EdgeInsets.all(AppSize.s10),
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? contentPadding,
-    double? height,
+    double height = 50,
     double? width,
     BorderRadiusGeometry? borderRadius,
     Color? color,

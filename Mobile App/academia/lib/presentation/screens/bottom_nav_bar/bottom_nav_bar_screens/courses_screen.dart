@@ -86,7 +86,11 @@ class _CoursesScreenState extends State<CoursesScreen> {
                   hint: "...ابحث عن موادك الدراسية بالاسم أو الكود",
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: SvgPicture.asset(ImageAssets.search),
+                    child: InkWell(
+                        onTap: () {
+                          cubit.search();
+                        },
+                       child: SvgPicture.asset(ImageAssets.search)),
                   ),
                 ),
                 const SizedBox(
@@ -94,7 +98,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                 ),
 
                 // categories
-                SizedBox(
+                if(cubit.isSearch == false)
+                  SizedBox(
                   height: AppSize.s50,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
@@ -117,11 +122,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     itemCount: 10,
                   ),
                 ),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-
                 // courses
+                if(cubit.isSearch == false)
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
@@ -139,6 +141,43 @@ class _CoursesScreenState extends State<CoursesScreen> {
                     itemCount: 10,
                   ),
                 ),
+                if(cubit.isSearch == true)
+                    Column(
+                      children: [
+                        ListTile(
+                          trailing: Text(
+                            "نتائج البحث",
+                            style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                                fontSize: FontSize.s15, color: ColorManager.lightGrey),
+                          ),
+                          leading: Text(
+                            "مسح",
+                            style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                                fontSize: FontSize.s15, color: ColorManager.lightGrey),
+                          ),
+                          onTap: () {
+                            // navigate to course details
+                          },
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemBuilder: (context,index) {
+                            return ListTile(
+                              trailing: Text("نظم المعلومات", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s15, color: ColorManager.lightGrey),),
+                              leading: Text("IS678", style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s15, color: ColorManager.textOrange),),
+                              onTap: () {
+                                showCustomBottomSheet(
+                                    context: context,
+                                    bottomSheet: const CourseRegisterationBottomSheet()
+                                );
+                              },
+                            );
+                          },
+                          itemCount: 5,
+                        ),
+                      ],
+                    ),
+
                 SizedBox(
                 height: MediaQuery.of(context).size.height * 0.2,
               )

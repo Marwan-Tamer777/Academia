@@ -117,7 +117,7 @@ function validateRegisterUser(user) {
             user: {
                 _id: Joi.string().default(uuidv4),
                 name: Joi.string().trim().min(1).required(),
-                email: Joi.string().trim().min(1).required(),
+                email: Joi.string().trim().min(1),
                 password: Joi.string().trim().min(7).required(),
                 assignedId: Joi.string().trim().min(1).max(100).required(),
                 avatar: Joi.string().trim(),

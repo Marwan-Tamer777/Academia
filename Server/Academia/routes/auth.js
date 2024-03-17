@@ -74,22 +74,25 @@ router.post("/login", asyncHandler(async (req, res) => {
         return res.status(400).json({ error: error.details[0].message });
     }
 
-    // check if user doesn't already exists
-    let user = await model.userModel.findOne({ email: requestUser.email });
-    if (!user) {
-        return res.status(400).json({ error: 'This User is not registered.' });
+
+    // check if user exists by email or id, one of them is enough 
+    let userEmailExists = await model.userModel.findOne({ email: requestUser.email }); 
+    let userIdExists = await model.userModel.findOne({ id: requestUser.id }); 
+
+    if (!userEmailExists && !userIdExists) { 
+        return res.status(400).json({ error: 'User does not exist.' });
+    } else if (userEmailExists) {
+        user = userEmailExists;
+    } else if (userIdExists) {
+        user = userIdExists;
+    } else { 
+        return res.status(400).json({ error: 'User data is invalid.' });
     }
 
     // check if password is correct
     const validPassword = await bcrypt.compare(requestUser.password, user.password);
     if (!validPassword) {
         return res.status(400).json({ error: 'Invalid Password.' });
-    }
-
-    // check if assignedId is correct
-    const validAssignedId =requestUser.assignedId===user.assignedId;
-    if (!validAssignedId) {
-        return res.status(400).json({ error: 'Invalid Assigned Id.' });
     }
 
     // create and assign a token
