@@ -8,7 +8,6 @@ import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
-import 'category_item.dart';
 
 class CommentItem extends StatelessWidget {
   const CommentItem({super.key});
@@ -18,12 +17,10 @@ class CommentItem extends StatelessWidget {
 
     bool hasReplies = true;
     return Container(
-      height: 1000,
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(AppSize.s16),
-        border: Border.all(width: 1),
+        border: Border.all(width: 1,color: ColorManager.lightGrey),
         shape: BoxShape.rectangle,
       ),
       child: Column(
@@ -72,7 +69,7 @@ class CommentItem extends StatelessWidget {
                       fontSize: FontSize.s12,
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  const SizedBox(height: 5,),
                   Text(
                     'منذ 15 ساعة',
                     style: Theme.of(context).textTheme.displayMedium!.copyWith(
@@ -82,8 +79,8 @@ class CommentItem extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: 10,),
-              CircleAvatar(
+              const SizedBox(width: 10,),
+              const CircleAvatar(
                 radius: AppSize.s20,
                 backgroundColor: ColorManager.lightOrange1,
               ),
@@ -102,7 +99,7 @@ class CommentItem extends StatelessWidget {
             ),
             textDirection: TextDirection.rtl,
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24, vertical: AppPadding.p4),
             child: Row(
@@ -156,24 +153,26 @@ class CommentItem extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 6,
-                  child: Container(
-                    height: 400,
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context,index) {
-                        hasReplies = false;
-                        return const Reply();
-                      },
-                      separatorBuilder: (context,index) {
-                        return const SizedBox(height: AppSize.s20);
-                      },
-                      itemCount: 1,
-                    ),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context,index) {
+                      hasReplies = false;
+                      return const Reply();
+                    },
+                    separatorBuilder: (context,index) {
+                      return const SizedBox(height: AppSize.s20);
+                    },
+                    itemCount: 1,
                   ),
                 ),
-                Expanded(
+                const Expanded(
                     flex: 1,
-                    child: SizedBox(width: 20,)),
+                    child: VerticalDivider(
+                      color: ColorManager.lightGrey,
+                      thickness: 4,
+                    )
+                ),
               ],
             ),
         ],

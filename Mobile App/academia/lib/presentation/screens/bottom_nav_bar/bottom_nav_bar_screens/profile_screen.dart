@@ -1,5 +1,6 @@
 import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:academia/presentation/widgets/backgrounds/background.dart';
+import 'package:academia/presentation/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../resources/assets_manager.dart';
@@ -24,26 +25,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: [
               // title and notification icon
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const NotificationIcon(),
-                  Text(
-                    "الملف الشخصى",
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          color: Colors.white,
-                          fontSize: FontSize.s17,
-                        ),
-                  ),
-                  SvgPicture.asset(
-                    ImageAssets.arrowBackIcon,
-                    width: AppSize.s24,
-                    height: AppSize.s24,
-                    color: Colors.white,
-                  )
-                ],
-              ),
+              const ScreenHeader(title: "الملف الشخصي"),
               const SizedBox(height: AppSize.s90),
 
               // user image

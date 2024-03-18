@@ -16,11 +16,11 @@ class QuizScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isFound = false;
+    bool isFound = true;
     return Scaffold(
         appBar: AppBar(
-        toolbarHeight: 80,
-        leadingWidth: 80,
+        toolbarHeight: 70,
+        leadingWidth: 70,
         backgroundColor: ColorManager.darkBlueBackground,
         leading: const Padding(
           padding: EdgeInsets.all(16.0),
@@ -58,6 +58,7 @@ class QuizScreen extends StatelessWidget {
                             ),
                             ListView.separated(
                               shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return InkWell(
                                     onTap: () {
@@ -71,9 +72,6 @@ class QuizScreen extends StatelessWidget {
                               separatorBuilder: (context, index) =>
                                   const SizedBox(height: AppSize.s10),
                               itemCount: 5,
-                            ),
-                            const SizedBox(
-                              height: AppSize.s20,
                             ),
 
                             // the next quiz
@@ -91,6 +89,7 @@ class QuizScreen extends StatelessWidget {
                             ),
                             ListView.separated(
                               shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
                               itemBuilder: (context, index) {
                                 return InkWell(
                                     onTap: () {

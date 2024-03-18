@@ -25,7 +25,7 @@ class CommentsScreen extends StatelessWidget {
           padding: EdgeInsets.all(16.0),
           child: NotificationIcon(),
         ),
-        title: Text('الواجبات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
+        title: Text('اسم المادة', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
@@ -34,11 +34,11 @@ class CommentsScreen extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(11.0),
         child: SingleChildScrollView(
           child: Column(
             children: [
-                TextPostCommentsItem(),
+                const TextPostCommentsItem(),
                 const SizedBox(height: AppSize.s20),
                 Row(
                   children: [
@@ -53,6 +53,8 @@ class CommentsScreen extends StatelessWidget {
                 const SizedBox(height: AppSize.s20),
                 ListView.separated(
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+
                   itemBuilder: (context,index) {
                     return const CommentItem();
                   },

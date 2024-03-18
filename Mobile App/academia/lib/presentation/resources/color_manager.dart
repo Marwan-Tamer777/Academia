@@ -26,6 +26,7 @@ abstract class ColorManager {
   static const Color lightBlack = Color(0xFF222222);
   static const Color lightGrey = Color(0xFF9b9b9b);
   static const Color lightGrey2 = Color(0xFFE5E5E5);
+  static const Color lightGrey3 = Color.fromRGBO(163, 162, 169, 0.10);
   static const Color lightPrimary = Color(0xFFff613d);
   static const Color lightBackground = Color(0xFFF0F0F0);
   static const Color lightCanvas = Color(0xFFFBFCFE);
@@ -33,8 +34,7 @@ abstract class ColorManager {
   static const Color lightWhite = Color(0xFFFFFFFF);
   static const Color lightError = Color(0xFFf01f0e);
   static const Color lightSales = Color(0xFFDB3022);
-  // static const Color lightSuccess = Color(0xFF2aa952);
-  // static const Color lightGreen = Color(0xFF517B2C);
+
   static const Color lightGreen2 = Color(0xFFE9FFED);
   static const Color textOrange = Color(0xFFFF7E31);
   static const Color lightOrange1 = Color(0x3DFF7D31);

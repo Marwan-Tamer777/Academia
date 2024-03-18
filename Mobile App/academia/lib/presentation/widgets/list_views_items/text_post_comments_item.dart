@@ -17,12 +17,9 @@ class TextPostCommentsItem extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isPoll = false;
     bool showPollResult = false;
-    bool isImage = false;
+    bool isImage = true;
 
     TextEditingController commentController = TextEditingController();
-
-
-
 
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
@@ -116,7 +113,7 @@ class TextPostCommentsItem extends StatelessWidget {
               padding: EdgeInsets.all(AppPadding.p8),
               child: CategoryItem(
                   title: "تبقى 4 ايام",
-                  // width: AppSize.s80,
+                   width: AppSize.s80,
                   // height: AppSize.s30,
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
@@ -184,6 +181,7 @@ class TextPostCommentsItem extends StatelessWidget {
             ],
           ),
           if(isImage)
+            const SizedBox(height: 10,),
             Container(
               height: AppSize.s250,
               decoration: BoxDecoration(
@@ -194,6 +192,7 @@ class TextPostCommentsItem extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10,),
           if(isPoll)
             Container(
               height: AppSize.s250,
@@ -314,11 +313,14 @@ class TextPostCommentsItem extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Expanded(
                 flex: 8,
                 child: CommonTextFormField(
                   controller: commentController,
+                  color: ColorManager.lightGrey3,
                   hint: "اكتب تعليق",
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(AppPadding.p16),

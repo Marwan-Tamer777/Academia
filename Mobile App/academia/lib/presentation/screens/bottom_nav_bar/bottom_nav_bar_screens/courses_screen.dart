@@ -124,7 +124,8 @@ class _CoursesScreenState extends State<CoursesScreen> {
                 ),
                 // courses
                 if(cubit.isSearch == false)
-                Padding(
+                  const SizedBox(height: 10,),
+                  Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: AppPadding.p20),
                   child: ListView.separated(
@@ -177,10 +178,6 @@ class _CoursesScreenState extends State<CoursesScreen> {
                         ),
                       ],
                     ),
-
-                SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-              )
                 // if there is no courses
                 // const NoCoursesBackground(),
                 // const NoCoursesComponent(),

@@ -1,3 +1,4 @@
+import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import '../resources/font_manager.dart';
 import '../resources/style_manager.dart';
@@ -47,6 +48,7 @@ class CommonTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Color? color;
 
   const CommonTextFormField({
     this.margin,
@@ -58,6 +60,7 @@ class CommonTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.label,
     required this.hint,
+    this.color = ColorManager.lightWhite,
     super.key,
   });
 
@@ -65,7 +68,7 @@ class CommonTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return WidgetsManager.textFormField(
       controller: controller,
-      
+      color: color,
       margin:margin?? const EdgeInsets.only(
         left: 10,
         right: 10,

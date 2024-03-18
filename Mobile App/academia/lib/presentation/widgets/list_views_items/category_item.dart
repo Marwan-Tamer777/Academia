@@ -3,7 +3,7 @@ import '../../resources/values_manager.dart';
 
 class CategoryItem extends StatelessWidget {
   final String title;
-  // final double width;
+  final double? width;
   // final double height;
   final Color color;
   final Color textColor;
@@ -12,7 +12,7 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(
       {super.key,
       required this.title,
-      // required this.width,
+        this.width,
       // required this.height,
       this.padding,
       required this.color,
@@ -22,6 +22,7 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       padding: padding ?? const EdgeInsets.all(AppPadding.p10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s30),
