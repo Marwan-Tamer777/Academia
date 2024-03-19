@@ -1,15 +1,17 @@
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
+import 'package:academia/presentation/widgets/list_views_items/reaction.dart';
+import 'package:academia/presentation/widgets/elements/post_header.dart';
+import 'package:academia/presentation/widgets/elements/post_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../resources/font_manager.dart';
-import '../../resources/routes_manager.dart';
+import '../elements/post_poll.dart';
+import '../elements/post_poll_result.dart';
 import 'category_item.dart';
 
 class TextPostItem extends StatelessWidget {
-  const TextPostItem({Key? key}) : super(key: key);
+  const TextPostItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,6 @@ class TextPostItem extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
-      height: AppSize.s300,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(AppSize.s16),
@@ -28,49 +29,7 @@ class TextPostItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Icon(
-                // horizontal three dots icon,
-                Icons.more_horiz,
-                size: AppSize.s24,
-              ),
-              const SizedBox(width: AppSize.s16),
-              Container(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8, vertical: AppPadding.p4),
-              decoration: BoxDecoration(
-                  color: ColorManager.textOrange,
-                  borderRadius: BorderRadius.circular(AppSize.s16),
-              ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'تواصل',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        fontSize: FontSize.s12,
-                        color: ColorManager.white,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      ImageAssets.messageComment,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              Text(
-                'منذ 15 ساعة',
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  fontSize: FontSize.s13,
-                  color: ColorManager.lightGrey,
-                ),
-              ),
-            ],
-          ),
+          const PostHeader(),
           const SizedBox(
             height: AppSize.s10,
           ),
@@ -99,134 +58,12 @@ class TextPostItem extends StatelessWidget {
             ),
           ),
           if(isImage)
-            Container(
-              height: AppSize.s250,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(AppSize.s16),
-                image: const DecorationImage(
-                  image: AssetImage(ImageAssets.postImage),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            const PostImage(image: ImageAssets.postImage,),
           if(isPoll)
-            Container(
-              height: AppSize.s250,
-              child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: AppMargin.m8),
-                    padding: const EdgeInsets.all(AppPadding.p12),
-                    decoration: BoxDecoration(
-                      color: ColorManager.lightGrey2,
-                      borderRadius: BorderRadius.circular(AppSize.s16),
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                        child: Text( "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                          fontSize: FontSize.s12,
-                          color: ColorManager.black,
-                        ),),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            const PostPoll(),
           if(showPollResult)
-            Container(
-              height: AppSize.s250,
-              child: ListView.builder(
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: const EdgeInsets.symmetric(vertical: AppMargin.m8),
-                    padding: const EdgeInsets.all(AppPadding.p12),
-                    decoration: BoxDecoration(
-                      color: ColorManager.lightGrey2,
-                      borderRadius: BorderRadius.circular(AppSize.s16),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text( "30 الف صوت", style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                              fontSize: FontSize.s12,
-                              color: ColorManager.black,
-                            ),),
-                            const Spacer(),
-                            Text( "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                              fontSize: FontSize.s12,
-                              color: ColorManager.black,
-                            ),),
-                          ],
-                        ),
-                        const SizedBox(height: AppSize.s8),
-                        LinearProgressIndicator(
-                          value: 0.5,
-                          backgroundColor: ColorManager.lightGrey,
-                          valueColor: const AlwaysStoppedAnimation<Color>(ColorManager.textOrange),
-                          // make it rounded more higher
-                          minHeight: AppSize.s10,
-                          borderRadius: BorderRadius.circular(AppSize.s16),
-                        ),
-                      ],
-                    )
-                  );
-                },
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24, vertical: AppPadding.p4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, Routes.postComments);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '4092',
-                        style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                          fontSize: FontSize.s16,
-                          color: ColorManager.lightGrey,
-                        ),
-                      ),
-                      SvgPicture.asset(
-                        ImageAssets.message,
-                        width: AppSize.s24,
-                        height: AppSize.s24,
-                      ),
-                    ],
-                  ),
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '4092',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        fontSize: FontSize.s16,
-                        color: ColorManager.lightGrey,
-                    ),
-                    ),
-                    SvgPicture.asset(
-                      ImageAssets.arrowUp,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+            const PostPollResult(),
+          const PostReactions(),
         ],
       ),
     );

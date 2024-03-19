@@ -2,26 +2,30 @@ import 'package:flutter/material.dart';
 import '../../resources/values_manager.dart';
 
 class CategoryItem extends StatelessWidget {
-  final String title;
+  final String? title;
+  final Widget? child;
   final double? width;
-  // final double height;
+  final double? height;
   final Color color;
   final Color textColor;
   final double fontSize;
   final EdgeInsets? padding;
   const CategoryItem(
       {super.key,
-      required this.title,
+        this.title,
         this.width,
-      // required this.height,
+        this.height,
       this.padding,
       required this.color,
       required this.textColor,
-      this.fontSize = 10});
+      this.fontSize = 10,
+        this.child
+      });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: height,
       width: width,
       padding: padding ?? const EdgeInsets.all(AppPadding.p10),
       decoration: BoxDecoration(
@@ -29,13 +33,14 @@ class CategoryItem extends StatelessWidget {
         color: color,
       ),
       child: Center(
-          child: Text(
-        title,
-        style: Theme.of(context)
-            .textTheme
-            .displayLarge!
-            .copyWith(fontSize: fontSize, color: textColor),
-      )),
+          child: child ?? Text(
+            title!,
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize,
+            ),
+          )
+      ),
     );
   }
 }

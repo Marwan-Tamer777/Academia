@@ -1,10 +1,7 @@
-import 'package:academia/presentation/widgets/reply.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:academia/presentation/widgets/list_views_items/reaction.dart';
+import 'package:academia/presentation/widgets/elements/post_header.dart';
+import 'package:academia/presentation/widgets/list_views_items/reply.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
@@ -14,8 +11,8 @@ class CommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool hasReplies = true; 
 
-    bool hasReplies = true;
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
@@ -26,66 +23,7 @@ class CommentItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const Icon(
-                // horizontal three dots icon,
-                Icons.more_horiz,
-                size: AppSize.s24,
-              ),
-              const SizedBox(width: AppSize.s16),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: AppPadding.p8, vertical: AppPadding.p4),
-                decoration: BoxDecoration(
-                  color: ColorManager.textOrange,
-                  borderRadius: BorderRadius.circular(AppSize.s16),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'تواصل',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        fontSize: FontSize.s12,
-                        color: ColorManager.white,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      ImageAssets.messageComment,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'محمد أحمد حسنين',
-                    style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontSize: FontSize.s12,
-                    ),
-                  ),
-                  const SizedBox(height: 5,),
-                  Text(
-                    'منذ 15 ساعة',
-                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      fontSize: FontSize.s8,
-                      color: ColorManager.lightGrey,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 10,),
-              const CircleAvatar(
-                radius: AppSize.s20,
-                backgroundColor: ColorManager.lightOrange1,
-              ),
-            ],
-          ),
+          const PostHeader(),
           const SizedBox(
             height: AppSize.s10,
           ),
@@ -100,54 +38,7 @@ class CommentItem extends StatelessWidget {
             textDirection: TextDirection.rtl,
           ),
           const SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p24, vertical: AppPadding.p4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '4092',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        fontSize: FontSize.s16,
-                        color: ColorManager.lightGrey,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      ImageAssets.message,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SvgPicture.asset(
-                      ImageAssets.arrowDown,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                    Text(
-                      '4092',
-                      style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                        fontSize: FontSize.s16,
-                        color: ColorManager.lightGrey,
-                      ),
-                    ),
-                    SvgPicture.asset(
-                      ImageAssets.arrowUp,
-                      width: AppSize.s24,
-                      height: AppSize.s24,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+          const PostReactions(),
           if (hasReplies)
             Row(
               children: [
@@ -157,7 +48,6 @@ class CommentItem extends StatelessWidget {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context,index) {
-                      hasReplies = false;
                       return const Reply();
                     },
                     separatorBuilder: (context,index) {

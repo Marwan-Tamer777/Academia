@@ -1,15 +1,15 @@
-import 'package:academia/presentation/resources/assets_manager.dart';
-import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/widgets/elements/app_bar.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/quiz_bottom_sheet.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/task_submission_bottom_sheet.dart';
 import 'package:academia/presentation/widgets/elements/calender_empty_state.dart';
-import 'package:academia/presentation/widgets/elements/notification_icon.dart';
 import 'package:academia/presentation/widgets/list_views_items/calender_task_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_svg/svg.dart';
+import '../../../resources/assets_manager.dart';
+import '../../../resources/color_manager.dart';
 import '../../../resources/font_manager.dart';
 import '../../../resources/values_manager.dart';
+import '../../../widgets/elements/notification_icon.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});
@@ -18,22 +18,22 @@ class QuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isFound = true;
     return Scaffold(
-        appBar: AppBar(
-        toolbarHeight: 70,
-        leadingWidth: 70,
-        backgroundColor: ColorManager.darkBlueBackground,
-        leading: const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: NotificationIcon(),
-        ),
-        title: Text('الواجبات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
-            child: SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
+        appBar: AppBar (
+          toolbarHeight: 70,
+          leadingWidth: 70,
+          backgroundColor: ColorManager.darkBlueBackground,
+          leading: const Padding(
+            padding: EdgeInsets.all(16.0),
+            child: NotificationIcon(),
           ),
-        ],
-      ),
+          title: Text('الواجبات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
+              child: SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
+            ),
+          ],
+        ),
         body: isFound
             ? SingleChildScrollView(
               child: Column(
@@ -112,17 +112,18 @@ class QuizScreen extends StatelessWidget {
                 ),
             )
             : Padding(
-              padding: const EdgeInsets.all(AppPadding.p16),
-              child: Column(
+                padding: const EdgeInsets.all(AppPadding.p16),
+                child: Column(
                   children: [
                     // no tasks
                     Align(
                       alignment: const AlignmentDirectional(1, 0),
                       child: Text(
                         'التسليمات القادمة',
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontSize: FontSize.s20,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  fontSize: FontSize.s20,
+                                ),
                       ),
                     ),
                     const SizedBox(
@@ -138,20 +139,22 @@ class QuizScreen extends StatelessWidget {
                       alignment: const AlignmentDirectional(1, 0),
                       child: Text(
                         'الامتحانات القادمة',
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                              fontSize: FontSize.s20,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.displayLarge!.copyWith(
+                                  fontSize: FontSize.s20,
+                                ),
                       ),
                     ),
                     const SizedBox(
                       height: AppSize.s10,
                     ),
                     const CalenderEmptyState(),
-                      SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-              )
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                    )
                   ],
                 ),
-            ));
+              )
+    );
   }
 }

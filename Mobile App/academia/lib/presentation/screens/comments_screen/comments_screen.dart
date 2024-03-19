@@ -1,3 +1,4 @@
+import 'package:academia/presentation/widgets/elements/app_bar.dart';
 import 'package:academia/presentation/widgets/list_views_items/comment_item.dart';
 import 'package:academia/presentation/widgets/list_views_items/text_post_comments_item.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,8 +19,8 @@ class CommentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
-        leadingWidth: 80,
+        toolbarHeight: 70,
+        leadingWidth: 70,
         backgroundColor: ColorManager.darkBlueBackground,
         leading: const Padding(
           padding: EdgeInsets.all(16.0),
@@ -42,11 +43,11 @@ class CommentsScreen extends StatelessWidget {
                 const SizedBox(height: AppSize.s20),
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                         height: 24,
                         width: 24,
                         child: SvgPicture.asset(ImageAssets.message,)),
-                    Spacer(),
+                    const Spacer(),
                     Text('التعليقات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.darkBlueBackground)),
                   ],
                 ),
@@ -67,7 +68,6 @@ class CommentsScreen extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }

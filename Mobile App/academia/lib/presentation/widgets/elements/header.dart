@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../resources/assets_manager.dart';
-import '../resources/color_manager.dart';
-import '../resources/font_manager.dart';
-import 'elements/notification_icon.dart';
+import '../../resources/assets_manager.dart';
+import '../../resources/color_manager.dart';
+import '../../resources/font_manager.dart';
+import 'notification_icon.dart';
 
 class ScreenHeader extends StatelessWidget {
   final String title;

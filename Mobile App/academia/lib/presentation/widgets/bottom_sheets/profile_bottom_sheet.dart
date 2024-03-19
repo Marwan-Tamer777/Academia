@@ -5,7 +5,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
 import '../elements/social_media_icons.dart';
-import '../horizontal_bar.dart';
+import '../elements/horizontal_bar.dart';
 import '../list_views_items/category_item.dart';
 
 class ProfileBottomSheet extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:academia/presentation/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
-import '../horizontal_bar.dart';
+import '../elements/horizontal_bar.dart';
 import '../list_views_items/category_item.dart';
 import '../list_views_items/task_component.dart';
 

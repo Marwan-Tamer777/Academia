@@ -5,9 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
-import '../circles.dart';
+import '../list_views_items/circles.dart';
 import '../common_widgets.dart';
-import '../horizontal_bar.dart';
+import '../elements/horizontal_bar.dart';
 import '../list_views_items/category_item.dart';
 
 class CourseRegisterationBottomSheet extends StatelessWidget {

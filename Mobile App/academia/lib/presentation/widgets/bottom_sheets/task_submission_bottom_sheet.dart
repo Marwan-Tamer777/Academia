@@ -1,5 +1,5 @@
 import 'package:academia/presentation/resources/font_manager.dart';
-import 'package:academia/presentation/widgets/horizontal_bar.dart';
+import 'package:academia/presentation/widgets/elements/horizontal_bar.dart';
 import 'package:academia/presentation/widgets/list_views_items/task_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -1,6 +1,6 @@
 import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:academia/presentation/widgets/backgrounds/background.dart';
-import 'package:academia/presentation/widgets/header.dart';
+import 'package:academia/presentation/widgets/elements/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../resources/assets_manager.dart';
