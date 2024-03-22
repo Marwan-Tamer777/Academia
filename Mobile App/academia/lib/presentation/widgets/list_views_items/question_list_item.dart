@@ -1,4 +1,5 @@
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
 import 'package:academia/presentation/widgets/list_views_items/question_option.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,9 @@ class QuestionListItem extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: AppMargin.m16),
             padding: const EdgeInsets.symmetric(
-                horizontal: AppPadding.p12,
-                vertical: AppPadding.p20
-            ),
+                horizontal: AppPadding.p12, vertical: AppPadding.p20),
             decoration: BoxDecoration(
-              color: ColorManager.white,
+              color: Theme.of(context).canvasColor,
               borderRadius: BorderRadius.circular(AppSize.s16),
               boxShadow: [
                 BoxShadow(
@@ -47,9 +46,9 @@ class QuestionListItem extends StatelessWidget {
                   "السؤال السابع عشر",
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    color: ColorManager.textOrange,
-                    fontSize: FontSize.s17,
-                  ),
+                        color: ColorManager.textOrange,
+                        fontSize: FontSize.s17,
+                      ),
                 ),
                 const SizedBox(height: AppSize.s10),
                 Text(
@@ -66,17 +65,17 @@ class QuestionListItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.right,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: FontSize.s9,
-                  ),
+                        fontSize: FontSize.s9,
+                      ),
                 ),
                 const SizedBox(height: AppSize.s17),
                 ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   separatorBuilder: (
-                      context,
-                      index,
-                      ) {
+                    context,
+                    index,
+                  ) {
                     return const SizedBox(
                       height: AppSize.s15,
                     );
@@ -85,7 +84,7 @@ class QuestionListItem extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                         onTap: () {
-                          cubit.answer(index+1);
+                          cubit.answer(index + 1);
                         },
                         child: QuestionOption(
                           questionNumber: index + 1,
@@ -103,9 +102,13 @@ class QuestionListItem extends StatelessWidget {
                       child: Container(
                         height: AppSize.s40,
                         width: AppSize.s118,
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20, vertical: AppPadding.p5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20,
+                            vertical: AppPadding.p5),
                         decoration: BoxDecoration(
-                          color: ColorManager.bottomSheetBackground,
+                          color: Theme.of(context)
+                              .extension<CustomThemeExtension>()!
+                              .pollColor,
                           borderRadius: BorderRadius.circular(AppSize.s35),
                         ),
                         child: Row(
@@ -131,7 +134,9 @@ class QuestionListItem extends StatelessWidget {
                       child: Container(
                         height: AppSize.s40,
                         width: AppSize.s118,
-                        padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20, vertical: AppPadding.p5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppPadding.p20,
+                            vertical: AppPadding.p5),
                         decoration: BoxDecoration(
                           color: ColorManager.darkBlueBackground,
                           borderRadius: BorderRadius.circular(AppSize.s35),
@@ -140,9 +145,12 @@ class QuestionListItem extends StatelessWidget {
                           children: [
                             Text(
                               "التالي",
-                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                color: ColorManager.white,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                    color: ColorManager.white,
+                                  ),
                             ),
                             const SizedBox(width: AppSize.s8),
                             SvgPicture.asset(

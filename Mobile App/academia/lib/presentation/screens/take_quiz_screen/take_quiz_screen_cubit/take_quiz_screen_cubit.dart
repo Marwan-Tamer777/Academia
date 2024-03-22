@@ -1,12 +1,14 @@
 import 'dart:ui';
 
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/take_quiz_screen/take_quiz_screen_cubit/take_quiz_screen_states.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../resources/color_manager.dart';
 
 class QuizCubit extends Cubit<QuizState> {
-
   QuizCubit() : super(QuizInitial());
 
   static QuizCubit of(context) => BlocProvider.of<QuizCubit>(context);
@@ -17,12 +19,12 @@ class QuizCubit extends Cubit<QuizState> {
   int currentAnswer = 0;
 
   void next() {
-    currentQuestion ++;
+    currentQuestion++;
     emit(NextQuestionState());
   }
 
   void previous() {
-    currentQuestion --;
+    currentQuestion--;
     emit(PreviousQuestionState());
   }
 
@@ -44,25 +46,26 @@ class QuizCubit extends Cubit<QuizState> {
     }
   }
 
-void answer(int answer) {
+  void answer(int answer) {
     currentAnswer = answer;
     emit(AnswerState());
   }
 
-Color getQuestionColor(int questionNumber) {
+  Color getQuestionColor(BuildContext context, int questionNumber) {
     if (questionNumber == currentAnswer) {
-      return ColorManager.darkBlueBackground;
+      return Theme.of(context)
+          .extension<CustomThemeExtension>()!
+          .pageIndicatorColor;
     } else {
-      return ColorManager.bottomSheetBackground;
+      return Theme.of(context).extension<CustomThemeExtension>()!.pollColor;
     }
   }
 
-Color getQuestionTextColor(int questionNumber) {
+  Color getQuestionTextColor(BuildContext context, int questionNumber) {
     if (questionNumber == currentAnswer) {
-      return ColorManager.white;
+      return Theme.of(context).scaffoldBackgroundColor;
     } else {
-      return ColorManager.darkBlueBackground;
+      return Theme.of(context).textTheme.bodyMedium!.color!;
     }
   }
-
 }

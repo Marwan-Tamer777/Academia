@@ -11,13 +11,13 @@ class CommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool hasReplies = true; 
+    bool hasReplies = true;
 
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s16),
-        border: Border.all(width: 1,color: ColorManager.lightGrey),
+        border: Border.all(width: 1, color: ColorManager.lightGrey),
         shape: BoxShape.rectangle,
       ),
       child: Column(
@@ -30,14 +30,16 @@ class CommentItem extends StatelessWidget {
           Text(
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              fontSize: FontSize.s16,
-              color: ColorManager.black,
-              // make space between lines
-              height: AppSize.s2,
-            ),
+                  fontSize: FontSize.s16,
+                  // color: ColorManager.black,
+                  // make space between lines
+                  height: AppSize.s2,
+                ),
             textDirection: TextDirection.rtl,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           const PostReactions(),
           if (hasReplies)
             Row(
@@ -47,10 +49,10 @@ class CommentItem extends StatelessWidget {
                   child: ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context,index) {
+                    itemBuilder: (context, index) {
                       return const Reply();
                     },
-                    separatorBuilder: (context,index) {
+                    separatorBuilder: (context, index) {
                       return const SizedBox(height: AppSize.s20);
                     },
                     itemCount: 1,
@@ -61,8 +63,7 @@ class CommentItem extends StatelessWidget {
                     child: VerticalDivider(
                       color: ColorManager.lightGrey,
                       thickness: 4,
-                    )
-                ),
+                    )),
               ],
             ),
         ],

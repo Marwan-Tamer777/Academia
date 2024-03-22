@@ -15,18 +15,20 @@ import '../bottom_nav_bar/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
 import '../bottom_nav_bar/bottom_nav_bar_cubit/bottom_nav_bar_states.dart';
 
 class TakeQuizScreen extends StatelessWidget {
-  const TakeQuizScreen({Key? key}) : super(key: key);
+  const TakeQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<QuizCubit, QuizState>(
-      listener: (BuildContext context, state) {  },
+      listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
         return SafeArea(
           child: Scaffold(
             body: Stack(
               children: [
-                const Background(height: 400,),
+                const Background(
+                  height: 400,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -36,20 +38,28 @@ class TakeQuizScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const NotificationIcon(),
-                          Text("الاختبار 1", style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s15,color: ColorManager.white)),
-                          SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
+                          Text("الاختبار 1",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .copyWith(
+                                      fontSize: FontSize.s15,
+                                      color: ColorManager.white)),
+                          SvgPicture.asset(ImageAssets.arrowBackIcon,
+                              color: ColorManager.white),
                         ],
                       ),
                       const SizedBox(height: 24),
-                      Container(
+                      SizedBox(
                         height: 80,
                         child: ListView.separated(
                           //shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
-                            return QuestionNumber(questionNumber: index+1);
+                            return QuestionNumber(questionNumber: index + 1);
                           },
-                          separatorBuilder: (context, index) => const SizedBox(width: 5),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(width: 5),
                           itemCount: 10,
                         ),
                       ),
@@ -91,5 +101,3 @@ class TakeQuizScreen extends StatelessWidget {
     );
   }
 }
-
-

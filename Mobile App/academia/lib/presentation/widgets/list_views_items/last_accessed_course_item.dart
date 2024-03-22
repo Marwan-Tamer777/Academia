@@ -56,6 +56,9 @@ class LastAccessedCourseItem extends StatelessWidget {
                                   ),
                                   // width: AppSize.s50,
                                   // height: AppSize.s18,
+                                  margin: const EdgeInsets.only(
+                                    left: AppPadding.p5,
+                                  ),
                                   color: Theme.of(context)
                                       .extension<CustomThemeExtension>()!
                                       .greenOverlayColor,
@@ -68,6 +71,9 @@ class LastAccessedCourseItem extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                     horizontal: AppPadding.p10,
                                   ),
+                                  margin: EdgeInsets.only(
+                                    left: AppPadding.p5,
+                                  ),
                                   // width: AppSize.s25,
                                   // height: AppSize.s18,
                                   color: ColorManager.lightOrange1,
@@ -77,6 +83,9 @@ class LastAccessedCourseItem extends StatelessWidget {
                                   title: "IS1545",
                                   padding: EdgeInsets.symmetric(
                                     horizontal: AppPadding.p10,
+                                  ),
+                                  margin: EdgeInsets.only(
+                                    left: AppPadding.p5,
                                   ),
                                   // width: AppSize.s25,
                                   // height: AppSize.s18,

@@ -22,24 +22,36 @@ class TaskComponent extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text('تبقى 4 ساعات', style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: FontSize.s12, color: ColorManager.lightError)),
+                  Text('تبقى 4 ساعات',
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: FontSize.s12,
+                          color: ColorManager.lightError)),
                   const Spacer(),
-                  Text('تكليف 01', style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s16, color: ColorManager.black)),
+                  Text('تكليف 01',
+                      style:
+                          Theme.of(context).textTheme.displayMedium!.copyWith(
+                                fontSize: FontSize.s16,
+                              )),
                 ],
               ),
               const SizedBox(height: AppSize.s10),
-              Text('منهجيات البحث التجريدى', style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s16, color: ColorManager.lightGrey)),
+              Text('منهجيات البحث التجريدى',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall!
+                      .copyWith(fontSize: FontSize.s16)),
             ],
           ),
         ),
-        const SizedBox(width: AppSize.s20,),
+        const SizedBox(
+          width: AppSize.s20,
+        ),
         Expanded(
           flex: 2,
           child: CircleAvatar(
             radius: AppSize.s30,
             backgroundColor: ColorManager.lightOrange1,
             child: SvgPicture.asset(ImageAssets.calendarTime),
-
           ),
         ),
       ],

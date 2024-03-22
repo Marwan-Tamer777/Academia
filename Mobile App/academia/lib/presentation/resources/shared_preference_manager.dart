@@ -3,13 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SharedPrefManager {
   final SharedPreferences prefs;
   SharedPrefManager(this.prefs);
-  static const String _isDarkMode = 'isDarkMode';
+  static const String _themeMode = 'themeMode';
 
-  bool? get isDarkMode  {
-    return prefs.getBool(_isDarkMode);
+  int? get getTheme {
+    return prefs.getInt(_themeMode);
   }
 
-  Future<void> setDarkMode(bool value) async {
-    prefs.setBool(_isDarkMode, value);
+  Future<void> setThemeMode(int value) async {
+    prefs.setInt(_themeMode, value);
   }
 }

@@ -21,6 +21,7 @@ abstract class ColorManager {
   static const Color lightExternalGreenOverlay = Color(0x76E9FFED);
   static const Color lightSuccessText = Color(0xFf517B2C);
   static const Color lightNavigationBar = Color(0xFF1D3149);
+  static const Color lightPollColor = Color(0xFFe9eaed);
 
   /// Old
   static const Color lightBlack = Color(0xFF222222);
@@ -36,8 +37,8 @@ abstract class ColorManager {
   static const Color lightSales = Color(0xFFDB3022);
 
   static const Color lightGreen2 = Color(0xFFE9FFED);
-  static const Color textOrange = Color(0xFFFF7E31);
-  static const Color lightOrange1 = Color(0x3DFF7D31);
+  static const Color textOrange = Color(0xFFff7e31);
+  static const Color lightOrange1 = Color(0x16FF7D31);
   static const Color calenderEmptyState = Color(0xFF7E3133);
 
   static const Color offWhite = Color(0xFFFBFCFE);
@@ -53,14 +54,19 @@ abstract class ColorManager {
   static const Color semiDarkSecondaryText = Color(0xFFFF8C47);
   static const Color semiDarkSuccessText = Color(0xFF88D941);
   static const Color semiDarkPatternMask = Color(0xFF3C302A);
+  static const Color semiDarkPollColor = Color(0xFF525252);
   static const Color darkExternalGreenOverlay = Color(0x66748076);
   static const Color darkNavigationBar = Color(0xFF0A111A);
 
   /// Dark Theme Colors
+  /// New
+  static const Color darkCanvas = Color(0xFF282828);
+  static const Color darkScaffold = Color(0xFF131313);
+
   /// Old
   static const Color darkWhiteSecondary = Color(0xFFF5F5F5);
   static const Color darkWhite = Color(0xFFf6f6f6);
-  static const Color darkGrey = Color(0xFFabb4bd);
+  static const Color darkGrey = Color(0xFFa7a7a7);
   static const Color darkPrimary = Color(0xFFef3651);
   static const Color darkBackground = Color(0xFF1e1f28);
   static const Color darkBlack = Color(0xFF2a2c36);

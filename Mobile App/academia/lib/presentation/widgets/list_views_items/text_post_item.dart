@@ -4,6 +4,7 @@ import 'package:academia/presentation/resources/values_manager.dart';
 import 'package:academia/presentation/widgets/list_views_items/reaction.dart';
 import 'package:academia/presentation/widgets/elements/post_header.dart';
 import 'package:academia/presentation/widgets/elements/post_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../resources/font_manager.dart';
 import '../elements/post_poll.dart';
@@ -22,7 +23,7 @@ class TextPostItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(AppSize.s16),
         shape: BoxShape.rectangle,
       ),
@@ -36,33 +37,33 @@ class TextPostItem extends StatelessWidget {
           Text(
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              fontSize: FontSize.s16,
-              color: ColorManager.black,
-              // make space between lines
-              height: AppSize.s2,
-            ),
+                  fontSize: FontSize.s16,
+                  // color: ColorManager.black,
+                  // make space between lines
+                  height: AppSize.s2,
+                ),
             textDirection: TextDirection.rtl,
           ),
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: EdgeInsets.all(AppPadding.p8),
+              padding: const EdgeInsets.all(AppPadding.p8),
               child: CategoryItem(
-                  title: "تبقى 4 ايام",
-                   width: AppSize.s80,
-                  // height: AppSize.s30,
-                  color: ColorManager.lightOrange1,
-                  textColor: ColorManager.textOrange,
-                  fontSize: FontSize.s12,
+                title: "تبقى 4 ايام",
+                width: MediaQuery.of(context).size.width * 0.3,
+                // height: AppSize.s30,
+                color: ColorManager.lightOrange1,
+                textColor: ColorManager.textOrange,
+                fontSize: FontSize.s12,
               ),
             ),
           ),
-          if(isImage)
-            const PostImage(image: ImageAssets.postImage,),
-          if(isPoll)
-            const PostPoll(),
-          if(showPollResult)
-            const PostPollResult(),
+          if (isImage)
+            const PostImage(
+              image: ImageAssets.postImage,
+            ),
+          if (isPoll) const PostPoll(),
+          if (showPollResult) const PostPollResult(),
           const PostReactions(),
         ],
       ),

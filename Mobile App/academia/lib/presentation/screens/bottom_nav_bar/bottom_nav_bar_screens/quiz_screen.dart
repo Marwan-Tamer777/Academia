@@ -1,4 +1,4 @@
-import 'package:academia/presentation/widgets/elements/app_bar.dart';
+import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/quiz_bottom_sheet.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/task_submission_bottom_sheet.dart';
 import 'package:academia/presentation/widgets/elements/calender_empty_state.dart';
@@ -18,25 +18,33 @@ class QuizScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isFound = true;
     return Scaffold(
-        appBar: AppBar (
+        appBar: AppBar(
           toolbarHeight: 70,
           leadingWidth: 70,
-          backgroundColor: ColorManager.darkBlueBackground,
+          backgroundColor: Theme.of(context)
+              .extension<CustomThemeExtension>()!
+              .patternAppBarColor,
           leading: const Padding(
             padding: EdgeInsets.all(16.0),
             child: NotificationIcon(),
           ),
-          title: Text('الواجبات', style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: FontSize.s20,color: ColorManager.white)),
+          title: Text('الواجبات',
+              style: Theme.of(context)
+                  .textTheme
+                  .displayLarge!
+                  .copyWith(fontSize: FontSize.s20, color: ColorManager.white)),
           actions: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p13, vertical: AppPadding.p16),
-              child: SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppPadding.p13, vertical: AppPadding.p16),
+              child: SvgPicture.asset(ImageAssets.arrowBackIcon,
+                  color: ColorManager.white),
             ),
           ],
         ),
         body: isFound
             ? SingleChildScrollView(
-              child: Column(
+                child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -48,7 +56,10 @@ class QuizScreen extends StatelessWidget {
                               alignment: const AlignmentDirectional(1, 0),
                               child: Text(
                                 'التسليمات القادمة',
-                                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayLarge!
+                                    .copyWith(
                                       fontSize: FontSize.s20,
                                     ),
                               ),
@@ -64,9 +75,9 @@ class QuizScreen extends StatelessWidget {
                                     onTap: () {
                                       showCustomBottomSheet(
                                           context: context,
-                                          bottomSheet: const TaskSubmissionBottomSheet()
-                                      );
-                                      },
+                                          bottomSheet:
+                                              const TaskSubmissionBottomSheet());
+                                    },
                                     child: const CalenderListItem());
                               },
                               separatorBuilder: (context, index) =>
@@ -79,7 +90,10 @@ class QuizScreen extends StatelessWidget {
                               alignment: const AlignmentDirectional(1, 0),
                               child: Text(
                                 'الامتحانات القادمة',
-                                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayLarge!
+                                    .copyWith(
                                       fontSize: FontSize.s20,
                                     ),
                               ),
@@ -95,8 +109,8 @@ class QuizScreen extends StatelessWidget {
                                     onTap: () {
                                       showCustomBottomSheet(
                                           context: context,
-                                          bottomSheet: const StartQuizBottomSheet()
-                                      );
+                                          bottomSheet:
+                                              const StartQuizBottomSheet());
                                     },
                                     child: const CalenderListItem());
                               },
@@ -110,7 +124,7 @@ class QuizScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-            )
+              )
             : Padding(
                 padding: const EdgeInsets.all(AppPadding.p16),
                 child: Column(
@@ -154,7 +168,6 @@ class QuizScreen extends StatelessWidget {
                     )
                   ],
                 ),
-              )
-    );
+              ));
   }
 }

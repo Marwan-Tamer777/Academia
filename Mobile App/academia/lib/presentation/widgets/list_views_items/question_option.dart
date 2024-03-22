@@ -19,7 +19,7 @@ class QuestionOption extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           height: 50,
           decoration: BoxDecoration(
-            color: cubit.getQuestionColor(questionNumber),
+            color: cubit.getQuestionColor(context, questionNumber),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
@@ -31,18 +31,19 @@ class QuestionOption extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.right,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: cubit.getQuestionTextColor(questionNumber),
-              ),
+                      color:
+                          cubit.getQuestionTextColor(context, questionNumber),
+                    ),
               ),
               const SizedBox(width: 8),
               Container(
                 height: 30,
                 width: 30,
                 decoration: BoxDecoration(
-                  color: cubit.getQuestionColor(questionNumber),
+                  color: cubit.getQuestionColor(context, questionNumber),
                   borderRadius: BorderRadius.circular(50),
                   border: Border.all(
-                    color: cubit.getQuestionTextColor(questionNumber),
+                    color: cubit.getQuestionTextColor(context, questionNumber),
                     width: 1,
                   ),
                 ),
@@ -50,10 +51,11 @@ class QuestionOption extends StatelessWidget {
                   child: Text(
                     "A",
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: cubit.getQuestionTextColor(questionNumber),
+                          color: cubit.getQuestionTextColor(
+                              context, questionNumber),
+                        ),
                   ),
                 ),
-              ),
               ),
               const SizedBox(width: 8),
             ],

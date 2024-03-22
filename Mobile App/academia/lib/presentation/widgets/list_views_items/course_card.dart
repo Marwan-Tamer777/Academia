@@ -18,7 +18,7 @@ class CourseCard extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       height: 400,
       decoration: BoxDecoration(
-        color: ColorManager.white,
+        color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(16),
         shape: BoxShape.rectangle,
       ),

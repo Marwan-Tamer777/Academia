@@ -9,38 +9,40 @@ class CategoryItem extends StatelessWidget {
   final Color color;
   final Color textColor;
   final double fontSize;
+  final EdgeInsets? margin;
   final EdgeInsets? padding;
   const CategoryItem(
       {super.key,
-        this.title,
-        this.width,
-        this.height,
+      this.title,
+      this.margin,
+      this.width,
+      this.height,
       this.padding,
       required this.color,
       required this.textColor,
       this.fontSize = 10,
-        this.child
-      });
+      this.child});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
       width: width,
+      margin: margin,
       padding: padding ?? const EdgeInsets.all(AppPadding.p10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s30),
         color: color,
       ),
       child: Center(
-          child: child ?? Text(
-            title!,
-            style: TextStyle(
-              color: textColor,
-              fontSize: fontSize,
-            ),
-          )
-      ),
+          child: child ??
+              Text(
+                title!,
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: textColor,
+                      fontSize: fontSize,
+                    ),
+              )),
     );
   }
 }

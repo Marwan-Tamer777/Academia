@@ -26,7 +26,7 @@ class TextPostCommentsItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(AppSize.s16),
         shape: BoxShape.rectangle,
       ),
@@ -40,38 +40,40 @@ class TextPostCommentsItem extends StatelessWidget {
           Text(
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              fontSize: FontSize.s16,
-              color: ColorManager.black,
-              // make space between lines
-              height: AppSize.s2,
-            ),
+                  fontSize: FontSize.s16,
+                  // color: ColorManager.black,
+                  // make space between lines
+                  height: AppSize.s2,
+                ),
             textDirection: TextDirection.rtl,
           ),
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: EdgeInsets.all(AppPadding.p8),
+              padding: const EdgeInsets.all(AppPadding.p8),
               child: CategoryItem(
-                  title: "تبقى 4 ايام",
-                   width: AppSize.s80,
-                  // height: AppSize.s30,
-                  color: ColorManager.lightOrange1,
-                  textColor: ColorManager.textOrange,
-                  fontSize: FontSize.s12,
+                title: "تبقى 4 ايام",
+                width: MediaQuery.of(context).size.width * 0.3,
+                // height: AppSize.s30,
+                color: ColorManager.lightOrange1,
+                textColor: ColorManager.textOrange,
+                fontSize: FontSize.s12,
               ),
             ),
           ),
           Text(
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
-              fontSize: FontSize.s13,
-              color: ColorManager.lightGrey,
-              // make space between lines
-              height: AppSize.s2,
-            ),
+                  fontSize: FontSize.s13,
+                  color: ColorManager.lightGrey,
+                  // make space between lines
+                  height: AppSize.s2,
+                ),
             textDirection: TextDirection.rtl,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Row(
             children: [
               const Spacer(),
@@ -92,9 +94,11 @@ class TextPostCommentsItem extends StatelessWidget {
                     ),
                     SvgPicture.asset(ImageAssets.pdf),
                   ],
-                ) ,
+                ),
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               CategoryItem(
                 width: AppSize.s100,
                 color: ColorManager.lightOrange1,
@@ -112,19 +116,20 @@ class TextPostCommentsItem extends StatelessWidget {
                     ),
                     SvgPicture.asset(ImageAssets.pdf),
                   ],
-                ) ,
+                ),
               ),
             ],
           ),
-          const SizedBox(height: 10,),
-          if(isImage)
-            const PostImage(image: ImageAssets.postImage),
-          if(isPoll)
-            const PostPoll(),
-          if(showPollResult)
-            const PostPollResult(),
+          const SizedBox(
+            height: 10,
+          ),
+          if (isImage) const PostImage(image: ImageAssets.postImage),
+          if (isPoll) const PostPoll(),
+          if (showPollResult) const PostPollResult(),
           const PostReactions(),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           const PostAddComment(),
         ],
       ),

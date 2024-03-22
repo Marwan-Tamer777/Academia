@@ -139,6 +139,7 @@ class HomeScreen extends StatelessWidget {
                 // search field
                 CommonTextFormField(
                   controller: searchController,
+                  color: Theme.of(context).canvasColor,
                   hint: "...ابحث عن موادك الدراسية بالاسم أو الكود",
                   suffixIcon: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -195,9 +196,9 @@ class HomeScreen extends StatelessWidget {
                     itemCount: 10,
                   ),
                 ),
-                 SizedBox(
-                height: MediaQuery.of(context).size.height * 0.2,
-              )
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                )
                 // if there is no courses
                 // const NoCoursesBackground(),
                 // const NoCoursesComponent(),

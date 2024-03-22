@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/shared_preference_manager.dart';
 import 'package:flutter/material.dart';
@@ -11,24 +13,59 @@ import 'values_manager.dart';
 class ThemeManager {
   final SharedPrefManager _sharedPrefs;
   ThemeManager(this._sharedPrefs);
-  bool get isDarkMode {
-    bool? isDarkMode = _sharedPrefs.isDarkMode;
-    isDarkMode ??=
-        SchedulerBinding.instance.platformDispatcher.platformBrightness ==
-            Brightness.dark;
-    return isDarkMode;
+  // bool get isDarkMode {
+  //   bool? isDarkMode = _sharedPrefs.isDarkMode;
+  //   isDarkMode ??=
+  //       SchedulerBinding.instance.platformDispatcher.platformBrightness ==
+  //           Brightness.dark;
+  //   return isDarkMode;
+  // }
+
+  int get themeMode {
+    int? mode = _sharedPrefs.getTheme;
+    if (mode == null) {
+      print('mode null: $mode');
+      if (SchedulerBinding.instance.platformDispatcher.platformBrightness ==
+          Brightness.dark) {
+        mode = 2;
+      } else {
+        mode = 0;
+      }
+      _sharedPrefs.setThemeMode(mode);
+    }
+    return mode;
   }
 
-  ThemeData switchCurrentTheme() {
-    _sharedPrefs.setDarkMode(!isDarkMode);
-    return getApplicationTheme();
+  // ThemeData resetCurrentTheme() {
+  //   int mode = isDarkMode ? 0 : 2;
+  //   _sharedPrefs.setThemeMode(mode);
+  //   themeMode = mode;
+  //   return getApplicationTheme(mode: mode);
+  // }
+
+  ThemeData cycleThroughTheme() {
+    int nextMode = themeMode == 2 ? 0 : themeMode + 1;
+    _sharedPrefs.setThemeMode(nextMode);
+    return getApplicationTheme(mode: nextMode);
   }
 
-  ThemeData getApplicationTheme({bool? dark}) {
-    if (dark ?? isDarkMode) {
-      return semiDarkMode;
-    } else {
-      return lightMode;
+  ThemeData switchCurrentTheme({required int mode}) {
+    _sharedPrefs.setThemeMode(mode);
+    return getApplicationTheme(mode: mode);
+  }
+
+  ThemeData getApplicationTheme({int? mode}) {
+    mode = mode ?? themeMode;
+    print('mode: $mode');
+    switch (mode) {
+      case 0:
+        return lightMode;
+      case 1:
+        return semiDarkMode;
+      case 2:
+        return darkMode;
+      default:
+        return lightMode;
     }
   }
 
@@ -301,6 +338,7 @@ class ThemeManager {
         successColor: ColorManager.lightSuccessText,
         navBarColor: ColorManager.lightNavigationBar,
         pageIndicatorColor: ColorManager.buttonColor,
+        pollColor: ColorManager.lightPollColor,
         themeIcon: Icons.light_mode,
         courseIcon: ImageAssets.courseIcon,
       )
@@ -555,23 +593,23 @@ class ThemeManager {
         successColor: ColorManager.semiDarkSuccessText,
         navBarColor: ColorManager.darkNavigationBar,
         pageIndicatorColor: ColorManager.semiDarkSecondary,
+        pollColor: ColorManager.semiDarkPollColor,
         themeIcon: Icons.dark_mode,
         courseIcon: ImageAssets.courseIconDark,
       ),
     ],
   );
-
   static final ThemeData darkMode = ThemeData(
-    primaryColor: ColorManager.darkPrimary,
-    primaryColorLight: ColorManager.lightPrimary,
-    primaryColorDark: ColorManager.darkPrimary,
+    primaryColor: ColorManager.semiDarkSecondary,
+    primaryColorLight: ColorManager.semiDarkSecondary,
+    primaryColorDark: ColorManager.semiDarkSecondary,
     disabledColor: ColorManager.darkGrey,
     splashColor: ColorManager.darkGrey.withOpacity(0.5),
-    scaffoldBackgroundColor: ColorManager.darkBackground,
-    canvasColor: ColorManager.darkBackground,
+    scaffoldBackgroundColor: ColorManager.darkScaffold,
+    canvasColor: ColorManager.darkCanvas,
     colorScheme: const ColorScheme.dark(
-      primary: ColorManager.darkPrimary,
-      secondary: ColorManager.darkPrimary,
+      primary: ColorManager.semiDarkSecondary,
+      secondary: ColorManager.semiDarkSecondary,
       surface: ColorManager.darkBackground,
       background: ColorManager.darkBackground,
       error: ColorManager.darkError,
@@ -620,18 +658,18 @@ class ThemeManager {
         textStyle: MaterialStateProperty.all(
           getMediumTextStyle(
             fontSize: FontSize.s14,
-            color: ColorManager.white,
-            fontFamily: FontConstants.cairo,
+            color: ColorManager.semiDarkText,
           ),
         ),
         splashFactory: InkSplash.splashFactory,
-        backgroundColor: MaterialStateProperty.all(ColorManager.darkPrimary),
+        backgroundColor:
+            MaterialStateProperty.all(ColorManager.semiDarkSecondary),
         overlayColor: MaterialStateProperty.all(
-          ColorManager.darkGrey.withOpacity(0.4),
+          ColorManager.lightGrey.withOpacity(0.4),
         ),
         shape: MaterialStateProperty.all(
           const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(AppSize.s6)),
+            borderRadius: BorderRadius.all(Radius.circular(AppSize.s12)),
           ),
         ),
       ),
@@ -640,44 +678,57 @@ class ThemeManager {
     // 5 Text theme
     textTheme: TextTheme(
       displayLarge: getBoldTextStyle(
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
         fontSize: FontSize.s34,
+        fontFamily: FontConstants.cairo,
       ),
       displayMedium: getSemiBoldTextStyle(
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
         fontSize: FontSize.s24,
+        fontFamily: FontConstants.cairo,
       ),
       displaySmall: getRegularTextStyle(
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
         fontSize: FontSize.s18,
       ),
       bodyLarge: getSemiBoldTextStyle(
         fontSize: FontSize.s16,
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
       ),
       bodyMedium: getRegularTextStyle(
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
         fontSize: FontSize.s16,
+        fontFamily: FontConstants.cairo,
       ),
       bodySmall: getMediumTextStyle(
-        color: ColorManager.darkWhite,
+        color: ColorManager.semiDarkText,
         fontSize: FontSize.s14,
       ),
       titleLarge: getRegularTextStyle(
         color: ColorManager.darkWhite,
         fontSize: FontSize.s14,
+        fontFamily: FontConstants.cairo,
       ),
       titleMedium: getMediumTextStyle(
         fontSize: FontSize.s14,
         color: ColorManager.darkWhiteSecondary,
+        fontFamily: FontConstants.cairo,
       ),
       titleSmall: getRegularTextStyle(
         fontSize: FontSize.s11,
         color: ColorManager.darkGrey,
+        fontFamily: FontConstants.cairo,
       ),
-      labelMedium: getSemiBoldTextStyle(
-        fontSize: FontSize.s18,
-        color: ColorManager.white,
+      labelLarge: getBoldTextStyle(
+        fontSize: FontSize.s28,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
+      ),
+      labelMedium: getMediumTextStyle(
+        fontSize: FontSize.s20,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
       ),
       labelSmall: getRegularTextStyle(
         fontSize: FontSize.s18,
@@ -691,7 +742,7 @@ class ThemeManager {
     // 6 Input decoration theme
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorManager.darkBlack,
+      fillColor: ColorManager.semiDarkElement,
 
       contentPadding: const EdgeInsets.all(AppPadding.p16),
 
@@ -702,7 +753,8 @@ class ThemeManager {
 
       labelStyle: getMediumTextStyle(
         fontSize: FontSize.s14,
-        color: ColorManager.darkGrey,
+        color: ColorManager.semiDarkText,
+        fontFamily: FontConstants.cairo,
       ),
       errorStyle: getRegularTextStyle(
         fontSize: FontSize.s11,
@@ -711,17 +763,14 @@ class ThemeManager {
 
       // Enabled border
       enabledBorder: const OutlineInputBorder(
-        borderSide: BorderSide(
-          color: ColorManager.darkGrey,
-          width: AppSize.s1,
-        ),
+        borderSide: BorderSide.none,
         borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
       ),
 
       // Focused border
       focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorManager.darkBackground,
+          color: ColorManager.semiDarkSecondary,
           width: AppSize.s1,
         ),
         borderRadius: BorderRadius.all(Radius.circular(AppSize.s16)),
@@ -791,13 +840,14 @@ class ThemeManager {
     // 00 Extension
     extensions: const [
       CustomThemeExtension(
+        patternAppBarColor: ColorManager.semiDarkPatternMask,
         overlayColor: ColorManager.darkSales,
-        patternAppBarColor: ColorManager.darkPrimary,
         complementaryColor: ColorManager.white,
         greenOverlayColor: ColorManager.darkExternalGreenOverlay,
         successColor: ColorManager.semiDarkSuccessText,
         navBarColor: ColorManager.darkNavigationBar,
         pageIndicatorColor: ColorManager.semiDarkSecondary,
+        pollColor: ColorManager.semiDarkPollColor,
         themeIcon: Icons.dark_mode,
         courseIcon: ImageAssets.courseIconDark,
       ),
@@ -813,6 +863,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
   final Color successColor;
   final Color navBarColor;
   final Color pageIndicatorColor;
+  final Color pollColor;
   final IconData themeIcon;
   final String courseIcon;
 
@@ -824,6 +875,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     required this.successColor,
     required this.navBarColor,
     required this.pageIndicatorColor,
+    required this.pollColor,
     required this.themeIcon,
     required this.courseIcon,
   });
@@ -837,6 +889,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? successColor,
     Color? navBarColor,
     Color? pageIndicatorColor,
+    Color? pollColor,
     IconData? themeIcon,
     String? courseIcon,
   }) {
@@ -848,6 +901,7 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       successColor: successColor ?? this.successColor,
       navBarColor: navBarColor ?? this.navBarColor,
       pageIndicatorColor: pageIndicatorColor ?? this.pageIndicatorColor,
+      pollColor: pollColor ?? this.pollColor,
       themeIcon: themeIcon ?? this.themeIcon,
       courseIcon: courseIcon ?? this.courseIcon,
     );
