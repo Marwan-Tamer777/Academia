@@ -15,7 +15,7 @@ const assignmentSchema = new mongoose.Schema({
         trim: true,
         ref: 'Course',
     },
-    description : {
+    description: {
         type: String,
         required: true,
         trim: true,
@@ -42,16 +42,40 @@ const assignmentSchema = new mongoose.Schema({
 });
 
 /// Assignment Model
-const assignment = mongoose.model('Assignment', assignmentSchema);
+const assignmentModel = mongoose.model('Assignment', assignmentSchema);
 
 /// Validate Assignment
 function validateCreateAssignment(assignment) {
     const schema = Joi.object({
-        courseId: Joi.string().required(),
-        description: Joi.string().required(),
-        closeOn: Joi.date().required(),
-        duration: Joi.number().required(),
-        numOfAttempts: Joi.number().required(),
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+        },
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
+        },
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
+        },
+        context: {
+            assignment: {
+                courseId: Joi.string().required(),
+                description: Joi.string().required(),
+                closeOn: Joi.date().required(),
+                duration: Joi.number().required(),
+                numOfAttempts: Joi.number().required(),
+            }
+        }
+
     });
 
     return schema.validate(assignment);
@@ -70,7 +94,7 @@ function validateUpdateAssignment(assignment) {
 }
 
 /// Assignment Verbs
-const createAssignmentVerb ={
+const createAssignmentVerb = {
     "id-enum": "create-assignment",
     display: {
         "en-US": "Created Assignment"
@@ -92,7 +116,7 @@ const deleteAssignmentVerb = {
 };
 
 module.exports = {
-    assignment,
+    assignmentModel,
     validateCreateAssignment,
     validateUpdateAssignment,
     createAssignmentVerb,

@@ -30,9 +30,31 @@ const actionMapModel = mongoose.model('ActionMap', actionMapSchema);
 /// ActionMap Validation
 function validateCreateActionMap(actionMap) {
     const schema = Joi.object({
-        description: {
-            type: Joi.string().required().trim(),
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
         },
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
+        },
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
+        },
+        context: {
+            actionMap: {
+                description: Joi.string().required().trim(),
+            }
+        }
+
     });
     return schema.validate(actionMap);
 }

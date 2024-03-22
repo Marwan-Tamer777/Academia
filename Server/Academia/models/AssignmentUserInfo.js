@@ -66,33 +66,39 @@ const assignmentUserInfoModel = mongoose.model('AssignmentUserInfo', assignmentU
 /// AssignmentUserInfo Validation
 function validateCreateAssignmentUserInfo(assignmentUserInfo) {
     const schema = Joi.object({
-        assignmentId: {
-            type: Joi.string().required().trim(),
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
         },
-        userId: {
-            type: Joi.string().required().trim(),
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
         },
-        gradedBy: {
-            type: Joi.string().required().trim(),
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
         },
-        courseId: {
-            type: Joi.string().required().trim(),
-        },
-        submissionUrl: {
-            type: Joi.string().required().trim(),
-        },
-        submissionDate: {
-            type: Joi.date().required(),
-        },
-        showGrade: {
-            type: Joi.boolean().required(),
-        },
-        grade: {
-            type: Joi.number().required(),
-        },
-        maxGrade: {
-            type: Joi.number().required(),
-        },
+        context: {
+            assignmentUserInfo: {
+                assignmentId: Joi.string().required().trim(),
+                userId: Joi.string().required().trim(),
+                gradedBy: Joi.string().required().trim(),
+                courseId: Joi.string().required().trim(),
+                submissionUrl: Joi.string().required().trim(),
+                submissionDate: Joi.date().required(),
+                showGrade: Joi.boolean().required(),
+                grade: Joi.number().required(),
+                maxGrade: Joi.number().required(),
+            }
+        }
+
     });
     return schema.validate(assignmentUserInfo);
 }

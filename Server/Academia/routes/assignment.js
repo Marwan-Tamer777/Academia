@@ -1,10 +1,10 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler'); 
-const router = express.Router();   
-const model = require('../models/Assignment'); 
-const course = require('../models/Course'); 
-const functions = require('../utilities/functions'); 
-const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken'); 
+const asyncHandler = require('express-async-handler');
+const router = express.Router();
+const model = require('../models/Assignment');
+const course = require('../models/Course');
+const functions = require('../utilities/functions');
+const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
 
 
 /** 
@@ -12,11 +12,11 @@ const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = requi
     * @route GET /api/assignments 
     * @method GET 
     * @access Private
-*/ 
+*/
 router.get('/', verifyToken, asyncHandler(async (req, res) => {
     const assignments = await model.assignmentModel.find();
     res.status(200).json(assignments);
-})); 
+}));
 
 
 /** 
@@ -24,7 +24,7 @@ router.get('/', verifyToken, asyncHandler(async (req, res) => {
     * @route GET /api/assignments/:id 
     * @method GET 
     * @access Private
-*/ 
+*/
 router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     const assignment = await model.assignmentModel.findById(req.params.id);
     if (assignment) {
@@ -32,7 +32,7 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     } else {
         res.status(404).json({ message: 'Assignment not found' });
     }
-})); 
+}));
 
 
 /** 
@@ -40,22 +40,31 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @route POST /api/assignments 
     * @method POST 
     * @access Private
-*/ 
+*/
 router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
-    if (!isCourse) {
-        return res.status(400).json({ message: 'Course not found' });
-    } 
+    // validate the assignment exists 
+    const requestAssignment = req.body.context.assignment;
+    if (!requestAssignment) {
+        return res.status(400).json({ error: 'Assignment Data is Required.' });
+    }
     // validate the request 
-    const { error } = model.validateCreateAssignment(req.body); 
+    const { error } = model.validateCreateAssignment(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
-    } 
+    }
     // create assignment 
-    const assignment = await model.assignmentModel.create(req.body); 
-    res.status(201).json(assignment); 
-})); 
+    const assignment = await model.assignmentModel.create(requestAssignment);
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createAssignmentVerb,
+        req.body.object.objectType,
+        "Assignment Data",
+        {
+            assignment: assignment,
+        },
+    ));
+}));
 
 
 /** 
@@ -63,26 +72,26 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @route PUT /api/assignments/:id 
     * @method PUT 
     * @access Private
-*/ 
+*/
 router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // validate the assignment exists 
-    const isAssignment = await model.assignmentModel.findById(req.params.id); 
+    const isAssignment = await model.assignmentModel.findById(req.params.id);
     if (!isAssignment) {
         return res.status(400).json({ message: 'Assignment not found' });
-    } 
+    }
     // validate the request 
-    const { error } = model.validateUpdateAssignment(req.body); 
+    const { error } = model.validateUpdateAssignment(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
-    } 
+    }
     // update assignment 
-    const assignment = await model.assignmentModel.findByIdAndUpdate (req.params.id, req.body, { new: true, }); 
+    const assignment = await model.assignmentModel.findByIdAndUpdate(req.params.id, req.body, { new: true, });
     if (assignment) {
         res.status(200).json(assignment);
     } else {
         res.status(404).json({ message: 'Assignment not found' });
-    } 
-} )); 
+    }
+}));
 
 
 /** 
@@ -90,16 +99,16 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @route DELETE /api/assignments/:id 
     * @method DELETE 
     * @access Private
-*/ 
+*/
 router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // delete assignment 
-    const assignment = await model.assignmentModel.findByIdAndDelete(req.params.id); 
+    const assignment = await model.assignmentModel.findByIdAndDelete(req.params.id);
     if (assignment) {
         res.status(200).json({ message: 'Assignment deleted successfully' });
     } else {
         res.status(404).json({ message: 'Assignment not found' });
     }
-})); 
+}));
 
 module.exports = router;
 
