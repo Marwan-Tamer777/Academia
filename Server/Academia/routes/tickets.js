@@ -40,20 +40,33 @@ router.get('/:id', asyncHandler(async (req, res) => {
     * @method POST 
     * @access Public
 */ 
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', asyncHandler(async (req, res) => { 
+    // validate the request 
+    const ticketRequest = req.body.context.ticket; 
+    if (!ticketRequest) {
+        return res.status(400).json({ message: 'Ticket is required' });
+    } 
+
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await course.courseModel.findById(ticketRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
     } 
     // validate the request 
-    const { error } = model.validateCreateTicket(req.body); 
+    const { error } = model.validateCreateTicket(ticketRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // create ticket 
-    const ticket = await model.ticketModel.create(req.body); 
-    res.status(201).json(ticket);
+    const ticket = await model.ticketModel.create(ticketRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createTicketVerb,
+        req.body.object.objectType,
+        "Ticket Data",
+        { ticket: ticket }
+    ));
 })); 
 
 
@@ -63,16 +76,29 @@ router.post('/', asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Public
 */ 
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => { 
     // validate the request 
-    const { error } = model.validateUpdateTicket(req.body); 
+    const ticketRequest = req.body.context.ticket; 
+    if (!ticketRequest) {
+        return res.status(400).json({ message: 'Ticket is required' });
+    } 
+
+    // validate the request 
+    const { error } = model.validateUpdateTicket(ticketRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // update ticket 
-    const ticket = await model.ticketModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); 
+    const ticket = await model.ticketModel.findByIdAndUpdate(req.params.id, ticketRequest, { new: true }); 
     if (ticket) {
-        res.status(200).json(ticket);
+        res.status(200).json(functions.responseBodyJSON( 
+            200,
+            req.body.actor.id,
+            model.updateTicketVerb,
+            req.body.object.objectType,
+            "Ticket Data",
+            { ticket: ticket } 
+        ));
     } else {
         res.status(404).json({ message: 'Ticket not found' });
     }
@@ -89,7 +115,14 @@ router.delete('/:id', asyncHandler(async (req, res) => {
     // delete ticket 
     const ticket = await model.ticketModel.findByIdAndDelete(req.params.id); 
     if (ticket) {
-        res.status(200).json({ message: 'Ticket deleted successfully' });
+        res.status(200).json(functions.responseBodyJSON( 
+            200,
+            req.body.actor.id,
+            model.deleteTicketVerb,
+            req.body.object.objectType,
+            "Ticket Data",
+            { ticket: ticket } 
+        ));
     } else {
         res.status(404).json({ message: 'Ticket not found' });
     }

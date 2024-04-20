@@ -41,20 +41,35 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @method POST 
     * @access Private
 */ 
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+    // validate the request 
+    const statementRequest = req.body.context.statement; 
+    if (!statementRequest) {
+        return res.status(400).json({ message: 'Statement is required' });
+    } 
+
     // validate the user exists 
-    const isUser = await user.userModel.findById(req.body.userId); 
+    const isUser = await user.userModel.findById(statementRequest.userId); 
     if (!isUser) {
         return res.status(400).json({ message: 'User not found' });
-    }
-    // validate the request 
-    const { error } = model.validateCreateStatement(req.body); 
+    } 
+
+    // validate the request
+    const { error } = model.validateCreateStatement(statementRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
+
     // create statement 
-    const statement = await model.statementModel.create(req.body); 
-    res.status(201).json(statement);
+    const statement = await model.statementModel.create(statementRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createStatementsVerb,
+        req.body.object.objectType,
+        "Statement Data",
+        { statement: statement }
+    ));
 })); 
 
 
@@ -64,20 +79,35 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Private
 */ 
-router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+    // validate the request 
+    const statementRequest = req.body.context.statement; 
+    if (!statementRequest) {
+        return res.status(400).json({ message: 'Statement is required' });
+    } 
+
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await model.courseModel.findById(statementRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
     } 
+
     // validate the request 
-    const { error } = model.validateUpdateStatement(req.body); 
+    const { error } = model.validateUpdateStatement(statementRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
+
     // update statement 
-    const statement = await model.statementModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); 
-    res.status(200).json(statement);
+    const statement = await model.statementModel.findByIdAndUpdate(req.params.id, statementRequest, { new: true }); 
+    res.status(200).json(functions.responseBodyJSON( 
+        200,
+        req.body.actor.id,
+        model.updateStatementsVerb,
+        req.body.object.objectType,
+        "Statement Data",
+        { statement: statement } 
+    ));
 })); 
 
 
@@ -90,7 +120,14 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
 router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const statement = await model.statementModel.findByIdAndDelete(req.params.id);
     if (statement) {
-        res.status(200).json({ message: 'Statement deleted' });
+        res.status(200).json(functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.deleteStatementsVerb,
+            req.body.object.objectType,
+            "Statement Data",
+            { statement: statement }
+        ));
     } else {
         res.status(404).json({ message: 'Statement not found' });
     }

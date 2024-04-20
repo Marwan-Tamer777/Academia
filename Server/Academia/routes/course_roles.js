@@ -40,20 +40,33 @@ router.get('/:id', verifyToken.verifyToken, asyncHandler(async (req, res) => {
  * @method POST 
  * @access Private
  */ 
-router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+
+    // validate the request 
+    const courseRoleRequest = req.body.context.courseRole; 
+    if (!courseRoleRequest) {
+        return res.status(400).json({ message: 'Course Role is required' });
+    }
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await course.courseModel.findById(courseRoleRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
     } 
     // validate the request 
-    const { error } = model.validateCreateCourseRole(req.body); 
+    const { error } = model.validateCreateCourseRole(courseRoleRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // create course role 
-    const courseRole = await model.courseRolesModel.create(req.body); 
-    res.json(courseRole).status(201);
+    const courseRole = await model.courseRolesModel.create(courseRoleRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createCourseRolesVerb,
+        req.body.object.objectType,
+        "Course Role Data",
+        { courseRole: courseRole }
+    ));
 } )); 
 
 
@@ -63,16 +76,36 @@ router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
  * @method PUT 
  * @access Private
  */ 
-router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
     // validate the request 
-    const { error } = model.validateUpdateCourseRole(req.body); 
+    const courseRoleRequest = req.body.context.courseRole; 
+    if (!courseRoleRequest) { 
+        return res.status(400).json({ message: 'Course Role is required' });
+    }
+
+    // validate the course exists 
+    const isCourse = await course.course 
+    .findById(courseRoleRequest.courseId); 
+    if (!isCourse) {
+        return res.status(400).json({ message: 'Course not found' });
+    }
+
+    // validate the request  
+    const { error } = model.validateUpdateCourseRoles(courseRoleRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // update course role 
-    const courseRole = await model.courseRolesModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); 
+    const courseRole = await model.courseRolesModel.findByIdAndUpdate(req.params.id, courseRoleRequest, { new: true }); 
     if (courseRole) {
-        res.json(courseRole);
+        res.status(200).json(functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.updateCourseRolesVerb,
+            req.body.object.objectType,
+            "Course Role Data",
+            { courseRole: courseRole }
+        ));
     } else {
         res.status(404).json({ message: 'Course Role not found' });
     } 
@@ -88,7 +121,14 @@ router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
 router.delete('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const courseRole = await model.courseRolesModel.findByIdAndDelete(req.params.id); 
     if (courseRole) {
-        res.json(courseRole);
+        res.status(200).json(functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.deleteCourseRolesVerb,
+            req.body.object.objectType,
+            "Course Role Data",
+            { courseRole: courseRole }
+        ));
     } else {
         res.status(404).json({ message: 'Course Role not found' });
     } 
