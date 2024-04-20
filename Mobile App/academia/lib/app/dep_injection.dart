@@ -32,8 +32,8 @@ Future<void> initAppModule() async {
 
   Dio dio = await getItInstance<DioFactory>().getDio();
 
-  getItInstance.registerLazySingleton<AppAPIServiceClient>(
-      () => AppAPIServiceClient(dio));
+  // getItInstance.registerLazySingleton<AppAPIServiceClient>(
+  //     () => AppAPIServiceClient(dio));
 
   getItInstance.registerLazySingleton<ThemeManager>(
       () => ThemeManager(getItInstance<SharedPrefManager>()));
@@ -44,11 +44,11 @@ Future<void> initAppModule() async {
   getItInstance.registerLazySingleton<RemoteAPIDataSource>(
       () => RemoteAPIDataSourceImpl(getItInstance<AppAPIServiceClient>()));
 
-  getItInstance.registerLazySingleton<Repository>(() => RepositoryImpl(
-        getItInstance<RemoteAPIDataSource>(),
-        getItInstance<LocalDataSource>(),
-        getItInstance<NetworkInfo>(),
-      ));
+  // getItInstance.registerLazySingleton<Repository>(() => RepositoryImpl(
+  //       getItInstance<RemoteAPIDataSource>(),
+  //       getItInstance<LocalDataSource>(),
+  //       getItInstance<NetworkInfo>(),
+  //     ));
 
   /// Initialize Blocs
   // if (!getItInstance.isRegistered<UseCaseImpl>()) {
