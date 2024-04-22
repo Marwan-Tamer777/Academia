@@ -143,6 +143,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
         "Post Data",
         { post: post }
     ));
-}));
+})); 
+
+
+// search posts by description 
+router.get('/search', verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    const posts = await model.postModel.find({ content: { $regex: req.query.content, $options: 'i' } });
+    res.status(200).json(posts);
+})); 
+
 
 module.exports = router;

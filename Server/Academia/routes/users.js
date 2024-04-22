@@ -126,7 +126,42 @@ router.delete("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(asyn
         "User Data",
         { user: user },
     ));
+})); 
+
+
+
+// search course by name or course code 
+router.post("/search", asyncHandler(async (req, res) => {
+    const search = req.body.search;
+    const user = await model.userModel.find({
+        $or: [
+            { email: { $regex: search, $options: 'i' } },
+            { id: { $regex: search, $options: 'i' } }
+        ]
+    });
+    res.status(200).json(courses);
+})); 
+
+// get all courses in the ids list 
+router.post("/ids", asyncHandler(async (req, res) => {
+    const ids = req.body.ids;
+    const users = await model.userModel.find({
+        _id: { $in: ids }
+    });
+    res.status(200).json(users);
 }));
+
+// get all users for a course 
+router.post("/course/:id", asyncHandler(async (req, res) => {
+    const courseId = req.params.id;
+    const users = await model.userModel.find({
+        courses: courseId
+    });
+    res.status(200).json(users);
+}));
+
+
+
 
 module.exports = router; 
 

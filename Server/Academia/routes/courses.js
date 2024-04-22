@@ -161,7 +161,52 @@ router.delete("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
         "Course Data",
         { course: course },
     ));
+})); 
+
+// search course by name or course code 
+router.post("/search:", asyncHandler(async (req, res) => {
+    const search = req.body.search;
+    const courses = await model.courseModel.find({
+        $or: [
+            { name: { $regex: search, $options: 'i' } },
+            { courseCode: { $regex: search, $options: 'i' } }
+        ]
+    });
+    res.status(200).json(courses);
 }));
 
+// get all courses in the ids list 
+router.post("/ids", asyncHandler(async (req, res) => {
+    const ids = req.body.ids;
+    const courses = await model.courseModel.find({
+        _id: { $in: ids }
+    });
+    res.status(200).json(courses);
+})); 
+
+// get all courses for a user 
+router.get("/user/:id", asyncHandler(async (req, res) => {
+    const courses = await model.courseModel.find({
+        $or: [
+            { teachers: req.params.id },
+            { students: req.params.id }
+        ]
+    });
+    res.status(200).json(courses);
+})); 
+
+// get all users for a course 
+router.get("/:id/users", asyncHandler(async (req, res) => {
+    const course = await model.courseModel.findById(req.params.id);
+    if (!course) {
+        return res.status(404).json({ error: 'The course with the given ID was not found' });
+    }
+    const users = await model.userModel.find({
+        _id: { $in: course.teachers.concat(course.students) }
+    });
+    res.status(200).json(users);
+}));
+
+
 /// Modules
-module.exports = router;
+module.exports = router; 
