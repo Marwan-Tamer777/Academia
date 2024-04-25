@@ -55,7 +55,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test2eeeee3e@email.com\",\r\n            \"assignedId\":\"2020001\",\r\n            \"password\":\"1234567\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test2eeeee3e@email.com\",\r\n            // \"assignedId\":\"2020001\",\r\n            \"password\":\"1234567\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -70,6 +70,372 @@
 							"path": [
 								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ActionMap",
+			"item": [
+				{
+					"name": "Get All Action Maps",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/actionMap",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Action Map Page",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/actionMap?pageSize=3&currentPage=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "3"
+								},
+								{
+									"key": "currentPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Action Map By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/actionMap/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Action Map",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"actionMap\":{\r\n            \"description\":\"Admin Get All Accounts\"\r\n        }\r\n        \r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/actionMap",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Action Map",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Computer Information\",\r\n            \"maxCapacity\":150,\r\n            \"teachers\": [\"Tutor Mohammed ID\"]\r\n        }\r\n\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/actionMap/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Action Map",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/actionMap/e57ecf57-ecc1-46d9-b8a4-f315baca61b2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actionMap",
+								"e57ecf57-ecc1-46d9-b8a4-f315baca61b2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assignments",
+			"item": [
+				{
+					"name": "Get All Assignments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Assignments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignments?pageSize=3&currentPage=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignments"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "3"
+								},
+								{
+									"key": "currentPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Assignments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignments/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignments",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Assignments",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignment\":{\r\n            \"courseId\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"numOfAttempts\":3,\r\n            \"duration\":23,\r\n            \"closeOn\":\"2024-02-27T23:27:07.325+00:00\",\r\n            \"description\":\"new Assignment on Lecture 2\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Assignments",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Computer Information\",\r\n            \"maxCapacity\":150,\r\n            \"teachers\": [\"Tutor Mohammed ID\"]\r\n        }\r\n\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignments/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignments",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Assignments",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/e57ecf57-ecc1-46d9-b8a4-f315baca61b2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"e57ecf57-ecc1-46d9-b8a4-f315baca61b2"
 							]
 						}
 					},
@@ -128,6 +494,85 @@
 					"response": []
 				},
 				{
+					"name": "Search Courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses?search=",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User Courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses/user/0db956b3-1e7e-4555-a32b-baf610c6223a",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses",
+								"user",
+								"0db956b3-1e7e-4555-a32b-baf610c6223a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Course Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses/32a7b534-89db-4fc9-ae0d-a80151887d6d/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add Course",
 					"request": {
 						"method": "POST",
@@ -172,7 +617,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Computer Information\",\r\n            \"maxCapacity\":150,\r\n            \"teachers\": [\"Tutor Mohammed ID\"]\r\n        }\r\n\r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Computer Information\",\r\n            \"maxCapacity\":150,\r\n            \"teachers\": [\"Tutor Mohammed ID\"],\r\n            \"students\":[\"0db956b3-1e7e-4555-a32b-baf610c6223a\"]\r\n        }\r\n\r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -220,6 +665,354 @@
 							"path": [
 								"courses",
 								"e57ecf57-ecc1-46d9-b8a4-f315baca61b2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Set the courseId variable before each request in this folder",
+							"const courseId = '0a60fbca-b78b-402c-85cb-2b8b4b2863e1';",
+							"pm.variables.set('courseId', courseId);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Courses Poll",
+			"item": [
+				{
+					"name": "Get All Course Polls",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/coursePoll/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coursePoll",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course Poll By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/coursePoll/c5e2c340-1547-4c50-ab9a-bacfb4ff6db8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coursePoll",
+								"c5e2c340-1547-4c50-ab9a-bacfb4ff6db8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Course Poll",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"coursePoll\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"options\": [\r\n                \"Lecture Time : 7:00\",\r\n                \"Lecture Time : 8:00\"\r\n            ],\r\n            \"votes\": [\r\n                200,\r\n                188\r\n            ],\r\n            \"closePollDate\": \"2024-02-27T23:27:07.325Z\",\r\n            \"totalVoters\": 388\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/coursePoll",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coursePoll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Course",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"coursePoll\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"options\": [\r\n                \"Lecture Time : 7:30\",\r\n                \"Lecture Time : 8:00\"\r\n            ],\r\n            \"votes\": [\r\n                200,\r\n                188\r\n            ],\r\n            \"closePollDate\": \"2024-02-27T23:27:07.325Z\",\r\n            \"totalVoters\": 388\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/coursePoll/c5e2c340-1547-4c50-ab9a-bacfb4ff6db8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coursePoll",
+								"c5e2c340-1547-4c50-ab9a-bacfb4ff6db8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/coursePoll/c5e2c340-1547-4c50-ab9a-bacfb4ff6db8",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coursePoll",
+								"c5e2c340-1547-4c50-ab9a-bacfb4ff6db8"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Set the courseId variable before each request in this folder",
+							"const courseId = '0a60fbca-b78b-402c-85cb-2b8b4b2863e1';",
+							"pm.variables.set('courseId', courseId);",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Courses Roles",
+			"item": [
+				{
+					"name": "Get All Course Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseRoles/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseRoles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Course Poll By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseRoles/f0541106-f82d-44f0-938a-e00caf4034aa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseRoles",
+								"f0541106-f82d-44f0-938a-e00caf4034aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Course Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"courseRole\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"roleCode\":392,\r\n            \"role\": \"Presenter\",\r\n            \"level\": 1,\r\n            \"privileges\": [] \r\n            // get the corrosponding code for what you want to do in the Privellage Map\r\n            // Example to create Role to both mute and share screen \r\n            // We put the code to mute and code to share screen in the previlleges array \r\n            \r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseRoles",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseRoles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Course",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"courseRole\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"roleCode\":392,\r\n            \"role\": \"Moderator\",\r\n            \"level\": 1,\r\n            \"privileges\": [] \r\n            // get the corrosponding code for what you want to do in the Privellage Map\r\n            // Example to create Role to both mute and share screen \r\n            // We put the code to mute and code to share screen in the previlleges array \r\n            \r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseRoles/f0541106-f82d-44f0-938a-e00caf4034aa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseRoles",
+								"f0541106-f82d-44f0-938a-e00caf4034aa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Course By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseRoles/f0541106-f82d-44f0-938a-e00caf4034aa",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseRoles",
+								"f0541106-f82d-44f0-938a-e00caf4034aa"
 							]
 						}
 					},
@@ -694,6 +1487,156 @@
 			]
 		},
 		{
+			"name": "Materials Map",
+			"item": [
+				{
+					"name": "Get All Material Maps",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/materialMap",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"materialMap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Material Map By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/materials/d369f09c-e8df-4b38-80f5-da2071bc7e79",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"materials",
+								"d369f09c-e8df-4b38-80f5-da2071bc7e79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Material Map",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"materialMap\":{\r\n            \"materialType\":1233,\r\n            // Each file Type has unique code Ex: Txt=1, PDF=2 .......\r\n            \"materialDescription\":\"Text File\"\r\n        }\r\n        \r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/materialMap",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"materialMap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Material Map",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"materialMap\":{\r\n            \"materialType\":1233,\r\n            // Each file Type has unique code Ex: Txt=1, PDF=2 .......\r\n            \"materialDescription\":\"PDF File\"\r\n        }\r\n        \r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/materialMap/65be96bb-f567-405f-b58a-fe3af5b171fb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"materialMap",
+								"65be96bb-f567-405f-b58a-fe3af5b171fb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Material Map",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/materialMap/65be96bb-f567-405f-b58a-fe3af5b171fb",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"materialMap",
+								"65be96bb-f567-405f-b58a-fe3af5b171fb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Posts",
 			"item": [
 				{
@@ -906,7 +1849,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"privilege\": {\r\n            \"privilegeCode\": \"15554\",\r\n            \"description\": \"Previllage To Delete Comments\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"privilege\": {\r\n            \"privilegeCode\": \"32223\",\r\n            \"description\": \"Previllage To Delete Comments\"\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -938,7 +1881,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"privilege\": {\r\n            \"description\": \"Previllage To Update and Delete Comments\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"privilege\": {\r\n            \"description\": \"Previllage To Block Comments\"\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -946,13 +1889,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/privileges/20ae3747-edf9-4745-b9b3-91b2b53d932c",
+							"raw": "{{baseUrl}}/privileges/3203f96d-9882-4752-a23a-771ef62d17d5",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"privileges",
-								"20ae3747-edf9-4745-b9b3-91b2b53d932c"
+								"3203f96d-9882-4752-a23a-771ef62d17d5"
 							]
 						}
 					},
@@ -979,13 +1922,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/privileges/5d0fc0ce-6590-4d74-b3e3-aa97be6d291b",
+							"raw": "{{baseUrl}}/privileges/3203f96d-9882-4752-a23a-771ef62d17d5",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"privileges",
-								"5d0fc0ce-6590-4d74-b3e3-aa97be6d291b"
+								"3203f96d-9882-4752-a23a-771ef62d17d5"
 							]
 						}
 					},
@@ -1008,12 +1951,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/quizzes",
+							"raw": "{{baseUrl}}/quiz",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"quizzes"
+								"quiz"
 							]
 						}
 					},
@@ -1031,13 +1974,38 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/quizzes/3a65b4fd-7fa1-40b3-837d-eca63f4796b7",
+							"raw": "{{baseUrl}}/quiz/3a65b4fd-7fa1-40b3-837d-eca63f4796b7",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"quizzes",
+								"quiz",
 								"3a65b4fd-7fa1-40b3-837d-eca63f4796b7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Course Quizzes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quiz/course/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quiz",
+								"course",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
 							]
 						}
 					},
@@ -1056,7 +2024,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n            \"courseId\": \"d7ff1c13-07a6-4326-b215-4c91bac6caeb\",\r\n            \"quizName\": \"IS Exam\",\r\n            \"questions\": [\r\n                \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n            ],\r\n            \"numOfRetries\": 3,\r\n            \"duration\": \"PT4H35M59.14S\",\r\n            \"startDate\": \"2013-04-01T12:00:00Z\",\r\n            \"endDate\": \"2013-04-01T12:10:00Z\",\r\n            \"showGrade\": true,\r\n            \"showWrongAnswers\": true,\r\n            \"showCorrectAnswers\": true\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"quizName\": \"IS Exam\",\r\n            \"questions\": [\r\n                \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n            ],\r\n            \"numOfRetries\": 3,\r\n            \"duration\": \"PT4H35M59.14S\",\r\n            \"startDate\": \"2013-04-01T12:00:00Z\",\r\n            \"endDate\": \"2013-04-01T12:10:00Z\",\r\n            \"showGrade\": true,\r\n            \"showWrongAnswers\": true,\r\n            \"showCorrectAnswers\": true\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1096,12 +2064,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/quizzes/24ebfd19-5715-4f00-a5df-c92461f258a7",
+							"raw": "{{baseUrl}}/quiz/24ebfd19-5715-4f00-a5df-c92461f258a7",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"quizzes",
+								"quiz",
 								"24ebfd19-5715-4f00-a5df-c92461f258a7"
 							]
 						}
@@ -1129,13 +2097,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/quizzes/24ebfd19-5715-4f00-a5df-c92461f258a7",
+							"raw": "{{baseUrl}}/quiz/32a7b534-89db-4fc9-ae0d-a80151887d6d",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
-								"quizzes",
-								"24ebfd19-5715-4f00-a5df-c92461f258a7"
+								"quiz",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
 							]
 						}
 					},

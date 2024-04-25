@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Course');
 const verifyToken = require('../middlewares/verifyToken');
+const user = require('../models/User');
 const functions = require('../utilities/functions');
 const { roleModel } = require('../models/Role');
 
@@ -36,7 +37,7 @@ router.get("/", asyncHandler(async (req, res) => {
  */
 /// Get Course by ID
 router.get(`/:id`, asyncHandler(async (req, res) => {
-    const course = await model.courseModel.findById(req.params.id );
+    const course = await model.courseModel.findById(req.params.id);
     if (!course) {
         return res.status(404).json({ error: 'The course with the given ID was not found' });
     }
@@ -108,7 +109,7 @@ router.put("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     }
 
     // update course
-    const updatedCourse = await model.courseModel.findByIdAndUpdate(req.params.id , {
+    const updatedCourse = await model.courseModel.findByIdAndUpdate(req.params.id, {
         name: requestCourse.name,
         courseCode: requestCourse.courseCode,
         enrollCode: requestCourse.enrollCode,
@@ -161,17 +162,38 @@ router.delete("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
         "Course Data",
         { course: course },
     ));
-})); 
+}));
 
-// search course by name or course code 
-router.post("/search:", asyncHandler(async (req, res) => {
+// search course by name or course code with sorting
+router.post("/search", asyncHandler(async (req, res) => {
     const search = req.body.search;
-    const courses = await model.courseModel.find({
-        $or: [
-            { name: { $regex: search, $options: 'i' } },
-            { courseCode: { $regex: search, $options: 'i' } }
-        ]
-    });
+    const sortBy = req.body.sortBy;
+    if (search === undefined || search === "") {
+        return res.status(400).json({ error: 'Search is Required.' });
+    }
+    let courses;
+    if (sortBy === "name") {
+        courses = await model.courseModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { courseCode: { $regex: search, $options: 'i' } }
+            ]
+        }).sort({ name: 1 });
+    } else if (sortBy === "courseCode") {
+        courses = await model.courseModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { courseCode: { $regex: search, $options: 'i' } }
+            ]
+        }).sort({ courseCode: 1 });
+    } else {
+        courses = await model.courseModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { courseCode: { $regex: search, $options: 'i' } }
+            ]
+        });
+    }
     res.status(200).json(courses);
 }));
 
@@ -182,7 +204,7 @@ router.post("/ids", asyncHandler(async (req, res) => {
         _id: { $in: ids }
     });
     res.status(200).json(courses);
-})); 
+}));
 
 // get all courses for a user 
 router.get("/user/:id", asyncHandler(async (req, res) => {
@@ -193,7 +215,7 @@ router.get("/user/:id", asyncHandler(async (req, res) => {
         ]
     });
     res.status(200).json(courses);
-})); 
+}));
 
 // get all users for a course 
 router.get("/:id/users", asyncHandler(async (req, res) => {
@@ -201,7 +223,7 @@ router.get("/:id/users", asyncHandler(async (req, res) => {
     if (!course) {
         return res.status(404).json({ error: 'The course with the given ID was not found' });
     }
-    const users = await model.userModel.find({
+    const users = await user.userModel.find({
         _id: { $in: course.teachers.concat(course.students) }
     });
     res.status(200).json(users);

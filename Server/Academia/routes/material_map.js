@@ -1,10 +1,10 @@
 const express = require('express');
-const asyncHandler = require('express-async-handler'); 
-const router = express.Router(); 
-const model = require('../models/MaterialMap'); 
-const course = require('../models/Course'); 
-const functions = require('../utilities/functions'); 
-const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken'); 
+const asyncHandler = require('express-async-handler');
+const router = express.Router();
+const model = require('../models/MaterialMap');
+const course = require('../models/Course');
+const functions = require('../utilities/functions');
+const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
 
 
 /** 
@@ -12,11 +12,11 @@ const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = requi
     * @route GET /api/material_apps 
     * @method GET 
     * @access Private
-*/ 
+*/
 router.get('/', verifyToken, asyncHandler(async (req, res) => {
-    const materialApps = await model.materialAppModel.find();
-    res.status(200).json(materialApps);
-})); 
+    const materialMaps = await model.materialMapModel.find();
+    res.status(200).json(materialMaps);
+}));
 
 
 /** 
@@ -24,15 +24,15 @@ router.get('/', verifyToken, asyncHandler(async (req, res) => {
     * @route GET /api/material_maps/:id
     * @method GET 
     * @access Private
-*/ 
+*/
 router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
-    const materialApp = await model.materialAppModel.findById(req.params.id);
-    if (materialApp) {
-        res.status(200).json(materialApp);
+    const materialMap = await model.materialMapModel.findById(req.params.id);
+    if (materialMap) {
+        res.status(200).json(materialMap);
     } else {
         res.status(404).json({ message: 'Material App not found' });
     }
-})); 
+}));
 
 
 /** 
@@ -40,27 +40,27 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @route POST /api/material_maps
     * @method POST 
     * @access Private
-*/ 
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+*/
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // validate the request 
-    const materialMapRequest = req.body.context.materialApp; 
+    const materialMapRequest = req.body.context.materialMap;
     if (!materialMapRequest) {
         return res.status(400).json({ message: 'Material Map is required' });
-    } 
+    }
 
-    // validate the course exists 
-    const isCourse = await course.courseModel.findById(materialMapRequest.courseId);
-    if (!isCourse) {
-        return res.status(400).json({ message: 'Course not found' });
-    } 
-    
+    // // validate the course exists 
+    // const isCourse = await course.courseModel.findById(materialMapRequest.courseId);
+    // if (!isCourse) {
+    //     return res.status(400).json({ message: 'Course not found' });
+    // } 
+
     // validate the request 
-    const { error } = model.validateCreateMaterialMap(materialMapRequest); 
+    const { error } = model.validateCreateMaterialMap(materialMapRequest);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
-    } 
+    }
     // create material map
-    const materialMap = await model.materialMapModel.create(materialMapRequest); 
+    const materialMap = await model.materialMapModel.create(materialMapRequest);
     res.status(201).json(functions.responseBodyJSON(
         201,
         req.body.actor.id,
@@ -69,7 +69,7 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
         "Material Map Data",
         { materialMap: materialMap }
     ));
-})); 
+}));
 
 
 /** 
@@ -77,30 +77,30 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @route PUT /api/material_maps/:id
     * @method PUT 
     * @access Private
-*/ 
-router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+*/
+router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // validate the request 
-    const materialMapRequest = req.body.context.materialApp; 
+    const materialMapRequest = req.body.context.materialMap;
     if (!materialMapRequest) {
         return res.status(400).json({ message: 'Material App is required' });
-    } 
+    }
 
     // validate the request 
-    const { error } = model.validateUpdateMaterialMap(materialMapRequest); 
+    const { error } = model.validateUpdateMaterialMap(materialMapRequest);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
-    } 
+    }
     // update material app 
-    const materialApp = await model.materialMapModel.findByIdAndUpdate(req.params.id, materialMapRequest, { new: true }); 
-    res.status(200).json(functions.responseBodyJSON( 
-        200, 
-        req.body.actor.id, 
-        model.updateMaterialMapVerb, 
+    const materialMap = await model.materialMapModel.findByIdAndUpdate(req.params.id, materialMapRequest, { new: true });
+    res.status(200).json(functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        model.updateMaterialMapVerb,
         req.body.object.objectType,
         "Material App Data",
-        { materialApp: materialApp } 
+        { materialMap: materialMap }
     ));
-})); 
+}));
 
 
 /** 
@@ -108,7 +108,7 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @route DELETE /api/material_maps/:id
     * @method DELETE 
     * @access Private
-*/ 
+*/
 router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // delete material app 
     const materialMap = await model.materialMapModel.findByIdAndDelete(req.params.id);
@@ -124,6 +124,6 @@ router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     } else {
         res.status(404).json({ message: 'Material Map not found' });
     }
-})); 
+}));
 
 module.exports = router;

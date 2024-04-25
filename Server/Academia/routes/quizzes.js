@@ -50,7 +50,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
         model.createQuizVerb,
         req.body.object.objectType,
         "Quiz Data",
-        {quiz: quiz},
+        { quiz: quiz },
     ));
 }));
 
@@ -74,11 +74,32 @@ router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) =
  */
 /// Get Quiz by ID
 router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const quiz = await model.quizModel.findById( req.params.id );
+    const quiz = await model.quizModel.findById(req.params.id);
     if (!quiz) {
         return res.status(404).json({ error: 'The quiz with the given ID was not found' });
     }
     res.status(200).json(quiz);
+}));
+
+/**
+ * @desc Get all quizzes by course ID
+ * @route GET /api/quizzes/course/:courseId
+ * @method GET
+ * @access Public
+ */
+/// Get Quizzes by Course ID
+router.get(`/course/:courseId`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // check if course exists
+    let course = await courseModel.courseModel.findById(req.params.courseId);
+    if (!course) {
+        return res.status(404).json({ error: 'The course with the given ID was not found' });
+    }
+
+    const quizzes = await model.quizModel.find({ courseId: req.params.courseId });
+    if (!quizzes) {
+        return res.status(404).json({ error: 'The quizzes with the given course ID were not found' });
+    }
+    res.status(200).json(quizzes);
 }));
 
 /**
@@ -102,18 +123,8 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
         return res.status(400).json({ error: error.details[0].message });
     }
     // update quiz
-    const quiz = await model.quizModel.findByIdAndUpdate( req.params.id ,
-        {
-            quizName: requestQuiz.quizName,
-            questions: requestQuiz.questions,
-            numOfRetries: requestQuiz.numOfRetries,
-            duration: requestQuiz.duration,
-            startDate: requestQuiz.startDate,
-            endDate: requestQuiz.endDate,
-            showGrade: requestQuiz.showGrade,
-            showWrongAnswers: requestQuiz.showWrongAnswers,
-            showCorrectAnswers: requestQuiz.showCorrectAnswers,
-        }, { new: true });
+    const quiz = await model.quizModel.findByIdAndUpdate(req.params.id,
+        requestQuiz, { new: true });
 
     // save quiz
     await quiz.save();
@@ -134,7 +145,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
  */
 /// Delete Quiz
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const quiz = await model.quizModel.findByIdAndDelete( req.params.id );
+    const quiz = await model.quizModel.findByIdAndDelete(req.params.id);
     if (!quiz) {
         return res.status(404).json({ error: 'The quiz with the given ID was not found' });
     }

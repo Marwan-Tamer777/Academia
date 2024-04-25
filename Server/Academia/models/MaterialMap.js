@@ -12,12 +12,13 @@ const materialMapSchema = new mongoose.Schema({
     materialType: {
         type: Number,
         required: true,
+        unique: true,
     },
-    materialUrl: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+    // materialUrl: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    // },
     materialDescription: {
         type: String,
         required: true,
@@ -39,29 +40,25 @@ const materialMapModel = mongoose.model('MaterialMap', materialMapSchema);
 /// MaterialMap Validation
 function validateCreateMaterialMap(materialMap) {
     const schema = Joi.object({
-        materialType: {
-            type: Joi.number().required(),
-        },
-        materialUrl: {
-            type: Joi.string().required().trim(),
-        },
-        materialDescription: {
-            type: Joi.string().required().trim(),
-        },
+        materialType: Joi.number().required(),
+
+        // materialUrl: {
+        //     type: Joi.string().required().trim(),
+        // },
+        materialDescription: Joi.string().required().trim(),
+
     });
     return schema.validate(materialMap);
 }
 function validateUpdateMaterialMap(materialMap) {
     const schema = Joi.object({
-        materialType: {
-            type: Joi.number().required(),
-        },
-        materialUrl: {
-            type: Joi.string().required().trim(),
-        },
-        materialDescription: {
-            type: Joi.string().required().trim(),
-        },
+        materialType: Joi.number().required(),
+
+        // materialUrl: {
+        //     type: Joi.string().required().trim(),
+        // },
+        materialDescription: Joi.string().required().trim(),
+
     });
     return schema.validate(materialMap);
 }
