@@ -41,20 +41,35 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @method POST 
     * @access Private
 */ 
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+    // validate the request 
+    const privilegeMapRequest = req.body.context.privilegeMap; 
+    if (!privilegeMapRequest) {
+        return res.status(400).json({ message: 'Privilege Map is required' });
+    } 
+
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await course.courseModel.findById(privilegeMapRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
-    } 
+    }  
+
     // validate the request 
-    const { error } = model.validateCreatePrivilegeMap(req.body); 
+    const { error } = model.validateCreatePrivilegeMap(privilegeMapRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
+
     // create privilege map 
-    const privilegeMap = await model.privilegeMapModel.create(req.body); 
-    res.status(201).json(privilegeMap);
+    const privilegeMap = await model.privilegeMap.create(privilegeMapRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createPrivilegeMapVerb,
+        req.body.object.objectType,
+        "Privilege Map Data",
+        { privilegeMap: privilegeMap }
+    ));
 })); 
 
 
@@ -64,16 +79,29 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Private
 */ 
-router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
     // validate the request 
-    const { error } = model.validateUpdatePrivilegeMap(req.body); 
+    const privilegeMapRequest = req.body.context.privilegeMap;
+    if (!privilegeMapRequest) {
+        return res.status(400).json({ message: 'Privilege Map is required' });
+    }
+
+    // validate the request 
+    const { error } = model.validateUpdatePrivilegeMap(privilegeMapRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // update privilege map 
-    const privilegeMap = await model.privilegeMapModel.findByIdAndUpdate(req.params.id, req.body, { new: true }); 
+    const privilegeMap = await model.privilegeMap.findByIdAndUpdate(req.params.id, privilegeMapRequest, { new: true }); 
     if (privilegeMap) {
-        res.status(200).json(privilegeMap);
+        res.status(200).json(functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.updatePrivilegeMapVerb,
+            req.body.object.objectType,
+            "Privilege Map Data",
+            { privilegeMap: privilegeMap }
+        ));
     } else {
         res.status(404).json({ message: 'Privilege Map not found' });
     }

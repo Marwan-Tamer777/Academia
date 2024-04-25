@@ -41,25 +41,38 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @method POST 
     * @access Private
 */ 
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+    // validate the request 
+    const userCourseInfoRequest = req.body.context.userCourseInfo; 
+    if (!userCourseInfoRequest) {
+        return res.status(400).json({ message: 'User Course Info is required' });
+    } 
+
     // validate the user exists 
-    const isUser = await user.userModel.findById(req.body.userId);
+    const isUser = await user.userModel.findById(userCourseInfoRequest.userId);
     if (!isUser) {
         return res.status(400).json({ message: 'User not found' });
     } 
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await course.courseModel.findById(userCourseInfoRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
     } 
     // validate the request 
-    const { error } = model.validateCreateUserCourseInfo(req.body); 
+    const { error } = model.validateCreateUserCourseInfo(userCourseInfoRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // create user course info 
-    const userCourseInfo = await model.userCourseInfoModel.create(req.body); 
-    res.status(201).json(userCourseInfo);
+    const userCourseInfo = await model.userCourseInfo.create(userCourseInfoRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createUserCourseInfoVerb,
+        req.body.object.objectType,
+        "User Course Info Data",
+        { userCourseInfo: userCourseInfo }
+    ));
 } )); 
 
 
@@ -69,15 +82,28 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Private
 */ 
-router.put('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.put('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res) => { 
     // validate the request 
-    const { error } = model.validateUpdateUserCourseInfo(req.body); 
+    const userCourseInfoRequest = req.body.context.userCourseInfo; 
+    if (!userCourseInfoRequest) {
+        return res.status(400).json({ message: 'User Course Info is required' });
+    } 
+
+    // validate the request 
+    const { error } = model.validateUpdateUserCourseInfo(userCourseInfoRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // update user course info 
-    const userCourseInfo = await model.userCourseInfoModel.findByIdAndUpdate(req.params.id, req.body, { new: true, }); 
-    res.status(200).json(userCourseInfo);
+    const userCourseInfo = await model.userCourseInfo.findByIdAndUpdate(req.params.id, userCourseInfoRequest, { new: true, }); 
+    res.status(200).json(functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        model.updateUserCourseInfoVerb,
+        req.body.object.objectType,
+        "User Course Info Data",
+        { userCourseInfo: userCourseInfo } 
+    ));
 })); 
 
 
@@ -91,7 +117,14 @@ router.delete('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res)
     // delete user course info 
     const userCourseInfo = await model.userCourseInfoModel.findByIdAndDelete(req.params.id);
     if (userCourseInfo) {
-        res.status(200).json({ message: 'User Course Info deleted successfully' });
+        res.status(200).json(functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.deleteUserCourseInfoVerb,
+            req.body.object.objectType,
+            "User Course Info Data",
+            { userCourseInfo: userCourseInfo }
+        ));
     } else {
         res.status(404).json({ message: 'User Course Info not found' });
     }

@@ -41,20 +41,34 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @method POST 
     * @access Private 
  */ 
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+
+    // validate the request 
+    const coursePollRequest = req.body.context.coursePoll; 
+    if (!coursePollRequest) {
+        return res.status(400).json({ message: 'Course Poll is required' });
+    } 
+
     // validate the course exists 
-    const isCourse = await course.courseModel.findById(req.body.courseId);
+    const isCourse = await course.courseModel.findById(coursePollRequest.courseId);
     if (!isCourse) {
         return res.status(400).json({ message: 'Course not found' });
     } 
     // validate the request 
-    const { error } = model.validateCreateCoursePoll(req.body); 
+    const { error } = model.validateCreateCoursePoll(coursePollRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // create course poll 
-    const coursePoll = await model.coursePollModel.create(req.body); 
-    res.status(201).json(coursePoll); 
+    const coursePoll = await model.coursePollModel.create(coursePollRequest); 
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createCoursePollVerb,
+        req.body.object.objectType,
+        "Course Poll Data",
+        { coursePoll: coursePoll }
+    ));
 } 
 )); 
 
@@ -65,20 +79,34 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Private
 */ 
-router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => { 
+
+    // validate the request 
+    const coursePollRequest = req.body.context.coursePoll; 
+    if (!coursePollRequest) {
+        return res.status(400).json({ message: 'Course Poll is required' });
+    }
+
     // validate the course poll exists 
     const isCoursePoll = await model.coursePollModel.findById(req.params.id);
     if (!isCoursePoll) {
         return res.status(400).json({ message: 'Course Poll not found' });
     } 
     // validate the request 
-    const { error } = model.validateUpdateCoursePoll(req.body); 
+    const { error } = model.validateUpdateCoursePoll(coursePollRequest); 
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } 
     // update course poll 
-    const coursePoll = await model.coursePollModel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true }); 
-    res.status(200).json(coursePoll);
+    const coursePoll = await model.coursePollModel.findByIdAndUpdate(req.params.id, coursePollRequest, { new: true, runValidators: true }); 
+    res.status(200).json(functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        model.updateCoursePollVerb,
+        req.body.object.objectType,
+        "Course Poll Data",
+        { coursePoll: coursePoll }
+    ));
 })); 
 
 
@@ -92,7 +120,7 @@ router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // delete course poll 
     const coursePoll = await model.coursePollModel.findByIdAndDelete(req.params.id);
     if (coursePoll) {
-        res.status(200).json({ message: 'Course Poll deleted successfully' });
+        res.status(200).json(functions.responseBodyJSON(200, req.body.actor.id, model.deleteCoursePollVerb, req.body.object.objectType, "Course Poll Data", { coursePoll: coursePoll }));
     } else {
         res.status(404).json({ message: 'Course Poll not found' });
     }

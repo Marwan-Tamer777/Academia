@@ -12,7 +12,9 @@ const functions = require('../utilities/functions');
  * @route POST /api/users/register
  * @method POST
  * @access Public
- */
+ */ 
+
+
 /// Register User
 router.post("/register", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const requestUser = req.body.context.user;
@@ -52,6 +54,7 @@ router.post("/register", verifyToken.verifyTokenAndAdmin, asyncHandler(async (re
         { user: { token, ...data } },
     ));
 }));
+
 
 /**
  *  
@@ -111,6 +114,50 @@ router.post("/login", asyncHandler(async (req, res) => {
         "User Data",
         { user: { token, ...data } },
     ));
+})); 
+
+
+/** 
+ * @desc Reset Password 
+ * @route POST /api/users/reset-password
+ * @method POST
+ * @access Public
+ */ 
+/// Reset Password 
+router.post("/reset-password", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    const requestUser = req.body.context.user;
+    if (!requestUser) {
+        return res.status(400).json({ error: 'User data is required.' });
+    }
+    // validate the request
+    const { error } = model.validateResetPassword(req.body);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+
+    // hash new password
+    const salt = await bcrypt.genSalt(10);
+    requestUser.password = await bcrypt.hash(requestUser.password, salt);
+
+    // update user
+    const updatedUser = await model.userModel.findByIdAndUpdate(req.params.id, requestUser, {
+        new: true // return the updated document
+    }).select('-password');// remove password from response
+    if (!updatedUser) {
+        return res.status(404).json({ error: 'The user with the given ID was not found' });
+    }
+
+    // save user
+    await updatedUser.save();
+    res.status(200).json(functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        model.resetPasswordVerb,
+        req.body.object.objectType,
+        "User Data",
+        { user: updatedUser },
+    ));
 }));
+
 
 module.exports = router;

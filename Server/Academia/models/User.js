@@ -200,6 +200,38 @@ function validateUpdateUser(user) {
         }
     });
     return schema.validate(user);
+} 
+
+function validateResetPassword(user) {
+    const schema = Joi.object({
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+        },
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
+        },
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
+        },
+        context: {
+            user: {
+                email: Joi.string().trim().min(7).max(100),
+                password: Joi.string().trim().min(7).required(),
+                newPassword: Joi.string().trim().min(7).required(),
+            }
+        }
+    });
+    return schema.validate(user);
 }
 
 /// User Verbs
@@ -233,4 +265,4 @@ const deleteUserVerb = {
 
 
 
-module.exports = { userModel, validateRegisterUser, validateLoginUser, validateUpdateUser, registerUserVerb, loginUserVerb, updateUserVerb, deleteUserVerb }
+module.exports = { userModel, validateRegisterUser, validateLoginUser, validateUpdateUser, validateResetPassword, registerUserVerb, loginUserVerb, updateUserVerb, deleteUserVerb }

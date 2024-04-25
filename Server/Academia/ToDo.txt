@@ -9,3 +9,12 @@
 8- Fix Old Models EndPoint and Validation Functions (Add Missing Variables to them)/(Remove Extra Variables) (Post, )
 9- Add New Endpoints For New Models (CourseRoles, PrivilegeMap, Tickets, UserCourseInfo, CoursePoll, Assignment, Statement, ActionMap, MaterialMap, QuizUserInfo, AssignmentUserInfo)
 10- Login With Either (ID or Email) And Password (Currently User Must Enter All Three)
+
+11- Add Search For Courses, Material, Students, Teachers with sortBy parameter and other filtering options like search By Department, StudentId, Email, Material Title
+12- Add Get Public Profile for Students/Teacher profiles 
+13- Get All Student Enrolled Courses
+14- Get All Assignments/ Quizzes/ Materials of a course for the current student 
+15- Get All Students/Teachers In A Course
+16- Upload Material (Assignment, Quiz, etc...)
+17- Download Material
+18- Get Recent Visited Courses Of a Student
