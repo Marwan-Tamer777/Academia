@@ -50,14 +50,14 @@ const courseSchema = new mongoose.Schema({
         required: true,
         min: 1,
     },
-    // teachers: {
-    //     type: [String],
-    //     default: [],
-    // },
-    // students: {
-    //     type: [String],
-    //     default: [],
-    // },
+    teachers: {
+        type: [String],
+        default: [],
+    },
+    students: {
+        type: [String],
+        default: [],
+    },
     status: {
         type: Number,
         min: 0,
@@ -76,10 +76,10 @@ const courseSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
-    // roles: {
-    //     type: [String],
-    //     default: [],
-    // },
+    roles: {
+        type: [String],
+        default: [],
+    },
 
 }, {
     _id: false,
@@ -128,13 +128,13 @@ function validateCreateCourse(course) {
                 maxCapacity: Joi.number().min(1),
                 currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
                 people: Joi.array().items(Joi.string().trim()),
-                // students: Joi.array().items(Joi.string().trim()),
+                students: Joi.array().items(Joi.string().trim()),
                 quizzes: Joi.array().items(Joi.string().trim()),
                 posts: Joi.array().items(Joi.string().trim()),
                 materials: Joi.array().items(Joi.string().trim()),
-                // roles: Joi.array().items(Joi.string().trim()),
-                // teachers: Joi.array().items(Joi.string().trim()),
-                // students: Joi.array().items(Joi.string().trim()),
+                roles: Joi.array().items(Joi.string().trim()),
+                teachers: Joi.array().items(Joi.string().trim()),
+                students: Joi.array().items(Joi.string().trim()),
                 status: Joi.number().min(0).max(3),
                 mostRecentDeadline: Joi.date(),
             },

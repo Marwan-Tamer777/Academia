@@ -47,11 +47,34 @@ const courseRolesModel = mongoose.model('CourseRoles', courseRolesSchema);
 /// Validate CourseRoles
 function validateCreateCourseRoles(courseRoles) {
     const schema = Joi.object({
-        courseId: Joi.string().required(),
-        roleCode: Joi.number().required(),
-        role: Joi.string().required(),
-        level: Joi.number().required(),
-        privileges: Joi.array().items(Joi.number()),
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+        },
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
+        },
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
+        },
+        context: {
+            courseRole: {
+                courseId: Joi.string().trim().min(1).required(),
+                roleCode: Joi.number().required(),
+                role: Joi.string().trim().min(1).required(),
+                level: Joi.number().required(),
+                privileges: Joi.array().items(Joi.string()),
+            }
+        }
     });
 
     return schema.validate(courseRoles);

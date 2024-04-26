@@ -38,7 +38,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
         model.createPrivilegeVerb,
         req.body.object.objectType,
         "Privilege Data",
-        { privilege: data }
+        { privilege: privilege }
     ));
 }));
 
@@ -62,7 +62,7 @@ router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) =
  */
 /// Get Privilege by ID
 router.get(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const privilege = await model.privilegeModel.findById( req.params.id );
+    const privilege = await model.privilegeModel.findById(req.params.id);
     if (!privilege) {
         return res.status(404).json({ error: 'The privilege with the given ID was not found' });
     }
@@ -91,7 +91,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     }
 
     // update privilege
-    const privilege = await model.privilegeModel.findByIdAndUpdate( req.params.id , {
+    const privilege = await model.privilegeModel.findByIdAndUpdate(req.params.id, {
         description: requestPrivilege.description
     }, { new: true });
     if (!privilege) {
@@ -115,7 +115,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
  */
 /// Delete Privilege
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const privilege = await model.privilegeModel.findByIdAndDelete( req.params.id );
+    const privilege = await model.privilegeModel.findByIdAndDelete(req.params.id);
     if (!privilege) {
         return res.status(404).json({ error: 'The privilege with the given ID was not found' });
     }
