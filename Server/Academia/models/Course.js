@@ -183,12 +183,56 @@ function validateUpdateCourse(course) {
     });
     return schema.validate(course);
 }
+function validateEnrollCourse(course) {
+    const schema = Joi.object({
+        actor: {
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+        },
+        verb: {
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: {
+                "en-US": Joi.string().trim().min(1).required()
+            }
+        },
+        object: {
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: {
+                name: {
+                    "en-US": Joi.string().trim().min(1).required()
+                }
+            }
+        },
+        context: {
+            course: {
+                enrollCode: Joi.string().trim().required(),
+            },
+            student: {
+                id: Joi.string().trim().min(1).required(),
+            },
+        },
+    });
+    return schema.validate(course);
+}
 
 /// Course Verbs
 const createCourseVerb = {
     "id-enum": "created-course",
     display: {
         "en-US": "created course"
+    }
+};
+const enrollCourseVerb = {
+    "id-enum": "enrolled-course",
+    display: {
+        "en-US": "enrolled course"
+    }
+};
+const unenrollCourseVerb = {
+    "id-enum": "unenrolled-course",
+    display: {
+        "en-US": "unenrolled course"
     }
 };
 const updateCourseVerb = {
@@ -212,9 +256,12 @@ const getCourseVerb = {
 module.exports = {
     courseModel,
     validateCreateCourse,
+    validateEnrollCourse,
     validateUpdateCourse,
     createCourseVerb,
     updateCourseVerb,
+    enrollCourseVerb,
+    unenrollCourseVerb,
     deleteCourseVerb,
     getCourseVerb
 }
