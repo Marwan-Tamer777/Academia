@@ -4,8 +4,7 @@ import Image from "next/image";
 import Logo from "/public/logo.png";
 import React from "react";
 import classNames from "classnames";
-// import showPassword from '@/components/showPassword/showPassword'
-import Responsive from 'react-responsive';
+import Responsive from "react-responsive";
 // const Desktop = props => <Responsive {...props} minWidth={992} />;
 // const Tablet = props => <Responsive {...props} minWidth={768} maxWidth={991} />;
 // const Mobile = props => <Responsive {...props} maxWidth={767} />;
@@ -20,11 +19,10 @@ import Responsive from 'react-responsive';
 //   </div>
 // );
 
-
 const cairo = Cairo({ subsets: ["arabic"] });
 
 export default function login() {
-  let fullPage = classNames(cairo.className, styles.mainContainer); 
+  let fullPage = classNames(cairo.className, styles.mainContainer);
 
   return (
     <div className={fullPage}>
@@ -59,7 +57,6 @@ export default function login() {
               name="password"
               placeholder="أدخل كلمة المرور"
             />
-            {/* <showPassword /> */}
           </section>
           <section className={styles.underForm}>
             <section className={styles.rememberMe}>
