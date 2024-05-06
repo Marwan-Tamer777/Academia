@@ -505,7 +505,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/courses?search=&sortBy",
+							"raw": "{{baseUrl}}/courses?search=",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -516,11 +516,6 @@
 								{
 									"key": "search",
 									"value": ""
-								},
-								{
-									"key": "sortBy",
-									"value": null,
-									"description": "name,courseCode"
 								}
 							]
 						}
@@ -553,7 +548,7 @@
 					"response": []
 				},
 				{
-					"name": "Get All Course Students",
+					"name": "Get All Course Users",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -564,72 +559,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/courses/32a7b534-89db-4fc9-ae0d-a80151887d6d/students",
+							"raw": "{{baseUrl}}/courses/32a7b534-89db-4fc9-ae0d-a80151887d6d/users",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"courses",
 								"32a7b534-89db-4fc9-ae0d-a80151887d6d",
-								"students"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Course Teachers",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/courses/32a7b534-89db-4fc9-ae0d-a80151887d6d/teachers",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d",
-								"teachers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Courses From IDS",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ids\":[\r\n        \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n        \"97c17012-1ac1-412f-97e7-24a54a96df7e\"\r\n    ]\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/getAll",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"getAll"
+								"users"
 							]
 						}
 					},
@@ -648,7 +585,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Information Security\",\r\n            \"courseCode\":\"ISd3ddte82\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Cyber Security\",\r\n            \"courseCode\":\"ISd3dd3e82\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,74 +599,6 @@
 							],
 							"path": [
 								"courses"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Enroll In Course",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"enrollCode\":\"ADdddd436F\"\r\n        },\r\n        \"student\":{\r\n            \"id\":\"038c3ee1-5a26-4688-8926-5abbc28264a3\"\r\n        }\r\n        \r\n        }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/enroll/32a7b534-89db-4fc9-ae0d-a80151887d6d",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"enroll",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Unenroll In Course",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"student\":{\r\n            \"id\":\"038c3ee1-5a26-4688-8926-5abbc28264a3\"\r\n        }\r\n        \r\n        }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/courses/unenroll/32a7b534-89db-4fc9-ae0d-a80151887d6d",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"courses",
-								"unenroll",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
 							]
 						}
 					},
@@ -1201,40 +1070,6 @@
 					"response": []
 				},
 				{
-					"name": "Search Users",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/users?search=ad&sortBy=name",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "ad"
-								},
-								{
-									"key": "sortBy",
-									"value": "name",
-									"description": "name, id"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get User By ID",
 					"request": {
 						"method": "GET",
@@ -1253,39 +1088,6 @@
 							"path": [
 								"users",
 								"531677bc-607d-4d8f-b77e-98133c83ead7"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Users From IDS",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "token",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"ids\":[\r\n        \"038c3ee1-5a26-4688-8926-5abbc28264a3\"\r\n    ]\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseUrl}}/users/getAll",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								"getAll"
 							]
 						}
 					},

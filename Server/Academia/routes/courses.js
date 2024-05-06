@@ -164,7 +164,7 @@ router.delete("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
     ));
 }));
 
-/// search course by name or course code with sorting
+// search course by name or course code with sorting
 router.post("/search", asyncHandler(async (req, res) => {
     const search = req.body.search;
     const sortBy = req.body.sortBy;
@@ -197,23 +197,16 @@ router.post("/search", asyncHandler(async (req, res) => {
     res.status(200).json(courses);
 }));
 
-/// get all courses in the ids list 
-router.post("/getAll", asyncHandler(async (req, res) => {
+// get all courses in the ids list 
+router.post("/ids", asyncHandler(async (req, res) => {
     const ids = req.body.ids;
-
-    // Check if ids is an array and is not empty
-    if (!ids || !Array.isArray(ids) || !ids.length) {
-        return res.status(400).json({ error: 'No course IDs provided' });
-    }
-
     const courses = await model.courseModel.find({
         _id: { $in: ids }
     });
-
     res.status(200).json(courses);
 }));
 
-/// get all courses for a user 
+// get all courses for a user 
 router.get("/user/:id", asyncHandler(async (req, res) => {
     const courses = await model.courseModel.find({
         $or: [
@@ -224,136 +217,18 @@ router.get("/user/:id", asyncHandler(async (req, res) => {
     res.status(200).json(courses);
 }));
 
-/// get all students for a course 
-router.get("/:id/students", asyncHandler(async (req, res) => {
+// get all users for a course 
+router.get("/:id/users", asyncHandler(async (req, res) => {
     const course = await model.courseModel.findById(req.params.id);
     if (!course) {
         return res.status(404).json({ error: 'The course with the given ID was not found' });
     }
-    const students = await user.userModel.find({
+    const users = await user.userModel.find({
         _id: { $in: course.teachers.concat(course.students) }
     });
-    res.status(200).json(students);
+    res.status(200).json(users);
 }));
 
-/// get all teachers for a course 
-router.get("/:id/teachers", asyncHandler(async (req, res) => {
-    const course = await model.courseModel.findById(req.params.id);
-    if (!course) {
-        return res.status(404).json({ error: 'The course with the given ID was not found' });
-    }
-    const teachers = await user.userModel.find({
-        _id: { $in: course.teachers.concat(course.teachers) }
-    });
-    res.status(200).json(teachers);
-}));
-
-/// Enroll a student to a course
-router.post("/enroll/:id", asyncHandler(async (req, res) => {
-    // validate the course data 
-    const requestCourse = req.body.context.course
-    if (!requestCourse) {
-        return res.status(400).json({ error: 'Course Data is Required.' });
-    }
-    const requestStudent = req.body.context.student
-    if (!requestStudent) {
-        return res.status(400).json({ error: 'Student Data is Required.' });
-    }
-    // validate the request
-    const { error } = model.validateEnrollCourse(req.body);
-    if (error) {
-        return res.status(400).json({ error: error.details[0].message });
-    }
-
-    // find the course
-    const course = await model.courseModel.findById(req.params.id);
-    // check if the course exists
-    if (!course) {
-        return res.status(404).json({ error: 'The course with the given ID was not found' });
-    }
-    // find the student
-    const student = await user.userModel.findById(requestStudent.id);
-    // check if the student exists
-    if (!student) {
-        return res.status(404).json({ error: 'The student with the given ID was not found' });
-    }
-
-    // validate the ability to enroll
-    if (course.currentCapacity >= course.maxCapacity) {
-        return res.status(400).json({ error: 'The course is full' });
-    }
-    if (course.enrollCode !== requestCourse.enrollCode) {
-        return res.status(400).json({ error: 'The enroll code is incorrect' });
-    }
-    if (course.students.includes(requestStudent.id)) {
-        return res.status(400).json({ error: 'The student is already enrolled in the course' });
-    }
-
-
-    course.students.push(requestStudent.id);
-    course.currentCapacity += 1;
-    await course.save();
-
-    student.courses.push(course._id);
-    await student.save();
-
-    res.status(200).json(functions.responseBodyJSON(
-        200,
-        req.body.actor.id,
-        model.enrollCourseVerb,
-        req.body.object.objectType,
-        "Course Data",
-        { course: course },
-    ));
-}));
-
-/// Unenroll a student from a course
-router.post("/unenroll/:id", asyncHandler(async (req, res) => {
-    // validate the course data 
-    const requestStudent = req.body.context.student
-    if (!requestStudent) {
-        return res.status(400).json({ error: 'Student Data is Required.' });
-    }
-    // validate the request
-    const { error } = model.validateEnrollCourse(req.body);
-    if (error) {
-        return res.status(400).json({ error: error.details[0].message });
-    }
-
-    // find the course
-    const course = await model.courseModel.findById(req.params.id);
-    // check if the course exists
-    if (!course) {
-        return res.status(404).json({ error: 'The course with the given ID was not found' });
-    }
-    // find the student
-    const student = await user.userModel.findById(requestStudent.id);
-    // check if the student exists
-    if (!student) {
-        return res.status(404).json({ error: 'The student with the given ID was not found' });
-    }
-
-    // validate the ability to unenroll
-    if (!course.students.includes(requestStudent.id)) {
-        return res.status(400).json({ error: 'The student is not enrolled in the course' });
-    }
-
-    course.students = course.students.filter((id) => id !== requestStudent.id);
-    course.currentCapacity -= 1;
-    await course.save();
-
-    student.courses = student.courses.filter((id) => id !== course._id);
-    await student.save();
-
-    res.status(200).json(functions.responseBodyJSON(
-        200,
-        req.body.actor.id,
-        model.unenrollCourseVerb,
-        req.body.object.objectType,
-        "Course Data",
-        { course: course },
-    ));
-}));
 
 /// Modules
 module.exports = router; 
