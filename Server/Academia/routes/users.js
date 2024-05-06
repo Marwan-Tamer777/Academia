@@ -126,23 +126,47 @@ router.delete("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(asyn
         "User Data",
         { user: user },
     ));
-})); 
+}));
 
 
 
-// search course by name or course code 
+/// search user by name, email or id
 router.post("/search", asyncHandler(async (req, res) => {
     const search = req.body.search;
-    const user = await model.userModel.find({
-        $or: [
-            { email: { $regex: search, $options: 'i' } },
-            { id: { $regex: search, $options: 'i' } }
-        ]
-    });
-    res.status(200).json(courses);
-})); 
+    const sortBy = req.body.sortBy;
+    if (search === undefined || search === "") {
+        return res.status(400).json({ error: 'Search is Required.' });
+    }
+    let users;
+    if (sortBy === "name") {
+        users = await model.userModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { email: { $regex: search, $options: 'i' } },
+                { assignedId: { $regex: search, $options: 'i' } }
+            ]
+        }).sort({ name: 1 });
+    } else if (sortBy === "id") {
+        users = await model.userModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { email: { $regex: search, $options: 'i' } },
+                { assignedId: { $regex: search, $options: 'i' } }
+            ]
+        }).sort({ assignedId: 1 });
+    } else {
+        users = await model.userModel.find({
+            $or: [
+                { name: { $regex: search, $options: 'i' } },
+                { email: { $regex: search, $options: 'i' } },
+                { assignedId: { $regex: search, $options: 'i' } }
+            ]
+        });
+    }
+    res.status(200).json(users);
+}));
 
-// get all courses in the ids list 
+/// get all courses in the ids list 
 router.post("/ids", asyncHandler(async (req, res) => {
     const ids = req.body.ids;
     const users = await model.userModel.find({
@@ -151,7 +175,7 @@ router.post("/ids", asyncHandler(async (req, res) => {
     res.status(200).json(users);
 }));
 
-// get all users for a course 
+/// get all users for a course 
 router.post("/course/:id", asyncHandler(async (req, res) => {
     const courseId = req.params.id;
     const users = await model.userModel.find({
@@ -160,10 +184,24 @@ router.post("/course/:id", asyncHandler(async (req, res) => {
     res.status(200).json(users);
 }));
 
+/// get all users in the ids list 
+router.post("/getAll", asyncHandler(async (req, res) => {
+    const ids = req.body.ids;
+
+    // Check if ids is an array and is not empty
+    if (!ids || !Array.isArray(ids) || !ids.length) {
+        return res.status(400).json({ error: 'No user IDs provided' });
+    }
+
+    const users = await model.userModel.find({
+        _id: { $in: ids }
+    });
+
+    res.status(200).json(users);
+}));
 
 
-
-module.exports = router; 
+module.exports = router;
 
 
 
