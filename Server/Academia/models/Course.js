@@ -51,7 +51,7 @@ const courseSchema = new mongoose.Schema({
         min: 1,
     },
     teachers: {
-        type: [String],
+        type: [Object],
         default: [],
     },
     students: {
@@ -133,7 +133,7 @@ function validateCreateCourse(course) {
                 posts: Joi.array().items(Joi.string().trim()),
                 materials: Joi.array().items(Joi.string().trim()),
                 roles: Joi.array().items(Joi.string().trim()),
-                teachers: Joi.array().items(Joi.string().trim()),
+                // teachers: Joi.array().items(Joi.string().trim()),
                 students: Joi.array().items(Joi.string().trim()),
                 status: Joi.number().min(0).max(3),
                 mostRecentDeadline: Joi.date(),
@@ -171,7 +171,7 @@ function validateUpdateCourse(course) {
                 enrollCode: Joi.string().trim(),
                 maxCapacity: Joi.number().min(1),
                 currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
-                teachers: Joi.array().items(Joi.string().trim()),
+                // teachers: Joi.array().items(Joi.string().trim()),
                 students: Joi.array().items(Joi.string().trim()),
                 quizzes: Joi.array().items(Joi.string().trim()),
                 posts: Joi.array().items(Joi.string().trim()),

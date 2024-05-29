@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const { v4: uuidv4 } = require('uuid');
-
+const materialModel = require('./Material');
+const coursePoll = require('./CoursePoll');
+const assignmentModel = require('./Assignment');
+const quizModel = require('./Quiz');
 /// Post Schema
 const postSchema = new mongoose.Schema({
     _id: {
@@ -36,16 +39,24 @@ const postSchema = new mongoose.Schema({
         default: "",
     },
     material: {
-        type: [String],
-        default: [],
+        type: Object,
+        default: () => ({}),
+        required: false,
     },
     quizId: {
-        type: String,
-        default: "",
+        type: Object,
+        default: () => ({}),
+        required: false,
     },
-    assignmentId: {
-        type: String,
-        default: "",
+    assignment: {
+        type: Object,
+        default: () => ({}),
+        required: false,
+    },
+    poll: {
+        type: Object,
+        default: () => ({}),
+        required: false,
     },
     alertUsers: {
         type: Boolean,
@@ -126,6 +137,11 @@ function validateCreatePost(post) {
                     }
                     return value;
                 }),
+                coursePoll: Joi.object(),
+                material: Joi.object(),
+                assignment: Joi.object(),
+                quiz: Joi.object(),
+
             }
         }
     }).prefs({ messages: { 'likes.invalid': 'Likes cannot contain entries from dislikes', 'dislikes.invalid': 'Dislikes cannot contain entries from likes' } });
@@ -176,6 +192,11 @@ function validateUpdatePost(post) {
                     }
                     return value;
                 }),
+                coursePoll: coursePoll.validateUpdateCoursePoll,
+                material: materialModel.validateUpdateMaterial,
+                assignment: assignmentModel.validateUpdateAssignment,
+                quiz: quizModel.validateUpdateQuiz,
+
             }
         }
     }).prefs({ messages: { 'likes.invalid': 'Likes cannot contain entries from dislikes', 'dislikes.invalid': 'Dislikes cannot contain entries from likes' } });

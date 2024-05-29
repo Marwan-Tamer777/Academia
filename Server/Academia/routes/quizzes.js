@@ -23,7 +23,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     }
 
     // validate the request
-    const { error } = model.validateCreateQuiz(req.body);
+    const { error } = model.validateCreateQuiz(requestQuiz);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }

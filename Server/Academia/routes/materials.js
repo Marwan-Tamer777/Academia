@@ -24,7 +24,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     }
 
     // validate the request
-    const { error } = model.validateCreateMaterial(req.body);
+    const { error } = model.validateCreateMaterial(requestMaterial);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }

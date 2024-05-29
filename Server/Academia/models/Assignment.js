@@ -47,34 +47,34 @@ const assignmentModel = mongoose.model('Assignment', assignmentSchema);
 /// Validate Assignment
 function validateCreateAssignment(assignment) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            assignment: {
-                courseId: Joi.string().required(),
-                description: Joi.string().required(),
-                closeOn: Joi.date().required(),
-                duration: Joi.number().required(),
-                numOfAttempts: Joi.number().required(),
-            }
-        }
+        // actor: {
+        //     name: Joi.string().trim().min(1).required(),
+        //     id: Joi.string().trim().min(1).required(),
+        // },
+        // verb: {
+        //     "id-enum": Joi.string().trim().min(1).required(),
+        //     display: {
+        //         "en-US": Joi.string().trim().min(1).required()
+        //     }
+        // },
+        // object: {
+        //     id: Joi.string().trim().min(1).required(),
+        //     objectType: Joi.string().trim().min(1).required(),
+        //     definition: {
+        //         name: {
+        //             "en-US": Joi.string().trim().min(1).required()
+        //         }
+        //     }
+        // },
+        // context: {
+        // assignment: {
+        courseId: Joi.string().required(),
+        description: Joi.string().required(),
+        closeOn: Joi.date().required(),
+        duration: Joi.number().required(),
+        numOfAttempts: Joi.number().required(),
+        // }
+        // }
 
     });
 

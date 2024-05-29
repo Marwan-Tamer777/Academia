@@ -56,7 +56,8 @@ const quizSchema = new mongoose.Schema({
         required: true,
     },
 
-}, {    _id: false,
+}, {
+    _id: false,
 
     timestamps: {
         currentTime: () => new Date().toISOString(), // Use ISO 8601 format for timestamps
@@ -72,39 +73,16 @@ const quizModel = mongoose.model('Quiz', quizSchema);
 /// Quiz Validation
 function validateCreateQuiz(quiz) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            quiz: {
-                courseId: Joi.string().required(),
-                quizName: Joi.string().min(1).max(100).required(),
-                questions: Joi.array().items(Joi.string()),
-                numOfRetries: Joi.number().required(),
-                duration: Joi.string().required(),
-                startDate: Joi.string().required(),
-                endDate: Joi.string().required(),
-                showGrade: Joi.boolean().required(),
-                showWrongAnswers: Joi.boolean().required(),
-                showCorrectAnswers: Joi.boolean().required(),
-            }
-        }
+        courseId: Joi.string().required(),
+        quizName: Joi.string().min(1).max(100).required(),
+        questions: Joi.array().items(Joi.string()),
+        numOfRetries: Joi.number().required(),
+        duration: Joi.string().required(),
+        startDate: Joi.string().required(),
+        endDate: Joi.string().required(),
+        showGrade: Joi.boolean().required(),
+        showWrongAnswers: Joi.boolean().required(),
+        showCorrectAnswers: Joi.boolean().required(),
     });
     return schema.validate(quiz);
 }

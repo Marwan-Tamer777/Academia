@@ -43,7 +43,8 @@ const materialSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
-}, {    _id: false,
+}, {
+    _id: false,
 
     timestamps: {
         currentTime: () => new Date().toISOString(), // Use ISO 8601 format for timestamps
@@ -59,36 +60,15 @@ const materialModel = mongoose.model('Material', materialSchema);
 /// Material Validation
 function validateCreateMaterial(material) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            material: {
-                id: Joi.string(),
-                courseId: Joi.string().required(),
-                materialName: Joi.string().min(1).max(100).required(),
-                materialTypeCode: Joi.number().required(),
-                description: Joi.string().min(1).required(),
-                link: Joi.string().min(1).required(),
-                tags: Joi.array().items(Joi.string()),
-            }
-        }
+
+        id: Joi.string(),
+        courseId: Joi.string().required(),
+        materialName: Joi.string().min(1).max(100).required(),
+        materialTypeCode: Joi.number().required(),
+        description: Joi.string().min(1).required(),
+        link: Joi.string().min(1).required(),
+        tags: Joi.array().items(Joi.string()),
+
     });
     return schema.validate(material);
 }

@@ -3,6 +3,10 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Post');
 const courseModel = require('../models/Course');
+const materialModel = require('../models/Material');
+const coursePollModel = require('../models/CoursePoll');
+const assignmentModel = require('../models/Assignment');
+const quizModel = require('../models/Quiz');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
 
@@ -26,15 +30,54 @@ router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (re
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
-
+    console.log("Passed validation");
     // check if course exists
-    let course = await courseModel.courseModel.findById( requestPost.courseId );
+    let course = await courseModel.courseModel.findById(requestPost.courseId);
     if (!course) {
         return res.status(400).json({ error: 'The course with the given ID was not found' });
     }
 
     // create post
     const post = new model.postModel(requestPost);
+
+    // check if post contains poll
+    if (requestPost.coursePoll && requestPost.coursePoll != {}) {
+        // validate the request 
+        const { error } = coursePollModel.validateCreateCoursePoll(requestPost.coursePoll);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+        // add poll to database
+        const coursePoll = await model.coursePoll.create(requestPost.coursePoll);
+    }
+    if (requestPost.material && requestPost.material != {}) {
+        // validate the request 
+        const { error } = materialModel.validateCreateMaterial(requestPost.material);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+        // add material to database
+        const material = await materialModel.materialModel.create(requestPost.material);
+    }
+    if (requestPost.assignment && requestPost.assignment != {}) {
+        // validate the request 
+        const { error } = assignmentModel.validateCreateAssignment(requestPost.assignment);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+        // add assignment to database
+        const assignment = await assignmentModel.assignmentModel.create(requestPost.assignment);
+    }
+    if (requestPost.quiz && requestPost.quiz != {}) {
+        // validate the request
+        const { error } = quizModel.validateCreateQuiz(requestPost.quiz);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
+        // add quiz to database
+        const quiz = await quizModel.quizModel.create(requestPost.quiz);
+    }
+
 
     // save post
     await post.save();
@@ -73,7 +116,7 @@ router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req
  */
 /// Get Post by ID
 router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
-    const post = await model.postModel.findById( req.params.id );
+    const post = await model.postModel.findById(req.params.id);
     if (!post) {
         return res.status(404).json({ error: 'The post with the given ID was not found' });
     }
@@ -102,7 +145,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
     }
 
     // update post
-    const post = await model.postModel.findByIdAndUpdate( req.params.id ,
+    const post = await model.postModel.findByIdAndUpdate(req.params.id,
         {
             content: requestPost.content,
             likes: requestPost.likes,
@@ -131,7 +174,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  */
 /// Delete Post
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const post = await model.postModel.findByIdAndDelete( req.params.id );
+    const post = await model.postModel.findByIdAndDelete(req.params.id);
     if (!post) {
         return res.status(404).json({ error: 'The post with the given ID was not found' });
     }
@@ -143,14 +186,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
         "Post Data",
         { post: post }
     ));
-})); 
+}));
 
 
 // search posts by description 
 router.get('/search', verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
     const posts = await model.postModel.find({ content: { $regex: req.query.content, $options: 'i' } });
     res.status(200).json(posts);
-})); 
+}));
 
 
 module.exports = router;

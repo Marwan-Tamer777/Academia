@@ -48,7 +48,7 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
         return res.status(400).json({ error: 'Assignment Data is Required.' });
     }
     // validate the request 
-    const { error } = model.validateCreateAssignment(req.body);
+    const { error } = model.validateCreateAssignment(req.body.context.assignment);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
