@@ -12,11 +12,6 @@ function verifyToken(req, res, next) {
         // verify the token
         const verified = jwt.verify(token, process.env.TOKEN_SECRET);
 
-        // check if the token is expired
-        if (Date.now() >= verified.exp * 1000) {
-            return res.status(401).json({ error: "Access Denied: Token Expired" });
-        }
-
         // check if id and isAdmin are in the token
         if (!verified.id || !verified.isAdmin) {
             return res.status(401).json({ error: "Access Denied: Invalid Token" });
@@ -25,7 +20,11 @@ function verifyToken(req, res, next) {
         req.user = verified;
     } catch (err) {
         console.log(err);
-        return res.status(400).json({ error: "Invalid Token" });
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ error: "Access Denied: Token Expired" });
+        } else {
+            return res.status(400).json({ error: `Invalid Token: ${err}` });
+        }
     }
     next();
 }
@@ -102,9 +101,9 @@ function verifyTokenAndAdmin(req, res, next) {
         }
     });
 }
-module.exports = { 
-    verifyToken, 
-    verifyTokenAndAuthorization, 
-    verifyTokenAndAdmin, 
+module.exports = {
+    verifyToken,
+    verifyTokenAndAuthorization,
+    verifyTokenAndAdmin,
     // verifyTokenAndAuthorizedTeacher 
 };

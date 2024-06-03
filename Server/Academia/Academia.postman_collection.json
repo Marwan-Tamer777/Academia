@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Guest\",\r\n        \"id\": \"null\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-user\",\r\n        \"display\": {\r\n            \"en-US\": \"create user\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"user data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"user\": {\r\n            \"name\": \"Admin 2\",\r\n            \"assignedId\": \"20200015\",\r\n            \"email\": \"test520@email.com\",\r\n            \"password\": \"1234567\"\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Guest\",\r\n        \"id\": \"null\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-user\",\r\n        \"display\": {\r\n            \"en-US\": \"create user\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"user data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"user\": {\r\n            \"name\": \"Student 1\",\r\n            \"assignedId\": \"20200005\",\r\n            \"email\": \"test05@email.com\",\r\n            \"password\": \"1234567\"\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,7 +55,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test2eeeee3e@email.com\",\r\n            // \"assignedId\":\"2020001\",\r\n            \"password\":\"1234567\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test2eeeee3e@email.com\",\r\n            \"assignedId\":\"2020001\",\r\n            \"password\":\"1234567\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,7 +320,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Assignments",
+					"name": "Get Assignments By ID",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -436,6 +436,449 @@
 							"path": [
 								"assignmentUserInfo",
 								"e57ecf57-ecc1-46d9-b8a4-f315baca61b2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assignment User Info",
+			"item": [
+				{
+					"name": "Get All AUI",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All AUI Paginated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo?pageSize=1&currentPage=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "1"
+								},
+								{
+									"key": "currentPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All AUI By Assignment ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/assignment/536ca296-2c88-4b8c-89ca-e9e1d221878b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"assignment",
+								"536ca296-2c88-4b8c-89ca-e9e1d221878b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All AUI By User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/user/4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"user",
+								"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All AUI By Course ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/course/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"course",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add AUI",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignmentUserInfo\":{\r\n            \"assignmentId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878b\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"m3rf4 eh lazmth .com\",\r\n            \"grade\":23,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100,\r\n            \"submissionDate\":\"2024-02-27T23:27:07.325+00:00\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update AUI",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n          \"assignmentUserInfo\":{\r\n            \"assignmentId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878b\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"lsa m3rf4 eh lazmth .com\",\r\n            \"grade\":45,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100,\r\n            \"submissionDate\":\"2024-02-27T23:27:07.325+00:00\"\r\n        }\r\n\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/5404d886-2e72-4b7d-8a91-f3b2dd359222",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"5404d886-2e72-4b7d-8a91-f3b2dd359222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete AUI",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/fa0d01c4-8a35-4667-b449-555177811b2e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"fa0d01c4-8a35-4667-b449-555177811b2e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course User Info",
+			"item": [
+				{
+					"name": "Get All CUI",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All CUI Paginated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo?pageSize=1&currentPage=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "1"
+								},
+								{
+									"key": "currentPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All CUI By Course ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo/course/41ee88f4-6690-4c90-880f-10daafb7db81",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo",
+								"course",
+								"41ee88f4-6690-4c90-880f-10daafb7db81"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All CUI By User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo/user/4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo",
+								"user",
+								"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add CUI",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"courseUserInfo\":{\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"roleId\":\"97d2ac22-2156-4a6d-9aed-6a6ac3675735\",\r\n            \"mostRecentGrade\":55,\r\n            \"latestSeenPostDate\":\"2024-02-27T23:27:07.325+00:00\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update CUI",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"courseUserInfo\": {\r\n            \"courseId\": \"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\": \"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"roleId\": \"97d2ac22-2156-4a6d-9aed-6a6ac3675735\",\r\n            \"mostRecentGrade\": 95,\r\n            \"latestSeenPostDate\": \"2024-02-27T23:27:07.325+00:00\"\r\n        \r\n    }\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo/6aa51208-403d-4337-a1cb-74d31fbc1cae",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo",
+								"6aa51208-403d-4337-a1cb-74d31fbc1cae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete CUI",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/courseUserInfo/6aa51208-403d-4337-a1cb-74d31fbc1cae",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courseUserInfo",
+								"6aa51208-403d-4337-a1cb-74d31fbc1cae"
 							]
 						}
 					},
@@ -648,7 +1091,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Information Security\",\r\n            \"courseCode\":\"ISd3ddte82\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Cyber Security\",\r\n            \"courseCode\":\"ITd3ddte82\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1897,7 +2340,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"postedBy\": \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\",\r\n            \"content\": \"Testing A New Post\",\r\n            \"comments\": [\r\n                \"5f6a29a2-d97a-4765-a0c0-5fad35c48bc2\"\r\n            ],\r\n            \"likes\": [\r\n                \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            ],\r\n            \"dislikes\": [\r\n                \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            ]\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"postedBy\": \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\",\r\n            \"content\": \"Testing A New Post\",\r\n            \"comments\": [\r\n                \"5f6a29a2-d97a-4765-a0c0-5fad35c48bc2\"\r\n            ],\r\n            \"likes\": [\r\n                \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            ],\r\n            \"dislikes\": [\r\n                \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            ],\r\n            // \"assignment\": {\r\n            //     \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            //     \"numOfAttempts\": 3,\r\n            //     \"duration\": 23,\r\n            //     \"closeOn\": \"2024-02-27T23:27:07.325+00:00\",\r\n            //     \"description\": \"new Assignment on Lecture 2\"\r\n            // },\r\n            // \"material\": {\r\n            //     \"courseId\": \"b2f3176a-0a6c-407f-aceb-e738a1535de6\",\r\n            //     \"materialName\": \"Information Systems\",\r\n            //     \"materialTypeCode\": 1,\r\n            //     \"description\": \"Adding Material From Post\",\r\n            //     \"link\": \"linkToTxt.com\"\r\n            // },\r\n            \"quiz\": {\r\n                \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n                \"quizName\": \"IS Exam From Post\",\r\n                \"questions\": [\r\n                    \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n                ],\r\n                \"numOfRetries\": 3,\r\n                \"duration\": \"PT4H35M59.14S\",\r\n                \"startDate\": \"2013-04-01T12:00:00Z\",\r\n                \"endDate\": \"2013-04-01T12:10:00Z\",\r\n                \"showGrade\": true,\r\n                \"showWrongAnswers\": true,\r\n                \"showCorrectAnswers\": true\r\n            }\r\n            // \"coursePoll\": {}\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1970,13 +2413,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/posts/0b979bfe-64f6-40eb-bc65-ac3a07f35e4b",
+							"raw": "{{baseUrl}}/posts/46411eba-6fff-4806-aeac-db83ac84fb1f",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"posts",
-								"0b979bfe-64f6-40eb-bc65-ac3a07f35e4b"
+								"46411eba-6fff-4806-aeac-db83ac84fb1f"
 							]
 						}
 					},
@@ -2527,7 +2970,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"role\": {\r\n            \"courseId\":\"2ebe7ce4-9464-404b-871f-d5723db3b058\",\r\n            \"roleName\":\"Teacher\",\r\n            \"roleCode\":1200,\r\n            \"level\":3,\r\n            \"description\":\"Teacher Can Modify Material, Quizzes, And Assignments\",\r\n            \"privileges\":[]\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"role\": {\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"roleName\":\"Teacher\",\r\n            \"roleCode\":1200,\r\n            \"level\":3,\r\n            \"description\":\"Teacher Can Modify Material, Quizzes, And Assignments\",\r\n            \"privileges\":[]\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

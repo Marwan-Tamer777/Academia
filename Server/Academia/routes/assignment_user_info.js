@@ -1,151 +1,202 @@
-// const express = require('express');
-// const asyncHandler = require('express-async-handler');
-// const router = express.Router();
-// const model = require('../models/AssignmentUserInfo');
-// const course = require('../models/Course');
-// const user = require('../models/User');
-// const assignment = require('../models/Assignment');
-// const functions = require('../utilities/functions');
-// const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const router = express.Router();
+const model = require('../models/AssignmentUserInfo');
+const course = require('../models/Course');
+const user = require('../models/User');
+const assignment = require('../models/Assignment');
+const functions = require('../utilities/functions');
+const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
 
 
-// /** 
-//     * @desc get all assignment user infos 
-//     * @route GET /api/assignment_user_infos 
-//     * @method GET 
-//     * @access Private
-// */
-// router.get('/', verifyToken, asyncHandler(async (req, res) => {
-//     const page = parseInt(req.query.page) || 1;
-//     const limit = parseInt(req.query.limit) || process.env.defaultPageSize;
-//     const startIndex = (page - 1) * limit;
-//     const endIndex = page * limit;
+/** 
+    * @desc get all assignment user infos 
+    * @route GET /api/assignment_user_infos 
+    * @method GET 
+    * @access Private
+*/
+router.get('/', verifyToken, asyncHandler(async (req, res) => {
+    const page = parseInt(req.query.currentPage) || process.env.defaultPageSize1;
+    const limit = parseInt(req.query.pageSize) || process.env.defaultPageAmount;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
 
-//     const assignmentUserInfos = await model.assignmentUserInfoModel.find().skip(startIndex).limit(limit);
-//     const total = await model.assignmentUserInfoModel.countDocuments();
+    const assignmentUserInfos = await model.assignmentUserInfoModel.find().skip(startIndex).limit(limit);
+    const total = await model.assignmentUserInfoModel.countDocuments();
 
-//     const pagination = {};
+    const pagination = {};
 
-//     if (endIndex < total) {
-//         pagination.next = {
-//             page: page + 1,
-//             limit: limit
-//         };
-//     }
+    if (endIndex < total) {
+        pagination.next = {
+            page: page + 1,
+            limit: limit
+        };
+    }
+    if (startIndex > 0) {
+        pagination.prev = {
+            page: page - 1,
+            limit: limit
+        };
+    }
 
-//     if (startIndex > 0) {
-//         pagination.prev = {
-//             page: page - 1,
-//             limit: limit
-//         };
-//     }
+    res.status(200).json({
+        pagination,
+        assignmentUserInfos
+    });
+}));
 
-//     res.status(200).json({
-//         pagination,
-//         assignmentUserInfos
-//     });
-// }));
+/** 
+ * @desc get an assignment user info by assignment id
+ * @route GET /api/assignment_user_infos/assignment/:id
+ * @method GET
+ * @access Private
+ */
+router.get('/assignment/:id', verifyToken, asyncHandler(async (req, res) => {
+    const assignmentUserInfos = await model.assignmentUserInfoModel.find({ assignmentId: req.params.id });
+    if (assignmentUserInfos) {
+        res.status(200).json(assignmentUserInfos);
+    } else {
+        res.status(404).json({ message: 'No Assignments Found' });
+    }
+}
+));
 
+/** 
+ * @desc get an assignment user info by Course id
+ * @route GET /api/assignment_user_infos/assignment/:id
+ * @method GET
+ * @access Private
+ */
+router.get('/course/:id', verifyToken, asyncHandler(async (req, res) => {
+    const assignmentUserInfos = await model.assignmentUserInfoModel.find({ courseId: req.params.id });
+    if (assignmentUserInfos) {
+        res.status(200).json(assignmentUserInfos);
+    } else {
+        res.status(404).json({ message: 'No Assignments Found' });
+    }
+}
+));
 
-// /** 
-//     * @desc get an assignment user info by id 
-//     * @route GET /api/assignment_user_infos/:id 
-//     * @method GET 
-//     * @access Private
-// */
-// router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
-//     const assignmentUserInfo = await model.assignmentUserInfoModel.findById(req.params.id);
-//     if (assignmentUserInfo) {
-//         res.status(200).json(assignmentUserInfo);
-//     } else {
-//         res.status(404).json({ message: 'Assignment User Info not found' });
-//     }
-// }));
+/** 
+ * @desc get an assignment user info by User id
+ * @route GET /api/assignment_user_infos/User/:id
+ * @method GET
+ * @access Private
+ */
+router.get('/user/:id', verifyToken, asyncHandler(async (req, res) => {
+    const assignmentUserInfos = await model.assignmentUserInfoModel.find({ userId: req.params.id });
+    if (assignmentUserInfos) {
+        res.status(200).json(assignmentUserInfos);
+    } else {
+        res.status(404).json({ message: 'No Assignments Found' });
+    }
+}
+));
 
-
-// /** 
-//     * @desc create an assignment user info 
-//     * @route POST /api/assignment_user_infos 
-//     * @method POST 
-//     * @access Private
-// */
-// router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-//     // validate the assignment user info exists 
-//     const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
-//     if (!requestAssignmentUserInfo) {
-//         return res.status(400).json({ message: 'Assignment User Info not found' });
-//     }
-//     // validate the user exists 
-//     const userExists = await user.userModel.findById(requestAssignmentUserInfo.userId);
-//     if (!userExists) {
-//         return res.status(400).json({ message: 'User not found' });
-//     }
-//     // validate the assignment exists
-//     const assignmentExists = await assignment.assignmentModel.findById(requestAssignmentUserInfo.assignmentId);
-//     if (!assignmentExists) {
-//         return res.status(400).json({ message: 'Assignment not found' });
-//     }
-//     // validate the request 
-//     const { error } = model.validateCreateAssignmentUserInfo(req.body);
-//     if (error) {
-//         return res.status(400).json({ error: error.details[0].message });
-//     }
-//     // create assignment user info 
-//     const assignmentUserInfo = await model.assignmentUserInfoModel.create(requestAssignmentUserInfo);
-//     res.status(201).json(functions.responseBodyJSON(
-//         201,
-//         req.body.actor.id,
-//         model.createAssignmentUserInfoVerb,
-//         req.body.object.objectType,
-//         "Assignment User Info Data",
-//         { assignmentUserInfo: assignmentUserInfo },
-//     ));
-// }));
-
-
-// /** 
-//     * @desc update an assignment user info 
-//     * @route PUT /api/assignment_user_infos/:id 
-//     * @method PUT 
-//     * @access Private
-// */
-// router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-//     // validate the course exists 
-//     const isCourse = await course.courseModel.findById(req.body.courseId);
-//     if (!isCourse) {
-//         return res.status(400).json({ message: 'Course not found' });
-//     }
-//     // validate the user exists 
-//     const isUser = await user.userModel.findById(req.body.userId);
-//     if (!isUser) {
-//         return res.status(400).json({ message: 'User not found' });
-//     }
-//     // validate the request 
-//     const { error } = model.validateUpdateAssignmentUserInfo(req.body);
-//     if (error) {
-//         return res.status(400).json({ error: error.details[0].message });
-//     }
-//     // update assignment user info 
-//     const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//     res.status(200).json(assignmentUserInfo);
-// }));
+/** 
+    * @desc get an assignment user info by id 
+    * @route GET /api/assignment_user_infos/:id 
+    * @method GET 
+    * @access Private
+*/
+router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
+    const assignmentUserInfo = await model.assignmentUserInfoModel.findById(req.params.id);
+    if (assignmentUserInfo) {
+        res.status(200).json(assignmentUserInfo);
+    } else {
+        res.status(404).json({ message: 'Assignment User Info not found' });
+    }
+}));
 
 
-// /** 
-//     * @desc delete an assignment user info 
-//     * @route DELETE /api/assignment_user_infos/:id 
-//     * @method DELETE 
-//     * @access Private
-// */
-// router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-//     const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndDelete(req.params.id);
-//     if (assignmentUserInfo) {
-//         res.status(200).json(assignmentUserInfo);
-//     } else {
-//         res.status(404).json({ message: 'Assignment User Info not found' });
-//     }
-// }));
+/** 
+    * @desc create an assignment user info 
+    * @route POST /api/assignment_user_infos 
+    * @method POST 
+    * @access Private
+*/
+router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the assignment user info exists 
+    const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
+    if (!requestAssignmentUserInfo) {
+        return res.status(400).json({ message: 'Assignment User Info not found' });
+    }
+    // validate the user exists 
+    const userExists = await user.userModel.findById(requestAssignmentUserInfo.userId);
+    if (!userExists) {
+        return res.status(400).json({ message: 'User not found' });
+    }
+    // validate the assignment exists
+    const assignmentExists = await assignment.assignmentModel.findById(requestAssignmentUserInfo.assignmentId);
+    if (!assignmentExists) {
+        return res.status(400).json({ message: 'Assignment not found' });
+    }
+    // validate the request 
+    const { error } = model.validateCreateAssignmentUserInfo(requestAssignmentUserInfo);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    // create assignment user info 
+    const assignmentUserInfo = await model.assignmentUserInfoModel.create(requestAssignmentUserInfo);
+    res.status(201).json(functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.createAssignmentUserInfoVerb,
+        req.body.object.objectType,
+        "Assignment User Info Data",
+        { assignmentUserInfo: assignmentUserInfo },
+    ));
+}));
 
 
-// module.exports = router;
+/** 
+    * @desc update an assignment user info 
+    * @route PUT /api/assignment_user_infos/:id 
+    * @method PUT 
+    * @access Private
+*/
+router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
+    if (!requestAssignmentUserInfo) {
+        return res.status(400).json({ message: 'Assignment User Info not found' });
+    }
+
+    // validate the course exists 
+    const isCourse = await course.courseModel.findById(requestAssignmentUserInfo.courseId);
+    if (!isCourse) {
+        return res.status(400).json({ message: 'Course not found' });
+    }
+    // validate the user exists 
+    const isUser = await user.userModel.findById(requestAssignmentUserInfo.userId);
+    if (!isUser) {
+        return res.status(400).json({ message: 'User not found' });
+    }
+    // validate the request 
+    const { error } = model.validateUpdateAssignmentUserInfo(requestAssignmentUserInfo);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    // update assignment user info 
+    const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndUpdate(req.params.id, requestAssignmentUserInfo, { new: true });
+    res.status(200).json(assignmentUserInfo);
+}));
+
+
+/** 
+    * @desc delete an assignment user info 
+    * @route DELETE /api/assignment_user_infos/:id 
+    * @method DELETE 
+    * @access Private
+*/
+router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndDelete(req.params.id);
+    if (assignmentUserInfo) {
+        res.status(200).json(assignmentUserInfo);
+    } else {
+        res.status(404).json({ message: 'Assignment User Info not found' });
+    }
+}));
+
+
+module.exports = router;
 
