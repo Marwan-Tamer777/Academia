@@ -59,10 +59,9 @@ const courseSchema = new mongoose.Schema({
         default: [],
     },
     status: {
-        type: Number,
-        min: 0,
-        max: 3,
-        default: 0,
+        type: String,
+        enum: ['Inactive', 'Active', 'Deleted', 'Archived'],
+        default: 'Active'
     },
     mostRecentDeadline: {
         type: Date,
@@ -100,117 +99,50 @@ const courseModel = mongoose.model('Course', courseSchema);
 /// Course Validation
 function validateCreateCourse(course) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            course: {
-                name: Joi.string().trim().max(200).required(),
-                courseCode: Joi.string().trim().required(),
-                enrollCode: Joi.string().trim().required(),
-                programName: Joi.string().trim().required(),
-                maxCapacity: Joi.number().min(1),
-                currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
-                people: Joi.array().items(Joi.string().trim()),
-                students: Joi.array().items(Joi.string().trim()),
-                quizzes: Joi.array().items(Joi.string().trim()),
-                posts: Joi.array().items(Joi.string().trim()),
-                materials: Joi.array().items(Joi.string().trim()),
-                roles: Joi.array().items(Joi.string().trim()),
-                // teachers: Joi.array().items(Joi.string().trim()),
-                students: Joi.array().items(Joi.string().trim()),
-                status: Joi.number().min(0).max(3),
-                mostRecentDeadline: Joi.date(),
-            },
-        },
+        name: Joi.string().trim().max(200).required(),
+        courseCode: Joi.string().trim().required(),
+        enrollCode: Joi.string().trim().required(),
+        programName: Joi.string().trim().required(),
+        maxCapacity: Joi.number().min(1),
+        currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
+        people: Joi.array().items(Joi.string().trim()),
+        students: Joi.array().items(Joi.string().trim()),
+        quizzes: Joi.array().items(Joi.string().trim()),
+        posts: Joi.array().items(Joi.string().trim()),
+        materials: Joi.array().items(Joi.string().trim()),
+        roles: Joi.array().items(Joi.string().trim()),
+        // teachers: Joi.array().items(Joi.string().trim()),
+        students: Joi.array().items(Joi.string().trim()),
+        status: Joi.string().valid('Inactive', 'Active', 'Deleted', 'Archived'),
+        mostRecentDeadline: Joi.date(),
     });
     return schema.validate(course);
 }
 
 function validateUpdateCourse(course) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            course: {
-                name: Joi.string().trim().max(200),
-                courseCode: Joi.string().trim(),
-                enrollCode: Joi.string().trim(),
-                maxCapacity: Joi.number().min(1),
-                currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
-                // teachers: Joi.array().items(Joi.string().trim()),
-                students: Joi.array().items(Joi.string().trim()),
-                quizzes: Joi.array().items(Joi.string().trim()),
-                posts: Joi.array().items(Joi.string().trim()),
-                materials: Joi.array().items(Joi.string().trim()),
-                roles: Joi.array().items(Joi.string().trim()),
-            }
-
-        },
+        name: Joi.string().trim().max(200),
+        courseCode: Joi.string().trim(),
+        enrollCode: Joi.string().trim(),
+        maxCapacity: Joi.number().min(1),
+        currentCapacity: Joi.number().min(0).max(Joi.ref('maxCapacity')),
+        // teachers: Joi.array().items(Joi.string().trim()),
+        status: Joi.string().valid('Inactive', 'Active', 'Deleted', 'Archived'),
+        students: Joi.array().items(Joi.string().trim()),
+        quizzes: Joi.array().items(Joi.string().trim()),
+        posts: Joi.array().items(Joi.string().trim()),
+        materials: Joi.array().items(Joi.string().trim()),
+        roles: Joi.array().items(Joi.string().trim()),
     });
     return schema.validate(course);
 }
 function validateEnrollCourse(course) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
+        course: {
+            enrollCode: Joi.string().trim().required(),
+        },
+        student: {
             id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            course: {
-                enrollCode: Joi.string().trim().required(),
-            },
-            student: {
-                id: Joi.string().trim().min(1).required(),
-            },
         },
     });
     return schema.validate(course);

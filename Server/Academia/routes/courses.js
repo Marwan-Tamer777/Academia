@@ -60,7 +60,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     }
 
     // validate the request
-    const { error } = model.validateCreateCourse(req.body);
+    const { error } = model.validateCreateCourse(requestCourse);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
@@ -97,7 +97,7 @@ router.put("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     }
 
     // validate the request
-    const { error } = model.validateUpdateCourse(req.body);
+    const { error } = model.validateUpdateCourse(requestCourse);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
@@ -260,7 +260,7 @@ router.post("/enroll/:id", asyncHandler(async (req, res) => {
         return res.status(400).json({ error: 'Student Data is Required.' });
     }
     // validate the request
-    const { error } = model.validateEnrollCourse(req.body);
+    const { error } = model.validateEnrollCourse(req.body.context);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
@@ -315,7 +315,7 @@ router.post("/unenroll/:id", asyncHandler(async (req, res) => {
         return res.status(400).json({ error: 'Student Data is Required.' });
     }
     // validate the request
-    const { error } = model.validateEnrollCourse(req.body);
+    const { error } = model.validateEnrollCourse(req.body.context);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
