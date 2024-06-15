@@ -27,6 +27,7 @@ const ticketSchema = new mongoose.Schema({
     status: {
         type: String,
         required: true,
+        enum: ['Pending','Open', 'In Progress', 'Resolved', 'Closed'],
         trim: true,
     },
     adminResponses: {
@@ -45,6 +46,7 @@ const ticketSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
+        enum: ['Low', 'Medium', 'High'],
     },
 }, {
     _id: false,
