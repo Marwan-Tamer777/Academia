@@ -124,6 +124,7 @@ function validateRegisterUser(user) {
                 courses: Joi.array().items(Joi.string().trim()),
                 contacts: Joi.array().items(Joi.string().trim()),
                 description: Joi.string().trim(),
+                isAdmin: Joi.boolean(),
                 title: Joi.string().trim(),
                 department: Joi.string().trim().min(1),
             }
@@ -200,69 +201,63 @@ function validateUpdateUser(user) {
         }
     });
     return schema.validate(user);
-} 
+}
 
 function validateResetPassword(user) {
     const schema = Joi.object({
-        actor: {
-            name: Joi.string().trim().min(1).required(),
-            id: Joi.string().trim().min(1).required(),
-        },
-        verb: {
-            "id-enum": Joi.string().trim().min(1).required(),
-            display: {
-                "en-US": Joi.string().trim().min(1).required()
-            }
-        },
-        object: {
-            id: Joi.string().trim().min(1).required(),
-            objectType: Joi.string().trim().min(1).required(),
-            definition: {
-                name: {
-                    "en-US": Joi.string().trim().min(1).required()
-                }
-            }
-        },
-        context: {
-            user: {
-                email: Joi.string().trim().min(7).max(100),
-                password: Joi.string().trim().min(7).required(),
-                newPassword: Joi.string().trim().min(7).required(),
-            }
-        }
+        email: Joi.string().trim().min(7).max(100),
+        password: Joi.string().trim().min(7).required(),
+        newPassword: Joi.string().trim().min(7).required(),
     });
     return schema.validate(user);
 }
 
 /// User Verbs
 const registerUserVerb = {
-    id: "user-registered",
+    "id-enum": "user-registered",
     display: {
         "en-US": "User registered"
     }
 }
 
 const loginUserVerb = {
-    id: "user-logged-in",
+    "id-enum": "user-logged-in",
     display: {
         "en-US": "User logged in"
     }
 }
 
 const updateUserVerb = {
-    id: "user-updated",
+    "id-enum": "user-updated",
     display: {
         "en-US": "User updated"
     }
 }
 
 const deleteUserVerb = {
-    id: "user-deleted",
+    "id-enum": "user-deleted",
     display: {
         "en-US": "User deleted"
     }
 }
 
+const resetPasswordVerb = {
+    "id-enum": "user-reset-password",
+    display: {
+        "en-US": "User reset password"
+    }
+}
 
 
-module.exports = { userModel, validateRegisterUser, validateLoginUser, validateUpdateUser, validateResetPassword, registerUserVerb, loginUserVerb, updateUserVerb, deleteUserVerb }
+module.exports = {
+    userModel,
+    validateRegisterUser,
+    validateLoginUser,
+    validateUpdateUser,
+    validateResetPassword,
+    registerUserVerb,
+    loginUserVerb,
+    updateUserVerb,
+    deleteUserVerb,
+    resetPasswordVerb
+}

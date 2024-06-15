@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
+const statementModel = require('../models/Statement');
 const model = require('../models/Tag');
 const verifyToken = require('../middlewares/verifyToken');
 
@@ -12,6 +13,16 @@ const verifyToken = require('../middlewares/verifyToken');
  */
 /// Create Tag
 router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request data
     const requestTag = req.body.context.tag;
     if (!requestTag) {
@@ -52,7 +63,7 @@ router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) =
  */
 /// Get Tag by ID
 router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const tag = await model.tagModel.findById( req.params.id );
+    const tag = await model.tagModel.findById(req.params.id);
     if (!tag) {
         return res.status(404).json({ error: 'The tag with the given ID was not found' });
     }
@@ -67,13 +78,23 @@ router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Update Tag
 router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request
     const { error } = model.validateUpdateTag(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
     // update tag
-    const tag = await model.tagModel.findByIdAndUpdate( req.params.id , {
+    const tag = await model.tagModel.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
         description: req.body.description
     }, { new: true });
@@ -91,7 +112,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
  */
 /// Delete Tag
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const tag = await model.tagModel.findByIdAndDelete( req.params.id );
+    const tag = await model.tagModel.findByIdAndDelete(req.params.id);
     if (!tag) {
         return res.status(404).json({ error: 'The tag with the given ID was not found' });
     }

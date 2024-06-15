@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/CourseRoles');
+const statementModel = require('../models/Statement');
 const course = require('../models/Course');
 const functions = require('../utilities/functions');
 const verifyToken = require('../middlewares/verifyToken');
@@ -41,6 +42,15 @@ router.get('/:id', verifyToken.verifyToken, asyncHandler(async (req, res) => {
  * @access Private
  */
 router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the request 
     const courseRoleRequest = req.body.context.courseRole;
@@ -59,13 +69,14 @@ router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     }
     // create course role 
     const courseRole = await model.courseRolesModel.create(courseRoleRequest);
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createCourseRolesVerb,
         req.body.object.objectType,
         "Course Role Data",
-        { courseRole: courseRole }
+        { courseRole: courseRole },
+        courseRole._id
     ));
 }));
 
@@ -77,6 +88,16 @@ router.post('/', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
  * @access Private
  */
 router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request 
     const courseRoleRequest = req.body.context.courseRole;
     if (!courseRoleRequest) {
@@ -97,13 +118,14 @@ router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     // update course role 
     const courseRole = await model.courseRolesModel.findByIdAndUpdate(req.params.id, courseRoleRequest, { new: true });
     if (courseRole) {
-        res.status(200).json(functions.responseBodyJSON(
+        await res.status(200).json(await functions.responseBodyJSON(
             200,
             req.body.actor.id,
             model.updateCourseRolesVerb,
             req.body.object.objectType,
             "Course Role Data",
-            { courseRole: courseRole }
+            { courseRole: courseRole },
+            courseRole._id
         ));
     } else {
         res.status(404).json({ message: 'Course Role not found' });
@@ -120,13 +142,14 @@ router.put('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
 router.delete('/:id', verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const courseRole = await model.courseRolesModel.findByIdAndDelete(req.params.id);
     if (courseRole) {
-        res.status(200).json(functions.responseBodyJSON(
+        await res.status(200).json(await functions.responseBodyJSON(
             200,
             req.body.actor.id,
             model.deleteCourseRolesVerb,
             req.body.object.objectType,
             "Course Role Data",
-            { courseRole: courseRole }
+            { courseRole: courseRole },
+            courseRole._id
         ));
     } else {
         res.status(404).json({ message: 'Course Role not found' });

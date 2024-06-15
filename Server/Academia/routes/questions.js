@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Question');
 const quizModel = require('../models/Quiz');
+const statementModel = require('../models/Statement');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
 
@@ -14,6 +15,15 @@ const functions = require('../utilities/functions');
  */
 /// Create Question
 router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     //  validate the question data
     const requestQuestion = req.body.context.question;
@@ -43,13 +53,14 @@ router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (re
     quiz.questions.push(question.questionId);
     await quiz.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createQuestionVerb,
         req.body.object.objectType,
         "Question Data",
         { question: question },
+        question._id
     ));
 }));
 
@@ -73,7 +84,7 @@ router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req
  */
 /// Get Question by ID
 router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
-    const quiz_question = await model.questionModel.findById( req.params.id );
+    const quiz_question = await model.questionModel.findById(req.params.id);
     if (!quiz_question) {
         return res.status(404).json({ error: 'The quiz question with the given ID was not found' });
     }
@@ -88,6 +99,15 @@ router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  */
 /// Update Question
 router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     //  validate the question data
     const requestQuestion = req.body.context.question;
@@ -101,7 +121,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
         return res.status(400).json({ error: error.details[0].message });
     }
     // update quiz question
-    const question = await model.questionModel.findByIdAndUpdate(req.params.id , {
+    const question = await model.questionModel.findByIdAndUpdate(req.params.id, {
         question: requestQuestion.question,
         answer: requestQuestion.answer,
         options: requestQuestion.options,
@@ -111,13 +131,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
     if (!question) {
         return res.status(404).json({ error: 'The quiz question with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateQuestionVerb,
         req.body.object.objectType,
         "Question Data",
-        { question: question }
+        { question: question },
+        question._id
     ));
 }));
 
@@ -129,17 +150,18 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  */
 /// Delete Question
 router.delete(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
-    const quiz_question = await model.questionModel.findByIdAndDelete( req.params.id );
+    const quiz_question = await model.questionModel.findByIdAndDelete(req.params.id);
     if (!quiz_question) {
         return res.status(404).json({ error: 'The quiz question with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteQuestionVerb,
         req.body.object.objectType,
         "Question Data",
-        { question: quiz_question }
+        { question: quiz_question },
+        quiz_question._id
     ));
 }));
 

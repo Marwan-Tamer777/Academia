@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/MaterialMap');
+const statementModel = require('../models/Statement');
 const course = require('../models/Course');
 const functions = require('../utilities/functions');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
@@ -42,6 +43,16 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request 
     const materialMapRequest = req.body.context.materialMap;
     if (!materialMapRequest) {
@@ -61,13 +72,14 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // create material map
     const materialMap = await model.materialMapModel.create(materialMapRequest);
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createMaterialMapVerb,
         req.body.object.objectType,
         "Material Map Data",
-        { materialMap: materialMap }
+        { materialMap: materialMap },
+        materialMap._id
     ));
 }));
 
@@ -79,6 +91,16 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request 
     const materialMapRequest = req.body.context.materialMap;
     if (!materialMapRequest) {
@@ -92,13 +114,14 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // update material app 
     const materialMap = await model.materialMapModel.findByIdAndUpdate(req.params.id, materialMapRequest, { new: true });
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateMaterialMapVerb,
         req.body.object.objectType,
         "Material App Data",
-        { materialMap: materialMap }
+        { materialMap: materialMap },
+        materialMap._id
     ));
 }));
 
@@ -113,13 +136,14 @@ router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // delete material app 
     const materialMap = await model.materialMapModel.findByIdAndDelete(req.params.id);
     if (materialMap) {
-        res.status(200).json(functions.responseBodyJSON(
+        await res.status(200).json(await functions.responseBodyJSON(
             200,
             req.body.actor.id,
             model.deleteMaterialMapVerb,
             req.body.object.objectType,
             "Material Map Data",
-            { materialMap: materialMap }
+            { materialMap: materialMap },
+            materialMap._id
         ));
     } else {
         res.status(404).json({ message: 'Material Map not found' });

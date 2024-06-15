@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Quiz');
+const statementModel = require('../models/Statement');
 const courseModel = require('../models/Course');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
@@ -15,6 +16,15 @@ const { func } = require('joi');
  */
 /// Create Quiz
 router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the quiz data
     const requestQuiz = req.body.context.quiz;
@@ -41,16 +51,17 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     await quiz.save();
 
     // add quiz to course
-    course.quizzes.push(quiz.quizId);
+    course.quizzes.push(quiz._id);
     await course.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createQuizVerb,
         req.body.object.objectType,
         "Quiz Data",
         { quiz: quiz },
+        quiz._id
     ));
 }));
 
@@ -110,6 +121,15 @@ router.get(`/course/:courseId`, verifyToken.verifyToken, asyncHandler(async (req
  */
 /// Update Quiz
 router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the quiz data
     const requestQuiz = req.body.context.quiz;
@@ -128,13 +148,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
 
     // save quiz
     await quiz.save();
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateQuizVerb,
         req.body.object.objectType,
         "Quiz Data",
-        { quiz: quiz }
+        { quiz: quiz },
+        quiz._id
     ));
 }));
 
@@ -149,13 +170,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
     if (!quiz) {
         return res.status(404).json({ error: 'The quiz with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteQuizVerb,
         req.body.object.objectType,
         "Quiz Data",
-        { quiz: quiz }
+        { quiz: quiz },
+        quiz._id
     ));
 }));
 

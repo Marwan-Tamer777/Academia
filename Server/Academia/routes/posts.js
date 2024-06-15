@@ -6,6 +6,7 @@ const courseModel = require('../models/Course');
 const materialModel = require('../models/Material');
 const coursePollModel = require('../models/CoursePoll');
 const assignmentModel = require('../models/Assignment');
+const statementModel = require('../models/Statement');
 const quizModel = require('../models/Quiz');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
@@ -18,6 +19,15 @@ const functions = require('../utilities/functions');
  */
 /// Create Post
 router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the post
     const requestPost = req.body.context.post;
@@ -86,13 +96,14 @@ router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (re
     course.posts.push(post.id);
     await course.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createPostVerb,
         req.body.object.objectType,
         "Post Data",
         { post: post },
+        post._id
     ));
 }));
 
@@ -131,6 +142,15 @@ router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  */
 /// Update Post
 router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     //  validate the post data
     const requestPost = req.body.context.post;
@@ -156,13 +176,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
 
     // save post
     await post.save();
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updatePostVerb,
         req.body.object.objectType,
         "Post Data",
         { post: post },
+        post._id
     ));
 }));
 
@@ -178,13 +199,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
     if (!post) {
         return res.status(404).json({ error: 'The post with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deletePostVerb,
         req.body.object.objectType,
         "Post Data",
-        { post: post }
+        { post: post },
+        post._id
     ));
 }));
 

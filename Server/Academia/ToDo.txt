@@ -21,15 +21,15 @@
 
 
 New TODO
-1- Reset Password Endpoint
+//Done     1- Reset Password Endpoint
 2- Grid FS (Data Storage)
-3- Add To Course Enum "Status" //Done 
-    1- Inactive Created Course But Not Available
-    2- Active Course Is Shown Default
-    3- Deleted Course Is Not Shown For Anyone
-    4- Archived Course is Read Only
-4- Reuse Material EndPoint Takes Old Course ID And New Course ID and takes post object and post it in new course as new post
-5- Add Statement Model Which Logs The Request and Responses
+//Done     3- Add To Course Enum "Status" 
+                1- Inactive Created Course But Not Available
+                2- Active Course Is Shown Default
+                3- Deleted Course Is Not Shown For Anyone
+                4- Archived Course is Read Only
+//Done     4- Reuse Material EndPoint Takes Old Course ID And New Course ID and takes post object and post it in new course as new post
+//Done     5- Add Statement Model Which Logs The Request and Responses
 6- Add Feedback and Questions 
-7- Change Action In Request/Response 
-8- Add Title ,AlertImportantPost and Allow Comments variables To Post
+//Done     7- Change Action to Verb In Request/Response 
+//Done     8- Add Title ,AlertImportantPost and Allow Comments variables To Post

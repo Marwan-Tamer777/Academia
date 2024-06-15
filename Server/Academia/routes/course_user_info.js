@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/CourseUserInfo');
 const course = require('../models/Course');
+const statementModel = require('../models/Statement');
 const role = require('../models/Role');
 const functions = require('../utilities/functions');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
@@ -102,6 +103,16 @@ router.get('/course/:id', verifyToken, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the request
     const courseUserInfoRequest = req.body.context.courseUserInfo;
     if (!courseUserInfoRequest) {
@@ -131,13 +142,14 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // create course User info
     const courseUserInfo = await model.courseUserInfo.create(courseUserInfoRequest);
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createCourseUserInfoVerb,
         req.body.object.objectType,
         "Course User Info Data",
-        { courseUserInfo: courseUserInfo }
+        { courseUserInfo: courseUserInfo },
+        courseUserInfo._id
     ));
 }));
 
@@ -149,6 +161,16 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.put('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the courseUserInfoRequest exists
     const courseUserInfoRequest = req.body.context.courseUserInfo;
     if (!courseUserInfoRequest) {
@@ -179,13 +201,14 @@ router.put('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res) =>
     }
     // update course User info
     const courseUserInfo = await model.courseUserInfo.findByIdAndUpdate(req.params.id, courseUserInfoRequest, { new: true, });
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateCourseUserInfoVerb,
         req.body.object.objectType,
         "Course User Info Data",
-        { courseUserInfo: courseUserInfo }
+        { courseUserInfo: courseUserInfo },
+        courseUserInfo._id
     ));
 }));
 
@@ -200,13 +223,14 @@ router.delete('/:id', verifyTokenAndAuthorization, asyncHandler(async (req, res)
     // delete course User info
     const courseUserInfo = await model.courseUserInfo.findByIdAndDelete(req.params.id);
     if (courseUserInfo) {
-        res.status(200).json(functions.responseBodyJSON(
+        await res.status(200).json(await functions.responseBodyJSON(
             200,
             req.body.actor.id,
             model.deleteCourseUserInfoVerb,
             req.body.object.objectType,
             "Course User Info Data",
-            { courseUserInfo: courseUserInfo }
+            { courseUserInfo: courseUserInfo },
+            courseUserInfo._id
         ));
     } else {
         res.status(404).json({ message: 'Course User Info not found' });

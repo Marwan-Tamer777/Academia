@@ -1,6 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
+const statementModel = require('../models/Statement');
 const model = require('../models/Role');
 const courseModel = require('../models/Course');
 const verifyToken = require('../middlewares/verifyToken');
@@ -14,6 +15,15 @@ const functions = require('../utilities/functions');
  */
 /// Create Role
 router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the role data
     const requestRole = req.body.context.role;
@@ -28,7 +38,7 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     }
 
     // check if course exists
-    let course = await courseModel.courseModel.findById( requestRole.courseId );
+    let course = await courseModel.courseModel.findById(requestRole.courseId);
     if (!course) {
         return res.status(400).json({ error: 'The course with the given ID was not found' });
     }
@@ -43,13 +53,14 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     course.roles.push(role.id);
     await course.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createRoleVerb,
         req.body.object.objectType,
         "Role Data",
         { role: role },
+        role._id
     ));
 }));
 
@@ -73,7 +84,7 @@ router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) =
  */
 /// Get Role by ID
 router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const role = await model.roleModel.findById( req.params.id );
+    const role = await model.roleModel.findById(req.params.id);
     if (!role) {
         return res.status(404).json({ error: 'The role with the given ID was not found' });
     }
@@ -88,6 +99,15 @@ router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Update Role
 router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the role data
     const requestRole = req.body.context.role;
@@ -102,7 +122,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     }
 
     // update role
-    const role = await model.roleModel.findByIdAndUpdate( req.params.id , {
+    const role = await model.roleModel.findByIdAndUpdate(req.params.id, {
         roleName: requestRole.roleName,
         roleCode: requestRole.roleCode,
         level: requestRole.level,
@@ -113,13 +133,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
         return res.status(404).json({ error: 'The role with the given ID was not found' });
     }
 
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateRoleVerb,
         req.body.object.objectType,
         "Role Data",
         { role: role },
+        role._id,
     ));
 }));
 
@@ -131,17 +152,18 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
  */
 /// Delete Role
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
-    const role = await model.roleModel.findByIdAndDelete( req.params.id );
+    const role = await model.roleModel.findByIdAndDelete(req.params.id);
     if (!role) {
         return res.status(404).json({ error: 'The role with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteRoleVerb,
         req.body.object.objectType,
         "Role Data",
         { role: role },
+        role._id
     ));
 }));
 

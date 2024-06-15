@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Comment');
+const statementModel = require('../models/Statement');
 const postModel = require('../models/Post');
 const functions = require('../utilities/functions');
 const verifyToken = require('../middlewares/verifyToken');
@@ -14,6 +15,16 @@ const verifyToken = require('../middlewares/verifyToken');
  */
 /// Create Comment
 router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     //  validate the comment data
     requestComment = req.body.context.comment;
     if (!requestComment) {
@@ -43,13 +54,14 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
 
     // Remove _id and password from response
     const { _id, password, ...commentData } = comment._doc;
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createCommentVerb,
         req.body.object.objectType,
         "Comment Data",
         { comment: commentData },
+        comment._id
     ));
 }));
 
@@ -88,6 +100,16 @@ router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Update Comment
 router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     //  validate the comment data
     requestComment = req.body.context.comment;
     if (!requestComment) {
@@ -108,13 +130,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
     if (!comment) {
         return res.status(404).json({ error: 'The comment with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateCommentVerb,
         req.body.object.objectType,
         "Comment Data",
-        { comment: comment }
+        { comment: comment },
+        comment._id
     ));
 }));
 
@@ -130,13 +153,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(asyn
     if (!comment) {
         return res.status(404).json({ error: 'The comment with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteCommentVerb,
         req.body.object.objectType,
         "Comment Data",
-        { comment: comment }
+        { comment: comment },
+        comment._id
     ));
 }));
 

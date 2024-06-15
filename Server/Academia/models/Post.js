@@ -31,6 +31,13 @@ const postSchema = new mongoose.Schema({
         type: Date,
         default: new Date(),
     },
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1,
+        default: "",
+    },
     content: {
         type: String,
         required: true,
@@ -69,6 +76,10 @@ const postSchema = new mongoose.Schema({
     comments: {
         type: [String],
         default: [],
+    },
+    allowComments: {
+        type: Boolean,
+        default: true,
     },
     likes: {
         type: [String],
@@ -117,8 +128,12 @@ function validateCreatePost(post) {
             post: {
                 courseId: Joi.string().required(),
                 postedBy: Joi.string().required(),
+                postNow: Joi.boolean().default(false),
+                alertUsers: Joi.boolean().default(false),
+                title: Joi.string().required().min(1),
                 content: Joi.string().required().min(1),
                 comments: Joi.array().items(Joi.string()),
+                allowComments: Joi.boolean().default(true),
                 likes: Joi.array().items(Joi.string()).custom((value, helpers) => {
                     // Ensure likes do not contain any entries from dislikes
                     const { dislikes } = post.context.post;
@@ -172,8 +187,12 @@ function validateUpdatePost(post) {
         },
         context: {
             post: {
+                title: Joi.string().required().min(1),
                 content: Joi.string().required().min(1),
+                postNow: Joi.boolean().default(false),
+                alertUsers: Joi.boolean().default(false),
                 comments: Joi.array().items(Joi.string()),
+                allowComments: Joi.boolean().default(true),
                 likes: Joi.array().items(Joi.string()).custom((value, helpers) => {
                     // Ensure likes do not contain any entries from dislikes
                     const { dislikes } = post.context.post;

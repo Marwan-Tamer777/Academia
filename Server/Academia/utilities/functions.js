@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-
+const Statement = require('../models/Statement');
 /// Function to convert a date to an ISO 8601 string
 function turnIntoISODuration(duration) {
     let durString = "P"
@@ -40,9 +40,10 @@ function turnIntoISODuration(duration) {
 }
 
 /// Function to return Response Body JSON
-function responseBodyJSON(status, requestedBy, verb, objectType,contextType, context) {
-    return {
-        id: uuidv4(),
+async function responseBodyJSON(status, requestedBy, verb, objectType, contextType, context, objectId) {
+    console.log(context);
+    const responseBody = {
+        // _id: uuidv4(),
         timestamp: new Date().toISOString(),
         statusCode: status,
         actor: {
@@ -50,14 +51,9 @@ function responseBodyJSON(status, requestedBy, verb, objectType,contextType, con
             id: "Server ID",
             requestBy: requestedBy,
         },
-        verb: {
-            "id-enum": verb.id,
-            display: {
-                "en-US": verb.display["en-US"]
-            }
-        },
+        verb: verb,
         object: {
-            id: context.id,
+            id: objectId,
             objectType: objectType,
             definition: {
                 name: {
@@ -67,6 +63,14 @@ function responseBodyJSON(status, requestedBy, verb, objectType,contextType, con
         },
         context: context,
     }
+    const { error } = Statement.validateCreateStatement(responseBody)
+    if (error) {
+        console.log("Statement Validation Error: ", error);
+        throw error
+    }
+    const statement =  new Statement.statementModel(responseBody);
+    await statement.save();
+    return statement
 }
 
 module.exports = {

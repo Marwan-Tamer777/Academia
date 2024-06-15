@@ -4,6 +4,7 @@ const router = express.Router();
 const model = require('../models/User');
 const bcrypt = require('bcryptjs'); // for hashing passwords
 const jwt = require('jsonwebtoken'); // for generating json web tokens
+const statementModel = require('../models/Statement');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
 
@@ -12,11 +13,22 @@ const functions = require('../utilities/functions');
  * @route POST /api/users/register
  * @method POST
  * @access Public
- */ 
+ */
 
 
 /// Register User
 router.post("/register", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the user exists
     const requestUser = req.body.context.user;
     if (!requestUser) {
         return res.status(400).json({ error: 'User data is required.' });
@@ -41,17 +53,18 @@ router.post("/register", verifyToken.verifyTokenAndAdmin, asyncHandler(async (re
 
     // save user
     await user.save();
-    
+
     //remove password from response
     const { password, ...data } = user._doc;
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.registerUserVerb,
         req.body.object.objectType,
         "User Data",
         { user: { token, ...data } },
+        user._id
     ));
 }));
 
@@ -65,6 +78,17 @@ router.post("/register", verifyToken.verifyTokenAndAdmin, asyncHandler(async (re
  */
 /// Login User
 router.post("/login", asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the user exists
     const requestUser = req.body.context.user;
     // check if user data is sent
     if (!requestUser) {
@@ -79,16 +103,16 @@ router.post("/login", asyncHandler(async (req, res) => {
 
 
     // check if user exists by email or id, one of them is enough 
-    let userEmailExists = await model.userModel.findOne({ email: requestUser.email }); 
-    let userIdExists = await model.userModel.findOne({ id: requestUser.id }); 
+    let userEmailExists = await model.userModel.findOne({ email: requestUser.email });
+    let userIdExists = await model.userModel.findOne({ id: requestUser.id });
 
-    if (!userEmailExists && !userIdExists) { 
+    if (!userEmailExists && !userIdExists) {
         return res.status(400).json({ error: 'User does not exist.' });
     } else if (userEmailExists) {
         user = userEmailExists;
     } else if (userIdExists) {
         user = userIdExists;
-    } else { 
+    } else {
         return res.status(400).json({ error: 'User data is invalid.' });
     }
 
@@ -106,15 +130,16 @@ router.post("/login", asyncHandler(async (req, res) => {
 
     //remove password from response
     const { password, ...data } = user._doc;
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.loginUserVerb,
         req.body.object.objectType,
         "User Data",
         { user: { token, ...data } },
+        user._id
     ));
-})); 
+}));
 
 
 /** 
@@ -122,25 +147,48 @@ router.post("/login", asyncHandler(async (req, res) => {
  * @route POST /api/users/reset-password
  * @method POST
  * @access Public
- */ 
+ */
 /// Reset Password 
-router.post("/reset-password", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.post("/reset-password/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the user data exists
     const requestUser = req.body.context.user;
     if (!requestUser) {
         return res.status(400).json({ error: 'User data is required.' });
     }
     // validate the request
-    const { error } = model.validateResetPassword(req.body);
+    const { error } = model.validateResetPassword(requestUser);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
+    }
+    // check if user model exists
+    let user = await model.userModel.findById(req.params.id);
+    if (!user) {
+        return res.status(400).json({ error: 'User does not exist.' });
+    }
+    // check if password is correct
+    const validPassword = await bcrypt.compare(requestUser.password, user.password);
+    if (!validPassword) {
+        return res.status(400).json({ error: 'Old Password Is Incorrect' });
     }
 
     // hash new password
     const salt = await bcrypt.genSalt(10);
-    requestUser.password = await bcrypt.hash(requestUser.password, salt);
+    requestUser.newPassword = await bcrypt.hash(requestUser.newPassword, salt);
 
     // update user
-    const updatedUser = await model.userModel.findByIdAndUpdate(req.params.id, requestUser, {
+    const updatedUser = await model.userModel.findByIdAndUpdate(req.params.id, {
+        password: requestUser.newPassword
+    }, {
         new: true // return the updated document
     }).select('-password');// remove password from response
     if (!updatedUser) {
@@ -149,13 +197,14 @@ router.post("/reset-password", verifyToken.verifyTokenAndAuthorization, asyncHan
 
     // save user
     await updatedUser.save();
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.resetPasswordVerb,
         req.body.object.objectType,
         "User Data",
         { user: updatedUser },
+        user._id
     ));
 }));
 

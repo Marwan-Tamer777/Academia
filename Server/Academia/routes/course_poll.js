@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/CoursePoll');
 const course = require('../models/Course');
+const statementModel = require('../models/Statement');
 const functions = require('../utilities/functions');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
 
@@ -42,6 +43,15 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @access Private 
  */
 router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the request 
     const coursePollRequest = req.body.context.coursePoll;
@@ -61,13 +71,14 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // create course poll 
     const coursePoll = await model.coursePoll.create(coursePollRequest);
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createCoursePollVerb,
         req.body.object.objectType,
         "Course Poll Data",
-        { coursePoll: coursePoll }
+        { coursePoll: coursePoll },
+        coursePoll._id
     ));
 }
 ));
@@ -80,6 +91,15 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the request 
     const coursePollRequest = req.body.context.coursePoll;
@@ -99,13 +119,14 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // update course poll 
     const coursePoll = await model.coursePoll.findByIdAndUpdate(req.params.id, coursePollRequest, { new: true, runValidators: true });
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateCoursePollVerb,
         req.body.object.objectType,
         "Course Poll Data",
-        { coursePoll: coursePoll }
+        { coursePoll: coursePoll },
+        coursePoll._id
     ));
 }));
 
@@ -120,7 +141,15 @@ router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // delete course poll 
     const coursePoll = await model.coursePoll.findByIdAndDelete(req.params.id);
     if (coursePoll) {
-        res.status(200).json(functions.responseBodyJSON(200, req.body.actor.id, model.deleteCoursePollVerb, req.body.object.objectType, "Course Poll Data", { coursePoll: coursePoll }));
+        await res.status(200).json(await functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.deleteCoursePollVerb,
+            req.body.object.objectType,
+            "Course Poll Data",
+            { coursePoll: coursePoll },
+            coursePoll._id
+        ));
     } else {
         res.status(404).json({ message: 'Course Poll not found' });
     }

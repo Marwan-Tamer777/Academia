@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const { v4: uuidv4 } = require('uuid');
+const { request } = require('express');
 
 /// Statement Schema
 const statementSchema = new mongoose.Schema({
@@ -9,29 +10,34 @@ const statementSchema = new mongoose.Schema({
         unique: true,
         default: uuidv4,
     },
+    timestamp: {
+        type: Date,
+        default: new Date().toISOString(),
+    },
+    statusCode: {
+        type: Number,
+        required: false,
+    },
     actor: {
-        type: String,
+        type: Object,
         required: true,
         trim: true,
     },
-    action: {
-        type: String,
+    verb: {
+        type: Object,
+        required: true,
+        trim: true,
+    },
+
+    object: {
+        type: Object,
         required: true,
         trim: true,
     },
     context: {
-        type: String,
+        type: Object,
         required: true,
         trim: true,
-    },
-    object : {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    timestamp: {
-        type: Date,
-        default: new Date().toISOString(),
     },
 }, {
     _id: false,
@@ -50,36 +56,58 @@ const statementModel = mongoose.model('Statement', statementSchema);
 /// Statement Validation
 function validateCreateStatement(statement) {
     const schema = Joi.object({
-        actor: {
-            type: Joi.string().required().trim(),
-        },
-        action: {
-            type: Joi.string().required().trim(),
-        },
-        context: {
-            type: Joi.string().required().trim(),
-        },
-        object: {
-            type: Joi.string().required().trim(),
-        },
+        timestamp: Joi.date().required(),
+        statusCode: Joi.number().required(),
+        actor: Joi.object({
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+            requestBy: Joi.string().trim().min(1).required(),
+        }).required(),
+        verb: Joi.object({
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: Joi.object({
+                "en-US": Joi.string().trim().min(1).required()
+            }).required(),
+        }).required(), object: Joi.object({
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: Joi.object({
+                name: Joi.object({
+                    "en-US": Joi.string().trim().min(1).required()
+                }).required()
+            }).required()
+        }).required(),
+        context: Joi.object().required(),
+
     });
     return schema.validate(statement);
 }
 
 function validateUpdateStatement(statement) {
     const schema = Joi.object({
-        actor: {
-            type: Joi.string().required().trim(),
-        },
-        action: {
-            type: Joi.string().required().trim(),
-        },
-        context: {
-            type: Joi.string().required().trim(),
-        },
-        object: {
-            type: Joi.string().required().trim(),
-        },
+        timestamp: Joi.date().required(),
+        statusCode: Joi.number().required(),
+        actor: Joi.object({
+            name: Joi.string().trim().min(1).required(),
+            id: Joi.string().trim().min(1).required(),
+            requestBy: Joi.string().trim().min(1).required(),
+        }).required(),
+        verb: Joi.object({
+            "id-enum": Joi.string().trim().min(1).required(),
+            display: Joi.object({
+                "en-US": Joi.string().trim().min(1).required()
+            }).required(),
+        }).required(), object: Joi.object({
+            id: Joi.string().trim().min(1).required(),
+            objectType: Joi.string().trim().min(1).required(),
+            definition: Joi.object({
+                name: Joi.object({
+                    "en-US": Joi.string().trim().min(1).required()
+                }).required()
+            }).required()
+        }).required(),
+        context: Joi.object().required(),
+
     });
     return schema.validate(statement);
 }

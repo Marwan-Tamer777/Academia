@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/User');
+const statementModel = require('../models/Statement');
 const bcrypt = require('bcryptjs'); // for hashing passwords
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
@@ -68,6 +69,17 @@ router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  */
 /// Update User
 router.put("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the user data from the request
     const requestUser = req.body.context.user;
     if (!requestUser) {
         return res.status(400).json({ error: 'User data is required.' });
@@ -94,13 +106,14 @@ router.put("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
 
     // save user
     await updatedUser.save();
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateUserVerb,
         req.body.object.objectType,
         "User Data",
         { user: updatedUser },
+        updatedUser._id
     ));
 }));
 
@@ -118,13 +131,14 @@ router.delete("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(asyn
     if (!user) {
         return res.status(404).json({ error: 'The user with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteUserVerb,
         req.body.object.objectType,
         "User Data",
         { user: user },
+        user._id
     ));
 }));
 

@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Privilege');
+const statementModel = require('../models/Statement');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
 
@@ -13,6 +14,15 @@ const functions = require('../utilities/functions');
  */
 /// Create Privilege
 router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // validate the privilege data
     const requestPrivilege = req.body.context.privilege;
@@ -32,13 +42,14 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     // save privilege
     await privilege.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createPrivilegeVerb,
         req.body.object.objectType,
         "Privilege Data",
-        { privilege: privilege }
+        { privilege: privilege },
+        privilege._id
     ));
 }));
 
@@ -77,6 +88,15 @@ router.get(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
  */
 /// Update Privilege
 router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     //  validate the privilege data
     const requestPrivilege = req.body.context.privilege;
@@ -97,13 +117,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     if (!privilege) {
         return res.status(404).json({ error: 'The privilege with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updatePrivilegeVerb,
         req.body.object.objectType,
         "Privilege Data",
-        { privilege }
+        { privilege },
+        privilege._id
     ));
 }));
 
@@ -119,13 +140,14 @@ router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, 
     if (!privilege) {
         return res.status(404).json({ error: 'The privilege with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deletePrivilegeVerb,
         req.body.object.objectType,
         "Privilege Data",
-        { privilege }
+        { privilege },
+        privilege._id
     ));
 }));
 

@@ -5,6 +5,7 @@ const model = require('../models/AssignmentUserInfo');
 const course = require('../models/Course');
 const user = require('../models/User');
 const assignment = require('../models/Assignment');
+const statementModel = require('../models/Statement');
 const functions = require('../utilities/functions');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
 
@@ -116,6 +117,16 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
     // validate the assignment user info exists 
     const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
     if (!requestAssignmentUserInfo) {
@@ -138,13 +149,14 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // create assignment user info 
     const assignmentUserInfo = await model.assignmentUserInfoModel.create(requestAssignmentUserInfo);
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createAssignmentUserInfoVerb,
         req.body.object.objectType,
         "Assignment User Info Data",
         { assignmentUserInfo: assignmentUserInfo },
+        assignmentUserInfo._id
     ));
 }));
 
@@ -156,6 +168,17 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @access Private
 */
 router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the assignment user info exists
     const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
     if (!requestAssignmentUserInfo) {
         return res.status(400).json({ message: 'Assignment User Info not found' });
@@ -178,7 +201,15 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
     // update assignment user info 
     const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndUpdate(req.params.id, requestAssignmentUserInfo, { new: true });
-    res.status(200).json(assignmentUserInfo);
+    await res.status(200).json(await functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.updateAssignmentUserInfoVerb,
+        req.body.object.objectType,
+        "Assignment User Info Data",
+        { assignmentUserInfo: assignmentUserInfo },
+        assignmentUserInfo._id
+    ));
 }));
 
 
@@ -191,7 +222,15 @@ router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
 router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const assignmentUserInfo = await model.assignmentUserInfoModel.findByIdAndDelete(req.params.id);
     if (assignmentUserInfo) {
-        res.status(200).json(assignmentUserInfo);
+        await res.status(200).json(await functions.responseBodyJSON(
+            201,
+            req.body.actor.id,
+            model.deleteAssignmentUserInfoVerb,
+            req.body.object.objectType,
+            "Assignment User Info Data",
+            { assignmentUserInfo: assignmentUserInfo },
+            assignmentUserInfo._id
+        ));
     } else {
         res.status(404).json({ message: 'Assignment User Info not found' });
     }

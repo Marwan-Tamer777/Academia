@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Material');
+const statementModel = require('../models/Statement');
 const courseModel = require('../models/Course');
 const verifyToken = require('../middlewares/verifyToken');
 const functions = require('../utilities/functions');
@@ -16,6 +17,16 @@ const { func } = require('joi');
  */
 /// Create Material
 router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
 
     // validate the material
     const requestMaterial = req.body.context.material;
@@ -30,7 +41,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     }
 
     // check if course exists
-    let course = await courseModel.courseModel.findById( requestMaterial.courseId );
+    let course = await courseModel.courseModel.findById(requestMaterial.courseId);
     if (!course) {
         return res.status(400).json({ error: 'The course with the given ID was not found' });
     }
@@ -45,13 +56,14 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
     course.materials.push(material.id);
     await course.save();
 
-    res.status(201).json(functions.responseBodyJSON(
+    await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createMaterialVerb,
         req.body.object.objectType,
         "Material Data",
         { material: material },
+        material._id
     ));
 }));
 
@@ -75,7 +87,7 @@ router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Get Material by ID
 router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const material = await model.materialModel.findById( req.params.id );
+    const material = await model.materialModel.findById(req.params.id);
     if (!material) {
         return res.status(404).json({ error: 'The material with the given ID was not found' });
     }
@@ -90,6 +102,15 @@ router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Update Material
 router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
 
     // check if material exists
     requestMaterial = req.body.context.material;
@@ -104,7 +125,7 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     }
 
     // update material
-    const material = await model.materialModel.findByIdAndUpdate( req.params.id ,
+    const material = await model.materialModel.findByIdAndUpdate(req.params.id,
         {
             materialName: requestMaterial.materialName,
             materialTypeCode: requestMaterial.materialTypeCode,
@@ -114,13 +135,14 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
     if (!material) {
         return res.status(404).json({ error: 'The material with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.updateMaterialVerb,
         req.body.object.objectType,
         "Material Data",
         { material: material },
+        material._id
     ));
 }));
 
@@ -134,17 +156,18 @@ router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
 router.delete(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
 
     // delete material
-    const material = await model.materialModel.findByIdAndDelete( req.params.id );
+    const material = await model.materialModel.findByIdAndDelete(req.params.id);
     if (!material) {
         return res.status(404).json({ error: 'The material with the given ID was not found' });
     }
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         req.body.actor.id,
         model.deleteMaterialVerb,
         req.body.object.objectType,
         "Material Data",
         { material: material },
+        material._id
     ));
 }));
 

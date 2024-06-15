@@ -46,13 +46,14 @@ router.get('/', verifyToken, asyncHandler(async (req, res) => {
     }
     console.log(pageSize, currentPage);
     const actionMaps = await model.actionMapModel.find().limit(pageSize).skip((currentPage - 1) * pageSize);
-    res.status(200).json(functions.responseBodyJSON(
+    await res.status(200).json(await functions.responseBodyJSON(
         200,
         " req.body.actor.id",
         model.createActionMapVerb,
         "req.body.object.objectType",
         "Action Map Data",
         { actionMaps: actionMaps },
+        actionMaps._id
     ));
 }));
 
@@ -78,13 +79,14 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     const actionMap = new model.actionMapModel(requestActionMap);
     // save action map
     await actionMap.save();
-    res.status(201).json(functions.responseBodyJSON(
+   await res.status(201).json( await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createActionMapVerb,
         req.body.object.objectType,
         "Action Map Data",
         { actionMap: actionMap },
+        actionMap._id
     ));
 }));
 
