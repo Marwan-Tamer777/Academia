@@ -15,7 +15,7 @@ const { func } = require('joi');
  * @access Public
  */
 /// Create Quiz
-router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {
@@ -72,7 +72,7 @@ router.post("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) 
  * @access Public
  */
 /// Get All Quizzes
-router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const quizzes = await model.quizModel.find();
     res.status(200).json(quizzes);
 }));
@@ -120,7 +120,7 @@ router.get(`/course/:courseId`, verifyToken.verifyToken, asyncHandler(async (req
  * @access Public
  */
 /// Update Quiz
-router.put(`/:id`, verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {

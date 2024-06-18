@@ -18,7 +18,7 @@ const functions = require('../utilities/functions');
  * @access Public
  */
 /// Create Post
-router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {
@@ -114,7 +114,7 @@ router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (re
  * @access Public
  */
 /// Get All Posts
-router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const posts = await model.postModel.find();
     res.status(200).json(posts);
 }));
@@ -126,7 +126,7 @@ router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req
  * @access Public
  */
 /// Get Post by ID
-router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const post = await model.postModel.findById(req.params.id);
     if (!post) {
         return res.status(404).json({ error: 'The post with the given ID was not found' });
@@ -141,7 +141,7 @@ router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  * @access Public
  */
 /// Update Post
-router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.put(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {

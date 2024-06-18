@@ -116,7 +116,7 @@ router.get('/:id', verifyToken, asyncHandler(async (req, res) => {
     * @method POST 
     * @access Private
 */
-router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.post('/', verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {
@@ -167,7 +167,7 @@ router.post('/', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     * @method PUT 
     * @access Private
 */
-router.put('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
+router.put('/:id', verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {

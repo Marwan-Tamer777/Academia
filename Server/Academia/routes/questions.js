@@ -14,7 +14,7 @@ const functions = require('../utilities/functions');
  * @access Public
  */
 /// Create Question
-router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {
@@ -71,7 +71,7 @@ router.post("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (re
  * @access Public
  */
 /// Get All Questions
-router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const questions = await model.questionModel.find();
     res.status(200).json(questions);
 }));
@@ -83,7 +83,7 @@ router.get("/", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req
  * @access Public
  */
 /// Get Question by ID
-router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const quiz_question = await model.questionModel.findById(req.params.id);
     if (!quiz_question) {
         return res.status(404).json({ error: 'The quiz question with the given ID was not found' });
@@ -98,7 +98,7 @@ router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  * @access Public
  */
 /// Update Question
-router.put(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.put(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // validate the request body
     const { requestError } = statementModel.validateCreateStatement(req.body);
     if (requestError) {

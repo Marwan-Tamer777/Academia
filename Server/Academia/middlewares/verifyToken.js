@@ -13,7 +13,8 @@ function verifyToken(req, res, next) {
         const verified = jwt.verify(token, process.env.TOKEN_SECRET);
 
         // check if id and isAdmin are in the token
-        if (!verified.id || !verified.isAdmin) {
+        if (!verified.id && !verified.isAdmin) {
+            console.log(verified.id,);
             return res.status(401).json({ error: "Access Denied: Invalid Token" });
         }
 
