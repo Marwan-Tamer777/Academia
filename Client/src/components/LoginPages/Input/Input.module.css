@@ -1,0 +1,38 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--secondary-gap);
+    font-weight: 500;
+}
+
+.input {
+    display: flex;
+    height: 56px;
+    padding: 8px 24px;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 12px;
+    /* color: #96A0AD; */
+    border: 0.889px solid rgba(189, 196, 205, 0.85);
+    background: var(--Trinty, #F0F0F0);
+    font-family: Cairo;
+    font-weight: 600;
+    width: 100%;
+    position: relative;
+}
+
+.password {
+    display:flex;
+    position: relative;
+    
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    position:absolute;
+    height: 100%;
+    left: 20px;
+}

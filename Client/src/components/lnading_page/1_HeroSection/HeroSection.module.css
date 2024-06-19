@@ -1,0 +1,100 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-size: cover;
+    background-image: url('/Background/Pattern.png'), var(----, linear-gradient(180deg, #FFDCC7 29%, #FDECE2 76%, #FBFCFE 100%));
+    height: 100vh;
+    width: 100vw;
+}
+
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 62px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    margin-bottom: 50px;
+}
+
+.disc {
+    font-size: 25px;
+    width: 70%;
+    margin: 40px 0;
+}
+
+.arrowFrame {
+    border-radius: 50px;
+    border: solid 3px var(--primary-color);
+    padding: 15px 10px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.arrow {
+    transition: all 0.2s ease;
+}
+
+.arrow:hover {
+    transform: translateY(4px);
+}
+
+/* Main container for the header */
+.header-container {
+    background-color: #FAD4C0;
+    /* Peach color */
+    text-align: center;
+    padding: 50px;
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Icons on top right */
+.icons {
+    float: right;
+}
+
+/* Downward arrow at bottom center of header */
+.down-arrow {
+    margin-top: 30px;
+    /* Space above arrow */
+}
+
+
+@media (max-width: 768px) {
+    .section {
+        background-image: url('/Background/Pattern.png'), var(----, linear-gradient(180deg, #FFDCC7 29%, #FDECE2 76%, #FBFCFE 100%));
+        height: auto;
+        margin-bottom: 80px;
+        width: 100vw;
+    }
+
+    .title {
+        font-size: 42px;
+    }
+
+    .desc {
+        font-size: 20px;
+        /* width: 90%; */
+    }
+
+    .nav {
+        display: none;
+    }
+
+}
