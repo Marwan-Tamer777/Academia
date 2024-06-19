@@ -1,0 +1,69 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 80px;
+    background-image: url('/Background/Pattern.png'), linear-gradient(180deg, #FFEEE3 9.62%, rgba(255, 255, 255, 0.40) 102.12%);
+    background-size: 70%;
+    gap: 80px;
+}
+
+.rightSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    width: 50%;
+    gap: 24px;
+    line-height: 140%; /* 70px */
+}
+
+.leftSide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    align-items: center;
+
+    width: 50%;
+}
+
+/* For tablets and larger screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 48px 14px 48px 14px;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .rightSide {
+        align-items: center;
+        text-align: center;
+        padding: 0 0;
+        width: 100%;
+    }
+
+    .leftSide {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1024px) and ( min-width: 768px) {
+    .container {
+        padding: 80px;
+        gap: 60px;
+    }
+
+    .rightSide {
+        align-items: center;
+        text-align: center;
+        padding: 0 0;
+        width: 100%;
+    }
+
+    .leftSide {
+        width: 100%;
+    }
+    
+}

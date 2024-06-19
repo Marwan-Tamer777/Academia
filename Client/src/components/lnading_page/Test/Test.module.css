@@ -1,0 +1,36 @@
+/* Tabs.module.css */
+
+.tabsContainer {
+    /* Add any container styles you need */
+  }
+  
+  .tabs {
+    /* Add styles for the tab container */
+  }
+  
+  .tab {
+    /* Add styles for individual tabs */
+    cursor: pointer;
+  }
+  
+  .tab.active {
+    /* Add styles for the active tab */
+  }
+  
+  .contentContainer {
+    /* Add styles for the content container */
+    /* transition: opacity 0.3s ease; Apply fade-in/fade-out transition */
+  }
+  
+  .tabContent {
+    /* Add styles for individual content */
+    opacity: 0; /* Initially hidden */
+    display: none;
+    transition: all 2s ease; /* Apply fade-in/fade-out transition */
+  }
+  
+  .tabContent.active {
+    opacity: 1; /* Show active content */
+    display: block;
+  }
+  

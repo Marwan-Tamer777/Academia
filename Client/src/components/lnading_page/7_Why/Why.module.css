@@ -1,0 +1,159 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    height: fit-content;
+    max-height: max-content;
+
+    opacity: 0;
+    /* Set opacity to 0 */
+
+    animation: fadeIn 0.5s ease-in-out 1 normal forwards;
+
+}
+
+.container.active {
+    /* animation: fadeOut 0.5s ease-in-out 1 normal forwards; */
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* @keyframes fadeOut {  
+    from {  
+        opacity:1;  
+    }  
+ 
+    to {  
+        opacity:0;  
+    }   
+ } */
+
+.txtSide {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: right;
+    gap: 24px;
+    width: 60%;
+
+    .smallTitle {
+        width: fit-content;
+        padding: 2px 7px;
+        border-radius: 5px;
+        background: #FFEEE3;
+    }
+}
+
+.picSide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+
+    .img {
+        width: 500px;
+        /* height: 100%; */
+        /* object-fit: cover; */
+    }
+}
+
+
+
+
+
+/* Tabs Bar */
+
+.tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 9px 0px rgba(0, 0, 0, 0.05);
+    gap: 10px;
+    padding: 7px 13px;
+    width: 450px;
+
+}
+    .tab {
+        font-family: Cairo;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 160%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 13px 23px;
+        border-radius: 10px;
+        background: #FFF;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        
+        &:focus {
+            background: #FF7E31;
+            color: #FFF;
+            outline: none;
+        }
+        
+        &:hover {
+            box-shadow: 0px 0px 10px 0px rgba(255, 126, 49, 0.12);
+        }
+    }
+    
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        align-items: center;
+        /* justify-content: center; */
+        gap: 32px;
+        flex-direction: column-reverse;
+    }
+
+    .txtSide {
+        align-items: center;
+        text-align: center;
+        .ul {
+            text-align: right;
+        }
+    }
+
+    .img {
+        width: 100%;
+    }
+    .tabs {
+        width: 100%;
+    }
+    .tab {
+        font-weight: 600;
+        padding: 13px 10px;
+    }
+
+}
