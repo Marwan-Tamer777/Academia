@@ -24,6 +24,11 @@
     /* width: 500px; */
 }
 
+.middle {
+    display: flex;
+    gap: 20px;
+}
+
 .tab:hover {
     font-weight: 700;
     border-radius: 1px;
@@ -35,6 +40,16 @@
     /* width: 90px; */
     font-size: 1px;
     height: 100%;
+}
+
+/* lang switcher */
+
+.langSwitcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
