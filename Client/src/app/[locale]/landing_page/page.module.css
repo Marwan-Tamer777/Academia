@@ -1,0 +1,21 @@
+.mainContainer {
+    width: 100vw;
+    background-color: var(--other-white);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    direction: rtl;
+    align-items: center;
+    font-family: cairo;
+
+    text-align: center;
+    /*^^^^^^^^^^^^^^^^^^^will be removed*/
+
+    scroll-behavior: smooth;
+
+}
+
+/* .controlContainer {
+    padding: 20px 20px;
+} */

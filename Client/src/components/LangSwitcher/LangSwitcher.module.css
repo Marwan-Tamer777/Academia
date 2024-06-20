@@ -1,0 +1,11 @@
+.langSwitcher {
+    display: flex;
+    background: none;
+    border: none;
+}
+
+.langs {
+    display: flex;
+    background: transparent;
+    border: none;
+}

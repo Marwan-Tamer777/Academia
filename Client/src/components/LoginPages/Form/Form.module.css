@@ -1,0 +1,33 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Cairo;
+    color: var(--primary-color);
+    min-width: 400px;
+    max-width:460px;
+    direction: rtl;
+    padding: 40px;
+    background-color: #F0F0F0;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 50px;
+}
+
+@media screen and (max-width: 500px) {
+
+    .mainContainer {
+        padding: 10px;
+        background-color: var(--secondary-color);
+    }
+    
+}
