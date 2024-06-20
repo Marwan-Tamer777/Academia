@@ -79,6 +79,17 @@ function validateCreateAssignmentUserInfo(assignmentUserInfo) {
     });
     return schema.validate(assignmentUserInfo);
 }
+function validateSubmitAssignmentUserInfo(assignmentUserInfo) {
+    const schema = Joi.object({
+        assignmentId:
+            Joi.string().required().trim(),
+
+        userId: Joi.string().required().trim(),
+
+        courseId: Joi.string().required().trim(),
+    });
+    return schema.validate(assignmentUserInfo);
+}
 function validateUpdateAssignmentUserInfo(assignmentUserInfo) {
     const schema = Joi.object({
         assignmentId:
@@ -104,11 +115,19 @@ function validateUpdateAssignmentUserInfo(assignmentUserInfo) {
     return schema.validate(assignmentUserInfo);
 }
 
+
+
 /// AssignmentUserInfo Verbs
 const createAssignmentUserInfoVerb = {
     "id-enum": "create-assignment-user-info",
     display: {
         "en-US": "Created Assignment User Info"
+    }
+};
+const submitAssignmentUserInfoVerb = {
+    "id-enum": "submit-assignment-user-info",
+    display: {
+        "en-US": "Submitted Assignment User Info"
     }
 };
 const updateAssignmentUserInfoVerb = {
@@ -127,6 +146,8 @@ const deleteAssignmentUserInfoVerb = {
 module.exports = {
     assignmentUserInfoModel,
     validateCreateAssignmentUserInfo,
+    submitAssignmentUserInfoVerb,
+    validateSubmitAssignmentUserInfo,
     validateUpdateAssignmentUserInfo,
     createAssignmentUserInfoVerb,
     updateAssignmentUserInfoVerb,

@@ -44,7 +44,6 @@ router.get('/', verifyToken, asyncHandler(async (req, res) => {
     if (isNaN(pageSize) || isNaN(currentPage) || pageSize < 1 || currentPage < 1) {
         return res.status(400).json({ message: 'Invalid query parameters' });
     }
-    console.log(pageSize, currentPage);
     const actionMaps = await model.actionMapModel.find().limit(pageSize).skip((currentPage - 1) * pageSize);
     await res.status(200).json(await functions.responseBodyJSON(
         200,

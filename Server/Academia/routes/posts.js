@@ -40,7 +40,6 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
-    console.log("Passed validation");
     // check if course exists
     let course = await courseModel.courseModel.findById(requestPost.courseId);
     if (!course) {
