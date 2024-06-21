@@ -43,10 +43,10 @@ app.use(process.env.assignmentUserInfoURL, require('./routes/assignment_user_inf
 
 /// Handling Routes Errors
 //Not Found Error
-app.use(errorHandler.notFound);
+//app.use(errorHandler.notFound);
 
 //Internal Server Error
-app.use(errorHandler.errorHandler);
+//app.use(errorHandler.errorHandler);
 
 
 /// Connect to MongoDB
