@@ -50,7 +50,7 @@ const postSchema = new mongoose.Schema({
         default: () => ({}),
         required: false,
     },
-    quizId: {
+    quiz: {
         type: Object,
         default: () => ({}),
         required: false,

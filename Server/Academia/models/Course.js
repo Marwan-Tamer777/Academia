@@ -111,7 +111,12 @@ function validateCreateCourse(course) {
         posts: Joi.array().items(Joi.string().trim()),
         materials: Joi.array().items(Joi.string().trim()),
         roles: Joi.array().items(Joi.string().trim()),
-        // teachers: Joi.array().items(Joi.string().trim()),
+        teachers: Joi.array().items(Joi.object({
+            id: Joi.string().trim(),
+            name: Joi.string().trim(),
+            email: Joi.string().trim(),
+            avatar: Joi.string().trim(),
+        })),
         students: Joi.array().items(Joi.string().trim()),
         status: Joi.string().valid('Inactive', 'Active', 'Deleted', 'Archived'),
         mostRecentDeadline: Joi.date(),
