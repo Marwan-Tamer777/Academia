@@ -197,6 +197,17 @@ body.ltr {
      /* background-color: var(--primary-color); */
  }
 
+ .platformContainer {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 36px 14px;
+     background-color: var(--backgrounds-bg);
+     transition: all 0.3s ease-in-out;
+     /* background-color: var(--primary-color); */
+ }
+
  @media (max-width: 500px) {
      body {
          background-color: var(--secodary-color);
