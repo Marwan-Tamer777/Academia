@@ -30,6 +30,11 @@ const quizSchema = new mongoose.Schema({
         required: true,
         min: 0,
     },
+    grade: {
+        type: Number,
+        required: true,
+        min: 1,
+    },
     duration: {
         type: String,
         required: true,
@@ -41,6 +46,10 @@ const quizSchema = new mongoose.Schema({
     },
     endDate: {
         type: String,
+        required: true,
+    },
+    autoGrade: {
+        type: Boolean,
         required: true,
     },
     showGrade: {
@@ -77,12 +86,14 @@ function validateCreateQuiz(quiz) {
         quizName: Joi.string().min(1).max(100).required(),
         questions: Joi.array().items(Joi.string()),
         numOfRetries: Joi.number().required(),
+        grade: Joi.number().required().min(1),
         duration: Joi.string().required(),
         startDate: Joi.string().required(),
         endDate: Joi.string().required(),
         showGrade: Joi.boolean().required(),
         showWrongAnswers: Joi.boolean().required(),
         showCorrectAnswers: Joi.boolean().required(),
+        autoGrade: Joi.boolean().required(),
     });
     return schema.validate(quiz);
 }
@@ -113,12 +124,14 @@ function validateUpdateQuiz(quiz) {
                 quizName: Joi.string().min(1).max(100),
                 questions: Joi.array().items(Joi.string()),
                 numOfRetries: Joi.number(),
+                grade: Joi.number().min(1),
                 duration: Joi.string(),
                 startDate: Joi.string(),
                 endDate: Joi.string(),
                 showGrade: Joi.boolean(),
                 showWrongAnswers: Joi.boolean(),
                 showCorrectAnswers: Joi.boolean(),
+                autoGrade: Joi.boolean(),
             }
         }
     });

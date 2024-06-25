@@ -32,6 +32,14 @@ const assignmentSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    showGrade: {
+        type: Boolean,
+        required: true,
+    },
+    grade: {
+        type: Number,
+        required: true,
+    },
 }, {
     timestamps: {
         currentTime: () => new Date().toISOString(), // Use ISO 8601 format for timestamps
@@ -47,34 +55,15 @@ const assignmentModel = mongoose.model('Assignment', assignmentSchema);
 /// Validate Assignment
 function validateCreateAssignment(assignment) {
     const schema = Joi.object({
-        // actor: {
-        //     name: Joi.string().trim().min(1).required(),
-        //     id: Joi.string().trim().min(1).required(),
-        // },
-        // verb: {
-        //     "id-enum": Joi.string().trim().min(1).required(),
-        //     display: {
-        //         "en-US": Joi.string().trim().min(1).required()
-        //     }
-        // },
-        // object: {
-        //     id: Joi.string().trim().min(1).required(),
-        //     objectType: Joi.string().trim().min(1).required(),
-        //     definition: {
-        //         name: {
-        //             "en-US": Joi.string().trim().min(1).required()
-        //         }
-        //     }
-        // },
-        // context: {
-        // assignment: {
+
         courseId: Joi.string().required(),
         description: Joi.string().required(),
         closeOn: Joi.date().required(),
         duration: Joi.number().required(),
         numOfAttempts: Joi.number().required(),
-        // }
-        // }
+        showGrade: Joi.boolean().required(),
+        grade: Joi.number().required(),
+
 
     });
 
@@ -88,6 +77,8 @@ function validateUpdateAssignment(assignment) {
         closeOn: Joi.date(),
         duration: Joi.number(),
         numOfAttempts: Joi.number(),
+        showGrade: Joi.boolean(),
+        grade: Joi.number(),
     });
 
     return schema.validate(assignment);

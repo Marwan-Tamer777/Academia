@@ -80,7 +80,7 @@ const userSchema = new mongoose.Schema({
     collection: 'Users',
 });
 
-
+ 
 /// Generate a token
 userSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ id: this._id, isAdmin: this.isAdmin }, process.env.TOKEN_SECRET, { expiresIn: '4d' });

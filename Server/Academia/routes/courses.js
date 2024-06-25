@@ -171,7 +171,6 @@ router.put("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res
 /// Delete Course
 router.delete("/:id", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     // find the course
-    console.log(req.params.id);
     const course = await model.courseModel.findByIdAndDelete(req.params.id);
     if (!course) {
         return res.status(404).json({ error: 'The course with the given ID was not found' });
