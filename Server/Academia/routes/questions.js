@@ -38,7 +38,7 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     }
 
     // check if quiz exists
-    let quiz = await quizModel.quizModel.findOne({ id: requestQuestion.quizId });
+    let quiz = await quizModel.quizModel.findById(requestQuestion.quizId);
     if (!quiz) {
         return res.status(404).json({ error: 'The quiz with the given ID was not found' });
     }
@@ -50,7 +50,7 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     await question.save();
 
     // add question to quiz
-    quiz.questions.push(question.questionId);
+    quiz.questions.push(question._id);
     await quiz.save();
 
     await res.status(201).json(await functions.responseBodyJSON(

@@ -55,7 +55,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test02@email.com\",\r\n            \"assignedId\":\"2020001\",\r\n            \"password\":\"12345678\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"null\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test2eeeee3e@email.com\",\r\n            // \"assignedId\":\"2020001\",\r\n            \"password\":\"1234567\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,7 +88,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"actorId\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"log-into-account\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"log user\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test02@email.com\",\r\n            \"password\":\"1234567\",\r\n            \"newPassword\":\"12345678\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Guest\",\r\n\t\t\"id\": \"actorId\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"reset-password\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"Reset Password\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"user data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"user\":{\r\n            \"email\":\"test05@email.com\",\r\n            \"password\":\"1234567\",\r\n            \"newPassword\":\"12345678\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,14 +96,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/auth/reset-password/a7f939b0-2ac1-4efb-b502-5eb791c03841",
+							"raw": "{{baseUrl}}/auth/reset-password/0db956b3-1e7e-4555-a32b-baf610c6223a",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"auth",
 								"reset-password",
-								"a7f939b0-2ac1-4efb-b502-5eb791c03841"
+								"0db956b3-1e7e-4555-a32b-baf610c6223a"
 							]
 						}
 					},
@@ -390,7 +390,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignment\":{\r\n            \"courseId\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"numOfAttempts\":3,\r\n            \"duration\":23,\r\n            \"closeOn\":\"2024-02-27T23:27:07.325+00:00\",\r\n            \"description\":\"new Assignment on Lecture 2\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignment\":{\r\n            \"courseId\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"numOfAttempts\":3,\r\n            \"duration\":23,\r\n            \"closeOn\":\"2024-02-27T23:27:07.325+00:00\",\r\n            \"description\":\"new Assignment on Lecture 2\",\r\n            \"showGrade\":true,\r\n            \"grade\":100\r\n        }\r\n        }\r\n        \r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -515,7 +515,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/assignmentUserInfo?pageSize=1&currentPage=2",
+							"raw": "{{baseUrl}}/assignmentUserInfo?pageSize=1&currentPage=1",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -529,7 +529,7 @@
 								},
 								{
 									"key": "currentPage",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -624,7 +624,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignmentUserInfo\":{\r\n            \"assignmentId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878b\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"m3rf4 eh lazmth .com\",\r\n            \"grade\":23,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100,\r\n            \"submissionDate\":\"2024-02-27T23:27:07.325+00:00\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"raw": "{\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignmentUserInfo\":{\r\n            \"assignmentId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878b\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"m3rf4 eh lazmth .com\",\r\n            \"grade\":23,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100,\r\n            \"submissionDate\":\"2024-02-27T23:27:07.325+00:00\"\r\n        }\r\n        }\r\n        \r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,6 +638,39 @@
 							],
 							"path": [
 								"assignmentUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Assignment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"assignmentUserInfo\":{\r\n            \"assignmentId\":\"f9ce5e81-c023-492e-8df3-5d13a0fbd962\",\r\n            \"courseId\":\"485d6a1e-56e6-4c0e-bb20-9e3fbd508dde\",\r\n            \"userId\":\"0db956b3-1e7e-4555-a32b-baf610c6223a\"\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/assignmentUserInfo/submit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"assignmentUserInfo",
+								"submit"
 							]
 						}
 					},
@@ -703,6 +736,297 @@
 							],
 							"path": [
 								"assignmentUserInfo",
+								"fa0d01c4-8a35-4667-b449-555177811b2e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz User Info",
+			"item": [
+				{
+					"name": "Get All QUI",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get QUI By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/0d25d55e-370f-43aa-a6d2-558a414fa10d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"0d25d55e-370f-43aa-a6d2-558a414fa10d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All QUI Paginated",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo?pageSize=1&currentPage=2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "1"
+								},
+								{
+									"key": "currentPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All QUI By Quiz ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/quiz/536ca296-2c88-4b8c-89ca-e9e1d221878b",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"quiz",
+								"536ca296-2c88-4b8c-89ca-e9e1d221878b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All QUI By User ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/user/4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"user",
+								"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All QUI By Course ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/course/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"course",
+								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add QUI",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"quizUserInfo\":{\r\n            \"quizId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878db\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"m3rf4 eh lazmth .com\",\r\n            \"grade\":23,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"quizUserInfo\":{\r\n            \"quizId\":\"2df7cc54-b83f-492a-ab04-e570ee5f969f\",\r\n            \"courseId\":\"485d6a1e-56e6-4c0e-bb20-9e3fbd508dde\",\r\n            \"userId\":\"0db956b3-1e7e-4555-a32b-baf610c6223a\",\r\n            \"answers\":[\r\n                \"All of The above.\",\r\n                \"The Sea.\",\r\n                \"Answer 3\"\r\n            ]\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/submit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update QUI",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"quizUserInfo\":{\r\n            \"quizId\":\"536ca296-2c88-4b8c-89ca-e9e1d221878db\",\r\n            \"courseId\":\"41ee88f4-6690-4c90-880f-10daafb7db81\",\r\n            \"userId\":\"4da60a1c-5309-4ca0-af6d-5e2b2c2f5ddd\",\r\n            \"gradedBy\":\"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"submissionUrl\":\"m3rf4 eh lazmth .com\",\r\n            \"grade\":24,\r\n            \"showGrade\":true,\r\n            \"maxGrade\":100\r\n        }\r\n        }\r\n        \r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/0d25d55e-370f-43aa-a6d2-558a414fa10d",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
+								"0d25d55e-370f-43aa-a6d2-558a414fa10d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete QUI",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"4970e877-04f6-47d2-83aa-b43003beb9a1\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"delete-course\"\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"fb6fe636-d462-4ccf-ad3e-b8a132a254f8\",\r\n            \"objectType\": \"Activity\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course Data\" \r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/quizUserInfo/fa0d01c4-8a35-4667-b449-555177811b2e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"quizUserInfo",
 								"fa0d01c4-8a35-4667-b449-555177811b2e"
 							]
 						}
@@ -982,7 +1306,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/courses?search=&sortBy",
+							"raw": "{{baseUrl}}/courses?search=is&sortBy",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -992,7 +1316,7 @@
 							"query": [
 								{
 									"key": "search",
-									"value": ""
+									"value": "is"
 								},
 								{
 									"key": "sortBy",
@@ -1125,7 +1449,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t// \"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Advanced Security\",\r\n            \"courseCode\":\"ITdexzz0ezc1ez12\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t// \"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"name\": \"Advanced Security 2\",\r\n            \"courseCode\":\"ITdeezc1ez12\",\r\n            \"enrollCode\":\"ADdddd436F\",\r\n            \"programName\":\"prodgramName\",\r\n            \"maxCapacity\":150,\r\n            \"people\": [\"Tutor Mohammed ID\"],\r\n            \"posts\": [],\r\n            \"materials\": [],\r\n            \"quizzes\": []\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1157,7 +1481,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"enrollCode\":\"ADdddd436F\"\r\n        },\r\n        \"student\":{\r\n            \"id\":\"038c3ee1-5a26-4688-8926-5abbc28264a3\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"enrollCode\":\"ADdddd436F\"\r\n        },\r\n        \"student\":{\r\n            \"id\":\"0db956b3-1e7e-4555-a32b-baf610c6223a\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1165,14 +1489,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/courses/enroll/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"raw": "{{baseUrl}}/courses/enroll/b701579f-f02d-49ca-9329-c8ca10351490",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"courses",
 								"enroll",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+								"b701579f-f02d-49ca-9329-c8ca10351490"
 							]
 						}
 					},
@@ -2374,7 +2698,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"23dd9ecb-3820-44bf-b0af-731c043f816c\",\r\n            \"postedBy\": \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\",\r\n            \"title\": \"Testing A New Post\",\r\n            \"content\": \"This is a post content/description\",\r\n            \"postNow\":true,\r\n            \"alertUsers\":true,\r\n            \"allowComments\":false,\r\n            \"comments\": [\r\n                \"5f6a29a2-d97a-4765-a0c0-5fad35c48bc2\"\r\n            ],\r\n            \"likes\": [\r\n                \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            ],\r\n            \"dislikes\": [\r\n                \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            ],\r\n            // \"assignment\": {\r\n            //     \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            //     \"numOfAttempts\": 3,\r\n            //     \"duration\": 23,\r\n            //     \"closeOn\": \"2024-02-27T23:27:07.325+00:00\",\r\n            //     \"description\": \"new Assignment on Lecture 2\"\r\n            // }\r\n            // \"material\": {\r\n            //     \"courseId\": \"b2f3176a-0a6c-407f-aceb-e738a1535de6\",\r\n            //     \"materialName\": \"Information Systems\",\r\n            //     \"materialTypeCode\": 1,\r\n            //     \"description\": \"Adding Material From Post\",\r\n            //     \"link\": \"linkToTxt.com\"\r\n            // },\r\n            \"quiz\": {\r\n                \"courseId\": \"23dd9ecb-3820-44bf-b0af-731c043f816c\",\r\n                \"quizName\": \"IS Exam From Post\",\r\n                \"questions\": [\r\n                    \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n                ],\r\n                \"numOfRetries\": 3,\r\n                \"duration\": \"PT4H35M59.14S\",\r\n                \"startDate\": \"2013-04-01T12:00:00Z\",\r\n                \"endDate\": \"2013-04-01T12:10:00Z\",\r\n                \"showGrade\": true,\r\n                \"showWrongAnswers\": true,\r\n                \"showCorrectAnswers\": true\r\n            }\r\n            // \"coursePoll\": {}\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"23dd9ecb-3820-44bf-b0af-731c043f816c\",\r\n            \"postedBy\": \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\",\r\n            \"title\": \"Testing A New Post\",\r\n            \"content\": \"This is a post content/description\",\r\n            \"postNow\":true,\r\n            \"alertUsers\":true,\r\n            \"allowComments\":false,\r\n            \"comments\": [\r\n                \"5f6a29a2-d97a-4765-a0c0-5fad35c48bc2\"\r\n            ],\r\n            // \"likes\": [\r\n            //     \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            // ],\r\n            // \"dislikes\": [\r\n            //     \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            // ],\r\n            // \"assignment\": {\r\n            //     \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            //     \"numOfAttempts\": 3,\r\n            //     \"duration\": 23,\r\n            //     \"closeOn\": \"2024-02-27T23:27:07.325+00:00\",\r\n            //     \"description\": \"new Assignment on Lecture 2\"\r\n            // }\r\n            // \"material\": {\r\n            //     \"courseId\": \"b2f3176a-0a6c-407f-aceb-e738a1535de6\",\r\n            //     \"materialName\": \"Information Systems\",\r\n            //     \"materialTypeCode\": 1,\r\n            //     \"description\": \"Adding Material From Post\",\r\n            //     \"link\": \"linkToTxt.com\"\r\n            // },\r\n            \"quiz\": {\r\n                \"courseId\": \"23dd9ecb-3820-44bf-b0af-731c043f816c\",\r\n                \"quizName\": \"IS Exam From Post\",\r\n                \"questions\": [\r\n                    \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n                ],\r\n                \"numOfRetries\": 3,\r\n                \"duration\": \"PT4H35M59.14S\",\r\n                \"startDate\": \"2013-04-01T12:00:00Z\",\r\n                \"endDate\": \"2013-04-01T12:10:00Z\",\r\n                \"showGrade\": true,\r\n                \"showWrongAnswers\": true,\r\n                \"showCorrectAnswers\": true\r\n            }\r\n            // \"coursePoll\": {}\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2649,13 +2973,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/quiz/3a65b4fd-7fa1-40b3-837d-eca63f4796b7",
+							"raw": "{{baseUrl}}/quiz/7e760fda-8cc7-47b1-887a-f3a148c0d5d9",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"quiz",
-								"3a65b4fd-7fa1-40b3-837d-eca63f4796b7"
+								"7e760fda-8cc7-47b1-887a-f3a148c0d5d9"
 							]
 						}
 					},
@@ -2699,7 +3023,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n            \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            \"quizName\": \"IS Exam\",\r\n            \"questions\": [\r\n                \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n            ],\r\n            \"numOfRetries\": 3,\r\n            \"duration\": \"PT4H35M59.14S\",\r\n            \"startDate\": \"2013-04-01T12:00:00Z\",\r\n            \"endDate\": \"2013-04-01T12:10:00Z\",\r\n            \"showGrade\": true,\r\n            \"showWrongAnswers\": true,\r\n            \"showCorrectAnswers\": true\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n            \"courseId\": \"485d6a1e-56e6-4c0e-bb20-9e3fbd508dde\",\r\n            \"quizName\": \"IS Exam\",\r\n            \"questions\": [\r\n                \"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"\r\n            ],\r\n            \"numOfRetries\": 3,\r\n            \"grade\":100,\r\n            \"duration\": \"PT4H35M59.14S\",\r\n            \"startDate\": \"2013-04-01T12:00:00Z\",\r\n            \"endDate\": \"2013-04-01T12:10:00Z\",\r\n            \"showGrade\": true,\r\n            \"showWrongAnswers\": true,\r\n            \"showCorrectAnswers\": true,\r\n            \"autoGrade\":true\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2731,7 +3055,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n              \"quizName\":\"IS Exam Updated\",\r\n    \"questions\":[\"4a98f1bd-18e3-4ee4-88e2-006a717162b6\"],\r\n    \"numOfRetries\":3,   \r\n    \"duration\":\"PT4H35M59.14S\",\r\n    \"startDate\":\"2013-04-01T12:00:00Z\",\r\n    \"endDate\":\"2013-04-01T12:10:00Z\",\r\n    \"showGrade\":true,\r\n    \"showWrongAnswers\":true,\r\n    \"showCorrectAnswers\":true\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"quiz\": {\r\n              \"quizName\":\"IS Exam Updated\",\r\n    \"questions\":[],\r\n    \"numOfRetries\":3,   \r\n    \"duration\":\"PT4H35M59.14S\",\r\n    \"startDate\":\"2013-04-01T12:00:00Z\",\r\n    \"endDate\":\"2013-04-01T12:10:00Z\",\r\n    \"showGrade\":true,\r\n    \"showWrongAnswers\":true,\r\n    \"showCorrectAnswers\":true\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2739,13 +3063,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/quiz/24ebfd19-5715-4f00-a5df-c92461f258a7",
+							"raw": "{{baseUrl}}/quiz/2df7cc54-b83f-492a-ab04-e570ee5f969f",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"quiz",
-								"24ebfd19-5715-4f00-a5df-c92461f258a7"
+								"2df7cc54-b83f-492a-ab04-e570ee5f969f"
 							]
 						}
 					},
@@ -2842,6 +3166,30 @@
 					"response": []
 				},
 				{
+					"name": "Get Question By ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/questions/4a98f1bd-18e3-4ee4-88e2-006a717162b6",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"questions",
+								"4a98f1bd-18e3-4ee4-88e2-006a717162b6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Question",
 					"request": {
 						"method": "POST",
@@ -2854,7 +3202,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"question\": {\r\n            \"quizId\": \"c89a65cb-e19b-43da-9bb7-e16611334a12\",\r\n            \"question\": \"Why am i alive?\",\r\n            \"options\": [\r\n                \"I don't know.\",\r\n                \"Because i'm not dead.\",\r\n                \"I'm not alive.\",\r\n                \"All of The above.\"\r\n            ],\r\n            \"correctAnswer\": \"All of The above.\",\r\n            \"multipleAnswers\": false,\r\n            \"correctAnswers\": [\r\n                \"All of The above.\"\r\n            ],\r\n            \"weight\": 5\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"question\": {\r\n            \"quizId\": \"2df7cc54-b83f-492a-ab04-e570ee5f969f\",\r\n            \"question\": \"Why am i alive?\",\r\n            \"options\": [\r\n                \"I don't know.\",\r\n                \"Because i'm not dead.\",\r\n                \"I'm not alive.\",\r\n                \"All of The above.\"\r\n            ],\r\n            \"correctAnswer\": \"All of The above.\",\r\n            \"multipleAnswers\": false,\r\n            \"correctAnswers\": [\r\n                \"All of The above.\"\r\n            ],\r\n            \"weight\": 5\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

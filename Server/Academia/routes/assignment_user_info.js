@@ -236,6 +236,74 @@ router.delete('/:id', verifyTokenAndAdmin, asyncHandler(async (req, res) => {
     }
 }));
 
+/**
+ * @desc Submit an assignment
+ * @route POST /api/assignment_user_infos/submit
+ * @method POST
+ * @access Private
+ */
+router.post('/submit', verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    // validate the assignment user info exists
+    const requestAssignmentUserInfo = req.body.context.assignmentUserInfo;
+    if (!requestAssignmentUserInfo) {
+        return res.status(400).json({ message: 'Assignment User Info not found' });
+    }
+
+    // validate the request 
+    const { error } = model.validateSubmitAssignmentUserInfo(requestAssignmentUserInfo);
+    if (error) {
+        return res.status(400).json({ error: error.details[0].message });
+    }
+
+    // validate the course exists 
+    const isCourse = await course.courseModel.findById(requestAssignmentUserInfo.courseId);
+    if (!isCourse) {
+        return res.status(400).json({ message: 'Course not found' });
+    }
+    // validate the user exists 
+    const isUser = await user.userModel.findById(requestAssignmentUserInfo.userId);
+    if (!isUser) {
+        return res.status(400).json({ message: 'User not found' });
+    }
+    // validate the assignment exists
+    const assignmentExists = await assignment.assignmentModel.findById(requestAssignmentUserInfo.assignmentId);
+    if (!assignmentExists) {
+        return res.status(400).json({ message: 'Assignment not found' });
+    }
+
+
+
+    // create assignment user info 
+
+    requestAssignmentUserInfo.submissionDate = new Date();
+    requestAssignmentUserInfo.gradedBy = "UnAssigned";
+    requestAssignmentUserInfo.showGrade = assignmentExists.showGrade;
+    requestAssignmentUserInfo.grade = 0;
+    requestAssignmentUserInfo.maxGrade = assignmentExists.grade;
+    requestAssignmentUserInfo.submissionUrl = "https://www.google.com";
+
+    const assignmentUserInfo = await model.assignmentUserInfoModel.create(requestAssignmentUserInfo);
+    await res.status(201).json(await functions.responseBodyJSON(
+        201,
+        req.body.actor.id,
+        model.submitAssignmentUserInfoVerb,
+        req.body.object.objectType,
+        "Assignment User Info Data",
+        { assignmentUserInfo: assignmentUserInfo },
+        assignmentUserInfo._id
+    ));
+}
+));
 
 module.exports = router;
 

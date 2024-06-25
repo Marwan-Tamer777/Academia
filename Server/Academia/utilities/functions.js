@@ -41,7 +41,6 @@ function turnIntoISODuration(duration) {
 
 /// Function to return Response Body JSON
 async function responseBodyJSON(status, requestedBy, verb, objectType, contextType, context, objectId) {
-    console.log(context);
     const responseBody = {
         // _id: uuidv4(),
         timestamp: new Date().toISOString(),

@@ -40,7 +40,6 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     }
-    console.log("Passed validation");
     // check if course exists
     let course = await courseModel.courseModel.findById(requestPost.courseId);
     if (!course) {
@@ -58,7 +57,9 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
             return res.status(400).json({ error: error.details[0].message });
         }
         // add poll to database
-        const coursePoll = await model.coursePoll.create(requestPost.coursePoll);
+        const coursePoll = new coursePollModel.coursePoll(requestPost.coursePoll);
+        await coursePoll.save();
+        post.coursePoll = coursePoll;
     }
     if (requestPost.material && requestPost.material != {}) {
         // validate the request 
@@ -67,7 +68,9 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
             return res.status(400).json({ error: error.details[0].message });
         }
         // add material to database
-        const material = await materialModel.materialModel.create(requestPost.material);
+        const material = new materialModel.materialModel(requestPost.material);
+        await material.save();
+        post.material = material;
     }
     if (requestPost.assignment && requestPost.assignment != {}) {
         // validate the request 
@@ -76,7 +79,9 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
             return res.status(400).json({ error: error.details[0].message });
         }
         // add assignment to database
-        const assignment = await assignmentModel.assignmentModel.create(requestPost.assignment);
+        const assignment = new assignmentModel.assignmentModel(requestPost.assignment);
+        await assignment.save();
+        post.assignment = assignment;
     }
     if (requestPost.quiz && requestPost.quiz != {}) {
         // validate the request
@@ -84,8 +89,11 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
         }
+
         // add quiz to database
-        const quiz = await quizModel.quizModel.create(requestPost.quiz);
+        const quiz = new quizModel.quizModel(requestPost.quiz);
+        await quiz.save();
+        post.quiz = quiz;
     }
 
 
