@@ -11,9 +11,16 @@ import TheLine from "@/components/lnading_page/10_TheLine/TheLine";
 import Footer from "@/components/lnading_page/11_Footer/Footer";
 // import Test from '@/components/lnading_page/Test/Test'
 
-export default function page() {
+import { useTranslations, useLocale } from "next-intl";
+
+
+
+export default function page({dir}) {
+  const locale = useLocale();
+
+  {locale === 'en' ? dir = 'ltr': '' }
   return (
-      <div className={styles.mainContainer}>
+      <div className={styles.mainContainer} style={{direction: `${dir}`}}>
         <HeroSection />
         <Features />
         <Control />

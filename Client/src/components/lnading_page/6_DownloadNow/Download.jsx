@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Download.module.css";
 
 import Image from "next/image";
-import Iphone from "/public/land_sec5/col.svg";
-import IphoneRes from "/public/land_sec5/phonesForResponsive.svg";
-import playStore from "/public/land_sec5/playstore.svg";
-import appStore from "/public/land_sec5/appstore.svg";
+import Iphone from "/public/(landingPage)/land_sec5/col.svg";
+import IphoneRes from "/public/(landingPage)/land_sec5/phonesForResponsive.svg";
+import playStore from "/public/(landingPage)/land_sec5/playstore.svg";
+import appStore from "/public/(landingPage)/land_sec5/appstore.svg";
 
 import SectionHeader from "../landingCommon/SectionHeader/SectionHeader";
 
