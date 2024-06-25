@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import { useLocale } from "next-intl";
 import { Cairo } from "next/font/google";
 
-
 export default function RootLayout({ children, dir = "rtl" }) {
   const locale = useLocale();
 
@@ -13,11 +12,11 @@ export default function RootLayout({ children, dir = "rtl" }) {
     locale === "en" ? (dir = "ltr") : "";
   }
   return (
-    <div /*className="loginContainer"*/ dir={dir}>
-      <ThemeProvider>
+    <ThemeProvider>
+      <div className="platformContainer" dir={dir}>
         {children}
         <Background />
-      </ThemeProvider>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }
