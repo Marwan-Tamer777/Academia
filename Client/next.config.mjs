@@ -8,25 +8,29 @@
 // export default nextConfig;
 
 import createNextIntlPlugin from 'next-intl/plugin';
- 
-const withNextIntl = createNextIntlPlugin();
- 
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
- 
-export default withNextIntl(nextConfig);
 
-// module.exports = {
-//     reactStrictMode: true,
-//     images: {
-//       domains: ['localhost'], // Add here the domains of your images if they are hosted on an external server
-//     },
-//     webpack(config) {
-//       config.module.rules.push({
-//         test: /\.svg$/,
-//         use: ['@svgr/webpack'],
-//       });
-  
-//       return config;
-//     },
-//   };
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+//   webpack(config, options) {
+//     const fileLoaderRule = config.module.rules.find((rule) =>
+//         rule.test?.test?.('.svg'),
+//       );
+//       if (fileLoaderRule) {
+//         fileLoaderRule.exclude = /\.svg$/i;
+//       }
+//     config.module.rules.push({
+//       test: /\.svg$/i,
+//       use: ['@svgr/webpack'],
+//     });
+//     // fileLoaderRule.exclude = /\.svg$/i
+
+//     return config;
+//   },
+};
+
+export default withNextIntl(nextConfig)
+
+
+

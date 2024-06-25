@@ -3,9 +3,8 @@ import { Anton } from "next/font/google"; // font
 import styles from "./Control.module.css";
 import Image from "next/image";
 // images
-import Corner from "/public/land_sec2/Corner.png";
-import Img from "/public/land_sec3/Img.svg";
-import Img2 from "/public/land_sec3/Img2.svg";
+import Img from "/public/(landingPage)/land_sec3/Img.svg";
+import Img2 from "/public/(landingPage)/land_sec3/Img2.svg";
 // components
 import SectionStructure from "../landingCommon/SectionStructure/SectionStructure";
 import SectionHeader from "../landingCommon/SectionHeader/SectionHeader";

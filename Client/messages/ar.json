@@ -12,22 +12,19 @@
       "title": "نقدم لكم منصة تعليمية تتميز ب",
       "features": [
         {
-          "src": "/land_sec2/Pen.png",
+          "src": "/(landingPage)/land_sec2/Pen.png",
           "title": "سهولة الاستخدام",
-          "description":
-            "واجهتنا البسيطة تجعل التنقل والتفاعل مع المنصة بديهياً وسريعاً، مما يوفر تجربة تعليمية مريحة لجميع المستخدمين."
+          "description": "واجهتنا البسيطة تجعل التنقل والتفاعل مع المنصة بديهياً وسريعاً، مما يوفر تجربة تعليمية مريحة لجميع المستخدمين."
         },
         {
-          "src": "/land_sec2/Pallet.png",
+          "src": "/(landingPage)/land_sec2/Pallet.png",
           "title": "التخصيص والمرونة",
-          "description":
-            "يمكنك تعديل المنصة لتناسب احتياجاتك الخاصة سواء كنت مؤسسة تعليمية أو شركة تدريبية، مما يتيح لك التحكم الكامل في الأدوات والميزات."
+          "description": "يمكنك تعديل المنصة لتناسب احتياجاتك الخاصة سواء كنت مؤسسة تعليمية أو شركة تدريبية، مما يتيح لك التحكم الكامل في الأدوات والميزات."
         },
         {
-          "src": "/land_sec2/Expand.png",
+          "src": "/(landingPage)/land_sec2/Expand.png",
           "title": "القابلية للتوسع",
-          "description":
-            "مصمم لدعم النمو، يمكن لأكاديميا التكيف مع زيادة عدد المستخدمين دون التأثير على الأداء، مما يجعله مثاليًا للمؤسسات المتنامية."
+          "description": "مصمم لدعم النمو، يمكن لأكاديميا التكيف مع زيادة عدد المستخدمين دون التأثير على الأداء، مما يجعله مثاليًا للمؤسسات المتنامية."
         }
       ]
     },
@@ -83,17 +80,17 @@
       "description": "تقدم أكاديميا حلولا مبتكرة لتجاوز التحديات التعليمية وضمان تجربة تعليمية متكاملة. نحن نؤمن بأن التعليم يجب أن يكون متاحًا للجميع، وأن يكون قادرًا على التطور مع احتياجات المؤسسات والطلاب.",
       "FlexibilityData": [
         {
-          "img": "/land_sec4/Img1.svg",
+          "img": "/(landingPage)/land_sec4/Img1.svg",
           "header": "الوصول المتاح للجميع",
           "desc": "يدعم التطبيق ميزات وصول متقدمة مثل أنماط الألوان الخاصة بضعف البصر وخيارات واجهة قابلة للتخصيص لتلبية احتياجات جميع المستخدمين، مما يضمن تجربة تعليمية متكاملة لجميع الطلاب بغض النظر عن احتياجاتهم الخاصة."
         },
         {
-          "img": "/land_sec4/Img2.svg",
+          "img": "/(landingPage)/land_sec4/Img2.svg",
           "header": "تكلفة فعالة",
           "desc": "توفر أكاديميا حلولًا تعليمية بتكلفة فعالة، مما يجعله خيارًا ممتازًا للمؤسسات التعليمية ذات الميزانية المحدودة. تتيح المنصة تحقيق أقصى قيمة بأقل تكلفة، مما يسهم في تحقيق أهداف التعلم بكفاءة وفعالية."
         },
         {
-          "img": "/land_sec4/Img3.svg",
+          "img": "/(landingPage)/land_sec4/Img3.svg",
           "header": "دعم فني مستمر",
           "desc": "يوفر الفريق دعم الفني  لحل أي مشكلات قد تواجه المستخدمين. يمكن للمستخدمين الوصول إلى الدعم عبر قنوات متعددة مثل البريد الإلكتروني، والهاتف، مما يضمن حصولك على المساعدة التي تحتاجها في أي وقت."
         }
@@ -119,7 +116,7 @@
             "واجهة جذابة وسهلة الاستخدام : تصميم بسيط يجعل من السهل التنقل في التطبيق ومتابعة الدروس.",
             "الدعم الفني متوفر دائمًا لك : توفر أكاديميا دعمًا فنيًا مستمرًا لضمان تجربة تعليمية سلسة."
           ],
-          "img": "/land_sec6/img1.svg"
+          "img": "/(landingPage)/land_sec6/img1.svg"
         },
         {
           "id": 1,
@@ -132,7 +129,7 @@
             "تفاعل فوري مع الطلاب : تتيح ميزات التعليقات والتقييم التواصل الفوري مع الطلاب.",
             "نظام تقييم شامل للطلاب : توفر أكاديميا أدوات لتقييم الطلاب بدقة وتقديم تغذية راجعة فورية."
           ],
-          "img": "/land_sec6/img2.svg"
+          "img": "/(landingPage)/land_sec6/img2.svg"
         },
         {
           "id": 2,
@@ -145,7 +142,7 @@
             "تحليل دقيق وتحسين اتخاذ القرارات :  يوفر أكاديميا تحليلات وتقارير دقيقة تساعدك في مراقبة الأداء واتخاذ قرارات مستنيرة.",
             "توسع قابل للتخصيص وفق احتياجاتك : يمكنك تخصيص أكاديميا ليناسب احتياجات مؤسستك المتزايدة دون الحاجة لنظام آخر."
           ],
-          "img": "/land_sec6/img3.svg"
+          "img": "/(landingPage)/land_sec6/img3.svg"
         }
       ]
     },
@@ -194,102 +191,102 @@
       "description": " نعمل بشغف لتقديم أفضل ما لدينا.",
       "teamData": [
         {
-          "img": "/land_sec8/marwan.png",
+          "img": "/(landingPage)/land_sec8/marwan.png",
           "name": "مروان تامر جلال",
           "position": "Project Manager",
           "description": "يتمتع بمهارات تنظيمية عالية وقدرة على تحقيق الأهداف في المواعيد المحددة. يتميز مروان بقدرته على توجيه الفرق لتحقيق أهدافها بكفاءة وفعالية.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/elshaaer.png",
+          "img": "/(landingPage)/land_sec8/elshaaer.png",
           "name": "عبدالرحمن محمد",
           "position": "Product Designer",
           "description": "مصمم متخصص في تجربة المستخدم وتصميم المنتجات التعليمية. عبدالرحمن يعمل على ضمان أن تكون جميع واجهات أكاديميا سهلة الاستخدام وجذابة.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/daived.png",
+          "img": "/(landingPage)/land_sec8/daived.png",
           "name": "ديفيد نائل",
           "position": "Back-End Developer",
           "description": "خبير في تطوير الأنظمة التعليمية والبنية التحتية. ديفيد يضمن أن تكون أكاديميا منصة مستقرة وفعالة من الناحية التقنية.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/fayeq.png",
+          "img": "/(landingPage)/land_sec8/fayeq.png",
           "name": "أحمد فايق",
           "position": "Flutter Developer",
           "description": "مطور تطبيقات محمولة متخصص في تطوير تطبيقات تعليمية متكاملة. يعمل على تطوير تطبيقات تقدم تجربة تعليمية سلسة ومتكاملة عبر جميع المنصات.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/elsaadani.png",
+          "img": "/(landingPage)/land_sec8/elsaadani.png",
           "name": "محمد محمود السعدني",
           "position": "Front-End Developer",
           "description": "مطور واجهات المستخدم لخلق تجربة تفاعلية وجذابة. يركز على تطوير واجهة أكاديميا لتكون سهلة الاستخدام ومريحة لجميع المستخدمين.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         }
@@ -313,6 +310,70 @@
         "أسئلة شائعة"
       ],
       "login": "تسجيل الدخول"
+    }
+  },
+  "platform": {
+    "sidePanal": {
+      "title": "لوحة التحكم",
+      "tabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/Home.svg",
+          "name": "الصفحة الرئيسية",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Assignment.svg",
+          "name": "التكليفات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Quiz.svg",
+          "name": "الاختبارات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Quiz.svg",
+          "name": "الاختبارات",
+          "link": ""
+        }
+      ],
+      "otherTabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/Notifications.svg",
+          "name": "الإشعارات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Settings.svg",
+          "name": "الإعدادات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Support.svg",
+          "name": "الدعم الفني",
+          "link": ""
+        }
+      ],
+      "buttomTabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/CloseMenu.svg",
+          "name": "إغلاق القائمة"
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/DarkMode.svg",
+          "name": "الوضع الليلي"
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/lang.svg",
+          "name": "اللغة"
+        }
+      ]
+    },
+    "Banar": {
+      "title": "مرحبًا بك في أكاديميا",
+      "description": "ابدأ الآن بالتعرف على أحدث الأدوات والموارد التعليمية، أو ابدأ رحلتك في متابعة المحتوى الخاص بك!",
+      "button": "شاهد الفديو",
+      "link": "تواصل معنا"
     }
   }
 }
