@@ -77,6 +77,7 @@ function validateCreateTicket(ticket) {
     return schema.validate(ticket);
 }
 
+
 function validateUpdateTicket(ticket) {
     const schema = Joi.object({
         courseId: Joi.string(),
