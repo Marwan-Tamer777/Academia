@@ -50,9 +50,9 @@ const userSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
-    lastAccessedCourse: {
-        type: String,
-        default: ""
+    lastAccessedCourses: {
+        type: [String],
+        default: []
     },
     contacts: {
         type: [String],
@@ -127,6 +127,7 @@ function validateRegisterUser(user) {
                 isAdmin: Joi.boolean(),
                 title: Joi.string().trim(),
                 department: Joi.string().trim().min(1),
+                lastAccessedCourses: Joi.array().items(Joi.string().trim())
             }
 
         }
@@ -196,6 +197,8 @@ function validateUpdateUser(user) {
                 password: Joi.string().trim().min(7),
                 avatar: Joi.string().trim().min(1),
                 courses: Joi.array().items(Joi.string().trim()),
+                lastAccessedCourses: Joi.array().items(Joi.string().trim())
+
             }
 
         }
