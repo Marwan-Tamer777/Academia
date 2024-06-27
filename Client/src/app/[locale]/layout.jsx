@@ -1,16 +1,19 @@
-import { Inter, Cairo } from "next/font/google";
+import { Inter, Cairo, Lato } from "next/font/google";
 import "./globals.css";
 import Background from "../../components/LoginPages/Background/Background";
 // import { ThemeProvider } from "@/context/ThemeContext";
-import DarkModeToggle from "../../components/LoginPages/DarkModeToggle/DarkModeToggle";
+import DarkModeToggle from "../../components/DarkModeToggle/DarkModeToggle";
 import Head from "next/head";
 
 // for multilanguage support
-import {NextIntlClientProvider} from 'next-intl';
-import {getMessages} from 'next-intl/server';
- 
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
-const inter = Inter({ subsets: ["latin"] });
+import useLocale from "next-intl";
+
+// const inter = Inter({ subsets: ["latin"] });
+// const cairo = Cairo({ subsets: ["arabic", "latin-ext", "latin"], weight: ["400", "600", "800"] });
+// const lato = Lato();
 
 export const metadata = {
   title: "أكاديميا",
@@ -18,7 +21,7 @@ export const metadata = {
 };
 
 // export default function RootLayout({ children }) {
-  
+
 //   return (
 //     <html lang="en">
 //       <body className={inter.className}>
@@ -34,24 +37,24 @@ export const metadata = {
 //   );
 // }
 
-
-export default async function LocaleLayout({
-  children,
-  params: {locale}
-}) {
+export default async function LocaleLayout({ children, params: { locale } }) {
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
- 
+  // const locale = useLocale();
+
+  // {locale === 'ar' ? $('body').removeClass('ltr').addClass('rtl') : $('body').removeClass('rtl').addClass('ltr')}
+  let fontFamily = 'cairo';
+{locale === 'en' ? fontFamily='lato': ''}
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body /*className={inter.className}*/ style={{fontFamily: `${fontFamily}`}}>
         <div className="container">
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          {/* <div style={{background: 'black', height: '100vh'}}></div> */}
-        </NextIntlClientProvider>
-        {/* <Background /> */}
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            {/* <div style={{background: 'black', height: '100vh'}}></div> */}
+          </NextIntlClientProvider>
+          {/* <Background /> */}
         </div>
       </body>
     </html>

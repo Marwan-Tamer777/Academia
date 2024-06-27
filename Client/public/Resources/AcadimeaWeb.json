@@ -1,0 +1,411 @@
+[
+    {
+        "name": "Academia Web",
+        "values": [
+            {
+                "mode": {
+                    "name": "Light",
+                    "id": "820:2"
+                },
+                "color": [
+                    {
+                        "name": "Backgrounds/Active-Pagination-bg",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Bg",
+                        "value": "#fef8f4",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Card-bg",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Highlight-bg",
+                        "value": "#ffe9dd",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Nav-Mobile-header",
+                        "value": "#fef8f4",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Pagination-bg",
+                        "value": "#ffeee4",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Success-tag",
+                        "value": "#28a745",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Tag-bg",
+                        "value": "#ffe9dd",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/reply-card-bg",
+                        "value": "#f7f8f9",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/users-bg",
+                        "value": "#f2e7e0",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/chart-col-stroke",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/chart-main-num",
+                        "value": "#aa4c16",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-01",
+                        "value": "#ff9c64cc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-02",
+                        "value": "#ff9d64",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-03",
+                        "value": "#ffbe99",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-04",
+                        "value": "#ffdecc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Line",
+                        "value": "#fff4ee",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-active-text",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-bg",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-text",
+                        "value": "#4d4d4d",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/choice-stroke",
+                        "value": "#4d4d4d66",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/choosed-stroke",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/users-stroke",
+                        "value": "#fef8f4",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/2nd-title-text",
+                        "value": "#4d4d4d99",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Active-Pagination-text",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Alerts",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Pagination-text",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Success-tag-text",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Tag-tex",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Title-Text",
+                        "value": "#1d3149",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/describtion-Text",
+                        "value": "#4d4d4dcc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/users-text",
+                        "value": "#ff6d18",
+                        "var": "",
+                        "rootAlias": ""
+                    }
+                ],
+                "number": [],
+                "string": []
+            },
+            {
+                "mode": {
+                    "name": "Dark",
+                    "id": "820:3"
+                },
+                "color": [
+                    {
+                        "name": "Backgrounds/Active-Pagination-bg",
+                        "value": "#ffceb2",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Bg",
+                        "value": "#292929",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Card-bg",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Highlight-bg",
+                        "value": "#ffceb2",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Nav-Mobile-header",
+                        "value": "#292929",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Pagination-bg",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Success-tag",
+                        "value": "#1e7b33",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/Tag-bg",
+                        "value": "#ffceb2",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/reply-card-bg",
+                        "value": "#292929",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Backgrounds/users-bg",
+                        "value": "#ffceb2",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/chart-col-stroke",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/chart-main-num",
+                        "value": "#e58d5a",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-01",
+                        "value": "#e58d5a",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-02",
+                        "value": "#e58d5a",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-03",
+                        "value": "#e5aa87",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Charts/charts-bg-04",
+                        "value": "#e5c8b7",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Line",
+                        "value": "#ffceb266",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-active-text",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-bg",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "SideBar/Sidebar-text",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/choice-stroke",
+                        "value": "#4d4d4d",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/choosed-stroke",
+                        "value": "#292929",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Stroke/users-stroke",
+                        "value": "#282828",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/2nd-title-text",
+                        "value": "#ffffffcc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Active-Pagination-text",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Alerts",
+                        "value": "#fbfcfe",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Pagination-text",
+                        "value": "#ffffffcc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Success-tag-text",
+                        "value": "#ffffff",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Tag-tex",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/Title-Text",
+                        "value": "#fbfcfe",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/describtion-Text",
+                        "value": "#ffffffcc",
+                        "var": "",
+                        "rootAlias": ""
+                    },
+                    {
+                        "name": "Text/users-text",
+                        "value": "#3c3c3c",
+                        "var": "",
+                        "rootAlias": ""
+                    }
+                ],
+                "number": [],
+                "string": []
+            }
+        ]
+    }
+]

@@ -80,17 +80,17 @@
       "description": "Academia offers innovative solutions to overcome educational challenges and ensure a comprehensive learning experience. We believe that education should be accessible to everyone and able to evolve with the needs of institutions and students.",
       "FlexibilityData": [
         {
-          "img": "/land_sec4/Img1.svg",
+          "img": "/(landingPage)/land_sec4/Img1.svg",
           "header": "Accessibility for all",
           "desc": "The application supports advanced accessibility features such as color modes for visual impairments and customizable interface options to meet the needs of all users, ensuring a comprehensive educational experience for all students regardless of their special needs."
         },
         {
-          "img": "/land_sec4/Img2.svg",
+          "img": "/(landingPage)/land_sec4/Img2.svg",
           "header": "Cost-effective",
           "desc": "Academia provides cost-effective educational solutions, making it an excellent choice for educational institutions with limited budgets. The platform maximizes value at minimal cost, contributing to achieving learning goals efficiently and effectively."
         },
         {
-          "img": "/land_sec4/Img3.svg",
+          "img": "/(landingPage)/land_sec4/Img3.svg",
           "header": "Continuous technical support",
           "desc": "The team provides technical support to solve any issues users may encounter. Users can access support through multiple channels such as email and phone, ensuring you get the help you need at any time."
         }
@@ -116,7 +116,7 @@
             "Attractive and easy-to-use interface: Simple design makes it easy to navigate the app and follow lessons.",
             "Technical support always available: Academia provides continuous technical support to ensure a smooth learning experience."
           ],
-          "img": "/land_sec6/img1.svg"
+          "img": "/(landingPage)/land_sec6/img1.svg"
         },
         {
           "id": 1,
@@ -129,7 +129,7 @@
             "Instant interaction with students: Features such as comments and evaluations allow immediate communication with students.",
             "Comprehensive student evaluation system: Academia provides tools to accurately assess students and give instant feedback."
           ],
-          "img": "/land_sec6/img2.svg"
+          "img": "/(landingPage)/land_sec6/img2.svg"
         },
         {
           "id": 2,
@@ -142,12 +142,12 @@
             "Accurate analysis and improved decision-making: Academia provides accurate analytics and reports to help you monitor performance and make informed decisions.",
             "Scalable customization to suit your needs: You can customize Academia to suit the growing needs of your institution without the need for another system."
           ],
-          "img": "/land_sec6/img3.svg"
+          "img": "/(landingPage)/land_sec6/img3.svg"
         }
       ]
     },
     "faq": {
-      "title": "Frequently Asked Questions",
+      "title": "FAQs",
       "desc": "Enjoy the simplicity of learning with Academia, the open-source learning management system that simplifies your study. With its easy-to-use features and smooth interface, Academia makes online learning easy and accessible for students and teachers in Egypt. Contact us to learn more!",
       "Questions": [
         {
@@ -178,7 +178,8 @@
           "question": "Does Academia support mobile learning?",
           "answer": "Yes, Academia supports mobile learning, allowing students to access educational materials and follow courses from their mobile devices at any time and place."
         }
-      ]
+      ],
+      "button": "Contact Us"
     },
     "team": {
       "smallTitle": "A passionate team",
@@ -186,102 +187,102 @@
       "description": "We work passionately to deliver our best.",
       "teamData": [
         {
-          "img": "/land_sec8/marwan.png",
+          "img": "/(landingPage)/land_sec8/marwan.png",
           "name": "Marwan Tamer Galal",
           "position": "Project Manager",
           "description": "Possessing high organizational skills and the ability to achieve goals within set deadlines. Marwan excels in guiding teams to achieve their goals efficiently and effectively.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/elshaaer.png",
+          "img": "/(landingPage)/land_sec8/elshaaer.png",
           "name": "Abdulrahman Mohammed",
           "position": "Product Designer",
           "description": "A designer specialized in user experience and educational product design. Abdulrahman works to ensure that all Acadimia interfaces are user-friendly and engaging.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/daived.png",
+          "img": "/(landingPage)/land_sec8/daived.png",
           "name": "David Nail",
           "position": "Back-End Developer",
           "description": "An expert in developing educational systems and infrastructure. David ensures that Acadimia is a stable and efficient platform from a technical standpoint.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/fayeq.png",
+          "img": "/(landingPage)/land_sec8/fayeq.png",
           "name": "Ahmed Fayek",
           "position": "Flutter Developer",
           "description": "A mobile application developer specialized in developing comprehensive apps. Works on developing apps that provide a seamless and integrated learning experience across all platforms.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         },
         {
-          "img": "/land_sec8/elsaadani.png",
+          "img": "/(landingPage)/land_sec8/elsaadani.png",
           "name": "Mohamed Mahmoud El-Saadani",
           "position": "Front-End Developer",
           "description": "A Front-end developer to create an interactive and engaging experience. Focuses on developing Academia's interface to be user-friendly and convenient for all users.",
           "socials": [
             {
               "link": "https://www.facebook.com",
-              "icon": "/land_sec8/Dribbble.svg"
+              "icon": "/(landingPage)/land_sec8/Dribbble.svg"
             },
             {
               "link": "https://www.twitter.com",
-              "icon": "/land_sec8/X.svg"
+              "icon": "/(landingPage)/land_sec8/X.svg"
             },
             {
               "link": "https://www.linkedin.com",
-              "icon": "/land_sec8/LinkedIn.svg"
+              "icon": "/(landingPage)/land_sec8/LinkedIn.svg"
             }
           ]
         }
@@ -305,6 +306,64 @@
         "FAQs"
       ],
       "login": "Login Now"
+    }
+  },
+  "platform": {
+    "sidePanal": {
+      "title": "لوحة التحكم",
+      "tabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/Home.svg",
+          "name": "Home Page",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Assignment.svg",
+          "name": "التكليفات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Quiz.svg",
+          "name": "الاختبارات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Quiz.svg",
+          "name": "الاختبارات",
+          "link": ""
+        }
+      ],
+      "otherTabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/Notifications.svg",
+          "name": "الإشعارات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Settings.svg",
+          "name": "الإعدادات",
+          "link": ""
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/Support.svg",
+          "name": "الدعم الفني",
+          "link": ""
+        }
+      ],
+      "buttomTabs": [
+        {
+          "icon": "/(platform)/sidePanal/icons/CloseMenu.svg",
+          "name": "إغلاق القائمة"
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/DarkMode.svg",
+          "name": "الوضع الليلي"
+        },
+        {
+          "icon": "/(platform)/sidePanal/icons/lang.svg",
+          "name": "اللغة"
+        }
+      ]
     }
   }
 }
