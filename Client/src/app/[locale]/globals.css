@@ -72,78 +72,79 @@
     }*/
  }
 
-.theme {
-    transition: 0.5s all ease-in-out;
-}
+ .theme {
+     transition: 0.5s all ease-in-out;
+ }
 
-.light {
-    --backgrounds-active-pagination-bg: #1d3149;
-    --backgrounds-bg: #fef8f4;
-    --backgrounds-card-bg: #ffffff;
-    --backgrounds-highlight-bg: #ffe9dd;
-    --backgrounds-nav-mobile-header: #fef8f4;
-    --backgrounds-pagination-bg: #ffeee4;
-    --backgrounds-success-tag: #28a745;
-    --backgrounds-tag-bg: #ffe9dd;
-    --backgrounds-reply-card-bg: #f7f8f9;
-    --backgrounds-users-bg: #f2e7e0;
-    --charts-chart-col-stroke: #ffffff;
-    --charts-chart-main-num: #aa4c16;
-    --charts-charts-bg-01: #ff9c64cc;
-    --charts-charts-bg-02: #ff9d64;
-    --charts-charts-bg-03: #ffbe99;
-    --charts-charts-bg-04: #ffdecc;
-    --side-bar-line: #fff4ee;
-    --side-bar-sidebar-active-text: #1d3149;
-    --side-bar-sidebar-bg: #ffffff;
-    --side-bar-sidebar-text: #4d4d4d;
-    --stroke-choice-stroke: #4d4d4d66;
-    --stroke-choosed-stroke: #1d3149;
-    --stroke-users-stroke: #fef8f4;
-    --text-2nd-title-text: #4d4d4d99;
-    --text-active-pagination-text: #ffffff;
-    --text-alerts: #1d3149;
-    --text-pagination-text: #1d3149;
-    --text-success-tag-text: #ffffff;
-    --text-tag-tex: #1d3149;
-    --text-title-text: #1d3149;
-    --text-describtion-text: #4d4d4dcc;
-    --text-users-text: #ff6d18;}
+ .light {
+     --backgrounds-active-pagination-bg: #1d3149;
+     --backgrounds-bg: #fef8f4;
+     --backgrounds-card-bg: #ffffff;
+     --backgrounds-highlight-bg: #ffe9dd;
+     --backgrounds-nav-mobile-header: #fef8f4;
+     --backgrounds-pagination-bg: #ffeee4;
+     --backgrounds-success-tag: #28a745;
+     --backgrounds-tag-bg: #ffe9dd;
+     --backgrounds-reply-card-bg: #f7f8f9;
+     --backgrounds-users-bg: #f2e7e0;
+     --charts-chart-col-stroke: #ffffff;
+     --charts-chart-main-num: #aa4c16;
+     --charts-charts-bg-01: #ff9c64cc;
+     --charts-charts-bg-02: #ff9d64;
+     --charts-charts-bg-03: #ffbe99;
+     --charts-charts-bg-04: #ffdecc;
+     --side-bar-line: #fff4ee;
+     --side-bar-sidebar-active-text: #1d3149;
+     --side-bar-sidebar-bg: #ffffff;
+     --side-bar-sidebar-text: #4d4d4d;
+     --stroke-choice-stroke: #4d4d4d66;
+     --stroke-choosed-stroke: #1d3149;
+     --stroke-users-stroke: #fef8f4;
+     --text-2nd-title-text: #4d4d4d99;
+     --text-active-pagination-text: #ffffff;
+     --text-alerts: #1d3149;
+     --text-pagination-text: #1d3149;
+     --text-success-tag-text: #ffffff;
+     --text-tag-tex: #1d3149;
+     --text-title-text: #1d3149;
+     --text-describtion-text: #4d4d4dcc;
+     --text-users-text: #ff6d18;
+ }
 
-.dark {
-    --backgrounds-active-pagination-bg: #ffceb2;
-    --backgrounds-bg: #292929;
-    --backgrounds-card-bg: #3c3c3c;
-    --backgrounds-highlight-bg: #ffceb2;
-    --backgrounds-nav-mobile-header: #292929;
-    --backgrounds-pagination-bg: #3c3c3c;
-    --backgrounds-success-tag: #1e7b33;
-    --backgrounds-tag-bg: #ffceb2;
-    --backgrounds-reply-card-bg: #292929;
-    --backgrounds-users-bg: #ffceb2;
-    --charts-chart-col-stroke: #3c3c3c;
-    --charts-chart-main-num: #e58d5a;
-    --charts-charts-bg-01: #e58d5a;
-    --charts-charts-bg-02: #e58d5a;
-    --charts-charts-bg-03: #e5aa87;
-    --charts-charts-bg-04: #e5c8b7;
-    --side-bar-line: #ffceb266;
-    --side-bar-sidebar-active-text: #3c3c3c;
-    --side-bar-sidebar-bg: #3c3c3c;
-    --side-bar-sidebar-text: #ffffff;
-    --stroke-choice-stroke: #4d4d4d;
-    --stroke-choosed-stroke: #292929;
-    --stroke-users-stroke: #282828;
-    --text-2nd-title-text: #ffffffcc;
-    --text-active-pagination-text: #3c3c3c;
-    --text-alerts: #fbfcfe;
-    --text-pagination-text: #ffffffcc;
-    --text-success-tag-text: #ffffff;
-    --text-tag-tex: #3c3c3c;
-    --text-title-text: #fbfcfe;
-    --text-describtion-text: #ffffffcc;
-    --text-users-text: #3c3c3c;
-}
+ .dark {
+     --backgrounds-active-pagination-bg: #ffceb2;
+     --backgrounds-bg: #292929;
+     --backgrounds-card-bg: #3c3c3c;
+     --backgrounds-highlight-bg: #ffceb2;
+     --backgrounds-nav-mobile-header: #292929;
+     --backgrounds-pagination-bg: #3c3c3c;
+     --backgrounds-success-tag: #1e7b33;
+     --backgrounds-tag-bg: #ffceb2;
+     --backgrounds-reply-card-bg: #292929;
+     --backgrounds-users-bg: #ffceb2;
+     --charts-chart-col-stroke: #3c3c3c;
+     --charts-chart-main-num: #e58d5a;
+     --charts-charts-bg-01: #e58d5a;
+     --charts-charts-bg-02: #e58d5a;
+     --charts-charts-bg-03: #e5aa87;
+     --charts-charts-bg-04: #e5c8b7;
+     --side-bar-line: #ffceb266;
+     --side-bar-sidebar-active-text: #3c3c3c;
+     --side-bar-sidebar-bg: #3c3c3c;
+     --side-bar-sidebar-text: #ffffff;
+     --stroke-choice-stroke: #4d4d4d;
+     --stroke-choosed-stroke: #292929;
+     --stroke-users-stroke: #282828;
+     --text-2nd-title-text: #ffffffcc;
+     --text-active-pagination-text: #3c3c3c;
+     --text-alerts: #fbfcfe;
+     --text-pagination-text: #ffffffcc;
+     --text-success-tag-text: #ffffff;
+     --text-tag-tex: #3c3c3c;
+     --text-title-text: #fbfcfe;
+     --text-describtion-text: #ffffffcc;
+     --text-users-text: #3c3c3c;
+ }
 
 
  * {
@@ -154,7 +155,8 @@
 
  html,
  body {
-     min-width: 100vw;
+     /* min-width: 100vw; */
+     /* margin: 0 auto; */
      overflow-x: hidden;
  }
 
@@ -167,7 +169,7 @@
  }
 
 
-/*
+ /*
 body.ltr {
     text-align: ltr;
 }
@@ -180,6 +182,7 @@ body.ltr {
  .container {
      /* max-width: 1100px; */
      min-height: 100vh;
+     width: 100%;
      margin: 0 auto;
      display: flex;
      flex-direction: column;
@@ -194,18 +197,18 @@ body.ltr {
      align-items: center;
      justify-content: center;
      padding-top: 40px;
-     /* background-color: var(--primary-color); */
  }
 
  .platformContainer {
      display: flex;
-     flex-direction: column;
-     align-items: center;
+     flex-direction: row;
+     align-items: flex-start;
+     gap: 14px;
      justify-content: center;
      padding: 36px 14px;
      background-color: var(--backgrounds-bg);
+     min-height: 100vh;
      transition: all 0.3s ease-in-out;
-     /* background-color: var(--primary-color); */
  }
 
  @media (max-width: 500px) {
