@@ -301,6 +301,7 @@ router.post('/submit', verifyToken, asyncHandler(async (req, res) => {
         return res.status(404).json({ error: 'The user with the given ID was not found' });
     }
 
+
     //Grade the quiz if auto grading is enabled
     let grade = 0;
     if (quiz.autoGrade) {
@@ -320,30 +321,57 @@ router.post('/submit', verifyToken, asyncHandler(async (req, res) => {
         }
     }
 
-    // create quiz user info
+    // update quiz user info data
     requestQuizUserInfo.maxGrade = quiz.grade;
     requestQuizUserInfo.grade = grade;
     requestQuizUserInfo.showGrade = quiz.showGrade;
     requestQuizUserInfo.submissionUrl = "http:SubUrl.com";
     requestQuizUserInfo.gradedBy = "UnAssigned";
-    const quizUserInfo = new model.quizUserInfoModel(requestQuizUserInfo);
 
-    // save quiz user info
-    await quizUserInfo.save();
 
-    // add quiz user info to quiz
-    // quiz.quizUserInfos.push(quizUserInfo._id);
-    // await quiz.save();
+    // check if user has taken the quiz before
+    let quizUserInfo;
+    quizUserInfo = await model.quizUserInfoModel.findOne({ quizId: requestQuizUserInfo.quizId, userId: requestQuizUserInfo.userId });
+    if (quizUserInfo) {
+        if (quizUserInfo.retriesLeft <= 0) {
+            return res.status(400).json({ error: 'User has no retries left' });
+        }
+        requestQuizUserInfo.retriesLeft = quizUserInfo.retriesLeft - 1;
 
-    await res.status(201).json(await functions.responseBodyJSON(
-        201,
-        req.body.actor.id,
-        model.submitQuizUserInfoVerb,
-        req.body.object.objectType,
-        "Quiz User Info Data",
-        { quizUserInfo: quizUserInfo },
-        quizUserInfo._id
-    ));
+        // update quiz user info
+        quizUserInfo = await model.quizUserInfoModel.findByIdAndUpdate(quizUserInfo._id, requestQuizUserInfo, { new: true, runValidators: true });
+        await res.status(200).json(await functions.responseBodyJSON(
+            200,
+            req.body.actor.id,
+            model.submitQuizUserInfoVerb,
+            req.body.object.objectType,
+            "Quiz User Info Data",
+            { quizUserInfo: quizUserInfo },
+            quizUserInfo._id
+        ));
+    } else {
+        requestQuizUserInfo.retriesLeft = quiz.numOfRetries;
+
+        quizUserInfo = new model.quizUserInfoModel(requestQuizUserInfo);
+
+        // save quiz user info
+        await quizUserInfo.save();
+
+
+        await res.status(201).json(await functions.responseBodyJSON(
+            201,
+            req.body.actor.id,
+            model.submitQuizUserInfoVerb,
+            req.body.object.objectType,
+            "Quiz User Info Data",
+            { quizUserInfo: quizUserInfo },
+            quizUserInfo._id
+        ));
+    }
+
+
+
+
 }));
 
 

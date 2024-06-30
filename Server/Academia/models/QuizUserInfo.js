@@ -54,6 +54,10 @@ const quizUserInfoSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
+    retriesLeft: {
+        type: Number,
+        default: 1,
+    },
 }, {
     _id: false,
     timestamps: {

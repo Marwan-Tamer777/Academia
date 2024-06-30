@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const model = require('../models/Post');
 const courseModel = require('../models/Course');
+const userModel = require('../models/User');
 const materialModel = require('../models/Material');
 const coursePollModel = require('../models/CoursePoll');
 const assignmentModel = require('../models/Assignment');
@@ -124,7 +125,18 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
 /// Get All Posts
 router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const posts = await model.postModel.find();
-    res.status(200).json(posts);
+
+    // get user data for each post
+    for (let i = 0; i < posts.length; i++) {
+        let user = await userModel.userModel.findById(posts[i].postedBy).select('-password');
+        // Convert the Mongoose document to a plain object
+        let postObject = posts[i].toObject();
+        postObject.userData = user;
+        // Replace the original document in the array with the modified object
+        posts[i] = postObject;
+    }
+
+    res.status(200).json({ posts: posts });
 }));
 
 /**
@@ -135,11 +147,43 @@ router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Get Post by ID
 router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const post = await model.postModel.findById(req.params.id);
+    let post = await model.postModel.findById(req.params.id);
     if (!post) {
         return res.status(404).json({ error: 'The post with the given ID was not found' });
     }
-    res.status(200).json(post);
+
+    // get user data for the post
+    let user = await userModel.userModel.findById(post.postedBy).select('-password');
+    // Convert the Mongoose document to a plain object
+    let postObject = post.toObject();
+    postObject.userData = user;
+    // Replace the original document in the array with the modified object
+    post = postObject;
+
+    res.status(200).json({ post: post });
+}));
+
+/**
+ * @desc Get all posts by course ID
+ * @route GET /api/posts/course/:id
+ * @method GET
+ * @access Public
+ */
+/// Get All Posts by Course ID
+router.get(`/course/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    const posts = await model.postModel.find({ courseId: req.params.id });
+
+    // get user data for each post
+    for (let i = 0; i < posts.length; i++) {
+        let user = await userModel.userModel.findById(posts[i].postedBy).select('-password');
+        // Convert the Mongoose document to a plain object
+        let postObject = posts[i].toObject();
+        postObject.userData = user;
+        // Replace the original document in the array with the modified object
+        posts[i] = postObject;
+    }
+
+    res.status(200).json({ posts: posts });
 }));
 
 /**
