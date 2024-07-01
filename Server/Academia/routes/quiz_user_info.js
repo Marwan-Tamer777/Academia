@@ -6,6 +6,7 @@ const course = require('../models/Course');
 const user = require('../models/User');
 const quizModel = require('../models/Quiz');
 const questionModel = require('../models/Question');
+const courseUserInfoModel = require('../models/CourseUserInfo');
 const statementModel = require('../models/Statement');
 const functions = require('../utilities/functions');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin, } = require('../middlewares/verifyToken');
@@ -340,6 +341,13 @@ router.post('/submit', verifyToken, asyncHandler(async (req, res) => {
 
         // update quiz user info
         quizUserInfo = await model.quizUserInfoModel.findByIdAndUpdate(quizUserInfo._id, requestQuizUserInfo, { new: true, runValidators: true });
+
+        // update last grade in course user info
+        let cui = await courseUserInfoModel.courseUserInfo.findOneAndUpdate({ courseId: requestQuizUserInfo.courseId, userId: requestQuizUserInfo.userId }, { mostRecentGrade: requestQuizUserInfo.grade }, { new: true, runValidators: true });
+        if (!cui) {
+            return res.status(404).json({ error: 'Course User Info not found Make sure the user is Enrolled In Course' });
+        }
+
         await res.status(200).json(await functions.responseBodyJSON(
             200,
             req.body.actor.id,
@@ -357,6 +365,11 @@ router.post('/submit', verifyToken, asyncHandler(async (req, res) => {
         // save quiz user info
         await quizUserInfo.save();
 
+        // update last grade in course user info
+        let cui = await courseUserInfoModel.courseUserInfo.findOneAndUpdate({ courseId: requestQuizUserInfo.courseId, userId: requestQuizUserInfo.userId }, { mostRecentGrade: requestQuizUserInfo.grade }, { new: true, runValidators: true });
+        if (!cui) {
+            return res.status(404).json({ error: 'Course User Info not found Make sure the user is Enrolled In Course' });
+        }
 
         await res.status(201).json(await functions.responseBodyJSON(
             201,

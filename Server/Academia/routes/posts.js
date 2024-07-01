@@ -103,12 +103,135 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
 
     // Add post to course
     course.posts.push(post.id);
+
+    // Change last Added Post Date
+    course.mostRecentDeadline = new Date().toISOString();
+
+    // save course
     await course.save();
 
     await res.status(201).json(await functions.responseBodyJSON(
         201,
         req.body.actor.id,
         model.createPostVerb,
+        req.body.object.objectType,
+        "Post Data",
+        { post: post },
+        post._id
+    ));
+}));
+
+/**
+ * @desc Like a post
+ * @route Post /api/posts/like/:id
+ * @method Post
+ * @access Public
+ */
+/// Like Post
+router.post(`/like/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    const post = await model.postModel.findById(req.params.id);
+    if (!post) {
+        return res.status(404).json({ error: 'The post with the given ID was not found' });
+    }
+
+    // check if user exists
+    let user = await userModel.userModel.findById(req.body.context.user.id);
+    if (!user) {
+        return res.status(400).json({ error: 'The user with the given ID was not found' });
+    }
+
+    let verb = model.likePostVerb;
+
+    // check if user already liked the post
+    if (post.likes.includes(req.body.context.user.id)) {
+        // unlike post
+        post.likes = post.likes.filter(id => id !== req.body.context.user.id);
+        verb = model.removeLikePostVerb;
+    } else {
+        // Check if user already disliked the post
+        if (post.dislikes.includes(req.body.context.user.id)) {
+            // remove dislike from post
+            post.dislikes = post.dislikes.filter(id => id !== req.body.context.user.id);
+        }
+
+        // like post
+        post.likes.push(req.body.context.user.id);
+    }
+
+    await post.save();
+    await res.status(200).json(await functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        verb,
+        req.body.object.objectType,
+        "Post Data",
+        { post: post },
+        post._id
+    ));
+}));
+
+/**
+ * @desc Dislike a post
+ * @route Post /api/posts/dislike/:id
+ * @method Post
+ */
+/// Dislike Post
+router.post(`/dislike/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
+    // validate the request body
+    const { requestError } = statementModel.validateCreateStatement(req.body);
+    if (requestError) {
+        return res.status(400).json({ error: requestError.details[0].message });
+    }
+    const statement = new statementModel.statementModel(req.body);
+
+    // save Statement
+    await statement.save();
+
+    const post = await model.postModel.findById(req.params.id);
+    if (!post) {
+        return res.status(404).json({ error: 'The post with the given ID was not found' });
+    }
+
+    // check if user exists
+    let user = await userModel.userModel.findById(req.body.context.user.id);
+    if (!user) {
+        return res.status(400).json({ error: 'The user with the given ID was not found' });
+    }
+
+    let verb = model.dislikePostVerb;
+
+    // check if user already disliked the post
+    if (post.dislikes.includes(req.body.context.user.id)) {
+        // remove dislike from post
+        post.dislikes = post.dislikes.filter(id => id !== req.body.context.user.id);
+        verb = model.removeDislikePostVerb;
+    } else {
+
+        // Check if user already liked the post
+        if (post.likes.includes(req.body.context.user.id)) {
+            // remove like from post
+            post.likes = post.likes.filter(id => id !== req.body.context.user.id);
+        }
+
+        // dislike post
+        post.dislikes.push(req.body.context.user.id);
+    }
+
+    await post.save();
+    await res.status(200).json(await functions.responseBodyJSON(
+        200,
+        req.body.actor.id,
+        verb,
         req.body.object.objectType,
         "Post Data",
         { post: post },
@@ -185,6 +308,8 @@ router.get(`/course/:id`, verifyToken.verifyToken, asyncHandler(async (req, res)
 
     res.status(200).json({ posts: posts });
 }));
+
+
 
 /**
  * @desc Update a post

@@ -230,6 +230,30 @@ const createPostVerb = {
         "en-US": "Created Post"
     }
 };
+const likePostVerb = {
+    "id-enum": "like-post",
+    display: {
+        "en-US": "Liked Post"
+    }
+};
+const removeLikePostVerb = {
+    "id-enum": "remove-like-post",
+    display: {
+        "en-US": "Removed Like from Post"
+    }
+};
+const dislikePostVerb = {
+    "id-enum": "dislike-post",
+    display: {
+        "en-US": "Disliked Post"
+    }
+};
+const removeDislikePostVerb = {
+    "id-enum": "remove-dislike-post",
+    display: {
+        "en-US": "Removed Dislike from Post"
+    }
+};
 const updatePostVerb = {
     "id-enum": "update-post",
     display: {
@@ -249,6 +273,10 @@ module.exports = {
     validateCreatePost,
     validateUpdatePost,
     createPostVerb,
+    likePostVerb,
+    removeLikePostVerb,
+    dislikePostVerb,
+    removeDislikePostVerb,
     updatePostVerb,
     deletePostVerb,
 };

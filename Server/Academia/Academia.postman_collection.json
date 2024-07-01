@@ -947,7 +947,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"quizUserInfo\":{\r\n            \"quizId\":\"ec290d4c-7493-4416-8796-ecb5b85e6d14\",\r\n            \"courseId\":\"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n            \"userId\":\"d74f62f6-0822-46ca-a7a6-0707ef1fffb5\",\r\n            \"answers\":[\r\n                \"All of The above.\",\r\n                \"The Sea.\",\r\n                \"Answer 3\"\r\n            ]\r\n        }\r\n        }\r\n        \r\n        }",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"quizUserInfo\":{\r\n            \"quizId\":\"ec290d4c-7493-4416-8796-ecb5b85e6d14\",\r\n            \"courseId\":\"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n            \"userId\":\"cb72b3cc-4885-4d99-b7c4-ba1e63f617e6\",\r\n            \"answers\":[\r\n                \"4\",\r\n                \"All of The above.\",\r\n                \"The Sea.\",\r\n                \"Answer 3\"\r\n            ]\r\n        }\r\n        }\r\n        \r\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1282,13 +1282,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/courses/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"raw": "{{baseUrl}}/courses/501fbcf4-436b-422d-9f60-ed408c892577",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"courses",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+								"501fbcf4-436b-422d-9f60-ed408c892577"
 							]
 						}
 					},
@@ -1481,7 +1481,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"enrollCode\":\"ADdddd436F\"\r\n        },\r\n        \"student\":{\r\n            \"id\":\"0db956b3-1e7e-4555-a32b-baf610c6223a\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"course\":{\r\n            \"enrollCode\":\"1m2V8n\"\r\n        },\r\n        \"student\":{\r\n            \"id\":\"3b8427da-7b81-4471-9791-a0e29c9ee47d\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1489,14 +1489,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/courses/enroll/b701579f-f02d-49ca-9329-c8ca10351490",
+							"raw": "{{baseUrl}}/courses/enroll/501fbcf4-436b-422d-9f60-ed408c892577",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"courses",
 								"enroll",
-								"b701579f-f02d-49ca-9329-c8ca10351490"
+								"501fbcf4-436b-422d-9f60-ed408c892577"
 							]
 						}
 					},
@@ -1515,7 +1515,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"student\":{\r\n            \"id\":\"038c3ee1-5a26-4688-8926-5abbc28264a3\"\r\n        }\r\n        \r\n        }\r\n}",
+							"raw": "{\r\n\t// \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n\t\"actor\":{\r\n\t\t\"name\": \"Admin\",\r\n\t\t\"id\": \"Admin Id\"\r\n\t},\r\n\t\"verb\":{\r\n\t\t\"id-enum\":\"create-course\",\r\n\t\t\"display\":{ \r\n\t\t\t\"en-US\":\"create course\" \r\n\t\t}\r\n\t},\r\n\t\"object\":{\r\n\t\t\"id\":\"null\",\r\n        \"objectType\": \"Agent\",\r\n\t\t\"definition\":{\r\n\t\t\t\"name\":{ \r\n\t\t\t\t\"en-US\":\"course data\" \r\n\t\t\t}\r\n\t\t}\r\n\t},\r\n     \"context\":{\r\n        \"student\":{\r\n            \"id\":\"3b8427da-7b81-4471-9791-a0e29c9ee47d\"\r\n        }\r\n        \r\n        }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1523,14 +1523,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/courses/unenroll/32a7b534-89db-4fc9-ae0d-a80151887d6d",
+							"raw": "{{baseUrl}}/courses/unenroll/501fbcf4-436b-422d-9f60-ed408c892577",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"courses",
 								"unenroll",
-								"32a7b534-89db-4fc9-ae0d-a80151887d6d"
+								"501fbcf4-436b-422d-9f60-ed408c892577"
 							]
 						}
 					},
@@ -2723,7 +2723,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n            \"postedBy\": \"030f219a-0e37-43a5-8fd0-1f88e61085ca\",\r\n            \"title\": \"Quiz 1 \",\r\n            \"content\": \"Quiz 1 Will Cover The First 4 Chapters And Will Start at 10AM Today\",\r\n            \"postNow\":true,\r\n            \"alertUsers\":true,\r\n            \"allowComments\":false,\r\n            \"comments\": [\r\n            ],\r\n            // \"likes\": [\r\n            //     \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            // ],\r\n            // \"dislikes\": [\r\n            //     \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            // ],\r\n            // \"assignment\": {\r\n            //     \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            //     \"numOfAttempts\": 3,\r\n            //     \"duration\": 23,\r\n            //     \"closeOn\": \"2024-02-27T23:27:07.325+00:00\",\r\n            //     \"description\": \"new Assignment on Lecture 2\"\r\n            // }\r\n            // \"material\": {\r\n            //     \"courseId\": \"b2f3176a-0a6c-407f-aceb-e738a1535de6\",\r\n            //     \"materialName\": \"Information Systems\",\r\n            //     \"materialTypeCode\": 1,\r\n            //     \"description\": \"Adding Material From Post\",\r\n            //     \"link\": \"linkToTxt.com\"\r\n            // },\r\n            \"quiz\": {\r\n                \"courseId\": \"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n                \"quizName\": \"C++ Quiz\",\r\n                \"questions\": [\r\n                ],\r\n                \"numOfRetries\": 3,\r\n                \"grade\":100,\r\n                \"duration\": \"PT4H35M59.14S\",\r\n                \"startDate\": \"2013-04-01T12:00:00Z\",\r\n                \"endDate\": \"2013-04-01T12:10:00Z\",\r\n                \"showGrade\": true,\r\n                \"showWrongAnswers\": true,\r\n                \"showCorrectAnswers\": true,\r\n                \"autoGrade\":true\r\n            }\r\n            // \"coursePoll\": {}\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"post\": {\r\n            \"courseId\": \"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n            \"postedBy\": \"030f219a-0e37-43a5-8fd0-1f88e61085ca\",\r\n            \"title\": \"Quiz 2 \",\r\n            \"content\": \"Quiz 2 Will Cover The First 5 Chapters And Will Start at 10AM Today\",\r\n            \"postNow\":true,\r\n            \"alertUsers\":true,\r\n            \"allowComments\":false,\r\n            \"comments\": [\r\n            ],\r\n            // \"likes\": [\r\n            //     \"4f877f85-770f-44e0-ad8c-fdf0ac72e1da\"\r\n            // ],\r\n            // \"dislikes\": [\r\n            //     \"5107bac8-0db2-4d4a-bf1c-da315e685856\"\r\n            // ],\r\n            // \"assignment\": {\r\n            //     \"courseId\": \"32a7b534-89db-4fc9-ae0d-a80151887d6d\",\r\n            //     \"numOfAttempts\": 3,\r\n            //     \"duration\": 23,\r\n            //     \"closeOn\": \"2024-02-27T23:27:07.325+00:00\",\r\n            //     \"description\": \"new Assignment on Lecture 2\"\r\n            // }\r\n            // \"material\": {\r\n            //     \"courseId\": \"b2f3176a-0a6c-407f-aceb-e738a1535de6\",\r\n            //     \"materialName\": \"Information Systems\",\r\n            //     \"materialTypeCode\": 1,\r\n            //     \"description\": \"Adding Material From Post\",\r\n            //     \"link\": \"linkToTxt.com\"\r\n            // },\r\n            \"quiz\": {\r\n                \"courseId\": \"501fbcf4-436b-422d-9f60-ed408c892577\",\r\n                \"quizName\": \"C++ Quiz 2\",\r\n                \"questions\": [\r\n                ],\r\n                \"numOfRetries\": 3,\r\n                \"grade\":100,\r\n                \"duration\": \"PT4H35M59.14S\",\r\n                \"startDate\": \"2013-04-01T12:00:00Z\",\r\n                \"endDate\": \"2013-04-01T12:10:00Z\",\r\n                \"showGrade\": true,\r\n                \"showWrongAnswers\": true,\r\n                \"showCorrectAnswers\": true,\r\n                \"autoGrade\":true\r\n            }\r\n            // \"coursePoll\": {}\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2737,6 +2737,74 @@
 							],
 							"path": [
 								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"user\": {\r\n            \"id\": \"75a669da-5b0c-487c-a623-1d97f85afbf8\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts/like/5280792d-289e-4cef-823e-f483104658a0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"like",
+								"5280792d-289e-4cef-823e-f483104658a0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // \"timestamp\": \"2015-11-18T12:17:00+00:00\",\r\n    \"actor\": {\r\n        \"name\": \"Admin\",\r\n        \"id\": \"Admin Id\"\r\n    },\r\n    \"verb\": {\r\n        \"id-enum\": \"create-course\",\r\n        \"display\": {\r\n            \"en-US\": \"create course\"\r\n        }\r\n    },\r\n    \"object\": {\r\n        \"id\": \"null\",\r\n        \"objectType\": \"Agent\",\r\n        \"definition\": {\r\n            \"name\": {\r\n                \"en-US\": \"course data\"\r\n            }\r\n        }\r\n    },\r\n    \"context\": {\r\n        \"user\": {\r\n            \"id\": \"75a669da-5b0c-487c-a623-1d97f85afbf8\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/posts/dislike/5280792d-289e-4cef-823e-f483104658a0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"posts",
+								"dislike",
+								"5280792d-289e-4cef-823e-f483104658a0"
 							]
 						}
 					},
