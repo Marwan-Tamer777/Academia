@@ -1,0 +1,104 @@
+.mainContainer {
+    width: 100%;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* padding: 48px 358px; */
+    /* overflow: hidden; */
+    width: 30%;
+    height: 100%;
+}
+
+
+
+.img {
+    width: 100%;
+    height: inherit;
+    border-radius: 20px;
+    border: solid 1px white;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    gap: 16px;
+
+
+    /* line-height: 160%; */
+    /* 60.8px */
+
+  
+}
+
+.title {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.desc {
+    color: var(--Line, #FFF4EE);
+    /* text-align: center; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    gap: 7.11px;
+
+    border: solid 1.4px #FF7E31;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+
+    background-color: transparent;
+    color: #FF7E31;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
+    /* font-feature-settings: 'ss03' on, 'ss02' on, 'clig' off, 'liga' off; */
+    /* 16.8px */
+    transition: all 0.2s ;
+
+    &:hover {
+        background-color: hsla(22, 100%, 60%, 0.5);
+        color: white;
+    }
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 7.11px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 120%;
+    /* 16.8px */
+}

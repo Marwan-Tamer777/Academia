@@ -1,0 +1,30 @@
+{
+	// "timestamp": "2015-11-18T12:17:00+00:00",
+	"actor":{
+		"name": "Guest",
+		"id": "null"
+	},
+	"verb":{
+		"id-enum":"log-into-account",
+		"display":{ 
+			"en-US":"log user" 
+		}
+	},
+	"object":{
+		"id":"null",
+        "objectType": "Agent",
+		"definition":{
+			"name":{ 
+				"en-US":"user data" 
+			}
+		}
+	},
+     "context":{
+        "user":{
+            "email":"test2eeeee3e@email.com",
+            // "assignedId":"2020001",
+            "password":"1234567"
+        }
+        
+        }
+}
