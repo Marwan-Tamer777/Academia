@@ -211,6 +211,11 @@ body.ltr {
      transition: all 0.3s ease-in-out;
  }
 
+ .coursesContainer {
+     display: flex;
+     gap: 15px;
+ }
+
  @media (max-width: 500px) {
      body {
          background-color: var(--secodary-color);

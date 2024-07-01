@@ -28,7 +28,7 @@ export async function getUserById({ userID }) {
     }
   );
   const data = await dataFetsh.json();
-  console.log(data)
+  // console.log(data)
 
   
   // data.then((res) => { return res })

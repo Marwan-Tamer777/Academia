@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./Posts.module.css";
 
+import Image from "next/image";
 import Avatar from "/public/(platform)/sidePanal/Avatar.svg";
 
-import Image from "next/image";
+// components
+
+import CommentBtn from "@/components/(platform)/SingleCourse/Posts/SC_components/CommentBtn/commentBtn";
 
 // icons
 import Like from "/public/(platform)/posts/icons.svg";
@@ -17,6 +20,7 @@ import {
   getUserById,
 } from "@/components/(platform)/Common/API/fetch";
 
+// main function Posts
 export default async function Posts() {
   const data = await fetchData({ route: "posts" });
   return (
@@ -33,8 +37,9 @@ export default async function Posts() {
     </div>
   );
 }
-export function AddPost() {
 
+// add post
+export function AddPost() {
   return (
     <div className={styles.addPost}>
       <div className={styles.user}>
@@ -45,22 +50,26 @@ export function AddPost() {
         </div>
       </div>
       <form className={styles.inputForm}>
+        <div style={{ width: "42px" }}></div>
         <input
           className={styles.input}
           type="text"
           placeholder="أكتب ما بداخلك"
         />
-        <div onClick={''} className={styles.submitPost} /*type="submit"*/>
+        <div onClick={""} className={styles.submitPost} /*type="submit"*/>
           {" "}
-          <Submit />
+          <Submit /> {/* svg */}
         </div>
       </form>
     </div>
   );
 }
 
-export async function User({ post }) {
-  const user = await getUserById({ userID: post.postedBy });
+// user
+export async function User({ postedBy }) {
+  // user data for post, comments, create post & comment
+  const user = await getUserById({ userID: postedBy });
+
   return (
     <div className={styles.user}>
       <Image src={Avatar} />
@@ -72,20 +81,24 @@ export async function User({ post }) {
   );
 }
 
+// single post
 export async function SinglePost({ data }) {
   return (
     <div className={styles.posts}>
-      {data.map((post, index) => (
-        <div className={styles.singlePost} key={index}>
-          <User post={post} />
+      {data.map((post) => (
+        <div className={styles.singlePost} key={post.id}>
+          <User postedBy={post.postedBy} />
           <div className={styles.post}>
-            <h3>{post.title}</h3>
-            <p>
-              {post.content}هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة،
-              لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل
-              هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف
-              التى يولدها التطبيق.{" "}
-            </p>
+            <div style={{display: 'flex', width: '42px'}}></div>
+            <div>
+              <h3>{post.title}</h3>
+              <p>
+                {post.content}هذا النص هو مثال لنص يمكن أن يستبدل في نفس
+                المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن
+                تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد
+                الحروف التى يولدها التطبيق.{" "}
+              </p>
+            </div>
           </div>
           <div className={styles.numLikesComments}>
             <p className={styles.like}>
@@ -100,45 +113,31 @@ export async function SinglePost({ data }) {
               <Image src={LikeBigger} />
               أدعم
             </button>
-            <button className={styles.button}>
-              <Comment />
-              التعليقات
-            </button>
+            <CommentBtn />
           </div>
+          <Comments />
         </div>
       ))}
     </div>
   );
 }
 
+//  comments
+
 export async function Comments() {
+  const data = await fetchData({ route: "comments" });
   return (
-    <div className={styles.comments}>
-      <div className={styles.user}>
-        <Image />
-        <h3>UserName</h3>
-        <h6>UserRole</h6>
-      </div>
-      <div className={styles.comment}>
-        <p>Comment</p>
+    <div className={styles.commentsContainer}>
+      <div className={styles.comments}>
+        {data.map((comment, index) => (
+          <div className={styles.singleComment} key={index}>
+            <User postedBy={comment.postedBy} />
+            <div className={styles.comment}>
+              <p>{comment.content}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
-
-// export async function getStaticPaths() {
-//     return {
-//         paths: [],
-//         fallback: true,
-//     };
-
-// }
-
-// export async function getStaticProps() {
-//     const data = await fetchData({ route: "posts" });
-//     return {
-//         props: {
-//         data,
-//         },
-//     };
-// }
