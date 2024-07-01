@@ -21,6 +21,10 @@ const quizSchema = new mongoose.Schema({
         minlength: 1,
         maxlength: 100,
     },
+    quizDescription: {
+        type: String,
+        default: '',
+    },
     questions: {
         type: [String],
         default: [],
@@ -84,6 +88,7 @@ function validateCreateQuiz(quiz) {
     const schema = Joi.object({
         courseId: Joi.string().required(),
         quizName: Joi.string().min(1).max(100).required(),
+        quizDescription: Joi.string(),
         questions: Joi.array().items(Joi.string()),
         numOfRetries: Joi.number().required(),
         grade: Joi.number().required().min(1),
@@ -122,6 +127,7 @@ function validateUpdateQuiz(quiz) {
         context: {
             quiz: {
                 quizName: Joi.string().min(1).max(100),
+                quizDescription: Joi.string(),
                 questions: Joi.array().items(Joi.string()),
                 numOfRetries: Joi.number(),
                 grade: Joi.number().min(1),
