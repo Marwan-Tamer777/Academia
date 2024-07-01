@@ -4,6 +4,7 @@ const router = express.Router();
 const model = require('../models/Course');
 const verifyToken = require('../middlewares/verifyToken');
 const statementModel = require('../models/Statement');
+const courseUserInfoModel = require('../models/CourseUserInfo');
 const user = require('../models/User');
 const functions = require('../utilities/functions');
 const { roleModel } = require('../models/Role');
@@ -325,6 +326,16 @@ router.post("/enroll/:id", asyncHandler(async (req, res) => {
     course.currentCapacity += 1;
     await course.save();
 
+    // Create CourseUserInfo
+    const courseUserInfo = new courseUserInfoModel.courseUserInfo({
+        userId: requestStudent.id,
+        courseId: course._id,
+        roleId: roleModel.studentRole,
+    });
+
+    // Save CourseUserInfo
+    await courseUserInfo.save();
+
     student.courses.push(course._id);
     await student.save();
 
@@ -378,6 +389,12 @@ router.post("/unenroll/:id", asyncHandler(async (req, res) => {
     if (!course.students.includes(requestStudent.id)) {
         return res.status(400).json({ error: 'The student is not enrolled in the course' });
     }
+
+    // Remove CourseUserInfo
+    await courseUserInfoModel.courseUserInfo.deleteOne({
+        userId: requestStudent.id,
+        courseId: course._id,
+    });
 
     course.students = course.students.filter((id) => id !== requestStudent.id);
     course.currentCapacity -= 1;

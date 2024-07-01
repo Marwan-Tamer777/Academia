@@ -17,6 +17,11 @@ const courseSchema = new mongoose.Schema({
         maxlength: 200,
         // match: /pattern/
     },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     courseCode: {
         type: String,
         required: true,
@@ -100,6 +105,7 @@ const courseModel = mongoose.model('Course', courseSchema);
 function validateCreateCourse(course) {
     const schema = Joi.object({
         name: Joi.string().trim().max(200).required(),
+        description: Joi.string().trim().required(),
         courseCode: Joi.string().trim().required(),
         enrollCode: Joi.string().trim().required(),
         programName: Joi.string().trim().required(),
@@ -127,6 +133,7 @@ function validateCreateCourse(course) {
 function validateUpdateCourse(course) {
     const schema = Joi.object({
         name: Joi.string().trim().max(200),
+        description: Joi.string().trim(),
         courseCode: Joi.string().trim(),
         enrollCode: Joi.string().trim(),
         maxCapacity: Joi.number().min(1),
