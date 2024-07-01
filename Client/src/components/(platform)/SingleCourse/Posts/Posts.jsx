@@ -33,7 +33,7 @@ export default async function Posts() {
       <div className={styles.header}>
         <h1>منشورات</h1>
       </div>
-      <SinglePost data={data} />
+      <SinglePost data={data.posts} />
     </div>
   );
 }
