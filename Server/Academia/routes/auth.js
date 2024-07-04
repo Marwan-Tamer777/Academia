@@ -101,13 +101,19 @@ router.post("/login", asyncHandler(async (req, res) => {
         return res.status(400).json({ error: error.details[0].message });
     }
 
+    //Check if request has email or assignedId
+    if (!requestUser.email && !requestUser.assignedId) {
+        return res.status(400).json({ error: 'Email Or Assigned ID Must Be Provided.' });
+    }
 
     // check if user exists by email or id, one of them is enough 
     let userEmailExists = await model.userModel.findOne({ email: requestUser.email });
-    let userIdExists = await model.userModel.findOne({ id: requestUser.id });
+    let userIdExists = await model.userModel.findOne({ assignedId: requestUser.assignedId });
+    console.log(userEmailExists, userIdExists, requestUser.assignedId, requestUser.email);
+
 
     if (!userEmailExists && !userIdExists) {
-        return res.status(400).json({ error: 'User does not exist.' });
+        return res.status(400).json({ error: 'User Does Not Exist.' });
     } else if (userEmailExists) {
         user = userEmailExists;
     } else if (userIdExists) {
