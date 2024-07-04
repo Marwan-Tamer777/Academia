@@ -72,9 +72,17 @@ router.post("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
  */
 /// Get All Questions
 router.get("/", verifyToken.verifyToken, asyncHandler(async (req, res) => {
-    const questions = await model.questionModel.find();
+    let questions;
+    if (req.query.quizId) {
+        questions = await model.questionModel.find({ quizId: req.query.quizId });
+    } else {
+
+        questions = await model.questionModel.find();
+    }
+
     res.status(200).json(questions);
 }));
+
 
 /**
  * @desc Get a quiz question by ID
