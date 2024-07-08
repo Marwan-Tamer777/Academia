@@ -154,9 +154,9 @@ class CoursesCubit extends Cubit<CoursesState> {
   void categorizeCourses() {
     categorizedCourses.clear();
     // Initialize or clear the 'all' category with all courses
-    categorizedCourses['all'] = List.from(allCourses);
+    categorizedCourses['all'] = List.from(myCourses);
 
-    for (var course in allCourses) {
+    for (var course in myCourses) {
       String department =
           course.programName!; // Assuming Course model has a department field
       categorizedCourses.putIfAbsent(department, () => []);
