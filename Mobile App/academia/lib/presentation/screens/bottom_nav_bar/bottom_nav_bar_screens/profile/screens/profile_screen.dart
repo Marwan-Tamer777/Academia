@@ -26,8 +26,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = ProfileCubit.get(context);
         return state is ProfileLoadingState
-            ? const Center(
-                child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : state is ProfileErrorState
                 ? Center(
                     child: CustomText(
@@ -102,7 +101,7 @@ class ProfileScreen extends StatelessWidget {
                                     leading: DropdownButton<String>(
                                       value: cubit.selectedLanguage?.tr,
                                       // can you make the icon in the another side
-                                      underline: SizedBox(),
+                                      underline: const SizedBox(),
                                       iconEnabledColor: Colors.white,
                                       items: cubit.languages
                                           .map<DropdownMenuItem<String>>(
@@ -136,7 +135,7 @@ class ProfileScreen extends StatelessWidget {
                                   ListTile(
                                     leading: DropdownButton<String>(
                                       value: cubit.selectedTheme,
-                                      underline: SizedBox(),
+                                      underline: const SizedBox(),
                                       iconEnabledColor: Colors.white,
                                       items: cubit.themes
                                           .map<DropdownMenuItem<String>>(
@@ -147,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                                         );
                                       }).toList(),
                                       onChanged: (String? newValue) {
-                                        cubit.changeTheme(newValue!);
+                                        cubit.changeTheme(newValue!, context);
                                       },
                                     ),
                                     title: Column(
@@ -215,7 +214,8 @@ class ProfileScreen extends StatelessWidget {
                                           height: 10,
                                         ),
                                         CustomText(
-                                          text: AppStrings.fontSelectionDescription,
+                                          text: AppStrings
+                                              .fontSelectionDescription,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyLarge!

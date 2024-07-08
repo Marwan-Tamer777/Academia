@@ -35,7 +35,7 @@ class HomeDataReturned extends StatelessWidget {
 
 
                 // last accessed courses indicator
-                Dots(currentIndex: cubit.currentIndex, length: cubit.myLastAccesedCourses.length),
+                Dots(currentIndex: cubit.currentIndex, length: cubit.myLastAccessedCourses.length),
                 // search field
                 const SearchField(),
 

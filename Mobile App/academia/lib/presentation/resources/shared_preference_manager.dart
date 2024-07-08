@@ -13,6 +13,16 @@ class SharedPrefManager {
     return prefs.getInt(_themeMode);
   }
 
+  // function to set if it is the first time to open the app
+  static Future<void> setInt(String key, int value) async {
+    await prefs.setInt(key, value);
+  }
+
+  // function to get if it is the first time to open the app
+  static int? getInt(String key) {
+    return prefs.getInt(key);
+  }
+
   Future<void> setThemeMode(int value) async {
     prefs.setInt(_themeMode, value);
   }
@@ -59,7 +69,6 @@ class SharedPrefManager {
   }) {
     return prefs.getBool(key);
   }
-
 
 //clear all data in the local data base
   static Future<bool> clearData() async {

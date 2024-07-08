@@ -86,7 +86,6 @@ Map<String, dynamic> submitQuizSchema({
 
 
 Map<String, dynamic> resetPasswordSchema({
-  required String email,
   required String oldPassword,
   required String newPassword,
 }) => {
@@ -112,7 +111,6 @@ Map<String, dynamic> resetPasswordSchema({
 	},
      "context":{
         "user":{
-            "email":email,
             "password":oldPassword,
             "newPassword":newPassword
         }

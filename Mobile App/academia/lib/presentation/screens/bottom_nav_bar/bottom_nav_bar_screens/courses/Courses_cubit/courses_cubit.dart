@@ -21,26 +21,29 @@ class CoursesCubit extends Cubit<CoursesState> {
   TextEditingController searchController = TextEditingController();
 
   List<Course> myCourses = [];
-  List<Course> myLastAccesedCourses = [];
-  List<Course> allCourses = []; 
+  List<Course> myLastAccessedCourses = [];
+  List<Course> allCourses = [];
 
-  Future<void> getCourses() async { 
-    myCourses.clear(); 
-    myLastAccesedCourses.clear(); 
+  Future<void> getCourses() async {
+    myCourses.clear();
+    myLastAccessedCourses.clear();
     allCourses.clear();
     emit(CoursesLoadingStates());
     try {
-      await DioHelper.getData(url: EndPoint.courses,token: userToken).then((value) {
-        allCourses = (value.data as List).map((e) => Course.fromJson(e)).toList(); 
+      await DioHelper.getData(url: EndPoint.courses, token: userToken)
+          .then((value) {
+        allCourses =
+            (value.data as List).map((e) => Course.fromJson(e)).toList();
         print(allCourses.length);
         for (var element in allCourses) {
           if (element.students!.contains(userId)) {
             myCourses.add(element);
           }
         }
-        
+
         for (var element in userData!.lastAccessedCourse!) {
-          myLastAccesedCourses.add(allCourses.firstWhere((course) => course.id == element));
+          myLastAccessedCourses
+              .add(allCourses.firstWhere((course) => course.id == element));
         }
         categorizeCourses();
         emit(CoursesSuccessStates());
@@ -53,19 +56,25 @@ class CoursesCubit extends Cubit<CoursesState> {
   }
 
   // enroll in course by sending course id to the server
-  Future<void> enrollInCourse(String courseId, String code) async { 
+  Future<void> enrollInCourse(String courseId, String code) async {
     emit(CoursesEnrolLoadingStates());
     try {
-      await DioHelper.postData(url: "${EndPoint.enrollCourse}/$courseId",data: enrollCourseSchema(studentId: userId!, enrollCode: code.toString()), token: userToken).then((value) {
-        if(value.statusCode == 200) {
-          Course newCourse = allCourses.firstWhere((element) => element.id == courseId,);  
+      await DioHelper.postData(
+              url: "${EndPoint.enrollCourse}/$courseId",
+              data: enrollCourseSchema(
+                  studentId: userId!, enrollCode: code.toString()),
+              token: userToken)
+          .then((value) {
+        if (value.statusCode == 200) {
+          Course newCourse = allCourses.firstWhere(
+            (element) => element.id == courseId,
+          );
           newCourse.students!.add(userId!);
-          myCourses.insert(0,newCourse); 
-          categorizeCourses(); 
+          myCourses.insert(0, newCourse);
+          categorizeCourses();
           search();
           emit(CoursesEnrolSuccessStates());
-        } 
-        else { 
+        } else {
           emit(CoursesEnrolErrorStates(AppStrings.errorEnrollingCourse));
         }
       }).catchError((error) {
@@ -74,21 +83,27 @@ class CoursesCubit extends Cubit<CoursesState> {
     } catch (e) {
       emit(CoursesEnrolErrorStates(AppStrings.errorEnrollingCourse));
     }
-  } 
+  }
 
   Future<void> unEnrollCourse(String courseId) async {
     emit(CoursesUnEnrollLoadingStates());
     try {
-      await DioHelper.postData(url: "${EndPoint.unEnrollCourse}/$courseId",data: unEnrollCourseSchema(studentId: userId!), token: userToken).then((value) {
-        if(value.statusCode == 200) {
-          Course newCourse = allCourses.firstWhere((element) => element.id == courseId,);  
+      await DioHelper.postData(
+              url: "${EndPoint.unEnrollCourse}/$courseId",
+              data: unEnrollCourseSchema(studentId: userId!),
+              token: userToken)
+          .then((value) {
+        if (value.statusCode == 200) {
+          Course newCourse = allCourses.firstWhere(
+            (element) => element.id == courseId,
+          );
           newCourse.students!.remove(userId);
           myCourses.removeWhere((element) => element.id == courseId);
-          categorizeCourses(); 
-          myLastAccesedCourses.removeWhere((element) => element.id == courseId);
+          categorizeCourses();
+          myLastAccessedCourses
+              .removeWhere((element) => element.id == courseId);
           emit(CoursesUnEnrollSuccessStates());
-        } 
-        else { 
+        } else {
           emit(CoursesUnEnrollErrorStates());
         }
       }).catchError((error) {
@@ -99,8 +114,6 @@ class CoursesCubit extends Cubit<CoursesState> {
     }
   }
 
-
-
   int currentIndex = 0;
   void swap(int index) {
     currentIndex = index;
@@ -109,56 +122,62 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   List<Course> searchResults = [];
   void searchCourses(String query) {
-    searchResults = allCourses.where((element) => element.name!.toLowerCase().contains(query.toLowerCase())).toList();
-    searchResults.addAll(allCourses.where((element) => element.courseCode!.toLowerCase().contains(query.toLowerCase())).toList());
+    searchResults = allCourses
+        .where((element) =>
+            element.name!.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+    searchResults.addAll(allCourses
+        .where((element) =>
+            element.courseCode!.toLowerCase().contains(query.toLowerCase()))
+        .toList());
     emit(CoursesSearchState());
-  } 
+  }
 
-  void addToMyLastAccessedCourses(Course course) { 
-    if(myLastAccesedCourses.contains(course)) {
-      myLastAccesedCourses.remove(course);
+  void addToMyLastAccessedCourses(Course course) {
+    if (myLastAccessedCourses.contains(course)) {
+      myLastAccessedCourses.remove(course);
     }
-    myLastAccesedCourses.add(course); 
+    myLastAccessedCourses.add(course);
     emit(AddLastAccessedCourses());
   }
 
   void search() {
     isSearch = !isSearch;
     emit(CoursesSearchState());
-  } 
+  }
 
-    Map<String, List<Course>> categorizedCourses = {};
+  Map<String, List<Course>> categorizedCourses = {};
   String? homeSelectedDepartment;
   String? coursesSelectedDepartment;
 
   // Method to categorize courses by department
-  void categorizeCourses() { 
+  void categorizeCourses() {
     categorizedCourses.clear();
-  // Initialize or clear the 'all' category with all courses
-  categorizedCourses['all'] = List.from(myCourses);
+    // Initialize or clear the 'all' category with all courses
+    categorizedCourses['all'] = List.from(allCourses);
 
-  for (var course in myCourses) {
-    String department = course.programName!; // Assuming Course model has a department field
-    categorizedCourses.putIfAbsent(department, () => []);
-    categorizedCourses[department]?.add(course);
-  }
+    for (var course in allCourses) {
+      String department =
+          course.programName!; // Assuming Course model has a department field
+      categorizedCourses.putIfAbsent(department, () => []);
+      categorizedCourses[department]?.add(course);
+    }
 
-  // Select 'all' category by default
-  homeSelectedDepartment = 'all'; 
-  coursesSelectedDepartment = 'all';
+    // Select 'all' category by default
+    homeSelectedDepartment = 'all';
+    coursesSelectedDepartment = 'all';
 
-  emit(CoursesCategorizedState()); 
+    emit(CoursesCategorizedState());
   }
 
   // Method to handle department selection
   void selectHomeHomeDepartment(String departmentName) {
     homeSelectedDepartment = departmentName;
     emit(CoursesFilteredByDepartmentState()); // Assuming this state exists
-  } 
+  }
 
   void selectDepartment(String departmentName) {
     coursesSelectedDepartment = departmentName;
     emit(CoursesFilteredByDepartmentState()); // Assuming this state exists
   }
-
 }

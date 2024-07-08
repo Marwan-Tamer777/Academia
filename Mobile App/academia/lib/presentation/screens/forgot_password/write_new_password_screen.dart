@@ -155,7 +155,7 @@ class WriteNewPasswordScreen extends StatelessWidget {
             BigButton(
           margin: const EdgeInsets.all(AppMargin.m10),
           onPressed: () {
-            cubit.resetPassword(userData!.email!, oldPasswordController.text, newPasswordController.text);
+            cubit.resetPassword( oldPasswordController.text, newPasswordController.text);
           },
           text: AppStrings.newPasswordButtonTitle,
         ),

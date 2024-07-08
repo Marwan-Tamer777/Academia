@@ -2,15 +2,19 @@ Map<String, String> en = {
   "appName": "Academia",
   "appSloganName": "Online Learning made easy",
   "loginWelcomeTitleMessage": "Welcome to Academia!",
-  "loginWelcomeDescriptionMessage": "We've missed you! Discover the latest news and updates by logging in now.",
+  "loginWelcomeDescriptionMessage":
+      "We've missed you! Discover the latest news and updates by logging in now.",
   "loginEmailHint": "Email",
   "loginPasswordHint": "Password",
   "onBoardingTitle1": "Are you feeling lazy?",
   "onBoardingTitle2": "Tired of all the shopping you do?",
   "onBoardingTitle3": "Then use ShopEase and buy online",
-  "onBoardingDescription1": "Welcome to ShopEase, where convenience meets shopping.",
-  "onBoardingDescription2": "Skip the queues and crowded malls. ShopEase brings the store to you, at your fingertips.",
-  "onBoardingDescription3": "Embrace simplicity. With ShopEase, you can browse, choose, and buy with ease, all from the comfort of your home. Get started now!",
+  "onBoardingDescription1":
+      "Welcome to ShopEase, where convenience meets shopping.",
+  "onBoardingDescription2":
+      "Skip the queues and crowded malls. ShopEase brings the store to you, at your fingertips.",
+  "onBoardingDescription3":
+      "Embrace simplicity. With ShopEase, you can browse, choose, and buy with ease, all from the comfort of your home. Get started now!",
   "undefinedRoute": "Undefined Route...",
   "next": "Next",
   "previous": "Previous",
@@ -53,7 +57,8 @@ Map<String, String> en = {
   "forgotPassword": "Forgot Password",
   "emailCheck": "Email Check",
   "forgotPasswordTitle": "Forgot Password",
-  "forgotPasswordDescription": "Please, enter your email address. You will receive a link to create a new password via email.",
+  "forgotPasswordDescription":
+      "Please, enter your email address. You will receive a link to create a new password via email.",
   "noAccount": "Don't have an account?",
   "rememberMe": "Remember Me",
   "alreadyMember": "Already have an account? Login",
@@ -75,13 +80,17 @@ Map<String, String> en = {
   "favorites": "Favorites",
   "somethingWrongText": "Something went wrong please try again later",
   "onBoardingTitle11": "Discover a new world of learning",
-  "onBoardingDescription11": "Welcome to Academia, where knowledge meets experience. Let's accompany you on your educational journey and open horizons of knowledge and discoveries.",
+  "onBoardingDescription11":
+      "Welcome to Academia, where knowledge meets experience. Let's accompany you on your educational journey and open horizons of knowledge and discoveries.",
   "onBoardingTitle22": "Learn according to your specialty",
-  "onBoardingDescription22": "At Academia, a unique learning experience tailored to your interests. Whether you're looking for science, arts, or technology, our app provides the tools to gain skills your way.",
+  "onBoardingDescription22":
+      "At Academia, a unique learning experience tailored to your interests. Whether you're looking for science, arts, or technology, our app provides the tools to gain skills your way.",
   "onBoardingTitle33": "Start your educational journey",
-  "onBoardingDescription33": "Explore exciting content and distinctive educational resources. Start your educational journey today and enjoy a world of knowledge and challenges. Academia is here to support you every step of the way.",
+  "onBoardingDescription33":
+      "Explore exciting content and distinctive educational resources. Start your educational journey today and enjoy a world of knowledge and challenges. Academia is here to support you every step of the way.",
   "forgotPasswordTitle1": "Forgot Password",
-  "forgotPasswordTitleMessage": "Don't worry, just enter your email and we will send a verification code",
+  "forgotPasswordTitleMessage":
+      "Don't worry, just enter your email and we will send a verification code",
   "forgotPasswordButtonTitle": "Forgot Password",
   "verifyEmailTitle": "Verify Email",
   "verifyEmailMessage": "Enter the code we sent to the following email address",
@@ -144,9 +153,9 @@ Map<String, String> en = {
   "remainingHours": "4 hours remaining",
   "assignment": "Assignment",
   "arabic": "Arabic",
-
   "courseRegistrationSuccess": "Course Registered Successfully",
-  "courseRegistrationSuccessDescription": "You can now follow the latest updates",
+  "courseRegistrationSuccessDescription":
+      "You can now follow the latest updates",
   "browseContent": "Browse Content",
   "quiz": "Quiz",
   "goHome": "Go Home",
@@ -155,54 +164,48 @@ Map<String, String> en = {
   "uploadRunning": "Upload Running",
   "uploadFailed": "Upload Failed",
   "mb": "MB",
-  "nightModeDescription": "Choose this mode for a comfortable viewing experience, ideal for the visually impaired and red-green color blindness.",
+  "nightModeDescription":
+      "Choose this mode for a comfortable viewing experience, ideal for the visually impaired and red-green color blindness.",
   "fontSelectionDescription": "Suitable for a comfortable viewing experience.",
   "loginError": "Your email or password is incorrect",
   "noInternet": "No Internet Connection",
   "courseCodeIsNotCorrect": "The course code is not correct",
   "errorEnrollingCourse": "Error enrolling in the course",
-
-    "loginPasswordError": "password is required",
-    "loginEmailError": "email is required",
-    "loginEmailInvalid": "email is invalid",
-    "pleaseWait": "please wait",
-    "modeSelection": "castomize colors",
-    "fontSelection": "castomize fonts",  
-
-    "light": "Light",
-    "dark": "Dark",
-    "semiDark": "Semi Dark", 
-
-    "english": "English", 
-
-    "small": "Small", 
-    "medium": "Medium",
-    "large": "Large",
-
-    "quizSubmitted": "Quiz Submitted Successfully",
-    "quizSubmittedDescription": "You have 3 attempts remaining, use them wisely",
-
-    "areYouSureYouWantToEnrollThisCourse": "Are you sure you want to enroll in this course?",
-    "cancel": "Cancel", 
-
-    "evaluationSubmitted": "Evaluation Submitted Successfully", 
-    "evaluationSubmittedDescription": "Thank you for your evaluation, we appreciate your feedback", 
-
-    "evaluationQuestion1": "How was the performance of the teaching staff?", 
-    "evaluationQuestion2": "What is your evaluation of the scientific material and resources?",
-    "evaluationQuestion3": "How was the practical tests and evaluations?", 
-
-    "poor": "Poor",
-    "accepted": "Accepted",
-    "good": "Good",
-    "veryGood": "Very Good",
-    "excellent": "Excellent",
-
-    "writeYourComment": "Write your comment", 
-
-    "helpUsImprove": "Help us improve the educational process by evaluating the course",  
-    "helpUsImproveDescription": "We appreciate your feedback as it helps us improve the educational process. Please take a few minutes to evaluate the course. We guarantee that all data will remain anonymous, allowing you to evaluate freely and impartially. Your participation contributes to the development and improvement of the quality of our education.",
-
-    "oldPassword": "Old Password",
-    "newPassword": "New Password",
+  "loginPasswordError": "password is required",
+  "loginEmailError": "email is required",
+  "loginEmailInvalid": "email is invalid",
+  "pleaseWait": "please wait",
+  "modeSelection": "castomize colors",
+  "fontSelection": "castomize fonts",
+  "light": "Light",
+  "dark": "Dark",
+  "semiDark": "Grey",
+  "english": "English",
+  "small": "Small",
+  "medium": "Medium",
+  "large": "Large",
+  "quizSubmitted": "Quiz Submitted Successfully",
+  "quizSubmittedDescription": "You have 3 attempts remaining, use them wisely",
+  "areYouSureYouWantToEnrollThisCourse":
+      "Are you sure you want to enroll in this course?",
+  "cancel": "Cancel",
+  "evaluationSubmitted": "Evaluation Submitted Successfully",
+  "evaluationSubmittedDescription":
+      "Thank you for your evaluation, we appreciate your feedback",
+  "evaluationQuestion1": "How was the performance of the teaching staff?",
+  "evaluationQuestion2":
+      "What is your evaluation of the scientific material and resources?",
+  "evaluationQuestion3": "How was the practical tests and evaluations?",
+  "poor": "Poor",
+  "accepted": "Accepted",
+  "good": "Good",
+  "veryGood": "Very Good",
+  "excellent": "Excellent",
+  "writeYourComment": "Write your comment",
+  "helpUsImprove":
+      "Help us improve the educational process by evaluating the course",
+  "helpUsImproveDescription":
+      "We appreciate your feedback as it helps us improve the educational process. Please take a few minutes to evaluate the course. We guarantee that all data will remain anonymous, allowing you to evaluate freely and impartially. Your participation contributes to the development and improvement of the quality of our education.",
+  "oldPassword": "Old Password",
+  "newPassword": "New Password",
 };

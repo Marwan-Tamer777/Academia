@@ -19,7 +19,7 @@ class LastAccessedCourses extends StatelessWidget {
       listener: (context, state) => {},
       builder: (context, state) { 
         var cubit = CoursesCubit.of(context);
-      return cubit.myLastAccesedCourses.isEmpty ? const NoCoursesComponent() : CarouselSlider.builder(
+      return cubit.myLastAccessedCourses.isEmpty ? const NoCoursesComponent() : CarouselSlider.builder(
                   options: CarouselOptions(
                     height: AppSize.s240,
                     viewportFraction: 1,
@@ -34,11 +34,11 @@ class LastAccessedCourses extends StatelessWidget {
                       cubit.swap(index);
                     },
                   ),
-                  itemCount: cubit.myLastAccesedCourses.length,
+                  itemCount: cubit.myLastAccessedCourses.length,
                   itemBuilder: (context, index, realIndex) {
                     return Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppPadding.p8),
-                      child: LastAccessedCourseItem(course: cubit.myLastAccesedCourses[index]),
+                      child: LastAccessedCourseItem(course: cubit.myLastAccessedCourses[index]),
                     );
                   },
                   carouselController: cubit.carouselController,

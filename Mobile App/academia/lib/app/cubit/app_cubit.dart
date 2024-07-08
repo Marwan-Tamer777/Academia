@@ -16,4 +16,10 @@ class AppCubit extends Cubit<AppStates> {
     themeManager.cycleThroughTheme();
     emit(const _ThemeSwitched());
   }
+
+  void changeThemeByIndex(int index) {
+    emit(const _Loading());
+    themeManager.switchCurrentTheme(mode: index);
+    emit(const _Loaded());
+  }
 }

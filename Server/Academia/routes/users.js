@@ -125,7 +125,7 @@ router.put("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (
  * @access Public
  */
 /// Delete User
-router.delete("/:id", verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.delete("/:id", verifyToken.verifyToken, asyncHandler(async (req, res) => {
     // find the user
     const user = await model.userModel.findByIdAndDelete(req.params.id).select('-password');
     if (!user) {

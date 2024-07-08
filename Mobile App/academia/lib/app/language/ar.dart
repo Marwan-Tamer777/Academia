@@ -174,7 +174,7 @@ Map<String, String> ar = {
 
   "light": "فاتح",
   "dark": "داكن",
-  "semyDark": "نصف داكن", 
+  "semiDark": "رمادي", 
 
   "english": "الإنجليزية", 
 
