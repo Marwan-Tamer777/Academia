@@ -208,4 +208,7 @@ class AppStrings {
   static const String sendEvaluation = "sendEvaluation";
   static const String oldPassword  = "oldPassword";
   static const String newPassword  = "newPassword";
+
+  static const String passwordChanged = "passwordChanged"; 
+  static const String passwordChangedError = "passwordChangedError";
 }

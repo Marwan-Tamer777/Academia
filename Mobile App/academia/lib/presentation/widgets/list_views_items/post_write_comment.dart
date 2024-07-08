@@ -1,3 +1,4 @@
+import 'package:academia/app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../resources/assets_manager.dart';
@@ -30,12 +31,14 @@ class PostAddComment extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           flex: 1,
           child: CircleAvatar(
-            radius: AppSize.s20,
+            radius: AppSize.s20, 
+            backgroundImage: userData!.avatar != ""
+                ? NetworkImage(userData!.avatar!)
+                :const NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
             backgroundColor: ColorManager.lightOrange1,
-
           ),
         ),
       ],

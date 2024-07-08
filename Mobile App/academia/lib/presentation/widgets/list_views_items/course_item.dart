@@ -4,6 +4,7 @@ import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/Courses_cubit/courses_cubit.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/Courses_cubit/courses_states.dart';
+import 'package:academia/presentation/widgets/bottom_sheets/course_bottom_sheet.dart';
 import 'package:academia/presentation/widgets/bottom_sheets/profile_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,8 +30,15 @@ class CourseItem extends StatelessWidget {
         var cubit = CoursesCubit.of(context);
         return InkWell(
         onTap: () {
-          Navigator.of(context, rootNavigator: true).pushNamed(Routes.courseScreen, arguments: course);
+          if (course.students!.contains(userId)) {
+Navigator.of(context, rootNavigator: true).pushNamed(Routes.courseScreen, arguments: course);
           cubit.addToMyLastAccessedCourses(course);
+          } else {
+            showCustomBottomSheet(
+              context: context,
+              bottomSheet: CourseRegistrationBottomSheet(course: course)
+            );
+          }
         },
         child: Container(
             padding: const EdgeInsets.all(AppPadding.p8),
@@ -53,7 +61,7 @@ class CourseItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SvgPicture.asset( 
-                            ImageAssets.notification,
+                            course.students!.contains(userId) ? ImageAssets.notification : ImageAssets.lock,
                             width: AppSize.s30,
                             height: AppSize.s30,
                             color: ColorManager.textOrange,
@@ -126,9 +134,9 @@ class CourseItem extends StatelessWidget {
                           ),
                           InkWell(
                               onTap: () {
-                                showCustomBottomSheet(
-                                    context: context,
-                                    bottomSheet: const ProfileBottomSheet());
+                              //   showCustomBottomSheet(
+                              //       context: context,
+                              //       bottomSheet: const ProfileBottomSheet());
                               },
                               child: CustomText(text: "مروان تامر - أحمد محسن",
                                   style: Theme.of(context)

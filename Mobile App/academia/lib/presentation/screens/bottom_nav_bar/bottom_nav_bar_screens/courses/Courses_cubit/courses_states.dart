@@ -1,3 +1,5 @@
+import 'package:academia/domain/models/course.dart';
+
 abstract class CoursesState {}
 
 class CoursesInitialStates extends CoursesState {}
@@ -16,7 +18,10 @@ class CoursesSearchState extends CoursesState {}
 // enroll course state
 class CoursesEnrolLoadingStates extends CoursesState {}
 
-class CoursesEnrolSuccessStates extends CoursesState {}
+class CoursesEnrolSuccessStates extends CoursesState { 
+  final Course course;
+  CoursesEnrolSuccessStates(this.course);
+}
 
 class CoursesEnrolErrorStates extends CoursesState {
   final String message;

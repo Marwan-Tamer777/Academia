@@ -88,9 +88,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     if (SharedPrefManager.getInt('fontSize') != null) {
       fontSize = SharedPrefManager.getInt('fontSize')!;
       selectedFontSize = AppStrings.small.tr;
-      if (fontSize == -2) {
+      if (fontSize == -1) {
         selectedFontSize = AppStrings.small.tr;
-      } else if (fontSize == 4) {
+      } else if (fontSize == 3) {
         selectedFontSize = AppStrings.medium.tr;
       } else {
         selectedFontSize = AppStrings.large.tr;
@@ -147,11 +147,11 @@ class ProfileCubit extends Cubit<ProfileStates> {
     selectedFontSize = font;
     print("Current Font: ${fontSizes[0]}  New Font $font");
     if (font == AppStrings.small.tr) {
-      fontSize = -2;
+      fontSize = -1;
     } else if (font == AppStrings.medium.tr) {
-      fontSize = 4;
+      fontSize = 3;
     } else {
-      fontSize = 6;
+      fontSize = 4;
     }
     SharedPrefManager.setInt('fontSize', fontSize);
     emit(ChangeThemeState());
@@ -178,7 +178,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
     try {
       final newUser = await DioHelper.getData(
           url: "${EndPoint.users}/$userId", token: userToken);
-
+          print("FRO FIN ${newUser.data}");
       User r = User.fromJson(newUser.data);
       return r;
     } catch (e) {
@@ -194,9 +194,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
     Navigator.pushNamedAndRemoveUntil(context, Routes.login, (route) => false);
   }
 
-  bool isOldPasswordShown = false;
-  bool isNewPasswordShown = false;
-  bool isConfirmPasswordShown = false;
+  bool isOldPasswordShown = true;
+  bool isNewPasswordShown = true;
+  bool isConfirmPasswordShown = true;
 
   void showOldPassword() {
     isOldPasswordShown = !isOldPasswordShown;

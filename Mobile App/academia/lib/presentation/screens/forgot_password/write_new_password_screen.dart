@@ -5,6 +5,10 @@ import 'package:academia/app/dep_injection.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_cubit.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_states.dart';
+import 'package:academia/presentation/screens/login/widgets/custom_alert_dialog.dart';
+import 'package:academia/presentation/screens/login/widgets/custom_loading_dialog.dart';
+import 'package:academia/presentation/widgets/change_password_dialog.dart';
+import 'package:academia/presentation/widgets/change_password_error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +33,17 @@ class WriteNewPasswordScreen extends StatelessWidget {
       value: getItInstance<ProfileCubit>(),
       child: BlocConsumer<ProfileCubit, ProfileStates>(
         listener: (context, state) {
-          // TODO: implement listener
+          if(state is ResetPasswordLoadingState) {
+            customLoadingDialog(context: context);
+          } else if(state is ResetPasswordSuccessState) {
+            Navigator.pop(context);
+            Navigator.pop(context);
+            showDialog(context: context, builder: (context) => const ChangePasswordDialog());
+          }
+          else if(state is ResetPasswordErrorState) {
+            Navigator.pop(context); 
+            showDialog(context: context, builder: (context) => const ChangePasswordErrorDaialog());
+          }
         },
         builder: (context, state) { 
           var cubit = ProfileCubit.get(context);

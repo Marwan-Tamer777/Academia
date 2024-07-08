@@ -5,6 +5,7 @@ import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/course_screen/cubit/course_cubit.dart';
 import 'package:academia/presentation/screens/course_screen/cubit/course_states.dart';
 import 'package:academia/presentation/widgets/list_views_items/comment_item.dart';
+import 'package:academia/presentation/widgets/list_views_items/post_write_comment.dart';
 import 'package:academia/presentation/widgets/list_views_items/text_post_comments_item.dart';
 import 'package:academia/presentation/widgets/list_views_items/text_post_item.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,8 @@ class CommentsScreen extends StatelessWidget {
                     TextPostItem(
                       post: post,
                     ),
+                    const SizedBox(height: AppSize.s20), 
+                              const PostAddComment(),
                     const SizedBox(height: AppSize.s20),
                     Row(
                       children: [
@@ -82,7 +85,7 @@ class CommentsScreen extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: AppSize.s20),
-                      cubit.comments!.isNotEmpty ? ListView.separated(
+                      (cubit.comments!.isNotEmpty && state is GetPostCommentsSuccessState) ? ListView.separated(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {

@@ -10,37 +10,38 @@ import '../../../../../resources/strings_manager.dart';
 import '../../../../../widgets/common_widgets.dart';
 
 class SearchField extends StatelessWidget {
-  const SearchField({super.key});
+  final String type;
+  const SearchField({super.key, required this.type});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
-
-    return BlocConsumer<CoursesCubit,CoursesState>(
-      listener: (context,state) {},
-      builder: (context,state) {
-        var cubit = CoursesCubit.of(context);
-        return CommonTextFormField(
+    return 
+         CommonTextFormField(
           controller: searchController,
           hint: AppStrings.searchForYourCourses,
           suffixIcon: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: InkWell(
-                onTap: () {
-                  cubit.searchCourses(searchController.text);
-                },
-                child: SvgPicture.asset(ImageAssets.search)),
-          ),
-          onChanged: (value) {
+            child: SvgPicture.asset(ImageAssets.search)),
+          
+          onChanged: (value) {var cubit = CoursesCubit.of(context);
+
             cubit.searchCourses(value);
             if(value == '') {
-              cubit.search();
+              if(type == 'courses') {
+                cubit.searchAllCourses();
+              } else {
+                cubit.searchMyCourses();
+              }
             } else {
-              cubit.isSearch = true;
+              if(type == 'courses') {
+                cubit.isSearchAllCourses = true;
+              } else {
+                cubit.isSearchMyCourses = true;
+              }
             }
           },
         );
-      },
-    );
+      
   }
 }

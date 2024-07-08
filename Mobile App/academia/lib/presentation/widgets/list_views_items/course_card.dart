@@ -34,7 +34,9 @@ class CourseCard extends StatelessWidget {
         shape: BoxShape.rectangle,
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.max, 
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [ 
           Row( 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,37 +91,54 @@ class CourseCard extends StatelessWidget {
                   .displayLarge!
                   .copyWith(fontSize: FontSize.s16)),
           const SizedBox(height: AppSize.s16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CategoryItem(
-                title: course.status,
-                color: Theme.of(context)
-                    .extension<CustomThemeExtension>()!
-                    .greenOverlayColor,
-                textColor: Theme.of(context)
-                    .extension<CustomThemeExtension>()!
-                    .successColor,
-                fontSize: FontSize.s10,
-              ),
-              const SizedBox(width: AppSize.s5),
-              CategoryItem(
-                title: course.programName,
-                color: ColorManager.lightOrange1,
-                textColor: ColorManager.textOrange,
-                fontSize: FontSize.s10,
-              ),
-              const SizedBox(width: AppSize.s5),
-              CategoryItem(
-                title: course.courseCode,
-                color: ColorManager.lightOrange1,
-                textColor: ColorManager.textOrange,
-                fontSize: FontSize.s10,
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSize.s16),
+                          Center(
+                            child: SizedBox(
+                              height: AppSize.s50,
+                              child: ListView( 
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  CategoryItem(
+                                    title: course.status!,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppPadding.p10,
+                                    ),
+                                    margin: const EdgeInsets.only(
+                                      left: AppPadding.p5,
+                                    ),
+                                    color: Theme.of(context)
+                                        .extension<CustomThemeExtension>()!
+                                        .greenOverlayColor,
+                                    textColor: Theme.of(context)
+                                        .extension<CustomThemeExtension>()!
+                                        .successColor,
+                                  ),
+                                  CategoryItem(
+                                    title: course.programName!,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppPadding.p10,
+                                    ),
+                                    margin: const EdgeInsets.only(
+                                      left: AppPadding.p5,
+                                    ),
+                                    color: ColorManager.lightOrange1,
+                                    textColor: ColorManager.textOrange,
+                                  ),
+                                  CategoryItem(
+                                    title: course.courseCode!,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: AppPadding.p10,
+                                    ),
+                                    margin: const EdgeInsets.only(
+                                      left: AppPadding.p5,
+                                    ),
+                                    color: ColorManager.lightOrange1,
+                                    textColor: ColorManager.textOrange,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),const SizedBox(height: AppSize.s16),
           LastTaskGradeAndEvents(course: course,),
           const SizedBox(height: AppSize.s16),
           Align(

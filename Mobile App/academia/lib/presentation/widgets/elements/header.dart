@@ -12,8 +12,9 @@ import '../custom_text.dart';
 import 'notification_icon.dart';
 
 class ScreenHeader extends StatelessWidget {
-  final String title;
-  const ScreenHeader({super.key, required this.title});
+  final String title; 
+  final bool isBackButton;
+  const ScreenHeader({super.key, required this.title, required this.isBackButton});
 
   @override
   Widget build(BuildContext context) { 
@@ -24,9 +25,18 @@ class ScreenHeader extends StatelessWidget {
       children: [
         const NotificationIcon(),
         CustomText(text: title, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s17,color: ColorManager.white)),
-        Transform(
-          transform: localeController.isArabicLanguage() ? Matrix4.rotationY(3.14159) : Matrix4.rotationY(0),
-          child: SvgPicture.asset(ImageAssets.arrowBackIcon, color: ColorManager.white)),
+        isBackButton ? IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Transform( 
+            transform: localeController.isArabicLanguage() ? Matrix4.rotationY(3.141592) : Matrix4.rotationY(0),
+            child: SvgPicture.asset(
+              ImageAssets.arrowBackIcon,
+              color: ColorManager.white,
+            ),
+          ),
+        ) : const SizedBox(width: 24,),
       ],
     );
   }

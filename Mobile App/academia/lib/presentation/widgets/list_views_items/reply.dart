@@ -34,7 +34,8 @@ class Reply extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 CustomText(text: 
-                  'محمد أحمد حسنين',
+                  // reply.user!.name!, 
+                  "Mohamed Ali",
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: FontSize.s15,
                       ),
@@ -54,12 +55,25 @@ class Reply extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            const CircleAvatar(
+            CircleAvatar(
               radius: AppSize.s20,
-              backgroundColor: ColorManager.lightOrange1,
+              backgroundColor: ColorManager.lightOrange1, 
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                     image:
+                // reply.user!.avatar != "" ? 
+                // NetworkImage(reply.user!.avatar!) : 
+                NetworkImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
+        
         const SizedBox(
           height: AppSize.s10,
         ),

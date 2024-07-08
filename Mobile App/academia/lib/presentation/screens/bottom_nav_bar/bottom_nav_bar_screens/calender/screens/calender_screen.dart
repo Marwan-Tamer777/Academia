@@ -26,7 +26,8 @@ class CalenderScreen extends StatelessWidget {
             children: [
               // title and notification icon
               const ScreenHeader(
-                title: AppStrings.schedule,
+                title: AppStrings.schedule, 
+                isBackButton: false,
               ),
               const SizedBox(height: AppSize.s20),
 

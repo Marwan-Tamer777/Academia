@@ -37,7 +37,7 @@ class CoursesReturnedData extends StatelessWidget {
                 ),
 
                 // search field
-                const SearchField(),
+                const SearchField(type: 'courses'),
 
 
                 state is CoursesLoadingStates
@@ -51,11 +51,11 @@ class CoursesReturnedData extends StatelessWidget {
                 ),
 
                 // courses
-                if (cubit.isSearch == false && cubit.myCourses.isEmpty) ... [ 
+                if (cubit.isSearchAllCourses == false && cubit.allCourses.isEmpty) ... [ 
                   const NoDataState(),
                 ], 
 
-                if (cubit.isSearch == false) ... [ 
+                if (cubit.isSearchAllCourses == false) ... [ 
                   
                   Departments(selectedDepartment: cubit.coursesSelectedDepartment!, type: "courses"),
 
@@ -63,9 +63,9 @@ class CoursesReturnedData extends StatelessWidget {
                     height: 10,
                   ),
 
-                  CoursesListView(courses: cubit.categorizedCourses[cubit.coursesSelectedDepartment!]!,),                ],
+                  CoursesListView(courses: cubit.categorizedAllCourses[cubit.coursesSelectedDepartment!]!,),                ],
 
-                if (cubit.isSearch == true)
+                if (cubit.isSearchAllCourses == true)
                   Column(
                     children: [
                       const SearchOptions(),

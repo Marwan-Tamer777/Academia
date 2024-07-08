@@ -41,7 +41,7 @@ class CategoryItem extends StatelessWidget {
                 title!,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: textColor,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
               )),
     );

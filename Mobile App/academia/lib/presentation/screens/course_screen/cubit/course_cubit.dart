@@ -5,7 +5,6 @@ import 'package:academia/data/network/dio_helpers/end_points.dart';
 import 'package:academia/domain/models/assignment.dart';
 import 'package:academia/domain/models/comment.dart';
 import 'package:academia/domain/models/course.dart';
-import 'package:academia/domain/models/main_schema.dart';
 import 'package:academia/domain/models/post.dart';
 import 'package:academia/domain/models/user.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
@@ -102,8 +101,6 @@ class CourseCubit extends Cubit<CourseStates> {
         await DioHelper.getData(url: EndPoint.comments, token: userToken).then((value) {
             if(value.statusCode == 200) {
               comments = Comment().fromJsonList(value.data);
-              // comments.addAll(allComments.where((element) => element.postId == post.id));  
-              // comments!.addAll(allComments);
               comments!.forEach((element) async {
                 User? user = await getItInstance<ProfileCubit>().getUserData(element.postedBy!);
                 element.user = user;

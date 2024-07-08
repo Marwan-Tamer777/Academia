@@ -52,43 +52,45 @@ class TakeQuizScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const NotificationIcon(),
-                            // TODO: Add tr
-                            CustomText(text: "${AppStrings.test.tr} 1",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .displayMedium!
-                                    .copyWith(
-                                        fontSize: FontSize.s15,
-                                        color: ColorManager.white)),
-                            SvgPicture.asset(ImageAssets.arrowBackIcon,
-                                color: ColorManager.white),
-                          ],
-                        ),
-                        const SizedBox(height: 24),
-
-
-                        SizedBox(
-                          height: 80,
-                          child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return QuestionNumber(questionNumber: index);
-                            },
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(width: 5),
-                            itemCount: cubit.numberOfQuestions,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const NotificationIcon(),
+                              // TODO: Add tr
+                              CustomText(text: "${AppStrings.test.tr} 1",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayMedium!
+                                      .copyWith(
+                                          fontSize: FontSize.s15,
+                                          color: ColorManager.white)),
+                              SvgPicture.asset(ImageAssets.arrowBackIcon,
+                                  color: ColorManager.white),
+                            ],
                           ),
-                        ),
-                        const SizedBox(height: 24),
-                        QuestionListItem(question: cubit.questions![cubit.currentQuestion],)
-                        ],
+                          const SizedBox(height: 24),
+                      
+                      
+                          SizedBox(
+                            height: 80,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return QuestionNumber(questionNumber: index);
+                              },
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 5),
+                              itemCount: cubit.numberOfQuestions,
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          QuestionListItem(question: cubit.questions![cubit.currentQuestion],)
+                          ],
+                      ),
                     ),
                   ),
                 ],

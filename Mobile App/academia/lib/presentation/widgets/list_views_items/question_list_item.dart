@@ -47,7 +47,7 @@ class QuestionListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomText(text: 
-                  "السؤال السابع عشر",
+                  questionOptions[cubit.currentQuestion]!,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         color: ColorManager.textOrange,
                         fontSize: FontSize.s17,
@@ -111,7 +111,6 @@ class QuestionListItem extends StatelessWidget {
                       },
                       child: Container(
                         height: AppSize.s40,
-                        width: AppSize.s118,
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20,
                             vertical: AppPadding.p5),
@@ -145,7 +144,6 @@ class QuestionListItem extends StatelessWidget {
                       },
                       child: Container(
                         height: AppSize.s40,
-                        width: AppSize.s118,
                         padding: const EdgeInsets.symmetric(
                             horizontal: AppPadding.p20,
                             vertical: AppPadding.p5),
@@ -185,4 +183,18 @@ class QuestionListItem extends StatelessWidget {
       },
     );
   }
-}
+} 
+
+Map<int, String> questionOptions = {
+  0: "السؤال الأول",
+  1: "السؤال الثاني",
+  2: "السؤال الثالث",
+  3: "السؤال الرابع",
+  4: "السؤال الخامس",
+  5: "السؤال السادس",
+  6: "السؤال السابع",
+  7: "السؤال الثامن",
+  8: "السؤال التاسع",
+  9: "السؤال العاشر",
+  10: "السؤال الحادي عشر",
+};

@@ -4,7 +4,7 @@ import 'package:flutter/Material.dart';
 void showCustomAlertDialog({
   required BuildContext context,
   required String title,
-  required Widget content, 
+  Widget? content, 
   List<Widget>? actions,
   double? horizontalPadding,
   double? verticalPadding,

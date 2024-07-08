@@ -208,4 +208,7 @@ Map<String, String> en = {
       "We appreciate your feedback as it helps us improve the educational process. Please take a few minutes to evaluate the course. We guarantee that all data will remain anonymous, allowing you to evaluate freely and impartially. Your participation contributes to the development and improvement of the quality of our education.",
   "oldPassword": "Old Password",
   "newPassword": "New Password",
+
+  "passwordChanged": "Password Changed Successfully", 
+  "passwordChangedError": "The old password is incorrect",
 };

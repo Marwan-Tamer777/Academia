@@ -17,13 +17,15 @@ class FinishQuizDialog extends StatelessWidget {
     return Dialog(
       child: Container(
         padding: const EdgeInsets.all(AppPadding.p16),
-        height: AppSize.s250,
+        // height: AppSize.s250,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSize.s16),
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
-        child: Column(
+        child: Column( 
+          mainAxisSize: MainAxisSize.min,
+
           children: [
             SvgPicture.asset(
               ImageAssets.finishQuiz,

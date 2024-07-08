@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             // title and notification icon
-                            ScreenHeader(title: AppStrings.profile.tr),
+                            ScreenHeader(title: AppStrings.profile.tr, isBackButton: false),
 
                             const SizedBox(height: AppSize.s90),
 

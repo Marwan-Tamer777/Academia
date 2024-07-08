@@ -46,7 +46,7 @@ class CourseScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       // title and notification icon
-                      const ScreenHeader(title: AppStrings.academicSubject,),
+                      const ScreenHeader(title: AppStrings.academicSubject, isBackButton: true,),
                       const SizedBox(height: AppSize.s40,),
           
                       // course card details

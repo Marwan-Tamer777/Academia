@@ -14,9 +14,14 @@ class Departments extends StatelessWidget {
     return BlocBuilder<CoursesCubit, CoursesState>(
       builder: (context, state) {
         var cubit = context.read<CoursesCubit>();
-        var departments = cubit.categorizedCourses.keys.toList();
+        var departments;
+        if(type == "home") {
+          departments = cubit.categorizedCourses.keys.toList();
+        } else {
+          departments = cubit.categorizedAllCourses.keys.toList();
+        }
 
-        return Container(
+        return SizedBox(
           height: 45,
           child: ListView.builder(
             scrollDirection: Axis.horizontal, 

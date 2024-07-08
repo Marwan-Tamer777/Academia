@@ -26,16 +26,16 @@ class _CoursesScreenState extends State<CoursesScreen> {
         } 
 
         if(state is CoursesEnrolSuccessStates) { 
-          Navigator.of(context).pop(); 
+          // Navigator.of(context).pop(); 
           Navigator.of(context).pop(); 
           showDialog(
             context: context,
-            builder: (context) => const CourseRegistrationDialog(),
+            builder: (context) => CourseRegistrationDialog(course: state.course,),
           );
         } 
 
         if(state is CoursesEnrolErrorStates) {
-          Navigator.of(context).pop(); 
+          // Navigator.of(context).pop(); 
           Navigator.of(context).pop(); 
           showDialog(
             context: context,

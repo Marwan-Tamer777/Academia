@@ -1,5 +1,7 @@
 import 'package:academia/app/constants.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/home/home_widgets/no_data_state.dart';
+import 'package:academia/presentation/widgets/search_options.dart';
+import 'package:academia/presentation/widgets/search_results_list_view.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,29 +39,49 @@ class HomeDataReturned extends StatelessWidget {
                 // last accessed courses indicator
                 Dots(currentIndex: cubit.currentIndex, length: cubit.myLastAccessedCourses.length),
                 // search field
-                const SearchField(),
+               // search field
+                const SearchField(type: 'home',),
 
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
 
-                // departments
-               Departments(selectedDepartment: cubit.homeSelectedDepartment!, type: "home"),
-
-                const SizedBox(
+                state is CoursesLoadingStates
+                   ? const Center(child: CircularProgressIndicator())
+                   : state is CoursesErrorStates ? Center(child: Text(state.message)) :
+                   
+                Column( 
+                  children: [ 
+                     const SizedBox(
                   height: AppSize.s20,
                 ),
 
                 // courses
-                cubit.myCourses.isNotEmpty ? CoursesListView(courses: cubit.categorizedCourses[cubit.homeSelectedDepartment]!) : const NoDataState(),
+                if (cubit.isSearchMyCourses == false && cubit.myCourses.isEmpty) ... [ 
+                  const NoDataState(),
+                ], 
 
-                // cubit.isSearch == false ?
-                // CoursesListView(courses: cubit.myCourses) :
-                // CoursesListView(courses: cubit.searchResults),
+                if (cubit.isSearchMyCourses == false) ... [ 
+                  
+                  Departments(selectedDepartment: cubit.homeSelectedDepartment!, type: "home"),
 
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  CoursesListView(courses: cubit.categorizedCourses[cubit.homeSelectedDepartment!]!,),                ],
+
+                if (cubit.isSearchMyCourses == true)
+                  Column(
+                    children: [
+                      const SearchOptions(),
+
+                      SearchResultsListView(courses: cubit.searchResults,),
+                    ],
+                  ),
+                  ],
+                ),
+              
 
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: !cubit.isSearchMyCourses ? MediaQuery.of(context).size.height * 0.2 : MediaQuery.of(context).size.height * 0.5,
                 )
 
               ],

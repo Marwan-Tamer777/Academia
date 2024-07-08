@@ -211,4 +211,7 @@ Map<String, String> ar = {
 
     "oldPassword": "كلمة المرور القديمة",
     "newPassword": "كلمة المرور الجديدة",
+
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح", 
+    "passwordChangedError": "كلمة المرور القديمة غير صحيحة",
 };

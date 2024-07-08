@@ -49,7 +49,7 @@ class StartQuizBottomSheet extends StatelessWidget {
                   title: '${quiz.duration} ${AppStrings.minute.tr}',
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
-                  fontSize: 12,
+                  fontSize: 10,
                 ),
                 const SizedBox(width: AppSize.s10,),
                  CategoryItem(

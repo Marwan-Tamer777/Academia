@@ -28,7 +28,8 @@ class TextPostItem extends StatelessWidget {
     return InkWell( 
       onTap: () async { 
          await CourseCubit.of(context).getPostComments(post);
-         Navigator.pushNamed(context, Routes.postComments, arguments: post);
+                  Navigator.pushNamed(context, Routes.postComments, arguments: post);
+    
       },
       child: Container(
         padding: const EdgeInsets.all(AppPadding.p16),

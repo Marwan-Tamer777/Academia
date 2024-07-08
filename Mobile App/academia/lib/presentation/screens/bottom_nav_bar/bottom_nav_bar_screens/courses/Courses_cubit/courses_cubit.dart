@@ -16,7 +16,8 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   static CoursesCubit of(context) => BlocProvider.of(context);
 
-  bool isSearch = false;
+  bool isSearchAllCourses = false;
+  bool isSearchMyCourses= false;
   CarouselController carouselController = CarouselController();
   TextEditingController searchController = TextEditingController();
 
@@ -45,6 +46,7 @@ class CoursesCubit extends Cubit<CoursesState> {
           myLastAccessedCourses
               .add(allCourses.firstWhere((course) => course.id == element));
         }
+
         categorizeCourses();
         emit(CoursesSuccessStates());
       }).catchError((error) {
@@ -72,8 +74,10 @@ class CoursesCubit extends Cubit<CoursesState> {
           newCourse.students!.add(userId!);
           myCourses.insert(0, newCourse);
           categorizeCourses();
-          search();
-          emit(CoursesEnrolSuccessStates());
+          //searchAllCourses();
+          emit(CoursesEnrolSuccessStates( 
+              newCourse
+          ));
         } else {
           emit(CoursesEnrolErrorStates(AppStrings.errorEnrollingCourse));
         }
@@ -141,12 +145,18 @@ class CoursesCubit extends Cubit<CoursesState> {
     emit(AddLastAccessedCourses());
   }
 
-  void search() {
-    isSearch = !isSearch;
+  void searchAllCourses() {
+    isSearchAllCourses = !isSearchAllCourses;
+    emit(CoursesSearchState());
+  }
+
+  void searchMyCourses() {
+    isSearchMyCourses = !isSearchMyCourses;
     emit(CoursesSearchState());
   }
 
   Map<String, List<Course>> categorizedCourses = {};
+  Map<String, List<Course>> categorizedAllCourses = {};
   String? homeSelectedDepartment;
   String? coursesSelectedDepartment;
 
@@ -155,12 +165,18 @@ class CoursesCubit extends Cubit<CoursesState> {
     categorizedCourses.clear();
     // Initialize or clear the 'all' category with all courses
     categorizedCourses['all'] = List.from(myCourses);
+    categorizedAllCourses['all'] = List.from(allCourses);
 
     for (var course in myCourses) {
-      String department =
-          course.programName!; // Assuming Course model has a department field
+      String department = course.programName!; // Assuming Course model has a department field
       categorizedCourses.putIfAbsent(department, () => []);
       categorizedCourses[department]?.add(course);
+    }
+
+    for (var course in allCourses) {
+      String department = course.programName!; // Assuming Course model has a department field
+      categorizedAllCourses.putIfAbsent(department, () => []);
+      categorizedAllCourses[department]?.add(course);
     }
 
     // Select 'all' category by default

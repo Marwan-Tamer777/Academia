@@ -1,18 +1,14 @@
-import 'package:academia/domain/models/course.dart';
-import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
-import 'package:academia/presentation/resources/routes_manager.dart';
+import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
+import 'package:academia/presentation/resources/values_manager.dart';
+import 'package:academia/presentation/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
-import '../../resources/font_manager.dart';
-import '../../resources/values_manager.dart';
-import '../custom_text.dart';
 
-class CourseRegistrationDialog extends StatelessWidget { 
-  final Course course;
-  const CourseRegistrationDialog({super.key, required this.course});
+class ChangePasswordErrorDaialog extends StatelessWidget {
+  const ChangePasswordErrorDaialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,28 +21,29 @@ class CourseRegistrationDialog extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppSize.s16),
           color: Theme.of(context).scaffoldBackgroundColor,
         ),
-        child: Column( 
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: AppSize.s36,
               backgroundColor: ColorManager.success,
-              child: SvgPicture.asset(
-                ImageAssets.success,
-                width: AppSize.s50,
-                height: AppSize.s50,
-              ),
+              child:           Icon(
+            Icons.error_outline,
+            color: Colors.red, 
+            size: 50,
+          ),
             ),
             const SizedBox(height: AppSize.s16),
             CustomText(text: 
-              AppStrings.courseRegistrationSuccess,
+              AppStrings.error.tr,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                 fontSize: FontSize.s16,
               ),
             ),
             const SizedBox(height: AppSize.s16),
             CustomText(text: 
-              AppStrings.courseRegistrationSuccessDescription,
+              AppStrings.passwordChangedError.tr,
               style: Theme.of(context).textTheme.displaySmall!.copyWith(
                 fontSize: FontSize.s14,
               ),
@@ -57,11 +54,10 @@ class CourseRegistrationDialog extends StatelessWidget {
               width: double.infinity,
               height: AppSize.s50,
               child: ElevatedButton(
-                onPressed: () { 
+                onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.pushNamed(context, Routes.courseScreen, arguments: course);
                 },
-                child: CustomText(text: AppStrings.browseContent, style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                child: CustomText(text: AppStrings.goHome, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: FontSize.s16,
                   color: ColorManager.white,
                 ),),
