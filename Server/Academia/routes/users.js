@@ -26,7 +26,7 @@ router.get("/", verifyToken.verifyTokenAndAdmin, asyncHandler(async (req, res) =
  * @access Public
  */
 /// Get User by ID
-router.get(`/:id`, verifyToken.verifyTokenAndAuthorization, asyncHandler(async (req, res) => {
+router.get(`/:id`, verifyToken.verifyToken, asyncHandler(async (req, res) => {
     const user = await model.userModel.findById(req.params.id).select('-password');
     if (!user) {
         return res.status(404).json({ error: 'The user with the given ID was not found' });
