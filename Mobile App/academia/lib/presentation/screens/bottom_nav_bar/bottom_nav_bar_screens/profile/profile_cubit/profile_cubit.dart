@@ -9,7 +9,6 @@ import 'package:academia/presentation/resources/shared_preference_manager.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/Courses_cubit/courses_cubit.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_states.dart';
-import 'package:academia/presentation/screens/course_screen/cubit/course_cubit.dart';
 import 'package:flutter/Material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -47,7 +46,21 @@ class ProfileCubit extends Cubit<ProfileStates> {
       selectedLanguage = SharedPrefManager.getString('lang') == 'en' ? languages[0] : languages[1];
     } 
 
-    selectedTheme = themes[0];
+    selectedTheme = themes[0]; 
+
+    if(SharedPrefManager.getString('fontSize') != null) {
+      selectedFontSize = SharedPrefManager.getString('fontSize'); 
+
+      if(selectedFontSize == AppStrings.small.tr) {
+        fontSize = -2;
+      } else if(selectedFontSize == AppStrings.medium.tr) {
+        fontSize = 4;
+      } else {
+        fontSize = 6;
+      }
+    } else {
+      selectedFontSize = fontSizes[0];
+    }
   }
 
   List<String> themes = [AppStrings.light.tr, AppStrings.dark.tr, AppStrings.semiDark.tr]; 
@@ -58,17 +71,26 @@ class ProfileCubit extends Cubit<ProfileStates> {
     emit(ChangeThemeState());
   } 
 
-  List<String> fontSize = [AppStrings.small.tr, AppStrings.medium.tr, AppStrings.large.tr];
+  List<String> fontSizes = [AppStrings.small.tr, AppStrings.medium.tr, AppStrings.large.tr];
   String? selectedFontSize; 
+  int fontSize = 0;
 
   void getSelectedFontSize() {
-    selectedFontSize = fontSize[0]; 
+    selectedFontSize = SharedPrefManager.getString('fontSize') ?? fontSizes[0];
     emit(ChangeThemeState());
   }
 
   
-  void changeFontSize(String fontSize) {
-    selectedFontSize = fontSize; 
+  void changeFontSize(String font) {
+    selectedFontSize = font; 
+    SharedPrefManager.setString('fontSize', font);
+    if(font == AppStrings.small.tr) {
+      fontSize = -2;
+    } else if(font == AppStrings.medium.tr) {
+      fontSize = 3;
+    } else {
+      fontSize = 4;
+    }
     emit(ChangeThemeState());
   }
 

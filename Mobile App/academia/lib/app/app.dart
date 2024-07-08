@@ -23,7 +23,10 @@ class MyApp extends StatelessWidget {
     MyLocaleController localeController = Get.put(MyLocaleController());
 
     return MultiBlocProvider(
-      providers: [
+      providers: [ 
+                    BlocProvider<ProfileCubit>(
+              create: (context) => getItInstance<ProfileCubit>()..setThemes(),
+            ),
         BlocProvider<AppCubit>(
           create: (context) => AppCubit(),
         ),
@@ -33,9 +36,6 @@ class MyApp extends StatelessWidget {
             BlocProvider<BottomNavBarCubit>(
               create: (context) => getItInstance<BottomNavBarCubit>(),
             ),
-            BlocProvider<ProfileCubit>(
-              create: (context) => getItInstance<ProfileCubit>()..setThemes(),
-            ), 
       ],
       child: BlocBuilder<AppCubit, AppStates>(
         builder: (context, state) {

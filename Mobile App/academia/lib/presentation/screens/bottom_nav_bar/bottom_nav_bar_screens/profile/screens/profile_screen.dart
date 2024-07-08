@@ -189,7 +189,7 @@ class ProfileScreen extends StatelessWidget {
                                       value: cubit.selectedFontSize,
                                       underline: const SizedBox(),
                                       iconEnabledColor: Colors.white,
-                                      items: cubit.fontSize
+                                      items: cubit.fontSizes
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {
                                         return DropdownMenuItem<String>(

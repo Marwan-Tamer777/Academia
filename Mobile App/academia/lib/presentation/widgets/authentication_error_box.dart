@@ -27,7 +27,9 @@ class AuthenticationErrorBox extends StatelessWidget {
             Expanded(
               child: CustomText(
                 text: message,
-                style: const TextStyle(color: Colors.red),
+                style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                      color: Colors.red,
+                    )
               ),
             ),
           ],
