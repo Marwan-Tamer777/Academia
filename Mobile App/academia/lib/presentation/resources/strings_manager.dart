@@ -1,116 +1,211 @@
 class AppStrings {
-  static const String appName = "Academia";
-  static const String appSloganName = "Online Learning made easy";
-  static const String loginWelcomeTitleMessage = "مرحبًا بك في أكاديميا!";
-  static const String loginWelcomeDescriptionMessage =
-      "لقد كنّا نفتقدك! اكتشف آخر الأخبار والمستجدات بتسجيل الدخول الآن";
-  static const String loginEmailHint = "البريد الإلكتروني";
-  static const String loginPasswordHint = "كلمة المرور";
-  static const String onBoardingTitle1 = "Are you feeling lazy?";
-  static const String onBoardingTitle2 = "Tired of all the shopping you do?";
-  static const String onBoardingTitle3 = "Then use ShopEase and buy online";
-  static const String onBoardingDescription1 =
-      "Welcome to ShopEase, where convenience meets shopping.";
-  static const String onBoardingDescription2 =
-      "Skip the queues and crowded malls. ShopEase brings the store to you, at your fingertips.";
-  static const String onBoardingDescription3 =
-      "Embrace simplicity. With ShopEase, you can browse, choose, and buy with ease, all from the comfort of your home. Get started now!";
-  static const String undefinedRoute = "Undefined Route...";
-  static const String next = "التالى";
-  static const String previous = "Previous";
-  static const String skip = "تخطي";
-  static const String send = "Send";
-  static const String resend = "Resend";
-  static const String done = "Done";
-  static const String size = "Size";
-  static const String color = "Color";
-  static const String filters = "Filters";
-  static const String check = "Check";
-  static const String chooseCategory = "Choose Category";
-  static const String useFingerPrint = "استخدم بصمة الاصبع";
-  static const String getStarted = "Get Started";
-  static const String camera = "Camera";
-  static const String gallery = "Gallery";
-  static const String username = "Username";
-  static const String home = "Home";
-  static const String categories = "Categories";
-  static const String stores = "Stores";
-  static const String notification = "Notification";
-  static const String settings = "Settings";
-  static const String products = "Products";
-  static const String readMore = "Read More";
-  static const String readLess = "Read Less";
-  static const String search = "Search";
-  static const String email = "البريد الإلكتروني";
-  static const String passwordLabel = "كلمة المرور";
-  static const String confirmPassword = "كلمة المرور";
-  static const String login = "تسجيل الدخول";
-  static const String usernameEmpty = "Please enter your username";
-  static const String emptyField = " is Empty";
-  static const String countryCode = "Country Code";
-  static const String mobileNumber = "Mobile Number";
-  static const String profilePicture = "Profile Picture";
-  static const String viewAllItems = "View All Items";
-  static const String emailEmpty = "Please enter your Email";
-  static const String passwordEmpty = "Please enter your password";
-  static const String loginErrorMessage =
-      "Please check your username and password";
-  static const String forgotPassword = "نسيت كلمة المرور";
-  static const String emailCheck = "التحقق من البريد";
-  //static const String forgotPasswordTitle = "Forgot Password";
-  static const String forgotPasswordDescription =
-      "Please, enter your email address. You will receive a link to create a new password via email.";
-  static const String noAccount = "ليس لديك حساب ؟";
-  static const String rememberMe = "تذكرني";
-  static const String alreadyMember = "Already have an account? Login";
-  static const String resendEmail = "Didn't receive an email? Resend email";
-  static const String register = "تواصل مع الدعم";
-  static const String resetPassword = "Reset Password";
-  static const String loading = "Loading...";
-  static const String retry = "Retry Again";
-  static const String ok = "Ok";
-  static const String or = "أو";
-  static const String error = "Error";
-  static const String noData = "No Data";
-  static const String services = "Services";
-  static const String resetSuccess =
-      "We have sent you an email to reset your password";
-  static const String fashionSale = "Fashion\nSale";
-  static const String newArrivals = "New\nArrivals";
+  static const String appName = "appName";
+  static const String appSloganName = "appSloganName";
+  static const String loginWelcomeTitleMessage = "loginWelcomeTitleMessage";
+  static const String loginWelcomeDescriptionMessage = "loginWelcomeDescriptionMessage";
+  static const String loginEmailHint = "loginEmailHint";
+  static const String loginPasswordHint = "loginPasswordHint";
+  static const String onBoardingTitle1 = "onBoardingTitle1";
+  static const String onBoardingTitle2 = "onBoardingTitle2";
+  static const String onBoardingTitle3 = "onBoardingTitle3";
+  static const String onBoardingDescription1 = "onBoardingDescription1";
+  static const String onBoardingDescription2 = "onBoardingDescription2";
+  static const String onBoardingDescription3 = "onBoardingDescription3";
+  static const String undefinedRoute = "undefinedRoute";
+  static const String next = "next";
+  static const String previous = "previous";
+  static const String skip = "skip";
+  static const String send = "send";
+  static const String resend = "resend";
+  static const String done = "done";
+  static const String size = "size";
+  static const String color = "color";
+  static const String filters = "filters";
+  static const String check = "check";
+  static const String chooseCategory = "chooseCategory";
+  static const String useFingerPrint = "useFingerPrint";
+  static const String getStarted = "getStarted";
+  static const String camera = "camera";
+  static const String gallery = "gallery";
+  static const String username = "username";
+  static const String home = "home";
+  static const String categories = "categories";
+  static const String stores = "stores";
+  static const String notification = "notification";
+  static const String settings = "settings";
+  static const String products = "products";
+  static const String readMore = "readMore";
+  static const String readLess = "readLess";
+  static const String search = "search";
+  static const String email = "email";
+  static const String passwordLabel = "passwordLabel";
+  static const String confirmPassword = "confirmPassword";
+  static const String login = "login";
+  static const String usernameEmpty = "usernameEmpty";
+  static const String emptyField = "emptyField";
+  static const String countryCode = "countryCode";
+  static const String mobileNumber = "mobileNumber";
+  static const String profilePicture = "profilePicture";
+  static const String viewAllItems = "viewAllItems";
+  static const String emailEmpty = "emailEmpty";
+  static const String passwordEmpty = "passwordEmpty";
+  static const String loginErrorMessage = "loginErrorMessage";
+  static const String forgotPassword = "forgotPassword";
+  static const String emailCheck = "emailCheck";
+  static const String forgotPasswordTitle = "forgotPasswordTitle";
+  static const String forgotPasswordDescription = "forgotPasswordDescription";
+  static const String noAccount = "noAccount";
+  static const String rememberMe = "rememberMe";
+  static const String alreadyMember = "alreadyMember";
+  static const String resendEmail = "resendEmail";
+  static const String register = "register";
+  static const String resetPassword = "resetPassword";
+  static const String loading = "loading";
+  static const String retry = "retry";
+  static const String ok = "ok";
+  static const String or = "or";
+  static const String error = "error";
+  static const String noData = "noData";
+  static const String services = "services";
+  static const String resetSuccess = "resetSuccess";
+  static const String fashionSale = "fashionSale";
+  static const String newArrivals = "newArrivals";
+  static const String shop = "shop";
+  static const String bag = "bag";
+  static const String favorites = "favorites";
+  static const String somethingWrongText = "somethingWrongText";
+  static const String onBoardingTitle11 = "onBoardingTitle11";
+  static const String onBoardingDescription11 = "onBoardingDescription11";
+  static const String onBoardingTitle22 = "onBoardingTitle22";
+  static const String onBoardingDescription22 = "onBoardingDescription22";
+  static const String onBoardingTitle33 = "onBoardingTitle33";
+  static const String onBoardingDescription33 = "onBoardingDescription33";
+  static const String forgotPasswordTitle1 = "forgotPasswordTitle1";
+  static const String forgotPasswordTitleMessage = "forgotPasswordTitleMessage";
+  static const String forgotPasswordButtonTitle = "forgotPasswordButtonTitle";
+  static const String verifyEmailTitle = "verifyEmailTitle";
+  static const String verifyEmailMessage = "verifyEmailMessage";
+  static const String verifyTheCode = "verifyTheCode";
+  static const String newPasswordTitle = "newPasswordTitle";
+  static const String newPasswordScreenMessage = "newPasswordScreenMessage";
+  static const String newPasswordButtonTitle = "newPasswordButtonTitle";
+  static const String resetPasswordScreen = "resetPasswordScreen";
+  static const String second = "second";
+  static const String courseName = "courseName";
+  static const String homework = "homework";
+  static const String comments = "comments";
+  static const String warnings = "warnings";
+  static const String posts = "posts";
+  static const String assignments = "assignments";
+  static const String academicSubject = "academicSubject";
+  static const String test = "test";
+  static const String noCourses = "noCourses";
+  static const String exploreCourses = "exploreCourses";
+  static const String searchBySubject = "searchBySubject";
+  static const String searchByCode = "searchByCode";
+  static const String methodology = "methodology";
+  static const String courseDescription = "courseDescription";
+  static const String activeCourse = "activeCourse";
+  static const String writeCourseCode = "writeCourseCode";
+  static const String informationSystem = "informationSystem";
+  static const String todaySchedule = "todaySchedule";
+  static const String schedule = "schedule";
+  static const String upcomingDeliveries = "upcomingDeliveries";
+  static const String upcomingExams = "upcomingExams";
+  static const String profile = "profile";
+  static const String logout = "logout";
+  static const String rateOurApp = "rateOurApp";
+  static const String changePassword = "changePassword";
+  static const String nightMode = "nightMode";
+  static const String changeLanguage = "changeLanguage";
+  static const String searchForYourCourses = "searchForYourCourses";
+  static const String completeYourStudyJourney = "completeYourStudyJourney";
+  static const String hello = "hello";
+  static const String searchResults = "searchResults";
+  static const String clear = "clear";
+  static const String socialMedia = "socialMedia";
+  static const String minute = "minute";
+  static const String question = "question";
+  static const String startTest = "startTest";
+  static const String files = "files";
+  static const String uploadFilesNow = "uploadFilesNow";
+  static const String calenderEmptyState = "calenderEmptyState";
+  static const String assignmentUploaded = "assignmentUploaded";
+  static const String remainingAttempts = "remainingAttempts";
+  static const String homePage = "homePage";
+  static const String contact = "contact";
+  static const String senceTime = "senceTime";
+  static const String addMaterial = "addMaterial";
+  static const String upcomingEvent = "upcomingEvent";
+  static const String lastTaskGrade = "lastTaskGrade";
+  static const String notFound = "notFound";
+  static const String remainingDays = "remainingDays";
+  static const String summary = "summary";
+  static const String remainingHours = "remainingHours";
+  static const String assignment = "assignment";
+  static const String arabic = "arabic"; 
 
-  static const String shop = "Shop";
-  static const String bag = "Bag";
-  static const String favorites = "Favorites";
-  static const String profile = "Profile";
-  static const String somethingWrongText =
-      "Something went wrong please try again later";
 
-  static const String onBoardingTitle11 = "اكتشف عالمًا جديدًا للتعلم";
-  static const String onBoardingDescription11 =
-      "مرحبًا بك في تطبيق أكاديميا، حيث يلتقي العلم بالتجربة. دعنا نرافقك في رحلتك التعليمية ونفتح أمامك آفاقًا من المعرفة والاكتشافات.";
+  // New 
+  static const String courseRegistrationSuccess = "courseRegistrationSuccess"; 
+  static const String courseRegistrationSuccessDescription = "courseRegistrationSuccessDescription"; // " يمكنك الآن متابعة أحدث  المستجدات "
+  static const String browseContent = "browseContent";
+  static const String quiz = "quiz"; 
+  static const String goHome = "goHome";
+  static const String submit = "submit";
+  static const String uploadCompleted = "uploadCompleted";
+  static const String uploadRunning = "uploadRunning";
+  static const String uploadFailed = "uploadFailed";
+  static const String mb = "mb";
+  static const String nightModeDescription = "nightModeDescription";  //اختر هذا الوضع لتجربة مشاهدة مريحة، مثالي لضعاف البصر وعمى الألوان الأحمر والأخضر.
+  static const String fontSelectionDescription = "fontSelectionDescription";  //"مناسب لتجربة مشاهدة مريحة." 
+  static const String loginError = "loginError"; 
+  static const String noInternet = "noInternet"; 
+  static const String courseCodeIsNotCorrect = "courseCodeIsNotCorrect"; 
+  static const String errorEnrollingCourse = "errorEnrollingCourse";
 
-  static const String onBoardingTitle22 = "تعلم حسب تخصصك";
-  static const String onBoardingDescription22 =
-      "في أكاديميا، تجربة تعلم فريدة تتناسب مع اهتماماتك. سواء كنت تبحث عن العلوم أو الفنون أو التكنولوجيا، يوفر تطبيقنا الأدوات لاكتساب المهارات بأسلوبك.";
+  static const String loginPasswordError = "loginPasswordError";
+  static const String loginEmailError = "loginEmailError";
+  static const String loginEmailInvalid = "loginEmailInvalid"; 
+  static const String pleaseWait = "pleaseWait";  
+  static const String modeSelection = "modeSelection"; 
+  static const String fontSelection = "fontSelection"; 
 
-  static const String onBoardingTitle33 = "ابدأ رحلتك التعليمية";
-  static const String onBoardingDescription33 =
-      "استكشف محتوى مثير وموارد تعليمية مميزة. انطلق في رحلتك التعليمية اليوم واستمتع بعالم المعرفة والتحديات. أكاديميا هنا لدعمك في كل خطوة.";
+  static const String light = "light"; 
+  static const String dark = "dark"; 
+  static const String semiDark = "semiDark"; 
 
-  static const String forgotPasswordTitle1 = "نسيان كلمة المرور";
-  static const String forgotPasswordTitleMessage =
-      "لا تقلق ، ما عليك سوى كتابة بريدك وسنرسل رمز التحق";
-  static const String forgotPasswordButtonTitle = "نسيت كلمة المرور";
+  static const String english = "english"; 
 
-  static const String verifyEmailTitle = "التحقق من البريد";
-  static const String verifyEmailMessage =
-      "أدخل الرمز الذي أرسلناه إلى عنوان بريد التالي";
+  static const String small = "small"; 
+  static const String medium = "medium"; 
+  static const String large = "large";
 
-  static const String verifyTheCode = "تحقق من الرمز";
+  static const String quizSubmitted = "quizSubmitted";
+  static const String quizSubmittedDescription = "quizSubmittedDescription"; 
+  static const String areYouSureYouWantToEnrollThisCourse = "areYouSureYouWantToEnrollThisCourse";
+  static const String cancel = "cancel"; 
 
-  static const String newPasswordTitle = "كلمة المرور الجديدة";
-  static const String newPasswordScreenMessage =
-      "قم بإنشاء كلمة مرور جديدة لتسجيل الدخول";
+  static const String evaluationSubmitted = "evaluationSubmitted"; 
+  static const String evaluationSubmittedDescription = "evaluationSubmittedDescription"; 
+ 
+  static const String evaluationQuestion1 = "evaluationQuestion1"; 
+  static const String evaluationQuestion2 = "evaluationQuestion2";
+  static const String evaluationQuestion3 = "evaluationQuestion3"; 
 
-  static const String newPasswordButtonTitle = "إعادة تعيين كلمة المرور";
+  static const String poor = "poor"; 
+  static const String accepted = "accepted"; 
+  static const String good = "good"; 
+  static const String veryGood = "veryGood"; 
+  static const String excellent = "excellent"; 
+
+  static const String writeYourComment = "writeYourComment"; 
+
+  static const String helpUsImprove = "helpUsImprove"; 
+  static const String helpUsImproveDescription = "helpUsImproveDescription"; 
+
+  static const String startEvaluation = "startEvaluation"; 
+  static const String sendEvaluation = "sendEvaluation";
+  static const String oldPassword  = "oldPassword";
+  static const String newPassword  = "newPassword";
 }

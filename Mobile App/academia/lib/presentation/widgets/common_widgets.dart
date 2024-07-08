@@ -1,8 +1,9 @@
-import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../resources/font_manager.dart';
 import '../resources/style_manager.dart';
-import '../resources/widgets_manager.dart';   
+import '../resources/widgets_manager.dart';
+import 'custom_text.dart';
 
 class BigButton extends StatelessWidget {
   final String   text;
@@ -26,7 +27,7 @@ class BigButton extends StatelessWidget {
       padding: padding,
       context: context,
       onPressed: onPressed,
-      child: Text(
+      child: CustomText(text: 
         text,
         style:textStyle?? getBoldTextStyle(
           fontSize: 18,
@@ -41,7 +42,7 @@ class BigButton extends StatelessWidget {
 class CommonTextFormField extends StatelessWidget {
   final bool obscureText;
   final String? label;
-  final String hint;
+  final String? hint;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
   final EdgeInsetsGeometry? margin;
@@ -49,6 +50,9 @@ class CommonTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Color? color;
+  final Function(String)? onChanged;
+  final Function(String?)? validator; 
+  final int maxLines;
 
   const CommonTextFormField({
     this.margin,
@@ -59,16 +63,22 @@ class CommonTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.label,
-    required this.hint,
-    this.color = ColorManager.lightWhite,
-    super.key,
+    this.hint,
+    this.color,
+    super.key, this.onChanged,
+    this.validator, 
+    this.maxLines = 1,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+    String? newLabel = label != null ? label!.tr : null;
+    String? newHint = hint != null ? hint!.tr : null;
     return WidgetsManager.textFormField(
       controller: controller,
-      color: color,
+      // color: color,
+      onChanged: onChanged,
+      validator: validator,
       margin:margin?? const EdgeInsets.only(
         left: 10,
         right: 10,
@@ -76,11 +86,12 @@ class CommonTextFormField extends StatelessWidget {
       ),
       keyboardType:keyboardType?? TextInputType.emailAddress,
       obscureText: obscureText,
-      hintText: hint,
-      labelText: label,
+      hintText: newHint,
+      labelText: newLabel,
       textAlign: TextAlign.end,
       prefixIcon: prefixIcon,
-      suffixIcon: suffixIcon,
+      suffixIcon: suffixIcon, 
+      maxLines: maxLines,
     );
   }
 }

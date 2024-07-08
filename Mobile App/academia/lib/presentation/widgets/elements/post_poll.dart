@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class PostPoll extends StatelessWidget {
   const PostPoll({super.key});
@@ -25,7 +26,7 @@ class PostPoll extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p16, vertical: AppPadding.p8),
-                child: Text( "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                child: CustomText(text:  "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   fontSize: FontSize.s12,
                   color: ColorManager.black,
                 ),),

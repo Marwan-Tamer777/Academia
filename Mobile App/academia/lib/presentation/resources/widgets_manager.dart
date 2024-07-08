@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'package:shimmer/shimmer.dart';
 
+import '../widgets/custom_text.dart';
 import 'color_manager.dart';
 
 abstract class WidgetsManager {
@@ -45,7 +46,7 @@ abstract class WidgetsManager {
     EdgeInsetsGeometry? padding = const EdgeInsets.all(AppSize.s10),
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? contentPadding,
-    double height = 50,
+    double height = 65,
     double? width,
     BorderRadiusGeometry? borderRadius,
     Color? color,
@@ -74,11 +75,13 @@ abstract class WidgetsManager {
     int? maxLines = 1,
     int? minLines,
     Function(String)? onChanged,
+    Function(String?)? validator,
     List<BoxShadow>? boxShadow,
   }) {
     return Container(
-      height: height,
-      width: width,
+        constraints: BoxConstraints(
+          minHeight: height,
+        ),      width: width,
       margin: margin,
       child: TextFormField(
         controller: controller,
@@ -86,14 +89,14 @@ abstract class WidgetsManager {
         readOnly: readOnly,
         enabled: enabled,
         keyboardType: keyboardType,
-        textAlign: textAlign,
+         cursorColor: ColorManager.buttonColor,
         expands: expands,
-        style: style,
-        textDirection: textDirection,
+        //style: style,
         onChanged: onChanged == null ? null : (value) => onChanged(value),
+        validator: validator == null ? null : (value) => validator(value),
         decoration: InputDecoration(
           isDense: true,
-          hintText: hintText,
+          hintText: hintText,          
           labelText: labelText,
           alignLabelWithHint: true,
           floatingLabelAlignment: floatingLabelAlignment,
@@ -165,7 +168,7 @@ abstract class WidgetsManager {
           children: [
             const CircularProgressIndicator(),
             const SizedBox(width: AppSize.s20),
-            Text(message),
+            CustomText(text: message, style: Theme.of(context).textTheme.bodyLarge!),
           ],
         ),
       ),
@@ -183,15 +186,15 @@ abstract class WidgetsManager {
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text(title),
-        content: Text(message),
+        title: CustomText(text: title,style: Theme.of(context).textTheme.headlineMedium!,),
+        content: CustomText(text: message, style: Theme.of(context).textTheme.bodyLarge!),
         actions: [
           if (okButton)
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('OK'),
+              child: CustomText(text: 'OK', style: Theme.of(context).textTheme.bodyLarge!),
             ),
         ],
       ),

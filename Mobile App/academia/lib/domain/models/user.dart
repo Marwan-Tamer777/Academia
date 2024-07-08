@@ -6,7 +6,7 @@ class User {
     String? avatar;
     String? assignedId;
     List<String>? courses;
-    String? lastAccessedCourse;
+    List<String>? lastAccessedCourse;
     List<String>? contacts;
     String? description;
     String? title;
@@ -24,7 +24,7 @@ class User {
         avatar = json['avatar'];
         assignedId = json['assignedId'];
         courses = json['courses'].cast<String>();
-        lastAccessedCourse = json['lastAccessedCourse'];
+        lastAccessedCourse = json['lastAccessedCourses'].cast<String>();
         contacts = json['contacts'].cast<String>();
         description = json['description'];
         title = json['title'];
@@ -34,20 +34,20 @@ class User {
     }
     Map<String, dynamic> toJson() {
         final Map<String, dynamic> data = <String, dynamic>{};
-        data['name'] = name;
-        data['email'] = email;
-        data['password'] = password;
-        data['isAdmin'] = isAdmin;
-        data['avatar'] = avatar;
-        data['assignedId'] = assignedId;
-        data['courses'] = courses;
-        data['lastAccessedCourse'] = lastAccessedCourse;
-        data['contacts'] = contacts;
-        data['description'] = description;
-        data['title'] = title;
-        data['department'] = department;
-        data['createdOn'] = createdOn;
-        data['editedOn'] = editedOn;
+        data['name'] = name ?? '';
+        data['email'] = email ?? '';
+        data['password'] = password ?? '';
+        data['isAdmin'] = isAdmin ?? false;
+        data['avatar'] = avatar ?? '';
+        data['assignedId'] = assignedId ?? '';
+        data['courses'] = courses ?? [];
+        data['lastAccessedCourse'] = lastAccessedCourse ?? [];
+        data['contacts'] = contacts ?? [];
+        data['description'] = description ?? '';
+        data['title'] = title ?? '';
+        data['department'] = department ?? '';
+        data['createdOn'] = createdOn ?? '';
+        data['editedOn'] = editedOn ?? '';
         return data;
     }
 }

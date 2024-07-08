@@ -1,9 +1,15 @@
-part of 'login_cubit.dart';
+abstract class LoginStates {}
 
-@freezed
-class LoginStates with _$LoginStates {
-  const factory LoginStates.initial() = _Initial;
-  const factory LoginStates.loading() = _Loading;
-  const factory LoginStates.loaded() = _Loaded;
-  const factory LoginStates.error(String message) = _Error;
+class LoginInitialState extends LoginStates {}
+
+class LoginLoadingState extends LoginStates {}
+
+class LoginSuccessState extends LoginStates {}
+
+class LoginErrorState extends LoginStates {
+  final String message;
+  LoginErrorState(this.message);
 }
+
+class LoginPasswordVisibilityState extends LoginStates {}
+

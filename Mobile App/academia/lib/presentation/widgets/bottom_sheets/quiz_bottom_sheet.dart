@@ -1,22 +1,27 @@
+import 'package:academia/domain/models/assignment.dart';
+import 'package:academia/domain/models/quiz.dart';
 import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/routes_manager.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 import '../elements/horizontal_bar.dart';
 import '../list_views_items/category_item.dart';
 import '../list_views_items/task_component.dart';
 
-class StartQuizBottomSheet extends StatelessWidget {
-  const StartQuizBottomSheet({super.key});
-
+class StartQuizBottomSheet extends StatelessWidget { 
+    final Quiz quiz;
+  const StartQuizBottomSheet({super.key,required this.quiz});
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.35,
-      decoration: const BoxDecoration(
-        color: ColorManager.bottomSheetBackground,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(AppPadding.p16),
           topRight: Radius.circular(AppPadding.p16),
         ),
@@ -30,9 +35,9 @@ class StartQuizBottomSheet extends StatelessWidget {
             const SizedBox(
               height: AppSize.s10,
             ),
-            const Expanded(
+           Expanded(
               flex: 10,
-              child: TaskComponent(),
+              child: TaskComponent(quiz: quiz!),
             ),
             const SizedBox(
               height: AppSize.s16,
@@ -40,19 +45,15 @@ class StartQuizBottomSheet extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                const CategoryItem(
-                  title: '30 دقيقة',
-                  // height: AppSize.s25,
-                  // width: AppSize.s100,
+               CategoryItem(
+                  title: '${quiz.duration} ${AppStrings.minute.tr}',
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: 12,
                 ),
                 const SizedBox(width: AppSize.s10,),
-                const CategoryItem(
-                  title: '15 سؤال',
-                  // height: AppSize.s25,
-                  // width: AppSize.s100,
+                 CategoryItem(
+                  title: '${quiz.questions!.length} ${AppStrings.question}',
                   color: ColorManager.lightOrange1,
                   textColor: ColorManager.textOrange,
                   fontSize: 12,
@@ -60,8 +61,8 @@ class StartQuizBottomSheet extends StatelessWidget {
                 const Spacer(),
                 Align(
                   alignment: const AlignmentDirectional(0, 0),
-                  child: Text(
-                    'الوصف',
+                  child: CustomText(text: 
+                    AppStrings.courseDescription,
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       color: Colors.grey,
                       fontSize: FontSize.s16,
@@ -74,13 +75,12 @@ class StartQuizBottomSheet extends StatelessWidget {
             const SizedBox(
               height: AppSize.s10,
             ),
-            Text(
-              'دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ',
+            CustomText(text: 
+              quiz.description!,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
                 color: Colors.grey,
                 fontSize: FontSize.s12,
               ),
-              textDirection: TextDirection.rtl,
             ),
             const SizedBox(
               height: AppSize.s16,
@@ -89,10 +89,11 @@ class StartQuizBottomSheet extends StatelessWidget {
               width: double.infinity,
               height: AppSize.s50,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: true).pushNamed(Routes.takeQuizScreen);
+                onPressed: () { 
+                  Get.back();
+                  Navigator.pushNamed(context, Routes.takeQuizScreen, arguments: quiz);
                 },
-                child: Text("ابدأ الاختبار", style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                child: CustomText(text: AppStrings.startTest, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: FontSize.s16,
                   color: ColorManager.white,
                 ),),

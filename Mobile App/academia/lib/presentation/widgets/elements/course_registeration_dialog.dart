@@ -1,13 +1,15 @@
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class CourseRegistrationDialog extends StatelessWidget {
-  const CourseRegistrationDialog({Key? key}) : super(key: key);
+  const CourseRegistrationDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class CourseRegistrationDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSize.s16),
-          color: ColorManager.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Column(
           children: [
@@ -32,19 +34,17 @@ class CourseRegistrationDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSize.s16),
-            Text(
-              "تمت إضافة المادة",
+            CustomText(text: 
+              AppStrings.courseRegistrationSuccess,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                 fontSize: FontSize.s16,
-                color: ColorManager.black,
               ),
             ),
-            SizedBox(height: AppSize.s16),
-            Text(
-              " يمكنك الآن متابعة أحدث  المستجدات ",
+            const SizedBox(height: AppSize.s16),
+            CustomText(text: 
+              AppStrings.courseRegistrationSuccessDescription,
               style: Theme.of(context).textTheme.displaySmall!.copyWith(
                 fontSize: FontSize.s14,
-                color: ColorManager.lightGrey,
               ),
             ),
 
@@ -56,7 +56,7 @@ class CourseRegistrationDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("تصفح المحتوى", style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                child: CustomText(text: AppStrings.browseContent, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: FontSize.s16,
                   color: ColorManager.white,
                 ),),

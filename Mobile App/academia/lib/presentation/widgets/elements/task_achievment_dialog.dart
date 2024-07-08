@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../resources/font_manager.dart';
+import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class TaskAchievementDialog extends StatelessWidget {
   const TaskAchievementDialog({Key? key}) : super(key: key);
@@ -32,16 +34,16 @@ class TaskAchievementDialog extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSize.s16),
-            Text(
-              "تم تسليم التكليف ",
+            CustomText(text: 
+              AppStrings.assignmentUploaded,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                 fontSize: FontSize.s16,
                 color: ColorManager.black,
               ),
             ),
             SizedBox(height: AppSize.s16),
-            Text(
-              "تبقى لك 3 محاولات استخدمهم بحكمة",
+            CustomText(text: 
+              AppStrings.remainingAttempts,
               style: Theme.of(context).textTheme.displaySmall!.copyWith(
                 fontSize: FontSize.s14,
                 color: ColorManager.lightGrey,
@@ -56,7 +58,7 @@ class TaskAchievementDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("اذهب للرئيسية", style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                child: CustomText(text: AppStrings.homePage, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: FontSize.s16,
                   color: ColorManager.white,
                 ),),

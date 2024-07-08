@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
+import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class CalenderEmptyState extends StatelessWidget {
   const CalenderEmptyState({super.key});
@@ -20,9 +22,9 @@ class CalenderEmptyState extends StatelessWidget {
         ),
         child: Align(
             alignment: Alignment.centerRight,
-            child: Text(
-              "لا يوجد أي مواعيد لليوم ",
-              style: Theme.of(context).textTheme.bodyLarge,
+            child: CustomText(text: 
+              AppStrings.calenderEmptyState,
+              style: Theme.of(context).textTheme.bodyLarge!,
             )));
   }
 }

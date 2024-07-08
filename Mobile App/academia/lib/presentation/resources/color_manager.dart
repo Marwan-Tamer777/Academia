@@ -72,5 +72,7 @@ abstract class ColorManager {
   static const Color darkBlack = Color(0xFF2a2c36);
   static const Color darkSales = Color(0xFFff3e3e);
   static const Color darkError = Color(0xFFff2424);
-  // static const Color darkSuccess = Color(0xFF55d85a);
+  // static const Color darkSuccess = Color(0xFF55d85a); 
+
+  static Color opacityBlack = Colors.black.withOpacity(0.5);
 }

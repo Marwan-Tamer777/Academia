@@ -1,3 +1,6 @@
+import 'package:academia/domain/models/post.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/screens/courses_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -5,9 +8,11 @@ import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class PostHeader extends StatelessWidget {
-  const PostHeader({super.key});
+  final Post post;
+  const PostHeader({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +33,8 @@ class PostHeader extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'تواصل',
+              CustomText(text: 
+                AppStrings.contact,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   fontSize: FontSize.s12,
                   color: ColorManager.white,
@@ -42,33 +47,40 @@ class PostHeader extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        const Spacer(),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              'محمد أحمد حسنين',
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                fontSize: FontSize.s12,
-              ),
-            ),
-            const SizedBox(height: 5,),
-            Text(
-              'منذ 15 ساعة',
+        ),         const Spacer(),
+
+              CustomText(text: 
+              dateTimeFormatter(post.postingDate!.toIso8601String()),
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                fontSize: FontSize.s8,
+                fontSize: FontSize.s14,
                 color: ColorManager.lightGrey,
               ),
             ),
-          ],
-        ),
-        const SizedBox(width: 10,),
-        const CircleAvatar(
-          radius: AppSize.s20,
-          backgroundColor: ColorManager.lightOrange1,
-        ),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   crossAxisAlignment: CrossAxisAlignment.end,
+        //   children: [
+        //     CustomText(text: 
+        //       post.user!.name ?? '',
+        //       style: Theme.of(context).textTheme.displayLarge!.copyWith(
+        //         fontSize: FontSize.s12,
+        //       ),
+        //     ),
+        //     const SizedBox(height: 5,),
+        //     CustomText(text: 
+        //       post.postingDate ?? '',
+        //       style: Theme.of(context).textTheme.displayMedium!.copyWith(
+        //         fontSize: FontSize.s8,
+        //         color: ColorManager.lightGrey,
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        // const SizedBox(width: 10,),
+        // const CircleAvatar(
+        //   radius: AppSize.s20,
+        //   backgroundColor: ColorManager.lightOrange1,
+        // ),
       ],
     );
   }

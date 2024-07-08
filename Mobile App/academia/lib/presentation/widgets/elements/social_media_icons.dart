@@ -9,7 +9,7 @@ class SocialMediaIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: AppSize.s63,
       width: AppSize.s63,
       child: Stack(

@@ -5,6 +5,7 @@ import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class TasksCalender extends StatelessWidget {
   const TasksCalender({super.key});
@@ -38,7 +39,7 @@ class TasksCalender extends StatelessWidget {
             ),
             rightChevronIcon: Row(
               children: [
-                Text(
+                CustomText(text: 
                   "يوليو 2024",
                   style: Theme.of(context)
                       .textTheme
@@ -73,7 +74,7 @@ class TasksCalender extends StatelessWidget {
               return Container(
                 margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
-                child: Text(
+                child: CustomText(text: 
                   days[day.weekday] as String,
                   style: Theme.of(context)
                       .textTheme
@@ -89,7 +90,7 @@ class TasksCalender extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 alignment: Alignment.center,
-                child: Text(
+                child: CustomText(text: 
                   '${date.day}',
                   style: Theme.of(context)
                       .textTheme

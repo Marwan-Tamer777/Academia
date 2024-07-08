@@ -4,7 +4,7 @@ import 'clip_path_backgound.dart';
 
 class Background extends StatelessWidget {
   final int height;
-  const Background({this.height = 200, super.key});
+  const Background({this.height = 220, super.key});
 
   @override
   Widget build(BuildContext context) {

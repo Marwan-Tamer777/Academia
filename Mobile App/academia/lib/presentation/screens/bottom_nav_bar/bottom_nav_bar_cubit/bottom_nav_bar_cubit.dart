@@ -1,9 +1,9 @@
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_cubit/bottom_nav_bar_states.dart';
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/calender_screen.dart';
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/home_screen.dart';
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/quiz_screen.dart';
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses_screen.dart';
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile_screen.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/calender/screens/calender_screen.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/home/screens/home_screen.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/quiz/screens/quiz_screen.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/screens/courses_screen.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/screens/profile_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

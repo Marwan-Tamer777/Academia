@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
-import '../../resources/assets_manager.dart';
 import '../../resources/values_manager.dart';
 
 class PostImage extends StatelessWidget {

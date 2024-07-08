@@ -8,15 +8,36 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../app/constants.dart';
 import '../../resources/routes_manager.dart';
+import '../../resources/shared_preference_manager.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    void nextPage() {
+      String? token = SharedPrefManager.getString("userToken");
+      String? user = SharedPrefManager.getString("userId");
+
+      if(token == null) {
+        Navigator.pushReplacementNamed(context, Routes.onBoarding);
+      } else {
+        userToken = token;
+        userId = user;
+        print("Token: $userToken");
+        print("User: $userId");
+        Navigator.pushReplacementNamed(context, Routes.bottomNavBar);
+      }
+
+    }
+
     Timer(const Duration(seconds: AppConstants.splashTime), () {
-      Navigator.pushReplacementNamed(context, Routes.onBoarding);
+      nextPage();
     });
+
+
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -37,13 +58,13 @@ class SplashScreen extends StatelessWidget {
                 sigmaX: 5,
                 sigmaY: 5,
               ),
-              child: Opacity(
-                opacity: 0.1, 
-                child: SvgPicture.asset(
-                  ImageAssets.imagesSplashScreenPattern,
-                  fit: BoxFit.cover,
-                ),
-              ),
+              // child: Opacity(
+              //   opacity: 0.1, 
+              //   child: SvgPicture.asset(
+              //     ImageAssets.imagesSplashScreenPattern,
+              //     fit: BoxFit.cover,
+              //   ),
+              // ),
             ),
           ),
 

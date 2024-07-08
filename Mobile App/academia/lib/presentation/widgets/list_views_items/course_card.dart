@@ -1,22 +1,33 @@
+import 'package:academia/domain/models/course.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/resources/theme_manager.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/Courses_cubit/courses_cubit.dart';
+import 'package:academia/presentation/screens/course_screen/cubit/course_cubit.dart';
+import 'package:academia/presentation/screens/login/widgets/custom_alert_dialog.dart';
+import 'package:academia/presentation/widgets/bottom_sheets/evaluation_bottom_sheet.dart';
+import 'package:academia/presentation/widgets/bottom_sheets/task_submission_bottom_sheet.dart';
+import 'package:academia/presentation/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 import '../elements/last_task_grade_and_events.dart';
 import 'category_item.dart';
 
-class CourseCard extends StatelessWidget {
-  const CourseCard({super.key});
+class CourseCard extends StatelessWidget { 
+  final Course course;
+  const CourseCard({super.key,required this.course});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(15),
-      height: 400,
+      //height: 400,
       decoration: BoxDecoration(
         color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(16),
@@ -24,7 +35,44 @@ class CourseCard extends StatelessWidget {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        children: [
+        children: [ 
+          Row( 
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [ 
+
+          // evaluation button 
+          IconButton(
+            onPressed: () {
+              showCustomBottomSheet(bottomSheet: const EvaluationBottomSheet(), context: context);
+            },
+            icon: const Icon(Icons.rate_review_outlined,color: ColorManager.textOrange,),
+          ),
+          
+
+          // unenroll button
+          IconButton(
+            onPressed: () {  
+              showCustomAlertDialog(context: context, title: AppStrings.areYouSureYouWantToEnrollThisCourse.tr, content: Row(children: [
+                Expanded(
+                  child: BigButton(onPressed: () {
+                    CourseCubit.of(context).unEnrollCourse();
+                  }, text: AppStrings.ok.tr, ),
+                ), 
+                const SizedBox(width: 10,), 
+                Expanded(
+                  child: BigButton(onPressed: () {
+                    Navigator.pop(context);
+                  }, text: AppStrings.cancel.tr, ),
+                ),
+              ],), 
+          
+              );
+            },
+            icon: const Icon(Icons.logout_outlined),
+            color:  ColorManager.textOrange,
+          ),
+              ],
+          ),
           CircleAvatar(
             radius: AppSize.s50,
             backgroundColor: ColorManager.lightOrange1,
@@ -35,7 +83,7 @@ class CourseCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSize.s16),
-          Text("منهجيات البحث العلمي والتطوير ",
+          CustomText(text: course.name!,
               style: Theme.of(context)
                   .textTheme
                   .displayLarge!
@@ -46,9 +94,7 @@ class CourseCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CategoryItem(
-                title: "مادة نشطة",
-                // width: AppSize.s70,
-                // height: AppSize.s30,
+                title: course.status,
                 color: Theme.of(context)
                     .extension<CustomThemeExtension>()!
                     .greenOverlayColor,
@@ -58,19 +104,15 @@ class CourseCard extends StatelessWidget {
                 fontSize: FontSize.s10,
               ),
               const SizedBox(width: AppSize.s5),
-              const CategoryItem(
-                title: "نظم المعلومات",
-                // width: AppSize.s80,
-                // height: AppSize.s30,
+              CategoryItem(
+                title: course.programName,
                 color: ColorManager.lightOrange1,
                 textColor: ColorManager.textOrange,
                 fontSize: FontSize.s10,
               ),
               const SizedBox(width: AppSize.s5),
-              const CategoryItem(
-                title: "IS1545",
-                // width: AppSize.s50,
-                // height: AppSize.s30,
+              CategoryItem(
+                title: course.courseCode,
                 color: ColorManager.lightOrange1,
                 textColor: ColorManager.textOrange,
                 fontSize: FontSize.s10,
@@ -78,12 +120,12 @@ class CourseCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSize.s16),
-          const LastTaskGradeAndEvents(),
+          LastTaskGradeAndEvents(course: course,),
           const SizedBox(height: AppSize.s16),
           Align(
             alignment: Alignment.centerRight,
-            child: Text(
-              'الوصف',
+            child: CustomText(text: 
+              AppStrings.courseDescription,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     color: Colors.grey,
                     fontSize: FontSize.s16,
@@ -91,14 +133,13 @@ class CourseCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSize.s8),
-          Text(
-            'دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ دكتور تجميل وجراحة مناظير بمستشفى الخانكة قسم اول أ',
-            style: Theme.of(context).textTheme.displayMedium!.copyWith(
+          CustomText(text: 
+            course.description!,
+              style: Theme.of(context).textTheme.displayMedium!.copyWith(
                   color: Colors.grey,
                   fontSize: FontSize.s12,
                   height: AppSize.s2,
                 ),
-            textDirection: TextDirection.rtl,
           ),
 
           // todo: add students circle avatars

@@ -1,22 +1,28 @@
+import 'package:academia/domain/models/post.dart';
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
 import 'package:academia/presentation/widgets/list_views_items/post_write_comment.dart';
 import 'package:academia/presentation/widgets/list_views_items/reaction.dart';
 import 'package:academia/presentation/widgets/elements/post_header.dart';
 import 'package:academia/presentation/widgets/elements/post_image.dart';
 import 'package:academia/presentation/widgets/elements/post_poll_result.dart';
+import 'package:academia/presentation/widgets/post_attachments.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/font_manager.dart';
+import '../custom_text.dart';
 import '../elements/post_poll.dart';
+import '../remaining_days_part.dart';
 import 'category_item.dart';
 
 class TextPostCommentsItem extends StatelessWidget {
   const TextPostCommentsItem({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+
     bool isPoll = false;
     bool showPollResult = false;
     bool isImage = true;
@@ -33,35 +39,21 @@ class TextPostCommentsItem extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          const PostHeader(),
+          //PostHeader(post: post),
           const SizedBox(
             height: AppSize.s10,
           ),
-          Text(
+
+          CustomText(text: 
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   fontSize: FontSize.s16,
-                  // color: ColorManager.black,
-                  // make space between lines
                   height: AppSize.s2,
                 ),
-            textDirection: TextDirection.rtl,
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(AppPadding.p8),
-              child: CategoryItem(
-                title: "تبقى 4 ايام",
-                width: MediaQuery.of(context).size.width * 0.3,
-                // height: AppSize.s30,
-                color: ColorManager.lightOrange1,
-                textColor: ColorManager.textOrange,
-                fontSize: FontSize.s12,
-              ),
-            ),
-          ),
-          Text(
+
+          const RemainingDays(remainingDays: 4),
+          CustomText(text:
             'لوريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت, ,كونسيكتيتور أدايبا يسكينج أليايت .... قراءة المزيد',
             style: Theme.of(context).textTheme.displayLarge!.copyWith(
                   fontSize: FontSize.s13,
@@ -69,64 +61,21 @@ class TextPostCommentsItem extends StatelessWidget {
                   // make space between lines
                   height: AppSize.s2,
                 ),
-            textDirection: TextDirection.rtl,
           ),
           const SizedBox(
             height: 10,
           ),
-          Row(
-            children: [
-              const Spacer(),
-              CategoryItem(
-                width: AppSize.s100,
-                color: ColorManager.lightOrange1,
-                textColor: ColorManager.textOrange,
-                fontSize: FontSize.s12,
-                child: Row(
-                  children: [
-                    Text(
-                      "ملخص الدرس",
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontSize: 10, color: ColorManager.textOrange),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    SvgPicture.asset(ImageAssets.pdf),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              CategoryItem(
-                width: AppSize.s100,
-                color: ColorManager.lightOrange1,
-                textColor: ColorManager.textOrange,
-                fontSize: FontSize.s12,
-                child: Row(
-                  children: [
-                    Text(
-                      "ملخص الدرس",
-                      style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                          fontSize: 10, color: ColorManager.textOrange),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    SvgPicture.asset(ImageAssets.pdf),
-                  ],
-                ),
-              ),
-            ],
-          ),
+
+          const PostAttachments(),
           const SizedBox(
             height: 10,
           ),
+
           if (isImage) const PostImage(image: ImageAssets.postImage),
           if (isPoll) const PostPoll(),
           if (showPollResult) const PostPollResult(),
-          const PostReactions(),
+
+         //PostReactions(post: post),
           const SizedBox(
             height: 10,
           ),

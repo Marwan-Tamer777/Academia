@@ -1,16 +1,20 @@
-import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screen.dart';
+import 'package:academia/domain/models/course.dart';
+import 'package:academia/domain/models/post.dart';
+import 'package:academia/domain/models/quiz.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_layout.dart';
 import 'package:academia/presentation/screens/comments_screen/comments_screen.dart';
 import 'package:academia/presentation/screens/course_screen/course_screen.dart';
 import 'package:academia/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:academia/presentation/screens/forgot_password/verification_screen.dart';
 import 'package:academia/presentation/screens/forgot_password/write_new_password_screen.dart';
-import 'package:academia/presentation/screens/login/login_screen.dart';
+import 'package:academia/presentation/screens/login/screens/login_screen.dart';
 import 'package:academia/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/onboarding/onboarding_screen.dart';
-import '../screens/take_quiz_screen/take_quiz_screen.dart';
+import '../screens/take_quiz_screen/screens/take_quiz_screen.dart';
+import '../widgets/custom_text.dart';
 import 'strings_manager.dart';
 
 class Routes {
@@ -26,7 +30,7 @@ class Routes {
   static const String resetPasswordScreen = '/resetPasswordScreen';
 
   static const String bottomNavBar = '/bottomNavBar';
-  static const String coursesScreen = '/coursesScreen';
+  static const String courseScreen = '/courseScreen';
   static const String takeQuizScreen = '/takeQuizScreen';
   static const String postComments = '/commentsScreen';
 
@@ -76,17 +80,20 @@ class RoutesGenerator {
         return MaterialPageRoute<dynamic>(
           builder: (_) => const BottomNavBar(),
         );
-      case Routes.coursesScreen:
+      case Routes.courseScreen: 
+        final course = settings.arguments as Course;
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const CourseScreen(),
+          builder: (_) => CourseScreen(course: course),
         );
-      case Routes.takeQuizScreen:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => const TakeQuizScreen(),
+      case Routes.takeQuizScreen:  
+           Quiz quiz = settings.arguments as Quiz;
+        return MaterialPageRoute<dynamic>( 
+          builder: (_) => TakeQuizScreen(quiz: quiz),
         );
       case Routes.postComments:
-        return MaterialPageRoute<dynamic>(
-          builder: (_) => const CommentsScreen(),
+          Post post = settings.arguments as Post;
+        return MaterialPageRoute<dynamic>( 
+          builder: (_) => CommentsScreen(post: post,),
         );
       default:
         return undefinedRoute(settings);
@@ -99,9 +106,9 @@ class RoutesGenerator {
         if (kDebugMode) {
           print('Route not found: ${settings.name}');
         }
-        return const Scaffold(
+        return Scaffold(
           body: Center(
-            child: Text(AppStrings.undefinedRoute),
+            child: CustomText(text: AppStrings.undefinedRoute, style: Theme.of(_).textTheme.bodyMedium!),
           ),
         );
       },

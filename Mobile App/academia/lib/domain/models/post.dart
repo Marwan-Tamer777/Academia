@@ -1,79 +1,73 @@
+import 'package:academia/domain/models/quiz.dart';
+import 'package:academia/domain/models/user.dart';
+
 class Post {
-  String id;
-  String courseId;
-  String postedBy;
-  bool postNow;
-  DateTime postingDate;
-  String content;
-  List<String> material;
-  String quizId;
-  String assignmentId;
-  bool alertUsers;
-  DateTime alertDate;
-  List<String> comments;
-  List<String> likes;
-  List<String> dislikes;
-  DateTime postedOn;
-  DateTime editedOn;
+  String? id;
+  String? courseId;
+  String? postedBy;
+  bool? postNow;
+  DateTime? postingDate; 
+  String? title;
+  String? content; 
+  bool? alertUsers; 
+  String? alertDate;
+  bool? allowComments;
+  List<String>? comments;
+  List<String>? likes;
+  List<String>? dislikes; 
+  Quiz? quiz;
+  String? postedOn;
+  DateTime? editedOn; 
+  User? user;
 
   Post({
-        required this.id,
-        required this.courseId,
-        required this.postedBy,
-        required this.postNow,
-        required this.postingDate,
-        required this.content,
-        required this.material,
-        required this.quizId,
-        required this.assignmentId,
-        required this.alertUsers,
-        required this.alertDate,
-        required this.comments,
-        required this.likes,
-        required this.dislikes,
-        required this.postedOn,
-        required this.editedOn,
-  });
+         this.id,
+         this.courseId,
+         this.postedBy,
+         this.postNow,
+         this.postingDate, 
+         this.title,
+         this.content,
+         this.alertUsers,
+         this.alertDate,
+         this.comments,
+         this.allowComments,
+         this.likes,
+         this.dislikes,
+         this.quiz,
+         this.postedOn,
+         this.editedOn,
+         this.user
+  }); 
+
+   List<Post> fromJsonList(List<dynamic> json) {
+    List<Post> posts = [];
+    for (var post in json) {
+      posts.add(Post.fromJson(post));
+    }
+    return posts;
+  }
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      id: json['_id'],
-      courseId: json['courseId'],
-      postedBy: json['postedBy'],
-      postNow: json['postNow'],
+      id: json['_id'] ?? '',
+      courseId: json['courseId'] ?? '',
+      postedBy: json['postedBy'] ?? '',
+      postNow: json['postNow'] ?? false,
       postingDate: DateTime.parse(json['postingDate']),
-      content: json['content'],
-      material: List<String>.from(json['material']),
-      quizId: json['quizId'],
-      assignmentId: json['assignmentId'],
-      alertUsers: json['alertUsers'],
-      alertDate: DateTime.parse(json['alertDate']),
-      comments: List<String>.from(json['comments']),
-      likes: List<String>.from(json['likes']),
-      dislikes: List<String>.from(json['dislikes']),
-      postedOn: DateTime.parse(json['postedOn']),
-      editedOn: DateTime.parse(json['editedOn']),
+      title: json['title'] ?? '',
+      content: json['content'] ?? '',
+      alertUsers: json['alertUsers'] ?? false,
+      alertDate: json['alertDate'] ?? '',
+      comments: List<String>.from(json['comments']) ?? [],
+      allowComments: json['allowComments'] ?? false,
+      likes: List<String>.from(json['likes']) ?? [],
+      dislikes: List<String>.from(json['dislikes']) ?? [],
+      quiz: json['quiz'] != null ? Quiz.fromJson(json['quiz']) : null,
+      postedOn: json['postedOn'] ?? '',
+      editedOn: DateTime.parse(json['editedOn']) ?? DateTime.now(), 
+      user: json['userData'] != null ? User.fromJson(json['userData']) : null
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['_id'] = id;
-    data['courseId'] = courseId;
-    data['postedBy'] = postedBy;
-    data['postNow'] = postNow;
-    data['postingDate'] = postingDate.toIso8601String();
-    data['content'] = content;
-    data['material'] = material;
-    data['quizId'] = quizId;
-    data['assignmentId'] = assignmentId;
-    data['alertUsers'] = alertUsers;
-    data['alertDate'] = alertDate.toIso8601String();
-    data['comments'] = comments;
-    data['likes'] = likes;
-    data['dislikes'] = dislikes;
-    data['postedOn'] = postedOn.toIso8601String();
-    data['editedOn'] = editedOn.toIso8601String();
-    return data;
-    }
 }

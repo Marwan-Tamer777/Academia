@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class PostPollResult extends StatelessWidget {
   const PostPollResult({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: AppSize.s250,
       child: ListView.builder(
         itemCount: 3,
@@ -26,12 +27,12 @@ class PostPollResult extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text( "30 الف صوت", style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      CustomText(text:  "30 الف صوت", style: Theme.of(context).textTheme.displayMedium!.copyWith(
                         fontSize: FontSize.s12,
                         color: ColorManager.black,
                       ),),
                       const Spacer(),
-                      Text( "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      CustomText(text:  "لوريم ايبسوم", style: Theme.of(context).textTheme.displayMedium!.copyWith(
                         fontSize: FontSize.s12,
                         color: ColorManager.black,
                       ),),

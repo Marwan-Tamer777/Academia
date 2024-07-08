@@ -1,25 +1,38 @@
-class Comment {
-  final String id;
-  final String postId;
-  final String postedBy;
-  final String replyingTo;
-  final String content;
-  final List<String> likes;
-  final List<String> dislikes;
-  final DateTime postedOn;
-  final DateTime editedOn;
+import 'package:academia/domain/models/user.dart';
 
-  Comment({
-    required this.id,
-    required this.postId,
-    required this.postedBy,
-    required this.replyingTo,
-    required this.content,
-    required this.likes,
-    required this.dislikes,
-    required this.postedOn,
-    required this.editedOn,
+class Comment {
+  final String? id;
+  final String? postId;
+  final String? postedBy;
+  final String? replyingTo;
+  final String? content;
+  final List<String>? likes;
+  final List<String>? dislikes;
+  final DateTime? postedOn;
+  final DateTime? editedOn; 
+  User? user;
+
+Comment({
+     this.id,
+     this.postId,
+     this.postedBy,
+     this.replyingTo,
+     this.content,
+     this.likes,
+     this.dislikes,
+     this.postedOn,
+     this.editedOn, 
+      this.user,
   });
+
+   List<Comment> fromJsonList(List<dynamic> json) {
+    List<Comment> comment = [];
+    for (var post in json) {
+      comment.add(Comment.fromJson(post));
+    }
+    return comment;
+  }
+
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
@@ -35,17 +48,17 @@ class Comment {
     );
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      '_id': id,
-      'postId': postId,
-      'postedBy': postedBy,
-      'replyingTo': replyingTo,
-      'content': content,
-      'likes': likes,
-      'dislikes': dislikes,
-      'postedOn': postedOn.toIso8601String(),
-      'editedOn': editedOn.toIso8601String(),
-    };
-  }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     '_id': id,
+  //     'postId': postId,
+  //     'postedBy': postedBy,
+  //     'replyingTo': replyingTo,
+  //     'content': content,
+  //     'likes': likes,
+  //     'dislikes': dislikes,
+  //     'postedOn': postedOn.toIso8601String(),
+  //     'editedOn': editedOn.toIso8601String(),
+  //   };
+  // }
 }

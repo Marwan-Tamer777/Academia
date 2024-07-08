@@ -1,10 +1,13 @@
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/color_manager.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class FinishQuizDialog extends StatelessWidget {
   const FinishQuizDialog({Key? key}) : super(key: key);
@@ -18,7 +21,7 @@ class FinishQuizDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSize.s16),
-          color: ColorManager.white,
+          color: Theme.of(context).scaffoldBackgroundColor,
         ),
         child: Column(
           children: [
@@ -28,16 +31,15 @@ class FinishQuizDialog extends StatelessWidget {
               height: AppSize.s50,
             ),
             const SizedBox(height: AppSize.s16),
-            Text(
-              "تم تسليم الأختبار ",
+            CustomText(text: 
+              AppStrings.quizSubmitted.tr,
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                 fontSize: FontSize.s16,
-                color: ColorManager.black,
               ),
             ),
             SizedBox(height: AppSize.s16),
-            Text(
-              "تبقى لك 3 محاولات استخدمهم بحكمة",
+            CustomText(text: 
+              AppStrings.quizSubmittedDescription.tr,
               style: Theme.of(context).textTheme.displaySmall!.copyWith(
                 fontSize: FontSize.s14,
                 color: ColorManager.lightGrey,
@@ -52,7 +54,7 @@ class FinishQuizDialog extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text("اذهب للرئيسية", style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                child: CustomText(text: AppStrings.goHome.tr, style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: FontSize.s16,
                   color: ColorManager.white,
                 ),),

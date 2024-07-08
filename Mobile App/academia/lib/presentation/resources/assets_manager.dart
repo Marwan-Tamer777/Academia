@@ -101,7 +101,18 @@ class ImageAssets {
   static const String microsoft = "assets/images/MicrosoftOutlookLogo.svg";
   static const String facebook = "assets/images/FacebookLogo.svg";
   static const String linkedin = "assets/images/LinkedinLogo.svg";
-  static const String whatsapp = "assets/images/WhatsappLogo.svg";
+  static const String whatsapp = "assets/images/WhatsappLogo.svg"; 
+
+  // starts 
+  static const String poor = "assets/images/poor.svg"; 
+  static const String accepted = "assets/images/accepted.svg"; 
+  static const String good = "assets/images/good.svg"; 
+  static const String veryGood = "assets/images/very_good.svg"; 
+  static const String excellent = "assets/images/exllent.svg"; 
+
+  static const String evaluation = "assets/images/evaluation.svg";
+
+
 
   /// Assets for arrowDownIcon
 }

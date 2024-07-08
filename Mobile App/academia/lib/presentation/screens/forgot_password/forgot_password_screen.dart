@@ -4,7 +4,6 @@ import 'package:academia/presentation/resources/color_manager.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/resources/style_manager.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
-import 'package:academia/presentation/resources/widgets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,16 +11,17 @@ import '../../resources/assets_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/routes_manager.dart';
 import '../../widgets/common_widgets.dart';
+import '../../widgets/custom_text.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({Key? key}) : super(key: key);
+  const ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: null,
-        title: Text(
+        title: CustomText(text: 
           AppStrings.forgotPassword,
           style: getBoldTextStyle(
             fontSize: AppSize.s20,
@@ -67,14 +67,13 @@ class ForgotPasswordScreen extends StatelessWidget {
                   const SizedBox(height: AppSize.s26),
 
                   /// Title and Description
-                  Text(
+                  CustomText(text: 
                     AppStrings.forgotPasswordTitleMessage,
                     style: getSemiBoldTextStyle(
                       fontSize: AppSize.s14,
                       color: ColorManager.forgotPasswordMessageColor,
                       fontFamily: FontConstants.cairo,
                     ),
-                    textAlign: TextAlign.center,
                   ),
 
                   const SizedBox(height: AppSize.s26),

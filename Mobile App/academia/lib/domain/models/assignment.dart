@@ -2,11 +2,13 @@ class Assignment {
   String id;
   String courseId;
   String description;
-  DateTime closeOn;
+  String closeOn;
   int duration;
   int numOfAttempts;
-  DateTime createdOn;
-  DateTime editedOn;
+  bool showGrade; 
+  int grade;
+  String createdOn;
+  String editedOn;
 
     Assignment({
         required this.id,
@@ -16,7 +18,9 @@ class Assignment {
         required this.duration,
         required this.numOfAttempts,
         required this.createdOn,
-        required this.editedOn,
+        required this.editedOn, 
+        required this.showGrade, 
+        required this.grade, 
     });
 
     factory Assignment.fromJson(Map<String, dynamic> json) {
@@ -26,22 +30,11 @@ class Assignment {
             description: json['description'],
             closeOn: json['closeOn'],
             duration: json['duration'],
-            numOfAttempts: json['numOfAttempts'],
+            numOfAttempts: json['numOfAttempts'], 
+            showGrade: json['showGrade'], 
+            grade: json['grade'], 
             createdOn: json['createdOn'],
             editedOn: json['editedOn'],
         );
     }
-
-    Map<String, dynamic> toJson() {
-        return {
-            '_id': id,
-            'courseId': courseId,
-            'description': description,
-            'closeOn': closeOn,
-            'duration': duration,
-            'numOfAttempts': numOfAttempts,
-            'createdOn': createdOn,
-            'editedOn': editedOn,
-        };
     }
-}

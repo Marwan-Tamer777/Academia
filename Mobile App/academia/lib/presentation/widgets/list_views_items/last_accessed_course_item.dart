@@ -1,3 +1,4 @@
+import 'package:academia/domain/models/course.dart';
 import 'package:academia/presentation/resources/assets_manager.dart';
 import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/theme_manager.dart';
@@ -8,10 +9,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 import 'category_item.dart';
 
-class LastAccessedCourseItem extends StatelessWidget {
-  const LastAccessedCourseItem({super.key});
+class LastAccessedCourseItem extends StatelessWidget { 
+  final Course course;
+  const LastAccessedCourseItem({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +53,10 @@ class LastAccessedCourseItem extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               children: [
                                 CategoryItem(
-                                  title: "مادة نشطة",
+                                  title: course.status,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: AppPadding.p10,
                                   ),
-                                  // width: AppSize.s50,
-                                  // height: AppSize.s18,
                                   margin: const EdgeInsets.only(
                                     left: AppPadding.p5,
                                   ),
@@ -66,29 +67,25 @@ class LastAccessedCourseItem extends StatelessWidget {
                                       .extension<CustomThemeExtension>()!
                                       .successColor,
                                 ),
-                                const CategoryItem(
-                                  title: "نظم المعلومات",
+                                 CategoryItem(
+                                  title: course.programName,
                                   padding: EdgeInsets.symmetric(
                                     horizontal: AppPadding.p10,
                                   ),
                                   margin: EdgeInsets.only(
                                     left: AppPadding.p5,
                                   ),
-                                  // width: AppSize.s25,
-                                  // height: AppSize.s18,
                                   color: ColorManager.lightOrange1,
                                   textColor: ColorManager.textOrange,
                                 ),
-                                const CategoryItem(
-                                  title: "IS1545",
+                                CategoryItem(
+                                  title: course.courseCode,
                                   padding: EdgeInsets.symmetric(
                                     horizontal: AppPadding.p10,
                                   ),
                                   margin: EdgeInsets.only(
                                     left: AppPadding.p5,
                                   ),
-                                  // width: AppSize.s25,
-                                  // height: AppSize.s18,
                                   color: ColorManager.lightOrange1,
                                   textColor: ColorManager.textOrange,
                                 ),
@@ -99,17 +96,16 @@ class LastAccessedCourseItem extends StatelessWidget {
                       ),
                       const SizedBox(height: AppSize.s15),
                       // Course Title
-                      Text(
-                        "منهجيات البحث العلمي والتطوير ",
+                      CustomText(text: 
+                        course.name!,
                         style: Theme.of(context)
                             .textTheme
                             .displayLarge!
                             .copyWith(fontSize: FontSize.s16),
-                        textAlign: TextAlign.right,
                       ),
                       const SizedBox(height: AppSize.s15),
                       // Course Instructors
-                      Text("مروان تامر - أحمد محسن  +1 آخرون",
+                      CustomText(text: "مروان تامر - أحمد محسن  +1 آخرون",
                           style: Theme.of(context)
                               .textTheme
                               .displaySmall!
@@ -139,7 +135,7 @@ class LastAccessedCourseItem extends StatelessWidget {
               ],
             ),
             const SizedBox(height: AppSize.s20),
-            const LastTaskGradeAndEvents(),
+            LastTaskGradeAndEvents(course: course),
           ],
         ));
   }

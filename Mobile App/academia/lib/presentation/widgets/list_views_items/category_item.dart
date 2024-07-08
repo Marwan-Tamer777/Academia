@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
 class CategoryItem extends StatelessWidget {
   final String? title;
@@ -26,21 +27,21 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height,
-      width: width,
+      // height: height,
+      // width: width,
       margin: margin,
-      padding: padding ?? const EdgeInsets.all(AppPadding.p10),
+      padding: padding ?? const EdgeInsets.all(AppPadding.p16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppSize.s30),
         color: color,
       ),
       child: Center(
           child: child ??
-              Text(
+              CustomText(text: 
                 title!,
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: textColor,
-                      fontSize: fontSize,
+                      fontSize: 14,
                     ),
               )),
     );

@@ -12,6 +12,7 @@ import '../../resources/font_manager.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
+import '../../widgets/custom_text.dart';
 
 class VerificationScreen extends StatelessWidget {
   const VerificationScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class VerificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: CustomText(text: 
           AppStrings.emailCheck,
           style: getBoldTextStyle(
             fontSize: AppSize.s20,
@@ -66,23 +67,21 @@ class VerificationScreen extends StatelessWidget {
                   const SizedBox(height: 25),
 
                   /// Title and Description
-                  Text(
+                  CustomText(text: 
                     AppStrings.verifyEmailMessage,
                     style: getSemiBoldTextStyle(
                       fontSize: AppSize.s14,
                       color: ColorManager.forgotPasswordMessageColor,
                       fontFamily: FontConstants.cairo,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: AppSize.s10),
-                  Text(
+                  CustomText(text: 
                     "zexx@email.com",
                     style: getBoldTextStyle(
                       fontSize: AppSize.s14,
                       color: ColorManager.lightPrimary,
                     ),
-                    textAlign: TextAlign.center,
                   ),
 
                   const SizedBox(height: AppSize.s25),
@@ -119,8 +118,9 @@ class VerificationScreen extends StatelessWidget {
 
             const SizedBox(height: AppSize.s10),
 
-            Text(
-              "إعادة إرسال الرمز - 35 ثانية",
+            // TODO : Add tr
+            CustomText(text: 
+              "${AppStrings.resetPasswordScreen} - 35  ${AppStrings.second}",
               style: getSemiBoldTextStyle(
                 fontSize: AppSize.s16,
                 color: ColorManager.lightPrimary,

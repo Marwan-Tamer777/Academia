@@ -1,17 +1,22 @@
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_cubit/bottom_nav_bar_cubit.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/quiz/cubit/assignments_cubit/assignments_cubit.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_cubit.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/quiz/cubit/quiz_cubit/quiz_cubit.dart';
+import 'package:academia/presentation/screens/course_screen/cubit/course_cubit.dart';
+import 'package:academia/presentation/screens/login/cubit/login_cubit.dart';
+import 'package:academia/presentation/screens/take_quiz_screen/take_quiz_screen_cubit/take_quiz_screen_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../data/data_source/local/local_data_source.dart';
 import '../data/data_source/remote/remote_data_source.dart';
 import '../data/network/app_service/app_api.dart';
 import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
-import '../data/repository_impl/repository_impl.dart';
-import '../domain/repository/repository.dart';
 import '../presentation/resources/shared_preference_manager.dart';
 import '../presentation/resources/theme_manager.dart';
+import '../presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/Courses_cubit/courses_cubit.dart';
 
 
 final getItInstance = GetIt.instance;
@@ -22,7 +27,7 @@ Future<void> initAppModule() async {
       .registerLazySingleton<SharedPreferences>(() => sharedPreferences);
 
   getItInstance.registerLazySingleton<SharedPrefManager>(
-      () => SharedPrefManager(getItInstance<SharedPreferences>()));
+      () => SharedPrefManager());
 
   getItInstance.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(InternetConnectionChecker()));
@@ -31,9 +36,6 @@ Future<void> initAppModule() async {
       () => DioFactory(getItInstance<SharedPrefManager>()));
 
   Dio dio = await getItInstance<DioFactory>().getDio();
-
-  // getItInstance.registerLazySingleton<AppAPIServiceClient>(
-  //     () => AppAPIServiceClient(dio));
 
   getItInstance.registerLazySingleton<ThemeManager>(
       () => ThemeManager(getItInstance<SharedPrefManager>()));
@@ -44,21 +46,32 @@ Future<void> initAppModule() async {
   getItInstance.registerLazySingleton<RemoteAPIDataSource>(
       () => RemoteAPIDataSourceImpl(getItInstance<AppAPIServiceClient>()));
 
-  // getItInstance.registerLazySingleton<Repository>(() => RepositoryImpl(
-  //       getItInstance<RemoteAPIDataSource>(),
-  //       getItInstance<LocalDataSource>(),
-  //       getItInstance<NetworkInfo>(),
-  //     ));
 
-  /// Initialize Blocs
-  // if (!getItInstance.isRegistered<UseCaseImpl>()) {
-  //   getItInstance.registerFactory<UseCaseImpl>(
-  //       () => UseCaseImpl(getItInstance<Repository>()));
-  //   getItInstance.registerFactory<ProductsBloc>(
-  //     () => ProductsBloc(getItInstance<UseCaseImpl>()),
-  //   );
-  //   getItInstance.registerFactory<AuthBloc>(
-  //     () => AuthBloc(getItInstance<UseCaseImpl>()),
-  //   );
-  // }
+
+
+
+  getItInstance.registerLazySingleton<LoginCubit>(
+          () => LoginCubit());
+
+  getItInstance.registerLazySingleton<CoursesCubit>(
+          () => CoursesCubit());
+
+  getItInstance.registerLazySingleton<BottomNavBarCubit>(
+          () => BottomNavBarCubit());
+
+
+  getItInstance.registerLazySingleton<ProfileCubit>(
+          () => ProfileCubit()); 
+
+  getItInstance.registerLazySingleton<AssignmentsCubit>(
+          () => AssignmentsCubit()); 
+
+  getItInstance.registerLazySingleton<QuizCubit>(
+          () => QuizCubit()); 
+
+    getItInstance.registerLazySingleton<TakeQuizCubit>(
+          () => TakeQuizCubit()); 
+
+        getItInstance.registerLazySingleton<CourseCubit>(
+          () => CourseCubit());
 }

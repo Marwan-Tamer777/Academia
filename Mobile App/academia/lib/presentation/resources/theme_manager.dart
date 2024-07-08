@@ -13,13 +13,6 @@ import 'values_manager.dart';
 class ThemeManager {
   final SharedPrefManager _sharedPrefs;
   ThemeManager(this._sharedPrefs);
-  // bool get isDarkMode {
-  //   bool? isDarkMode = _sharedPrefs.isDarkMode;
-  //   isDarkMode ??=
-  //       SchedulerBinding.instance.platformDispatcher.platformBrightness ==
-  //           Brightness.dark;
-  //   return isDarkMode;
-  // }
 
   int get themeMode {
     int? mode = _sharedPrefs.getTheme;
@@ -36,12 +29,6 @@ class ThemeManager {
     return mode;
   }
 
-  // ThemeData resetCurrentTheme() {
-  //   int mode = isDarkMode ? 0 : 2;
-  //   _sharedPrefs.setThemeMode(mode);
-  //   themeMode = mode;
-  //   return getApplicationTheme(mode: mode);
-  // }
 
   ThemeData cycleThroughTheme() {
     int nextMode = themeMode == 2 ? 0 : themeMode + 1;
@@ -70,7 +57,7 @@ class ThemeManager {
   }
 
   static final ThemeData lightMode = ThemeData(
-    primaryColor: ColorManager.lightOrangeStatusBar,
+    primaryColor: ColorManager.buttonColor,
     primaryColorLight: ColorManager.lightOrangeStatusBar,
     primaryColorDark: ColorManager.lightOrangeStatusBar,
     disabledColor: ColorManager.lightGrey,
@@ -87,7 +74,8 @@ class ThemeManager {
       onSecondary: ColorManager.lightBlack,
       onSurface: ColorManager.lightBlack,
       onBackground: ColorManager.lightBlack,
-      onError: ColorManager.lightBlack,
+      onError: ColorManager.lightBlack, 
+      errorContainer: ColorManager.transparent,
     ),
     // 1 Card Theme
     cardTheme: const CardTheme(
@@ -112,6 +100,10 @@ class ThemeManager {
       iconTheme: const IconThemeData(
         color: ColorManager.lightBlack,
       ),
+    ),
+
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: ColorManager.buttonColor,
     ),
 
     // 3 Button theme
@@ -346,7 +338,7 @@ class ThemeManager {
   );
 
   static final ThemeData semiDarkMode = ThemeData(
-    primaryColor: ColorManager.semiDarkSecondary,
+    primaryColor: ColorManager.textOrange,
     primaryColorLight: ColorManager.semiDarkSecondary,
     primaryColorDark: ColorManager.semiDarkSecondary,
     disabledColor: ColorManager.darkGrey,
@@ -363,7 +355,8 @@ class ThemeManager {
       onSecondary: ColorManager.darkWhite,
       onSurface: ColorManager.darkWhite,
       onBackground: ColorManager.darkWhite,
-      onError: ColorManager.darkWhite,
+      onError: ColorManager.darkWhite, 
+      errorContainer: Colors.grey,
     ),
     // 1 Card Theme
     cardTheme: const CardTheme(
@@ -599,8 +592,9 @@ class ThemeManager {
       ),
     ],
   );
+  
   static final ThemeData darkMode = ThemeData(
-    primaryColor: ColorManager.semiDarkSecondary,
+    primaryColor: ColorManager.textOrange,
     primaryColorLight: ColorManager.semiDarkSecondary,
     primaryColorDark: ColorManager.semiDarkSecondary,
     disabledColor: ColorManager.darkGrey,
@@ -617,7 +611,8 @@ class ThemeManager {
       onSecondary: ColorManager.darkWhite,
       onSurface: ColorManager.darkWhite,
       onBackground: ColorManager.darkWhite,
-      onError: ColorManager.darkWhite,
+      onError: ColorManager.darkWhite, 
+      errorContainer: Colors.grey,
     ),
     // 1 Card Theme
     cardTheme: const CardTheme(

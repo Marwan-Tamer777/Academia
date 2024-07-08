@@ -1,8 +1,5 @@
 import 'dart:ui';
-
 import 'package:academia/presentation/resources/assets_manager.dart';
-import 'package:academia/presentation/resources/color_manager.dart';
-import 'package:academia/presentation/resources/font_manager.dart';
 import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/onboarding/cubit/onboarding_cubit.dart';
@@ -10,9 +7,9 @@ import 'package:academia/presentation/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../resources/style_manager.dart';
+import '../../widgets/custom_text.dart';
 import '../../widgets/onboarding_pages.dart';
+
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -70,10 +67,9 @@ class OnboardingScreen extends StatelessWidget {
                       /// Title
                       Align(
                         alignment: Alignment.centerRight,
-                        child: Text(
+                        child: CustomText(text: 
                           onboardingData[index].title,
-                          style: Theme.of(context).textTheme.labelLarge,
-                          textAlign: TextAlign.right,
+                          style: Theme.of(context).textTheme.labelLarge!,
                         ),
                       ),
                       const SizedBox(
@@ -81,10 +77,9 @@ class OnboardingScreen extends StatelessWidget {
                       ),
 
                       /// Description
-                      Text(
+                      CustomText(text: 
                         onboardingData[index].description,
-                        style: Theme.of(context).textTheme.labelMedium,
-                        textAlign: TextAlign.right,
+                        style: Theme.of(context).textTheme.labelMedium!,
                       ),
                     ],
                   ),
@@ -150,9 +145,9 @@ class OnboardingScreen extends StatelessWidget {
                       onPressed: () {
                         cubit.skip(context);
                       },
-                      child: Text(
+                      child: CustomText(text: 
                         AppStrings.skip,
-                        style: Theme.of(context).textTheme.bodySmall,
+                        style: Theme.of(context).textTheme.bodySmall!,
                       ),
                     ),
                   ),

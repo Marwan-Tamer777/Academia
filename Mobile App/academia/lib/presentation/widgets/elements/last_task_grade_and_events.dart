@@ -1,13 +1,18 @@
+import 'package:academia/domain/models/course.dart';
+import 'package:academia/presentation/resources/strings_manager.dart';
+import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/courses/screens/courses_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
 import '../../resources/values_manager.dart';
+import '../custom_text.dart';
 
-class LastTaskGradeAndEvents extends StatelessWidget {
+class LastTaskGradeAndEvents extends StatelessWidget { 
+  final Course course;
   const LastTaskGradeAndEvents({
-    super.key,
+    super.key, required this.course,
   });
 
   @override
@@ -23,14 +28,14 @@ class LastTaskGradeAndEvents extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    "الحدث القادم",
+                  CustomText(text: 
+                    AppStrings.upcomingEvent,
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: FontSize.s10, color: ColorManager.lightGrey),
                   ),
                   const SizedBox(height: AppSize.s5),
-                  Text(
-                    "12 فبراير 2023",
+                  CustomText(text: 
+                    dateFormatter(course.mostRecentDeadline!.toIso8601String()),
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: FontSize.s11, color: ColorManager.textOrange),
                   ),
@@ -58,14 +63,14 @@ class LastTaskGradeAndEvents extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    "درجة اخر اختبار",
+                  CustomText(text: 
+                    AppStrings.lastTaskGrade,
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: FontSize.s10, color: ColorManager.lightGrey),
                   ),
                   const SizedBox(height: AppSize.s5),
-                  Text(
-                    "لا يوجد",
+                  CustomText(text: 
+                    AppStrings.notFound,
                     style: Theme.of(context).textTheme.displayLarge!.copyWith(
                         fontSize: FontSize.s11, color: ColorManager.textOrange),
                   ),

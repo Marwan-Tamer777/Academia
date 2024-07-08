@@ -18,6 +18,16 @@ class OnboardingCubit extends Cubit<OnboardingStates> {
   void changePage(int index) {
     currentPage = index;
     emit(_PageChanged(index));
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
   }
 
   void next(BuildContext context) {
