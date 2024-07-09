@@ -4,6 +4,7 @@ import 'package:academia/presentation/resources/strings_manager.dart';
 import 'package:academia/presentation/resources/theme_manager.dart';
 import 'package:academia/presentation/screens/course_screen/cubit/course_cubit.dart';
 import 'package:academia/presentation/screens/course_screen/cubit/course_states.dart';
+import 'package:academia/presentation/screens/login/widgets/arrow_back_icon.dart';
 import 'package:academia/presentation/widgets/list_views_items/comment_item.dart';
 import 'package:academia/presentation/widgets/list_views_items/post_write_comment.dart';
 import 'package:academia/presentation/widgets/list_views_items/text_post_comments_item.dart';
@@ -44,12 +45,10 @@ class CommentsScreen extends StatelessWidget {
                   text: AppStrings.courseName,
                   style: Theme.of(context).textTheme.displayLarge!.copyWith(
                       fontSize: FontSize.s20, color: ColorManager.white)),
-              actions: [
+              actions: const [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppPadding.p13, vertical: AppPadding.p16),
-                  child: SvgPicture.asset(ImageAssets.arrowBackIcon,
-                      color: ColorManager.white),
+                  padding: EdgeInsets.all(8.0),
+                  child: ArrowBackIcon(),
                 ),
               ],
             ),

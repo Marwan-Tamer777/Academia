@@ -102,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
                                       value: cubit.selectedLanguage?.tr,
                                       // can you make the icon in the another side
                                       underline: const SizedBox(),
-                                      iconEnabledColor: Colors.white,
+                                      iconEnabledColor: Theme.of(context).canvasColor,
                                       items: cubit.languages
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {
@@ -136,7 +136,7 @@ class ProfileScreen extends StatelessWidget {
                                     leading: DropdownButton<String>(
                                       value: cubit.selectedTheme,
                                       underline: const SizedBox(),
-                                      iconEnabledColor: Colors.white,
+                                      iconEnabledColor: Theme.of(context).canvasColor,
                                       items: cubit.themes
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {
@@ -187,7 +187,7 @@ class ProfileScreen extends StatelessWidget {
                                     leading: DropdownButton<String>(
                                       value: cubit.selectedFontSize,
                                       underline: const SizedBox(),
-                                      iconEnabledColor: Colors.white,
+                                      iconEnabledColor: Theme.of(context).canvasColor,
                                       items: cubit.fontSizes
                                           .map<DropdownMenuItem<String>>(
                                               (String value) {

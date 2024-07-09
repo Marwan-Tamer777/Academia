@@ -162,7 +162,8 @@ class CoursesCubit extends Cubit<CoursesState> {
 
   // Method to categorize courses by department
   void categorizeCourses() {
-    categorizedCourses.clear();
+    categorizedCourses.clear(); 
+    categorizedAllCourses.clear();
     // Initialize or clear the 'all' category with all courses
     categorizedCourses['all'] = List.from(myCourses);
     categorizedAllCourses['all'] = List.from(allCourses);

@@ -5,6 +5,7 @@ import 'package:academia/app/dep_injection.dart';
 import 'package:academia/presentation/resources/values_manager.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_cubit.dart';
 import 'package:academia/presentation/screens/bottom_nav_bar/bottom_nav_bar_screens/profile/profile_cubit/profile_states.dart';
+import 'package:academia/presentation/screens/login/widgets/arrow_back_icon.dart';
 import 'package:academia/presentation/screens/login/widgets/custom_alert_dialog.dart';
 import 'package:academia/presentation/screens/login/widgets/custom_loading_dialog.dart';
 import 'package:academia/presentation/widgets/change_password_dialog.dart';
@@ -52,17 +53,13 @@ class WriteNewPasswordScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           title: CustomText(text: 
             AppStrings.forgotPassword,
-            style: getBoldTextStyle(
-              fontSize: AppSize.s20,
-              color: Colors.black,
-            ),
+            style: Theme.of(context).textTheme.displayMedium!
           ),
           centerTitle: true,
-          actions: [
-            SvgPicture.asset(
-              ImageAssets.arrowBackIcon,
-              width: AppSize.s24,
-              height: AppSize.s24,
+          actions: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ArrowBackIcon(),
             ),
           ],
         ),
@@ -96,10 +93,7 @@ class WriteNewPasswordScreen extends StatelessWidget {
                     /// Title and Description
                     CustomText(text: 
                       AppStrings.newPasswordScreenMessage,
-                      style: getSemiBoldTextStyle(
-                        fontSize: AppSize.s14,
-                        color: ColorManager.forgotPasswordMessageColor,
-                      ),
+            style: Theme.of(context).textTheme.displaySmall!
                     ),
       
                     const SizedBox(height: AppSize.s25),

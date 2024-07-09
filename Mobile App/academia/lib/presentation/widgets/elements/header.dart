@@ -1,4 +1,5 @@
 import 'package:academia/app/language/locale_controller.dart';
+import 'package:academia/presentation/screens/login/widgets/arrow_back_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -18,25 +19,13 @@ class ScreenHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) { 
-    MyLocaleController localeController = Get.find<MyLocaleController>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const NotificationIcon(),
         CustomText(text: title, style: Theme.of(context).textTheme.displayMedium!.copyWith(fontSize: FontSize.s17,color: ColorManager.white)),
-        isBackButton ? IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Transform( 
-            transform: localeController.isArabicLanguage() ? Matrix4.rotationY(3.141592) : Matrix4.rotationY(0),
-            child: SvgPicture.asset(
-              ImageAssets.arrowBackIcon,
-              color: ColorManager.white,
-            ),
-          ),
-        ) : const SizedBox(width: 24,),
+        isBackButton ? const ArrowBackIcon() : const SizedBox(width: 24,),
       ],
     );
   }
